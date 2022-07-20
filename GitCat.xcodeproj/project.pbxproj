@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A6260A3928883D6300276B91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6260A3828883D6300276B91 /* AppDelegate.swift */; };
 		A6260A3B28883D6300276B91 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6260A3A28883D6300276B91 /* SceneDelegate.swift */; };
-		A6260A3D28883D6300276B91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6260A3C28883D6300276B91 /* ViewController.swift */; };
 		A6260A4028883D6300276B91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6260A3E28883D6300276B91 /* Main.storyboard */; };
 		A6260A4328883D6300276B91 /* GitCat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6260A4128883D6300276B91 /* GitCat.xcdatamodeld */; };
 		A6260A4528883D6500276B91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6260A4428883D6500276B91 /* Assets.xcassets */; };
@@ -17,6 +16,7 @@
 		A6260A5328883D6500276B91 /* GitCatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6260A5228883D6500276B91 /* GitCatTests.swift */; };
 		A6260A5D28883D6500276B91 /* GitCatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6260A5C28883D6500276B91 /* GitCatUITests.swift */; };
 		A6260A5F28883D6500276B91 /* GitCatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6260A5E28883D6500276B91 /* GitCatUITestsLaunchTests.swift */; };
+		A6260A6C28883E8600276B91 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6260A6B28883E8600276B91 /* UsersListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +40,6 @@
 		A6260A3528883D6300276B91 /* GitCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6260A3828883D6300276B91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6260A3A28883D6300276B91 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A6260A3C28883D6300276B91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A6260A3F28883D6300276B91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6260A4228883D6300276B91 /* GitCat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GitCat.xcdatamodel; sourceTree = "<group>"; };
 		A6260A4428883D6500276B91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		A6260A5828883D6500276B91 /* GitCatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitCatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6260A5C28883D6500276B91 /* GitCatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCatUITests.swift; sourceTree = "<group>"; };
 		A6260A5E28883D6500276B91 /* GitCatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCatUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A6260A6B28883E8600276B91 /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 			children = (
 				A6260A3828883D6300276B91 /* AppDelegate.swift */,
 				A6260A3A28883D6300276B91 /* SceneDelegate.swift */,
-				A6260A3C28883D6300276B91 /* ViewController.swift */,
+				A6260A6B28883E8600276B91 /* UsersListViewController.swift */,
 				A6260A3E28883D6300276B91 /* Main.storyboard */,
 				A6260A4428883D6500276B91 /* Assets.xcassets */,
 				A6260A4628883D6500276B91 /* LaunchScreen.storyboard */,
@@ -261,8 +261,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6260A3D28883D6300276B91 /* ViewController.swift in Sources */,
 				A6260A3928883D6300276B91 /* AppDelegate.swift in Sources */,
+				A6260A6C28883E8600276B91 /* UsersListViewController.swift in Sources */,
 				A6260A3B28883D6300276B91 /* SceneDelegate.swift in Sources */,
 				A6260A4328883D6300276B91 /* GitCat.xcdatamodeld in Sources */,
 			);
