@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class UsersListViewController: UIViewController {
     //MARK: - Props
     var usersViewModel = UsersListViewModel()
@@ -29,6 +29,7 @@ class UsersListViewController: UIViewController {
     func InitViewModel(){
         fetchUsers()
     }
+    //MARK: - View Functions
     func tableViewConfig() {
         usersListTableView.delegate = self
         usersListTableView.dataSource = self
@@ -37,11 +38,13 @@ class UsersListViewController: UIViewController {
     func searchBarConfig() {
         usersSearchBar.delegate = self
     }
+    //MARK: - Data Function
     func fetchUsers() {
         usersViewModel.fetchAllUsers()
         usersViewModel.bindingData = { users, error in
             if let users = users {
                 self.usersArray = users
+                self.filteredArray = self.usersArray
                 DispatchQueue.main.async {
                     self.usersListTableView.reloadData()
                 }
@@ -50,20 +53,34 @@ class UsersListViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-        }
+    }
 }
+//MARK: - TableView
 extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(usersArray.count)
-        return usersArray.count
+        return filteredArray.count
     }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = usersListTableView.dequeueReusableCell(withIdentifier: "UserListCell", for: indexPath) as! UsersListTableViewCell
-        cell.userNameLabel.text = usersArray[indexPath.row].login
+        cell.userNameLabel.text = filteredArray[indexPath.row].login
+        cell.userImage.kf.setImage(with: URL(string: "https://play.google.com/store/apps/details?id=com.olzhas.carparking.multyplayer&hl=ar&gl=US"))
         return cell
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }
+//MARK: - SearchBar
 extension UsersListViewController: UISearchBarDelegate {
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            filteredArray = usersArray
+            self.usersListTableView.reloadData()
+        } else {
+            filteredArray = usersArray.filter({ user in
+                return user.login!.contains(searchText.lowercased())
+            })
+            self.usersListTableView.reloadData()
+        }
+    }
 }
