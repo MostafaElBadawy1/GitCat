@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct K
-{
+struct K {
     static let tabBarID = "TabBarViewController"
     static let homeTableViewCell = "HomeTableViewCell"
     static let UsersListViewControllerID = "UsersListViewController"
@@ -18,4 +17,6 @@ struct K
     static let UserDetailsTableViewCellID = "UserDetailsTableViewCell"
     static let RepositoriesViewControllerID = "RepositoriesViewController"
     static let RepositoriesTableViewCellID = "RepositoriesTableViewCell"
+    static let CommitsViewControllerID = "CommitsViewController"
+    static let CommitsTableViewCellID = "CommitsTableViewCell"
 }

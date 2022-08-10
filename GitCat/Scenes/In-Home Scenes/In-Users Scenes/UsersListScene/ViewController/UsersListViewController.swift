@@ -22,8 +22,7 @@ class UsersListViewController: UIViewController {
         super.viewDidLoad()
         initView()
         InitViewModel()
-        searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
+//        navigationController?.navigationBar.prefersLargeTitles = true
 //        self.usersListTableView.refreshControl = UIRefreshControl()
 //        self.usersListTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
@@ -64,10 +63,10 @@ class UsersListViewController: UIViewController {
             loadingIndicator.stopAnimating()
         } else {
             print("Disconnected")
-            let alert : UIAlertController = UIAlertController(title:"You Are Disconnected!" , message: "Please Connect to Network", preferredStyle: .alert)
+            let alert : UIAlertController = UIAlertController(title:"You Are Disconnected!" , message: "Please Check Your Connection", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-//            loadingIndicator.startAnimating()
+            loadingIndicator.startAnimating()
         }
     }
     func pagination(){

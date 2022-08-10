@@ -33,6 +33,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeArray[section].count
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        homeTableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 && indexPath.row == 0 {
+            let usersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UsersListViewControllerID) as! UsersListViewController
+            self.navigationController?.pushViewController(usersVC, animated: true)
+        } else if indexPath.section == 0 && indexPath.row == 1 {
+            let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+            self.navigationController?.pushViewController(reposVC, animated: true)
+        }
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = homeTableView.dequeueReusableCell(withIdentifier: K.homeTableViewCell , for: indexPath) as! HomeTableViewCell
         cell.homeLabel.text = homeArray[indexPath.section][indexPath.row]
@@ -41,13 +51,5 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.homeImage.isHidden = true
         }
         return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        homeTableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 && indexPath.row == 0 {
-            let usersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UsersListViewControllerID) as! UsersListViewController
-            self.navigationController?.pushViewController(usersVC, animated: true)
-        }
-
     }
 }
