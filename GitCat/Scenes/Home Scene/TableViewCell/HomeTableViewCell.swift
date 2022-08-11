@@ -8,6 +8,7 @@
 import UIKit
 
 class HomeTableViewCell: UITableViewCell {
+    
 
     @IBOutlet weak var homeLabel: UILabel!
     @IBOutlet weak var homeImage: UIImageView!

@@ -19,4 +19,5 @@ struct K {
     static let RepositoriesTableViewCellID = "RepositoriesTableViewCell"
     static let CommitsViewControllerID = "CommitsViewController"
     static let CommitsTableViewCellID = "CommitsTableViewCell"
+    static let SettingsViewControllerID = "SettingsViewController"
 }

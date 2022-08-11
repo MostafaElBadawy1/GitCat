@@ -25,8 +25,6 @@ class BookmarksViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
     }
-
-
 }
 extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

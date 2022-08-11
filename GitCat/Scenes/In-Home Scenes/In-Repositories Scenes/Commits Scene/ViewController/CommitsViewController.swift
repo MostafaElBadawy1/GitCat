@@ -16,12 +16,11 @@ class CommitsViewController: UIViewController {
         commitsTableView.delegate = self
         commitsTableView.dataSource = self
         commitsTableView.register(UINib(nibName: K.CommitsTableViewCellID, bundle: .main), forCellReuseIdentifier: K.CommitsTableViewCellID)
+        commitsTableView.frame = view.frame
 //        navigationItem.largeTitleDisplayMode = .automatic
 //        navigationItem.title = "Commits"
     }
-    
-
-
+ 
 }
 
 extension CommitsViewController: UITableViewDelegate, UITableViewDataSource {

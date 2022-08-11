@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileTableView: UITableView!
     
     @IBAction func settingButton(_ sender: UIBarButtonItem) {
-        let settingsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsTableViewController") as! SettingsTableViewController
+        let settingsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.SettingsViewControllerID) as! SettingsViewController
         self.navigationController?.pushViewController(settingsVC, animated: true)
     }
     @IBAction func shareLink(_ sender: UIBarButtonItem) {

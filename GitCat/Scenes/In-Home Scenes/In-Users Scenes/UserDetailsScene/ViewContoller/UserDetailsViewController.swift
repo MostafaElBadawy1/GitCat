@@ -20,6 +20,7 @@ class UserDetailsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        userDetailsTableView.frame = view.frame
         //        let header = UIView(frame: CGRect(x: 120, y: 100, width: view.frame.size.width, height: 150))
         //        userDetailsTableView.tableHeaderView = header
         //        header.backgroundColor = .green

@@ -16,6 +16,7 @@ class RepositoriesViewController: UIViewController {
         searchControllerConfig()
         repositoriesTableView.delegate = self
         repositoriesTableView.dataSource = self
+        repositoriesTableView.frame = view.frame
         repositoriesTableView.register(UINib(nibName: K.RepositoriesTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RepositoriesTableViewCellID)
 
     }
