@@ -13,31 +13,32 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
+        tableViewConfig()
         configureUI()
     }
-    func configureTableView() {
+    func tableViewConfig() {
         SettingsTableView.delegate = self
         SettingsTableView.dataSource = self
         SettingsTableView.rowHeight = 45
         SettingsTableView.register(UINib(nibName: "SettingsTableViewCell", bundle: .main), forCellReuseIdentifier: "SettingsTableViewCell")
         SettingsTableView.frame = view.frame
-        
-        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 80)
-        userInfoHeader = UserInfoHeader(frame: frame)
-        SettingsTableView.tableHeaderView = userInfoHeader
-        SettingsTableView.tableHeaderView?.backgroundColor = .systemGray6
         //SettingsTableView.tableHeaderView.
        // SettingsTableView.tableFooterView = UIView()
         //SettingsTableView.tableHeaderView?.isHidden = true
     }
-    
     func configureUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Settings"
+        headerConfig()
         // navigationController?.navigationBar.isTranslucent = false
          //navigationController?.navigationBar.barStyle = .black
         // navigationController?.navigationBar.barTintColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
+    }
+    func headerConfig(){
+        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 80)
+        userInfoHeader = UserInfoHeader(frame: frame)
+        SettingsTableView.tableHeaderView = userInfoHeader
+        SettingsTableView.tableHeaderView?.backgroundColor = .systemGray6
     }
 }
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -48,7 +49,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return 25
         }
-        
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return SettingsSection(rawValue: section)?.description
@@ -69,11 +69,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             return AccountOptions.allCases.count
         }
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         SettingsTableView.deselectRow(at: indexPath, animated: true)
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = SettingsTableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
         guard let section = SettingsSection(rawValue: indexPath.section) else {return UITableViewCell()}
@@ -96,12 +94,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.switchControl.isHidden = true
         }
-//        if indexPath.section == 3 && indexPath.row == 0{
-//            cell.settingsLabel.textColor = .red
-//        } else {
-//            cell.settingsLabel.textColor = .black
-//        }
-
+        if indexPath.section == 3 && indexPath.row == 0{
+            cell.textLabel?.textColor = .red
+        } else {
+            cell.textLabel?.textColor = .label
+        }
         return cell
     }
 }

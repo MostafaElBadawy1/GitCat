@@ -6,39 +6,31 @@
 //
 
 import UIKit
-import SwiftUI
 
 class SettingsTableViewCell: UITableViewCell {
+    let userDefaults = UserDefaults.standard
     @IBOutlet weak var switchControl: UISwitch!
     @IBAction func switchDidChange(_ sender: UISwitch) {
+        let window = UIApplication.shared.windows[0]
         if sender.isOn {
-            print("turned ON")
-            overrideUserInterfaceStyle = .dark
+            window.overrideUserInterfaceStyle = .dark
+            userDefaults.set(switchControl.isOn, forKey: "SwitchControlState")
+            //userDefaults.set(window.overrideUserInterfaceStyle = .dark, forKey: "AppAppearanceStateDark")
         } else {
-            print("turned Off")
-            overrideUserInterfaceStyle = .light
+            window.overrideUserInterfaceStyle = .light
+           // userDefaults.set(window.overrideUserInterfaceStyle = .dark, forKey: "AppAppearanceStateLight")
         }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        //switchControl.addTarget(self, action: #selector(handleSwitchAction), for: .valueChanged)
-        //addSubview(switchControl)
-//        switchControl.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//        switchControl.rightAnchor.constraint(equalTo: rightAnchor,constant: -12).isActive = true
+        switchControl.isOn = userDefaults.bool(forKey: "SwitchControlState")
+       // switchControl.isOn = userDefaults.bool(forKey: "AppAppearanceStateDark")
+       // switchControl.isOn = userDefaults.bool(forKey: "AppAppearanceStateLight")
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        switchControl.isOn = userDefaults.bool(forKey: "SwitchControlState")
     }
-   
-    
-    
-    
-    
-    
-    
 //    @objc func handleSwitchAction(sender: UISwitch){
 
 //        if sender.isOn {
@@ -48,6 +40,8 @@ class SettingsTableViewCell: UITableViewCell {
 //            print("Turned off")
 //        }
 //    }
-
-    
+    //switchControl.addTarget(self, action: #selector(handleSwitchAction), for: .valueChanged)
+    //addSubview(switchControl)
+//        switchControl.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+//        switchControl.rightAnchor.constraint(equalTo: rightAnchor,constant: -12).isActive = true
 }

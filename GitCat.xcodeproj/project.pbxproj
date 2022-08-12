@@ -41,6 +41,11 @@
 		A6AC5C722889A8E1003415FC /* UsersListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6AC5C702889A8E1003415FC /* UsersListTableViewCell.xib */; };
 		A6AC5C74288B0543003415FC /* UsersListViewController+SearchExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C73288B0543003415FC /* UsersListViewController+SearchExtension.swift */; };
 		A6AC5C76288B058D003415FC /* UsersListViewController+TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C75288B058D003415FC /* UsersListViewController+TableViewExtension.swift */; };
+		A6C6432328A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432228A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift */; };
+		A6C6432628A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432528A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift */; };
+		A6C6432828A6802C00271B3D /* CommitsViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432728A6802C00271B3D /* CommitsViewController+TableViewExtention.swift */; };
+		A6C6432A28A683B700271B3D /* BookmarksViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432928A683B600271B3D /* BookmarksViewController+TableViewExtention.swift */; };
+		A6C6432C28A6840900271B3D /* BookmarksViewController+SearchExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432B28A6840900271B3D /* BookmarksViewController+SearchExtention.swift */; };
 		A6C73FDE289D713A001C7E16 /* HomeViewController+TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C73FDD289D7139001C7E16 /* HomeViewController+TableViewExtension.swift */; };
 		A6C73FE9289F2017001C7E16 /* HomeViewController+SearchExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C73FE8289F2017001C7E16 /* HomeViewController+SearchExtension.swift */; };
 		A6E7FFAF288C3F0F0055B0FA /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E7FFAE288C3F0F0055B0FA /* NetworkReachabilityManager.swift */; };
@@ -119,6 +124,11 @@
 		A6AC5C702889A8E1003415FC /* UsersListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersListTableViewCell.xib; sourceTree = "<group>"; };
 		A6AC5C73288B0543003415FC /* UsersListViewController+SearchExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersListViewController+SearchExtension.swift"; sourceTree = "<group>"; };
 		A6AC5C75288B058D003415FC /* UsersListViewController+TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersListViewController+TableViewExtension.swift"; sourceTree = "<group>"; };
+		A6C6432228A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController+TableViewExtension.swift"; sourceTree = "<group>"; };
+		A6C6432528A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesViewController+SearchExtention.swift"; sourceTree = "<group>"; };
+		A6C6432728A6802C00271B3D /* CommitsViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommitsViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
+		A6C6432928A683B600271B3D /* BookmarksViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookmarksViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
+		A6C6432B28A6840900271B3D /* BookmarksViewController+SearchExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookmarksViewController+SearchExtention.swift"; sourceTree = "<group>"; };
 		A6C73FDD289D7139001C7E16 /* HomeViewController+TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableViewExtension.swift"; sourceTree = "<group>"; };
 		A6C73FE8289F2017001C7E16 /* HomeViewController+SearchExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+SearchExtension.swift"; sourceTree = "<group>"; };
 		A6E7FFAE288C3F0F0055B0FA /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
@@ -304,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				A699421728A31373000B2410 /* CommitsViewController.swift */,
+				A6C6432728A6802C00271B3D /* CommitsViewController+TableViewExtention.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -315,19 +326,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		A699422028A31968000B2410 /* In-Repositories Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				A6E92EC228A2BC120085F163 /* Repositories Scene */,
-				A699421528A31335000B2410 /* Commits Scene */,
-			);
-			path = "In-Repositories Scenes";
-			sourceTree = "<group>";
-		};
 		A699422128A31DAE000B2410 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				A699422328A31E05000B2410 /* BookmarksViewController.swift */,
+				A6C6432928A683B600271B3D /* BookmarksViewController+TableViewExtention.swift */,
+				A6C6432B28A6840900271B3D /* BookmarksViewController+SearchExtention.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -342,10 +346,10 @@
 		A699422528A32B23000B2410 /* Settings Scene */ = {
 			isa = PBXGroup;
 			children = (
-				A67074D428A3E47500DBBB3F /* SettingsViewController.swift */,
-				A67074D628A3E85400DBBB3F /* UserInfoHeader.swift */,
-				A67074DA28A3F38500DBBB3F /* SettingsSection.swift */,
+				A6C6433028A6857700271B3D /* ViewController */,
+				A6C6433128A685BE00271B3D /* UserInfoHeader */,
 				A67074DE28A4214E00DBBB3F /* TableViewCell */,
+				A67074DA28A3F38500DBBB3F /* SettingsSection.swift */,
 			);
 			path = "Settings Scene";
 			sourceTree = "<group>";
@@ -414,6 +418,45 @@
 			path = TableViewCell;
 			sourceTree = "<group>";
 		};
+		A6C6432428A67EE000271B3D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A6C6432D28A6852800271B3D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A6E92EBD28A2A9460085F163 /* ProfileViewController.swift */,
+				A6E92EBF28A2B59C0085F163 /* ProfileViewController+TableViewExtension.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A6C6432E28A6856400271B3D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A6C6433028A6857700271B3D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A67074D428A3E47500DBBB3F /* SettingsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A6C6433128A685BE00271B3D /* UserInfoHeader */ = {
+			isa = PBXGroup;
+			children = (
+				A67074D628A3E85400DBBB3F /* UserInfoHeader.swift */,
+			);
+			path = UserInfoHeader;
+			sourceTree = "<group>";
+		};
 		A6C73FDF289D79EE001C7E16 /* Explore Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				A6E92EAC28A1998B0085F163 /* ViewContoller */,
+				A6C6432428A67EE000271B3D /* ViewModel */,
 				A6E92EB428A299540085F163 /* UserDetailsTableViewCell */,
 			);
 			path = UserDetailsScene;
@@ -442,6 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				A6E92EA128A12F800085F163 /* UserDetailsViewController.swift */,
+				A6C6432228A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift */,
 			);
 			path = ViewContoller;
 			sourceTree = "<group>";
@@ -458,8 +503,10 @@
 		A6E92EB928A2A8BA0085F163 /* In-Home Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A6E92EC128A2BBBD0085F163 /* In-Users Scenes */,
-				A699422028A31968000B2410 /* In-Repositories Scenes */,
+				A6AC5C5C28884870003415FC /* UsersListScene */,
+				A6E92EA028A12F580085F163 /* UserDetailsScene */,
+				A6E92EC228A2BC120085F163 /* Repositories Scene */,
+				A699421528A31335000B2410 /* Commits Scene */,
 			);
 			path = "In-Home Scenes";
 			sourceTree = "<group>";
@@ -476,19 +523,10 @@
 		A6E92EBC28A2A9130085F163 /* Profile Scene */ = {
 			isa = PBXGroup;
 			children = (
-				A6E92EBD28A2A9460085F163 /* ProfileViewController.swift */,
-				A6E92EBF28A2B59C0085F163 /* ProfileViewController+TableViewExtension.swift */,
+				A6C6432D28A6852800271B3D /* ViewController */,
+				A6C6432E28A6856400271B3D /* ViewModel */,
 			);
 			path = "Profile Scene";
-			sourceTree = "<group>";
-		};
-		A6E92EC128A2BBBD0085F163 /* In-Users Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				A6AC5C5C28884870003415FC /* UsersListScene */,
-				A6E92EA028A12F580085F163 /* UserDetailsScene */,
-			);
-			path = "In-Users Scenes";
 			sourceTree = "<group>";
 		};
 		A6E92EC228A2BC120085F163 /* Repositories Scene */ = {
@@ -506,6 +544,7 @@
 			children = (
 				A6E92EC328A2BC500085F163 /* RepositoriesViewController.swift */,
 				A6E92EC528A2BD1F0085F163 /* RepositoriesViewController+TableViewExtention.swift */,
+				A6C6432528A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -784,13 +823,17 @@
 				A699422428A31E05000B2410 /* BookmarksViewController.swift in Sources */,
 				A6E92ECC28A2BE240085F163 /* RepositoriesTableViewCell.swift in Sources */,
 				A6AC5C712889A8E1003415FC /* UsersListTableViewCell.swift in Sources */,
+				A6C6432C28A6840900271B3D /* BookmarksViewController+SearchExtention.swift in Sources */,
 				A6AC5C6928885887003415FC /* Users.swift in Sources */,
 				A6AC5C74288B0543003415FC /* UsersListViewController+SearchExtension.swift in Sources */,
 				A6AC5C76288B058D003415FC /* UsersListViewController+TableViewExtension.swift in Sources */,
 				A6781717289C28A9007F6BBC /* Constants.swift in Sources */,
+				A6C6432A28A683B700271B3D /* BookmarksViewController+TableViewExtention.swift in Sources */,
 				A6781719289C3F93007F6BBC /* HomeViewController.swift in Sources */,
 				A6260A3928883D6300276B91 /* AppDelegate.swift in Sources */,
+				A6C6432828A6802C00271B3D /* CommitsViewController+TableViewExtention.swift in Sources */,
 				A6E7FFAF288C3F0F0055B0FA /* NetworkReachabilityManager.swift in Sources */,
+				A6C6432328A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift in Sources */,
 				A6260A6C28883E8600276B91 /* UsersListViewController.swift in Sources */,
 				A6AC5C64288852BA003415FC /* ApiService.swift in Sources */,
 				A6C73FDE289D713A001C7E16 /* HomeViewController+TableViewExtension.swift in Sources */,
@@ -809,6 +852,7 @@
 				A67074D528A3E47500DBBB3F /* SettingsViewController.swift in Sources */,
 				A67074E128A4216200DBBB3F /* SettingsTableViewCell.swift in Sources */,
 				A6AC5C6228885292003415FC /* NetworkingManager.swift in Sources */,
+				A6C6432628A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift in Sources */,
 				A6E92EBE28A2A9460085F163 /* ProfileViewController.swift in Sources */,
 				A6593562289D67A1006A95F6 /* HomeTableViewCell.swift in Sources */,
 				A6E92EC028A2B59C0085F163 /* ProfileViewController+TableViewExtension.swift in Sources */,

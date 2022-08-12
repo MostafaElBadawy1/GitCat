@@ -31,7 +31,6 @@ class UsersListViewController: UIViewController {
         networkReachability()
 //        self.usersListTableView.refreshControl = UIRefreshControl()
 //         self.usersListTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        
     }
     //MARK: - Main Functions
     func initView(){
@@ -46,7 +45,7 @@ class UsersListViewController: UIViewController {
     func tableViewConfig() {
         usersListTableView.delegate = self
         usersListTableView.dataSource = self
-        usersListTableView.register(UINib(nibName: K.UsersListTableViewCell, bundle: nil), forCellReuseIdentifier: K.UserListCellID)
+        usersListTableView.register(UINib(nibName: K.UsersListTableViewCell, bundle: .main), forCellReuseIdentifier: K.UserListCellID)
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController

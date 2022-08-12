@@ -14,3 +14,9 @@ extension HomeViewController: UISearchResultsUpdating {
         print(text)
     }
 }
+extension HomeViewController: UISearchControllerDelegate {
+    
+}
+extension HomeViewController : UISearchBarDelegate {
+    
+}
