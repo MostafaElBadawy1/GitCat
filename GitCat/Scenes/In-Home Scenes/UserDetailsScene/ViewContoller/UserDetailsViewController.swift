@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
-
 class UserDetailsViewController: UIViewController {
     let userDetailsArray = ["Repositories","Starred","Organization"]
     let imagesArray = [UIImage(named: "repoIcon"),UIImage(named: "Star"),UIImage(named: "Organization")]

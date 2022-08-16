@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         tableViewConfig()
         searchControllerConfig()
+        appAppearanceConfig()
 //        UINavigationController(rootViewController: HomeViewController())
     }
     func tableViewConfig() {
@@ -44,6 +45,14 @@ class HomeViewController: UIViewController {
         // Monitor when the search button is tapped, and start/end editing.
         searchController.searchBar.delegate = self
 
+    }
+    func appAppearanceConfig() {
+        let window = UIApplication.shared.windows[0]
+        if UserDefaults.standard.bool(forKey: "isDarkMode") == true {
+            window.overrideUserInterfaceStyle = .dark
+        } else {
+            window.overrideUserInterfaceStyle = .light
+        }
     }
 }
 

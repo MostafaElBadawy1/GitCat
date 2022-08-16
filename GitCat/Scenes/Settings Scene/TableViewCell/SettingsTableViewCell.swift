@@ -8,38 +8,39 @@
 import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
-    let userDefaults = UserDefaults.standard
+    //let userDefaults = UserDefaults.standard
+    let isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+   
+    
     @IBOutlet weak var switchControl: UISwitch!
     @IBAction func switchDidChange(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "isDarkMode")
         let window = UIApplication.shared.windows[0]
-        if sender.isOn {
+        if sender.isOn{
+            //UserDefaults.standard.set(true, forKey: "isDarkMode")
             window.overrideUserInterfaceStyle = .dark
-            userDefaults.set(switchControl.isOn, forKey: "SwitchControlState")
-            //userDefaults.set(window.overrideUserInterfaceStyle = .dark, forKey: "AppAppearanceStateDark")
+            //sender.isOn = true
         } else {
+            //UserDefaults.standard.set(false, forKey: "isDarkMode")
+            //sender.isOn = false
             window.overrideUserInterfaceStyle = .light
-           // userDefaults.set(window.overrideUserInterfaceStyle = .dark, forKey: "AppAppearanceStateLight")
         }
     }
+  
+  
     override func awakeFromNib() {
         super.awakeFromNib()
-        switchControl.isOn = userDefaults.bool(forKey: "SwitchControlState")
-       // switchControl.isOn = userDefaults.bool(forKey: "AppAppearanceStateDark")
-       // switchControl.isOn = userDefaults.bool(forKey: "AppAppearanceStateLight")
+        switchControl.isOn = UserDefaults.standard.bool(forKey: "isDarkMode")
+//        let window = UIApplication.shared.windows[0]
+//        if switchControl.isOn {
+//            window.overrideUserInterfaceStyle = .dark
+//        } else {
+//            window.overrideUserInterfaceStyle = .light
+//        }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        switchControl.isOn = userDefaults.bool(forKey: "SwitchControlState")
     }
-//    @objc func handleSwitchAction(sender: UISwitch){
-
-//        if sender.isOn {
-//            print("Turned on")
-//        }
-//        else{
-//            print("Turned off")
-//        }
-//    }
     //switchControl.addTarget(self, action: #selector(handleSwitchAction), for: .valueChanged)
     //addSubview(switchControl)
 //        switchControl.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

@@ -7,12 +7,13 @@
 
 import UIKit
 import Kingfisher
-import Alamofire
 class UsersListViewController: UIViewController {
     //MARK: - Props
+    var pageNum = 1
+    var preFetchIndex = 15
     var usersViewModel = UsersListViewModel()
-    var usersArray: [Users] = []
-    var filteredArray: [Users] = []
+    var usersArray = [Items]()
+    var moreUsersArray = [Items]()
     let searchController = UISearchController(searchResultsController: resultsTableController())
     let loadingIndicator = UIActivityIndicatorView()
     //MARK: - IBOutlets
@@ -22,30 +23,28 @@ class UsersListViewController: UIViewController {
         super.viewDidLoad()
         initView()
         InitViewModel()
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//        self.usersListTableView.refreshControl = UIRefreshControl()
-//        self.usersListTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         networkReachability()
-//        self.usersListTableView.refreshControl = UIRefreshControl()
-//         self.usersListTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     //MARK: - Main Functions
     func initView(){
         tableViewConfig()
         searchControllerConfig()
-        pagination()
+        refreshPage()
     }
     func InitViewModel(){
-        fetchUsers()
+        fetchUser(searchKeyword: "mo", page: 1)
     }
     //MARK: - View Functions
     func tableViewConfig() {
         usersListTableView.delegate = self
         usersListTableView.dataSource = self
+        usersListTableView.prefetchDataSource = self
         usersListTableView.register(UINib(nibName: K.UsersListTableViewCell, bundle: .main), forCellReuseIdentifier: K.UserListCellID)
+        usersListTableView.frame = view.frame
+        self.usersListTableView.tableFooterView = createSpinnerFooter()
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController
@@ -53,74 +52,102 @@ class UsersListViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
     }
+    func createSpinnerFooter()-> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        let spinner = UIActivityIndicatorView()
+        footerView.addSubview(spinner)
+        spinner.center = footerView.center
+        if usersArray.isEmpty {
+            spinner.stopAnimating()
+        } else {
+            spinner.startAnimating()
+        }
+        return footerView
+    }
     func networkReachability(){
         loadingIndicator.style = .medium
         loadingIndicator.center = view.center
         view.addSubview(loadingIndicator)
         if NetworkMonitor.shared.isConnected {
-           print("connected")
             loadingIndicator.stopAnimating()
         } else {
-            print("Disconnected")
-            let alert : UIAlertController = UIAlertController(title:"You Are Disconnected!" , message: "Please Check Your Connection", preferredStyle: .alert)
+            let alert : UIAlertController = UIAlertController(title:"You Are Disconnected" , message: "Please Check Your Connection!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             loadingIndicator.startAnimating()
         }
     }
-    func pagination(){
+    func refreshPage(){
         self.usersListTableView.refreshControl = UIRefreshControl()
         self.usersListTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     @objc private func refreshData() {
-        fetchUsers()
+        fetchUser(searchKeyword: "mo", page: 1)
+        self.usersListTableView.reloadData()
     }
     //MARK: - Data Function
-    func fetchUsers() {
-        usersViewModel.fetchAllUsers()
-        usersViewModel.bindingData = { users, error in
-            if let users = users {
+    func fetchUser(searchKeyword: String, page: Int) {
+        Task.init {
+            if let users = await usersViewModel.fetchAllUsers(searchKeyword: searchKeyword, page: page) {
                 self.usersArray = users
-                self.filteredArray = self.usersArray
                 DispatchQueue.main.async {
+                    self.loadingIndicator.stopAnimating()
                     self.usersListTableView.reloadData()
                 }
-            }
-            if let error = error {
-                print(error.localizedDescription)
+            } else {
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Users" , message: "Please Check Your Connection !", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
-}
-
-//MARK: - SearchBar
-extension UsersListViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            filteredArray = usersArray
-            self.usersListTableView.reloadData()
-        } else {
-            filteredArray = usersArray.filter({ user in
-                return user.login!.contains(searchText.lowercased())
-            })
-            self.usersListTableView.reloadData()
+    func fetchMoreUsers(searchKeyword: String, page: Int) {
+        Task.init {
+            if let users = await usersViewModel.fetchAllUsers(searchKeyword: searchKeyword, page: page) {
+                //                try await Task.sleep(nanoseconds: 1_000_000_000)
+                self.moreUsersArray = users
+                DispatchQueue.main.async {
+                    self.usersArray.append(contentsOf: self.moreUsersArray)
+                    self.usersListTableView.reloadData()
+                }
+            } else {
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Users" , message: "Please Check Your Connection!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        usersSearchBar.endEditing(true)
-//    }
-//    func searchBarSearchButtonClicked(searchBar: UISearchBar)
-//    {
-////        searchActive = false;
-//        self.usersSearchBar.endEditing(true)
-//    }
-}
-extension UsersListViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {
-        return
-    }
-    print(text)
-    
-}
+    //    func fetchUsers(id: Int) {
+    //        usersViewModel.fetchAllUsers(id: id)
+    //        usersViewModel.bindingData = { users, error in
+    //            if let users = users {
+    //                self.usersArray = users
+    //                //self.filteredArray = self.usersArray
+    //                DispatchQueue.main.async {
+    ////                    self.usersArray.append(contentsOf: self.usersArray)
+    //                    self.usersListTableView.reloadData()
+    //                }
+    //            }
+    //            if let error = error {
+    //                print(error.localizedDescription)
+    //            }
+    //        }
+    //    }
+    //    func fetchMoreUsers(id: Int) {
+    //        usersViewModel.fetchAllUsers(id: id)
+    //        usersViewModel.bindingData = { users, error in
+    //            if let users = users {
+    //                self.moreUsersArray = users
+    //                //self.filteredArray = self.usersArray
+    //                DispatchQueue.main.async {
+    //                    self.usersListTableView.tableFooterView = nil
+    //                    self.usersArray.append(contentsOf: self.moreUsersArray)
+    //                    self.usersListTableView.reloadData()
+    //                }
+    //            }
+    //            if let error = error {
+    //                print(error.localizedDescription)
+    //            }
+    //        }
+    //    }
 }

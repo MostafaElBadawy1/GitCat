@@ -10,10 +10,12 @@ import Foundation
 struct URLs {
     static let shared = URLs()
     let baseURL = "https://api.github.com/"
-    func getUsersListURL()->URL?{
-        return URL(string: baseURL + "users")
+    func getUsersListURL(searchKeyword: String, page:Int)->URL?{
+        return URL(string: baseURL + "search/users?q=\(searchKeyword)&page=\(page)")
+        //return URL(string: baseURL + "users?since=\(id)&per_page=20")
     }
-    func getDetailedUser(userName: String)->URL?{
-        return URL(string: baseURL + "users\(userName)")
-    }
+//    func getUserDetails(userName: String)->URL?{
+//        return URL(string: baseURL + "users\(userName)")
+//    }
 }
+//https://api.github.com/search/users?q=e&page=5
