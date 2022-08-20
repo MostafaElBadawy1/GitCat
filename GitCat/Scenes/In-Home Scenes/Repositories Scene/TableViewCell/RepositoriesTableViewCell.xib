@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repo Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzN-wb-ppf">
-                        <rect key="frame" x="8" y="8" width="106" height="34"/>
+                        <rect key="frame" x="8" y="8" width="331" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -53,6 +53,12 @@
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="programmingLangLabel" destination="om2-gJ-EM8" id="ZMj-yb-rvw"/>
+                <outlet property="repoDescriptionLabel" destination="srB-TU-HJk" id="7a5-w4-fwL"/>
+                <outlet property="repoNameLabel" destination="yzN-wb-ppf" id="FtF-6r-5L1"/>
+                <outlet property="starredNumberLabel" destination="e6U-6F-Txa" id="MYM-8g-Pu1"/>
+            </connections>
             <point key="canvasLocation" x="176.08695652173915" y="79.6875"/>
         </tableViewCell>
     </objects>

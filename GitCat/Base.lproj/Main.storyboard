@@ -8,6 +8,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Users Search Result View Controller-->
+        <scene sceneID="eiI-3s-fUZ">
+            <objects>
+                <viewController storyboardIdentifier="UsersSearchResultViewController" id="48Y-HK-w97" customClass="UsersSearchResultViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p5h-9l-6VT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jbB-0s-E25">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MK2-SB-AFx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MK2-SB-AFx" firstAttribute="trailing" secondItem="jbB-0s-E25" secondAttribute="trailing" id="5jG-25-1Ac"/>
+                            <constraint firstItem="jbB-0s-E25" firstAttribute="top" secondItem="MK2-SB-AFx" secondAttribute="top" id="JUd-J9-O53"/>
+                            <constraint firstItem="MK2-SB-AFx" firstAttribute="bottom" secondItem="jbB-0s-E25" secondAttribute="bottom" id="UzB-OB-fca"/>
+                            <constraint firstItem="jbB-0s-E25" firstAttribute="leading" secondItem="MK2-SB-AFx" secondAttribute="leading" id="eq1-4j-0tU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="usersResultTableView" destination="jbB-0s-E25" id="6Ef-Q4-Cg4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pZc-NI-K5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1230" y="970"/>
+        </scene>
         <!--Users-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -320,6 +350,36 @@
             </objects>
             <point key="canvasLocation" x="3526" y="970"/>
         </scene>
+        <!--Repositories For User View Controller-->
+        <scene sceneID="RWA-Os-jRq">
+            <objects>
+                <viewController storyboardIdentifier="RepositoriesForUserViewController" id="qyS-tr-DHu" customClass="RepositoriesForUserViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rXZ-UY-DZ1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DFU-9W-fPN">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="67i-Nf-shz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="67i-Nf-shz" firstAttribute="bottom" secondItem="DFU-9W-fPN" secondAttribute="bottom" id="HRH-kd-PuR"/>
+                            <constraint firstItem="67i-Nf-shz" firstAttribute="trailing" secondItem="DFU-9W-fPN" secondAttribute="trailing" id="duD-Cg-25L"/>
+                            <constraint firstItem="DFU-9W-fPN" firstAttribute="top" secondItem="67i-Nf-shz" secondAttribute="top" id="feT-GO-tvG"/>
+                            <constraint firstItem="DFU-9W-fPN" firstAttribute="leading" secondItem="67i-Nf-shz" secondAttribute="leading" id="y6B-yC-6jL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="reposTableView" destination="DFU-9W-fPN" id="CTQ-o7-k5m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTi-Pq-QE7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1230" y="2411"/>
+        </scene>
         <!--Repositories-->
         <scene sceneID="90x-1D-za0">
             <objects>
@@ -348,7 +408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vhk-PZ-G5c" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-94" y="2400"/>
+            <point key="canvasLocation" x="-94" y="2411"/>
         </scene>
         <!--Commits-->
         <scene sceneID="A1r-jJ-eXK">

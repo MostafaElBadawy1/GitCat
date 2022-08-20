@@ -16,6 +16,16 @@ class NetworkingManager: ApiService {
         let (data,_) =  try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode(SearchUsersModel.self, from: data)
         }
+    func getUserDetails(userName: String) async throws -> UserModel {
+        let url = URLs.shared.getUserDetails(userName: userName)
+        let (data,_) =  try await URLSession.shared.data(from: url!)
+        return try JSONDecoder().decode(UserModel.self, from: data)
+        }
+    func getReposForUser(userName: String) async throws -> RepositoriesForUserModel {
+        let url = URLs.shared.getReposForUser(userName: userName)
+        let (data,_) =  try await URLSession.shared.data(from: url!)
+        return try JSONDecoder().decode(RepositoriesForUserModel.self, from: data)
+        }
     }
 
 

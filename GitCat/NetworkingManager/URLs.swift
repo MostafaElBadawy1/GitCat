@@ -4,9 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 20/07/2022.
 //
-
 import Foundation
-
 struct URLs {
     static let shared = URLs()
     let baseURL = "https://api.github.com/"
@@ -14,8 +12,13 @@ struct URLs {
         return URL(string: baseURL + "search/users?q=\(searchKeyword)&page=\(page)")
         //return URL(string: baseURL + "users?since=\(id)&per_page=20")
     }
-//    func getUserDetails(userName: String)->URL?{
-//        return URL(string: baseURL + "users\(userName)")
-//    }
+    func getUserDetails(userName: String)->URL?{
+        return URL(string: baseURL + "users/\(userName)")
+    }
+    func getReposForUser(userName: String)->URL?{
+      return URL(string: baseURL + "users/\(userName)/repos")
+    }
 }
 //https://api.github.com/search/users?q=e&page=5
+//https://api.github.com/users/USERNAME
+//https://api.github.com/users/mo/repos

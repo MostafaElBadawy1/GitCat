@@ -11,7 +11,7 @@ class UserDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userFullNameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userJobTitleLabel: UILabel!
+    @IBOutlet weak var userBioLabel: UILabel!
     @IBOutlet weak var userLocation: UILabel!
     @IBOutlet weak var userFollowersLabel: UILabel!
     @IBOutlet weak var userFollowingLabel: UILabel!

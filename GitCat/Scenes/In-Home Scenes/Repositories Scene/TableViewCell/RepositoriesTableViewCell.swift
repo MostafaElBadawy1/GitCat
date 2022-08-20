@@ -8,6 +8,11 @@
 import UIKit
 
 class RepositoriesTableViewCell: UITableViewCell {
+    @IBOutlet weak var repoNameLabel: UILabel!
+    @IBOutlet weak var repoDescriptionLabel: UILabel!
+    @IBOutlet weak var starredNumberLabel: UILabel!
+    @IBOutlet weak var programmingLangLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

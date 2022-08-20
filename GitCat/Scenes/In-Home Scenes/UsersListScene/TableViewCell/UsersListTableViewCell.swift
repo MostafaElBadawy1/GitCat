@@ -9,7 +9,8 @@ import UIKit
 
 class UsersListTableViewCell: UITableViewCell {
     @IBOutlet weak var UserImageView: UIImageView!
-    
+    var index: IndexPath?
+
     @IBOutlet weak var userNameLabel: UILabel!
 
     override func awakeFromNib() {

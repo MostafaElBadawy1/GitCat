@@ -21,6 +21,8 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         //        cell.UserImageView.layer.borderColor = UIColor.black.cgColor
         cell.UserImageView.layer.cornerRadius = cell.UserImageView.frame.height/2
         cell.UserImageView.clipsToBounds = true
+        //let image = UIImage(kf.setImage(with: URL(string: usersArray[indexPath.row].avatar_url))
+        //let url = URL(string: usersArray[indexPath.row].html_url)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -28,12 +30,33 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         usersListTableView.deselectRow(at: indexPath, animated: true)
+        let passedDataToUserDetailsVC = usersArray[indexPath.row].login
         let userDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UserDetailsViewControllerID) as! UserDetailsViewController
+        userDetailsVC.passeedDataFromUserListVC = passedDataToUserDetailsVC
         self.navigationController?.pushViewController(userDetailsVC, animated: true)
     }
 
-//    func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-//        <#code#>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) -> <#Return Type#> {
+//        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+//            return UIMenu(title: "",
+//                          image: nil,
+//                          identifier: nil,
+//                          options: UIMenu.Options.displayInline,
+//                          children: [])
+//        }
+//        return config
 //    }
 }
 //extension UsersListViewController: UIScrollViewDelegate{
@@ -67,8 +90,58 @@ extension UsersListViewController: UITableViewDataSourcePrefetching{
             if indexPath.row == preFetchIndex {
                 preFetchIndex = preFetchIndex + 30
                 pageNum = pageNum + 1
+                self.usersListTableView.tableFooterView = createSpinnerFooter()
                 fetchMoreUsers(searchKeyword: "m", page: pageNum)
             }
         }
     }
+}
+//// MARK: - UIContextMenuInteractionDelegate
+//extension UsersListViewController: UIContextMenuInteractionDelegate {
+//  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+//    return UIContextMenuConfiguration(
+//      identifier: nil,
+//      previewProvider: nil,
+//      actionProvider: { _ in
+//        let children: [UIMenuElement] = []
+//        return UIMenu(title: "", children: children)
+//    })
+//  }
+//}
+extension UsersListViewController{
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let openWithSafariAction = UIAction(title: "Open With Safari", image: UIImage(systemName: "safari")) { _ in
+                if let userURL = URL(string:"\(String(describing: self.usersArray[indexPath.row].html_url))" ){
+                    UIApplication.shared.open(userURL)
+                }
+            }
+            let bookmarkAction = UIAction(title: "Bookmark", image: UIImage(systemName: "bookmark")) { _ in
+                print("Bookmarked!")
+            }
+            let saveImageeAction = UIAction(title: "Save Image", image: UIImage(systemName: "photo")) { _ in
+                print("Save Image!")
+                //UIImageWriteToSavedPhotosAlbum(<#T##image: UIImage##UIImage#>, <#T##completionTarget: Any?##Any?#>, <#T##completionSelector: Selector?##Selector?#>, <#T##contextInfo: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>)
+            }
+            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up"), attributes: .destructive) { _ in
+                print("Share!")
+                self.presentShareSheet()
+            }
+            let menu = UIMenu(title: "", image: nil, identifier: nil, options: [], children: [openWithSafariAction, bookmarkAction,saveImageeAction, shareAction])
+            
+            return menu
+        }
+        return config
+    }
+//    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+//        let
+//    }
+    private func presentShareSheet() {
+        guard let image = UIImage(systemName: "bell"), let url = URL(string: "www.google.com") else {
+            return
+        }
+        let shareSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
+        present(shareSheetVC, animated: true)
+    }
+    
 }
