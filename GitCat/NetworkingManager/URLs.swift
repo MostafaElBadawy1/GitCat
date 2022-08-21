@@ -15,10 +15,11 @@ struct URLs {
     func getUserDetails(userName: String)->URL?{
         return URL(string: baseURL + "users/\(userName)")
     }
-    func getReposForUser(userName: String)->URL?{
-      return URL(string: baseURL + "users/\(userName)/repos")
+    func getReposForUser(userName: String, pageNum: Int)->URL?{
+      return URL(string: baseURL + "users/\(userName)/repos?page=\(pageNum)")
     }
 }
 //https://api.github.com/search/users?q=e&page=5
 //https://api.github.com/users/USERNAME
 //https://api.github.com/users/mo/repos
+//https://api.github.com/users/mo/repos?page=2

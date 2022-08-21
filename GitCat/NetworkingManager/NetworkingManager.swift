@@ -21,10 +21,10 @@ class NetworkingManager: ApiService {
         let (data,_) =  try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode(UserModel.self, from: data)
         }
-    func getReposForUser(userName: String) async throws -> RepositoriesForUserModel {
-        let url = URLs.shared.getReposForUser(userName: userName)
+    func getReposForUser(userName: String, pageNum: Int) async throws -> [RepositoriesForUserModel] {
+        let url = URLs.shared.getReposForUser(userName: userName, pageNum: pageNum)
         let (data,_) =  try await URLSession.shared.data(from: url!)
-        return try JSONDecoder().decode(RepositoriesForUserModel.self, from: data)
+        return try JSONDecoder().decode([RepositoriesForUserModel].self, from: data)
         }
     }
 

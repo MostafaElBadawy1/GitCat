@@ -4,7 +4,6 @@
 //
 //  Created by Mostafa Elbadawy on 20/07/2022.
 //
-
 import UIKit
 import Kingfisher
 class UsersListViewController: UIViewController {
@@ -30,7 +29,6 @@ class UsersListViewController: UIViewController {
         //(self.storyboard?.instantiateViewController(withIdentifier: "UsersSearchResultViewController") as? UsersSearchResultViewController)!
         //usersSearchResultViewController.usersResultTableView.delegate = self
         //searchController = UISearchController(searchResultsController: resultsTableController)
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,7 +58,6 @@ class UsersListViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
-        
     }
     func createSpinnerFooter()-> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
@@ -93,9 +90,7 @@ class UsersListViewController: UIViewController {
     }
     //MARK: - Data Function
     func fetchUsers(searchKeyword: String, page: Int) {
-        //print("LOADING")
         Task.init {
-           // try await Task.sleep(nanoseconds: 1_000_000_000)
             if let users = await usersViewModel.fetchAllUsers(searchKeyword: searchKeyword, page: page) {
                 self.usersArray = users
                 DispatchQueue.main.async {

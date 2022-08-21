@@ -10,6 +10,6 @@ struct RepositoriesForUserModel: Codable {
     let name: String
     let description: String?
     let stargazers_count: Int
-    let language: String
+    let language: String?
         
 }

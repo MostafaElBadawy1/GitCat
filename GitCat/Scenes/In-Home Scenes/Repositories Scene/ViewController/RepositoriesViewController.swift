@@ -13,7 +13,7 @@ class RepositoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewConfig()
-        searchControllerConfig()
+        //searchControllerConfig()
     }
     func tableViewConfig() {
         repositoriesTableView.delegate = self

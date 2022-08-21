@@ -56,8 +56,9 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userDetailsTableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row == 0 {
+            let passedNameToReposForUserVC = user?.login
             let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesForUserViewControllerID) as! RepositoriesForUserViewController
-            //userDetailsVC.passeedDataFromUserListVC = passedDataToUserDetailsVC
+            reposVC.passedNameFromUserDetailsVC = passedNameToReposForUserVC
             self.navigationController?.pushViewController(reposVC, animated: true)
         }
         if indexPath.section == 1 && indexPath.row == 1 {

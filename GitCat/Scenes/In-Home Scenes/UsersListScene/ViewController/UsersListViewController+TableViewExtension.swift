@@ -16,9 +16,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = usersListTableView.dequeueReusableCell(withIdentifier: K.UserListCellID, for: indexPath) as! UsersListTableViewCell
         cell.userNameLabel.text = usersArray[indexPath.row].login
         cell.UserImageView.kf.setImage(with: URL(string: usersArray[indexPath.row].avatar_url),placeholder: UIImage(named: "UsersIcon"))
-        //        cell.UserImageView.layer.borderWidth = 1
         cell.UserImageView.layer.masksToBounds = false
-        //        cell.UserImageView.layer.borderColor = UIColor.black.cgColor
         cell.UserImageView.layer.cornerRadius = cell.UserImageView.frame.height/2
         cell.UserImageView.clipsToBounds = true
         //let image = UIImage(kf.setImage(with: URL(string: usersArray[indexPath.row].avatar_url))
@@ -35,53 +33,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         userDetailsVC.passeedDataFromUserListVC = passedDataToUserDetailsVC
         self.navigationController?.pushViewController(userDetailsVC, animated: true)
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) -> <#Return Type#> {
-//        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-//            return UIMenu(title: "",
-//                          image: nil,
-//                          identifier: nil,
-//                          options: UIMenu.Options.displayInline,
-//                          children: [])
-//        }
-//        return config
-//    }
 }
-//extension UsersListViewController: UIScrollViewDelegate{
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let position = scrollView.contentOffset.y
-//        if position > (usersListTableView.contentSize.height-100-scrollView.frame.size.height) {
-//            //fetch more Users ()
-////            id = id + 1
-////            print(id)
-////           fetchMoreUsers(id: id)
-////            print("pagination")
-//        }
-//    }
-//}
-//extension UsersListViewController {
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if indexPath.row == usersArray.count-1 {
-//            pageNum = pageNum + 1
-////            fetchMoreUsers(searchKeyword: "m", page: pageNum)
-////            print("pagination")
-//        }
-//        //self.usersListTableView.tableFooterView = createSpinnerFooter()
-//    }
-//
-//}
 extension UsersListViewController: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
 //        let indices = indexPaths.map { "\($0.row)"}.joined(separator: ".")
@@ -96,18 +48,6 @@ extension UsersListViewController: UITableViewDataSourcePrefetching{
         }
     }
 }
-//// MARK: - UIContextMenuInteractionDelegate
-//extension UsersListViewController: UIContextMenuInteractionDelegate {
-//  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-//    return UIContextMenuConfiguration(
-//      identifier: nil,
-//      previewProvider: nil,
-//      actionProvider: { _ in
-//        let children: [UIMenuElement] = []
-//        return UIMenu(title: "", children: children)
-//    })
-//  }
-//}
 extension UsersListViewController{
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
@@ -145,3 +85,61 @@ extension UsersListViewController{
     }
     
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) -> <#Return Type#> {
+//        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+//            return UIMenu(title: "",
+//                          image: nil,
+//                          identifier: nil,
+//                          options: UIMenu.Options.displayInline,
+//                          children: [])
+//        }
+//        return config
+//    }
+
+//extension UsersListViewController: UIScrollViewDelegate{
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let position = scrollView.contentOffset.y
+//        if position > (usersListTableView.contentSize.height-100-scrollView.frame.size.height) {
+//            //fetch more Users ()
+////            id = id + 1
+////            print(id)
+////           fetchMoreUsers(id: id)
+////            print("pagination")
+//        }
+//    }
+//}
+//extension UsersListViewController {
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if indexPath.row == usersArray.count-1 {
+//            pageNum = pageNum + 1
+////            fetchMoreUsers(searchKeyword: "m", page: pageNum)
+////            print("pagination")
+//        }
+//        //self.usersListTableView.tableFooterView = createSpinnerFooter()
+//    }
+//
+//}
+
+//// MARK: - UIContextMenuInteractionDelegate
+//extension UsersListViewController: UIContextMenuInteractionDelegate {
+//  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+//    return UIContextMenuConfiguration(
+//      identifier: nil,
+//      previewProvider: nil,
+//      actionProvider: { _ in
+//        let children: [UIMenuElement] = []
+//        return UIMenu(title: "", children: children)
+//    })
+//  }
+//}
+
