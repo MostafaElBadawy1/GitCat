@@ -14,7 +14,7 @@ class UsersListViewModel {
     }
     func fetchAllUsers(searchKeyword: String, page: Int) async -> [Items]? {
         do {
-            let usersList = try await apiService.getUsersList(searchKeyword: searchKeyword, page: page)
+            let usersList = try await apiService.searchUsers(searchKeyword: searchKeyword, page: page)
             return usersList.items
         } catch {
             print(error)

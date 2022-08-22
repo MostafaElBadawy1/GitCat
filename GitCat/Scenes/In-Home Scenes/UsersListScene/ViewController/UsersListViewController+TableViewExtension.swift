@@ -43,7 +43,14 @@ extension UsersListViewController: UITableViewDataSourcePrefetching{
                 preFetchIndex = preFetchIndex + 30
                 pageNum = pageNum + 1
                 self.usersListTableView.tableFooterView = createSpinnerFooter()
-                fetchMoreUsers(searchKeyword: "m", page: pageNum)
+                //fetchMoreUsers(searchKeyword: "m", page: pageNum)
+                guard let text = searchController.searchBar.text else { return }
+                let filteredText = text.filter { $0.isLetter || $0.isNumber  }
+                if filteredText.isEmpty {
+                    fetchMoreUsers(searchKeyword: "m", page: pageNum)
+                } else {
+                fetchMoreUsers(searchKeyword: filteredText, page: pageNum)
+                }
             }
         }
     }

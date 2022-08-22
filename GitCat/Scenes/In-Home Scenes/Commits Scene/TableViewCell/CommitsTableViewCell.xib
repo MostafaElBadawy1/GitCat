@@ -16,21 +16,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="380" height="83"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pl2-Qb-44i">
-                        <rect key="frame" x="16" y="10" width="88" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pl2-Qb-44i">
+                        <rect key="frame" x="16" y="10" width="344" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="Kpl-Xy-PJq"/>
+                            <constraint firstAttribute="width" constant="344" id="L8R-tv-DCm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Commit Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhx-nO-FGM">
-                        <rect key="frame" x="16" y="45" width="319" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commit Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhx-nO-FGM">
+                        <rect key="frame" x="16" y="45" width="344" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="FwU-9Y-m7d"/>
+                            <constraint firstAttribute="width" constant="344" id="X7y-VY-XcO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="pl2-Qb-44i" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="0nZ-eF-s07"/>
+                    <constraint firstItem="uhx-nO-FGM" firstAttribute="top" secondItem="pl2-Qb-44i" secondAttribute="bottom" constant="8" symbolic="YES" id="Mdq-Kw-f4c"/>
+                    <constraint firstItem="uhx-nO-FGM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Svw-Ly-9FQ"/>
+                    <constraint firstItem="pl2-Qb-44i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="cXg-tH-V8y"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>

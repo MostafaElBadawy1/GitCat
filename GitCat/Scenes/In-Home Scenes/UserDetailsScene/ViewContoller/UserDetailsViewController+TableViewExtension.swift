@@ -57,8 +57,9 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         userDetailsTableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row == 0 {
             let passedNameToReposForUserVC = user?.login
-            let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesForUserViewControllerID) as! RepositoriesForUserViewController
+            let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
             reposVC.passedNameFromUserDetailsVC = passedNameToReposForUserVC
+            reposVC.isWithSearchController = false
             self.navigationController?.pushViewController(reposVC, animated: true)
         }
         if indexPath.section == 1 && indexPath.row == 1 {
@@ -67,7 +68,6 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         if indexPath.section == 1 && indexPath.row == 2 {
           
         }
-        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 && indexPath.row == 0 {

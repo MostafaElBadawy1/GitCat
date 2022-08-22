@@ -11,23 +11,33 @@ import Alamofire
 class NetworkingManager: ApiService {
     static let shared = NetworkingManager()
     private init() {}
-    func getUsersList(searchKeyword: String, page: Int) async throws -> SearchUsersModel {
-        let url = URLs.shared.getUsersListURL(searchKeyword: searchKeyword, page: page)
+    func searchUsers(searchKeyword: String, page: Int) async throws -> SearchUsersModel{
+        let url = URLs.shared.searchUsersURL(searchKeyword: searchKeyword, page: page)
         let (data,_) =  try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode(SearchUsersModel.self, from: data)
-        }
-    func getUserDetails(userName: String) async throws -> UserModel {
-        let url = URLs.shared.getUserDetails(userName: userName)
+    }
+    func getUserDetails(userName: String) async throws -> UserModel{
+        let url = URLs.shared.getUserDetailsURL(userName: userName)
         let (data,_) =  try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode(UserModel.self, from: data)
-        }
-    func getReposForUser(userName: String, pageNum: Int) async throws -> [RepositoriesForUserModel] {
-        let url = URLs.shared.getReposForUser(userName: userName, pageNum: pageNum)
+    }
+    func getReposForUser(userName: String, pageNum: Int) async throws -> [RepositoriesForUserModel]{
+        let url = URLs.shared.getReposForUserURL(userName: userName, pageNum: pageNum)
         let (data,_) =  try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode([RepositoriesForUserModel].self, from: data)
-        }
     }
-
+    func getCommitsForRepo(ownerName: String, repoName: String, pageNum: Int) async throws-> [CommitsModel]{
+        let url = URLs.shared.getCommitsForRepoURL(ownerName: ownerName, repoName: repoName, pageNum: pageNum)
+        print(url!)
+        let (data,_) = try await URLSession.shared.data(from: url!)
+        return try JSONDecoder().decode([CommitsModel].self, from: data)
+    }
+    func searchRepos(userName: String, pageNum: Int) async throws-> SearchRepositoriesModel{
+        let url = URLs.shared.searchReposURL(userName: userName, pageNum: pageNum)
+        let (data,_) = try await URLSession.shared.data(from: url!)
+        return try JSONDecoder().decode(SearchRepositoriesModel.self, from: data)
+    }
+}
 
 
 
@@ -59,7 +69,7 @@ class NetworkingManager: ApiService {
 
 
 //class NetworkingManager: ApiService  {
-    //static let shared = NetworkingManager()
+//static let shared = NetworkingManager()
 //    func getUsersList (id:Int, completionHandler: @escaping (Result<[SearchUsersModel], Error>) -> Void) {
 //        DispatchQueue.global().asyncAfter(deadline: .now() + 1, execute: {
 //            guard let url = URLs.shared.getUsersListURL(id: id) else {return}

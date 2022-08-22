@@ -7,39 +7,41 @@
 
 import UIKit
 
-extension UsersListViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-//        guard let text = searchController.searchBar.text else {
-//        return
-//    }
-          //  fetchUser(searchKeyword: text, page: 1)
-}
-}
+//extension UsersListViewController: UISearchResultsUpdating {
+//    func updateSearchResults(for searchController: UISearchController) {
+////        guard let text = searchController.searchBar.text else {
+////        return
+////    }
+//          //  fetchUser(searchKeyword: text, page: 1)
+//}
+//}
 extension UsersListViewController: UISearchBarDelegate{
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        let text = searchController.searchBar.text
-
-        self.fetchUsers(searchKeyword: text!, page: 1)
-      return true
-    }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchController.searchBar.text else {
-        return
-    }
-        //searchController.isActive = false
-        fetchUsers(searchKeyword: text, page: 1)
+        guard let text = searchController.searchBar.text else { return }
+        let filteredText = text.filter { $0.isLetter || $0.isNumber  }
+        fetchUsers(searchKeyword: filteredText, page: 1)
 
     }
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        <#code#>
-//    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(reload), object: nil)
+        self.perform(#selector(reload), with: nil, afterDelay: 1)
+    }
+    @objc func reload() {
+        guard let text = searchController.searchBar.text else { return }
+        let filteredText = text.filter { $0.isLetter || $0.isNumber }
+        fetchUsers(searchKeyword: filteredText, page: 1)
+    }
     
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        guard let text = searchController.searchBar.text else {
-//        return
-//    }
-//        fetchUser(searchKeyword: text, page: 1)
-//    }
+    //    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    //        <#code#>
+    //    }
+        
+    //    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    //        guard let text = searchController.searchBar.text else {
+    //        return
+    //    }
+    //        fetchUsers(searchKeyword: text, page: 1)
+    //    }
     
   //  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
       //  guard let text = self.searchController.searchBar.text else {

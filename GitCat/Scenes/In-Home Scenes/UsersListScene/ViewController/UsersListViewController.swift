@@ -54,7 +54,7 @@ class UsersListViewController: UIViewController {
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = self
+        //searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
