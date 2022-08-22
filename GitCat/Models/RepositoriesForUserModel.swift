@@ -6,12 +6,12 @@
 //
 import Foundation
 struct RepositoriesForUserModel: Codable {
-    let name: String
+    let name: String?
     let description: String?
-    let stargazers_count: Int
+    let stargazers_count: Int?
     let language: String?
     let owner: Owner
 }
 struct Owner: Codable {
-    let login: String
+    let login: String?
 }

@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 class UserDetailsViewController: UIViewController {
+    //MARK: - Props
     var passeedDataFromUserListVC : String?
     var user : UserModel?
     var userDetailsViewModel = UserDetailsViewModel()
@@ -15,7 +16,10 @@ class UserDetailsViewController: UIViewController {
     let userDetailsArray = ["Repositories","Starred","Organization"]
     let imagesArray = [UIImage(named: "repoIcon"),UIImage(named: "Star"),UIImage(named: "Organization")]
     var reloadButton = UIButton()
+    //MARK: - IBOutlets
+    @IBOutlet weak var tryAgainButton: UIButton!
     @IBOutlet weak var userDetailsTableView: UITableView!
+    //MARK: - @IBAction
     @IBAction func safariViewButton(_ sender: UIBarButtonItem) {
         if let userURL = URL(string:"\(String(describing: self.user!.html_url))" ){
             UIApplication.shared.open(userURL)
@@ -24,6 +28,12 @@ class UserDetailsViewController: UIViewController {
     @IBAction func shareUserButton(_ sender: UIBarButtonItem) {
         presentShareSheet()
     }
+    @IBAction func tryAgainButton(_ sender: UIButton) {
+        fetchUser()
+        self.userDetailsTableView.reloadData()
+        print("tryAgzin")
+    }
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewConfig()
@@ -31,12 +41,25 @@ class UserDetailsViewController: UIViewController {
         networkReachability()
         refreshPage()
     }
+    //MARK: - Main Functions
+    func initView(){
+        tableViewConfig()
+        fetchUser()
+        networkReachability()
+        refreshPage()
+    }
+    func InitViewModel(){
+        fetchUser()
+    }
+    //MARK: - View Functions
     func tableViewConfig() {
         userDetailsTableView.delegate = self
         userDetailsTableView.dataSource = self
         userDetailsTableView.register(UINib(nibName: K.homeTableViewCell, bundle: .main), forCellReuseIdentifier: K.homeTableViewCell)
         userDetailsTableView.register((UINib(nibName: K.UserDetailsTableViewCellID, bundle: .main)), forCellReuseIdentifier: K.UserDetailsTableViewCellID)
         userDetailsTableView.frame = view.frame
+        userDetailsTableView.isHidden = true
+        loadingIndicator.startAnimating()
     }
     func networkReachability(){
         loadingIndicator.style = .medium
@@ -44,13 +67,13 @@ class UserDetailsViewController: UIViewController {
         view.addSubview(loadingIndicator)
         if NetworkMonitor.shared.isConnected {
             loadingIndicator.stopAnimating()
+            tryAgainButton.isHidden = true
         } else {
             userDetailsTableView.isHidden = true
             let alert : UIAlertController = UIAlertController(title:"You Are Disconnected" , message: "Please Check Your Connection!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             loadingIndicator.startAnimating()
-            reLoadButtonConfig()
         }
     }
     func refreshPage(){
@@ -61,6 +84,15 @@ class UserDetailsViewController: UIViewController {
         fetchUser()
         self.userDetailsTableView.reloadData()
     }
+    private func presentShareSheet() {
+        //let image =.kf.setImage(with: URL(string: passeedDataFromUserListVC.avatar_url),placeholder: UIImage(named: "UsersIcon"))
+        guard  let url = URL(string: user!.html_url!) else {
+            return
+        }
+        let shareSheetVC = UIActivityViewController(activityItems: [ url], applicationActivities: nil)
+        present(shareSheetVC, animated: true)
+    }
+    //MARK: - Data Function
     func fetchUser() {
         Task.init {
             if let user = await userDetailsViewModel.fetchAllUsers(userName: passeedDataFromUserListVC!) {
@@ -77,33 +109,9 @@ class UserDetailsViewController: UIViewController {
             }
         }
     }
-    private func presentShareSheet() {
-       //let image =.kf.setImage(with: URL(string: passeedDataFromUserListVC.avatar_url),placeholder: UIImage(named: "UsersIcon"))
-        guard  let url = URL(string: user!.html_url) else {
-            return
-        }
-        let shareSheetVC = UIActivityViewController(activityItems: [ url], applicationActivities: nil)
-        present(shareSheetVC, animated: true)
-    }
-    func reLoadButtonConfig() {
-        let reloadButton = UIButton(frame: CGRect(x: 165, y: 360, width: 80, height: 30))
-        reloadButton.setTitle("Try Again", for: .normal)
-        reloadButton.backgroundColor = .black
-        reloadButton.layer.borderColor = UIColor.white.cgColor
-        reloadButton.layer.borderWidth = 0.25
-        reloadButton.layer.masksToBounds = false
-        reloadButton.layer.cornerRadius = reloadButton.frame.height/4
-        reloadButton.clipsToBounds = true
-        reloadButton.setTitleColor(.white, for: .normal)
-        reloadButton.addTarget(self, action: #selector(btntapped), for: .touchUpInside)
-        self.view.addSubview(reloadButton)
-    }
-    @objc func btntapped(_ sender: UIButton) {
-       fetchUser()
-        self.userDetailsTableView.reloadData()
-    }
+   
 }
 //        userDetailsTableView.frame = view.frame
-        // let header = UIView(frame: CGRect(x: 120, y: 100, width: view.frame.size.width, height: 150))
-        // userDetailsTableView.tableHeaderView = header
-        // header.backgroundColor = .green
+// let header = UIView(frame: CGRect(x: 120, y: 100, width: view.frame.size.width, height: 150))
+// userDetailsTableView.tableHeaderView = header
+// header.backgroundColor = .green

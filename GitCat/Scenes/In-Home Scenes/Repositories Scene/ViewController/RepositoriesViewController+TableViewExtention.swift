@@ -10,6 +10,9 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         return 110
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchedReposArray.isEmpty && reposArray.isEmpty{
+            loadingIndicator.startAnimating()
+        }
         if isWithSearchController == true {
             return searchedReposArray.count
         } else {

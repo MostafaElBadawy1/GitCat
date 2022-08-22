@@ -17,5 +17,5 @@ struct RepoItems: Codable{
     let language: String?
 }
 struct RepoOwner: Codable{
-    let login: String
+    let login: String?
 }

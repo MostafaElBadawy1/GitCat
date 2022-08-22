@@ -10,6 +10,9 @@ extension CommitsViewController: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if commitsArray.isEmpty {
+            loadingIndicator.startAnimating()
+        }
         return commitsArray.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

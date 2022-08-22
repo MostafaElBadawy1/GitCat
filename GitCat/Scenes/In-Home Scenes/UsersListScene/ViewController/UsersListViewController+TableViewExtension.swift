@@ -15,7 +15,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = usersListTableView.dequeueReusableCell(withIdentifier: K.UserListCellID, for: indexPath) as! UsersListTableViewCell
         cell.userNameLabel.text = usersArray[indexPath.row].login
-        cell.UserImageView.kf.setImage(with: URL(string: usersArray[indexPath.row].avatar_url),placeholder: UIImage(named: "UsersIcon"))
+        cell.UserImageView.kf.setImage(with: URL(string: usersArray[indexPath.row].avatar_url!),placeholder: UIImage(named: "UsersIcon"))
         cell.UserImageView.layer.masksToBounds = false
         cell.UserImageView.layer.cornerRadius = cell.UserImageView.frame.height/2
         cell.UserImageView.clipsToBounds = true

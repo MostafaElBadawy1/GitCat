@@ -8,6 +8,7 @@ import UIKit
 import Kingfisher
 class UsersListViewController: UIViewController {
     //MARK: - Props
+    //var usersListViewController = UsersListViewController()
     var pageNum = 1
     var preFetchIndex = 15
     var usersViewModel = UsersListViewModel()
@@ -15,6 +16,7 @@ class UsersListViewController: UIViewController {
     var moreUsersArray = [Items]()
     var searchController = UISearchController()
     let loadingIndicator = UIActivityIndicatorView()
+    let searchHistoryVC = SearchHistoryViewController()
     //var usersSearchResultViewController = UsersSearchResultViewController()
     //var cellDelegate : CellLink?
     //var index: IndexPath?
@@ -39,17 +41,25 @@ class UsersListViewController: UIViewController {
         tableViewConfig()
         searchControllerConfig()
         refreshPage()
+        //setup()
     }
     func InitViewModel(){
         fetchUsers(searchKeyword: "mo", page: 1)
     }
     //MARK: - View Functions
+     func setup(){
+        addChild(searchHistoryVC)
+        self.view.addSubview(searchHistoryVC.view)
+        searchHistoryVC.didMove(toParent: self)
+        searchHistoryVC.view.frame = self.view.bounds
+        //searchHistoryVC.view.isHidden = true
+    }
     func tableViewConfig() {
         usersListTableView.delegate = self
         usersListTableView.dataSource = self
         usersListTableView.prefetchDataSource = self
         usersListTableView.register(UINib(nibName: K.UsersListTableViewCell, bundle: .main), forCellReuseIdentifier: K.UserListCellID)
-        usersListTableView.frame = view.frame
+        usersListTableView.frame = view.bounds
         //        self.usersListTableView.tableFooterView = createSpinnerFooter()
     }
     func searchControllerConfig() {
@@ -88,7 +98,12 @@ class UsersListViewController: UIViewController {
         fetchUsers(searchKeyword: "mo", page: 1)
         self.usersListTableView.reloadData()
     }
-    //MARK: - Data Function
+    func searchHistoryVCConfig() {
+        searchHistoryVC.view.isHidden = true
+        usersListTableView.isHidden  = false
+        //loadingIndicator.isHidden = false
+    }
+    //MARK: - Data Functions
     func fetchUsers(searchKeyword: String, page: Int) {
         Task.init {
             if let users = await usersViewModel.fetchAllUsers(searchKeyword: searchKeyword, page: page) {
