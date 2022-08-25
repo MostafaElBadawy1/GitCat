@@ -4,10 +4,8 @@
 //
 //  Created by Mostafa Elbadawy on 20/07/2022.
 //
-
 import UIKit
 import Alamofire
-
 class NetworkingManager: ApiService {
     static let shared = NetworkingManager()
     private init() {}
@@ -28,7 +26,6 @@ class NetworkingManager: ApiService {
     }
     func getCommitsForRepo(ownerName: String, repoName: String, pageNum: Int) async throws-> [CommitsModel]{
         let url = URLs.shared.getCommitsForRepoURL(ownerName: ownerName, repoName: repoName, pageNum: pageNum)
-        print(url!)
         let (data,_) = try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode([CommitsModel].self, from: data)
     }
@@ -37,8 +34,17 @@ class NetworkingManager: ApiService {
         let (data,_) = try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode(SearchRepositoriesModel.self, from: data)
     }
+    func getStarredRepos(userName: String, pageNum: Int) async throws-> [StarredReposModel]{
+        let url = URLs.shared.getUserStarredRepos(userName: userName, pageNum: pageNum)
+        let (data,_) = try await URLSession.shared.data(from: url!)
+        return try JSONDecoder().decode([StarredReposModel].self, from: data)
+    }
+    func getUserOrgs(userName: String) async throws-> [OrganizationModel]{
+        let url = URLs.shared.getUserOrgs(userName: userName)
+        let (data,_) = try await URLSession.shared.data(from: url!)
+        return try JSONDecoder().decode([OrganizationModel].self, from: data)
 }
-
+}
 
 
 

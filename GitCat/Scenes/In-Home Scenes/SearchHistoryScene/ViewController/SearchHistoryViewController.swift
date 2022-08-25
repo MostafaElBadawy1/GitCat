@@ -8,10 +8,11 @@ import UIKit
 class SearchHistoryViewController: UIViewController {
     //MARK: - Props
     private var searchHistoryTableView: UITableView!
-    var recentSearchResultArray:[String] = []
+    var recentSearchResultArray:[String] = ["d","s","sdsd"]
     let firstlabel = UILabel()
     let secondlabel = UILabel()
     let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
+    var recentVisitedUsersHeader: RecentVisitedUsersHeader!
     //MARK: - IBOutlets
 
     //MARK: - Life Cycle
@@ -26,8 +27,9 @@ class SearchHistoryViewController: UIViewController {
     }
     //MARK: - Main Functions
     func initView(){
-        addingLabels()
+        labelsConfig()
         tableViewConfig()
+        headerConfig()
         //view.backgroundColor = .blue
         //tableViewConfig()
     }
@@ -46,7 +48,7 @@ class SearchHistoryViewController: UIViewController {
         self.view.addSubview(searchHistoryTableView)
         //searchHistoryTableView.isHidden = true
     }
-    func addingLabels(){
+    func labelsConfig(){
         firstlabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
         firstlabel.center = CGPoint(x: 200, y: 420)
         firstlabel.textAlignment = .center
@@ -60,6 +62,12 @@ class SearchHistoryViewController: UIViewController {
         secondlabel.numberOfLines = 0
         secondlabel.textColor = .gray
         self.view.addSubview(secondlabel)
+    }
+    func headerConfig(){
+        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 80)
+        recentVisitedUsersHeader = RecentVisitedUsersHeader(frame: frame)
+        searchHistoryTableView.tableHeaderView = recentVisitedUsersHeader
+        searchHistoryTableView.tableHeaderView?.backgroundColor = .systemGray6
     }
 }
 extension SearchHistoryViewController: UITableViewDelegate, UITableViewDataSource{

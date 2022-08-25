@@ -4,9 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 04/08/2022.
 //
-
 import Foundation
-
 struct K {
     static let tabBarID = "TabBarViewController"
     static let homeTableViewCell = "HomeTableViewCell"
@@ -22,4 +20,8 @@ struct K {
     static let SettingsViewControllerID = "SettingsViewController"
     static let RepositoriesForUserViewControllerID = "RepositoriesForUserViewController"
     static let RecentSearchTableViewCellID = "RecentSearchTableViewCell"
+    static let SettingsTableViewCellID = "SettingsTableViewCell"
+    static let RecentVisitedUsersCollectionViewCellID = "RecentVisitedUsersCollectionViewCell"
+    static let OrganizationsViewControllerID = "OrganizationsViewController"
+    static let OrganizationsTableViewCellID = "OrganizationsTableViewCell"
 }

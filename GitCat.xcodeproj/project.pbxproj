@@ -53,6 +53,14 @@
 		A6BB749028B3C0F60051C48F /* SearchHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB748F28B3C0F60051C48F /* SearchHistoryViewModel.swift */; };
 		A6BB749628B3D2CE0051C48F /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB749428B3D2CE0051C48F /* RecentSearchTableViewCell.swift */; };
 		A6BB749728B3D2CE0051C48F /* RecentSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6BB749528B3D2CE0051C48F /* RecentSearchTableViewCell.xib */; };
+		A6BB749A28B51E190051C48F /* SettingsViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB749928B51E190051C48F /* SettingsViewController+TableViewExtention.swift */; };
+		A6BB749D28B51EFA0051C48F /* RecentVisitedUsersHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB749C28B51EFA0051C48F /* RecentVisitedUsersHeader.swift */; };
+		A6BB74A228B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74A028B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift */; };
+		A6BB74A328B522F80051C48F /* RecentVisitedUsersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6BB74A128B522F80051C48F /* RecentVisitedUsersCollectionViewCell.xib */; };
+		A6BB74AF28B5625A0051C48F /* OrganizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74AE28B5625A0051C48F /* OrganizationsViewController.swift */; };
+		A6BB74B128B562670051C48F /* OrganizationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74B028B562670051C48F /* OrganizationsViewModel.swift */; };
+		A6BB74B528B562970051C48F /* OrganizationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74B328B562970051C48F /* OrganizationsTableViewCell.swift */; };
+		A6BB74B628B562970051C48F /* OrganizationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6BB74B428B562970051C48F /* OrganizationsTableViewCell.xib */; };
 		A6C6432328A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432228A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift */; };
 		A6C6432628A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432528A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift */; };
 		A6C6432828A6802C00271B3D /* CommitsViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432728A6802C00271B3D /* CommitsViewController+TableViewExtention.swift */; };
@@ -149,6 +157,14 @@
 		A6BB748F28B3C0F60051C48F /* SearchHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewModel.swift; sourceTree = "<group>"; };
 		A6BB749428B3D2CE0051C48F /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
 		A6BB749528B3D2CE0051C48F /* RecentSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentSearchTableViewCell.xib; sourceTree = "<group>"; };
+		A6BB749928B51E190051C48F /* SettingsViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
+		A6BB749C28B51EFA0051C48F /* RecentVisitedUsersHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVisitedUsersHeader.swift; sourceTree = "<group>"; };
+		A6BB74A028B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVisitedUsersCollectionViewCell.swift; sourceTree = "<group>"; };
+		A6BB74A128B522F80051C48F /* RecentVisitedUsersCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentVisitedUsersCollectionViewCell.xib; sourceTree = "<group>"; };
+		A6BB74AE28B5625A0051C48F /* OrganizationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsViewController.swift; sourceTree = "<group>"; };
+		A6BB74B028B562670051C48F /* OrganizationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsViewModel.swift; sourceTree = "<group>"; };
+		A6BB74B328B562970051C48F /* OrganizationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsTableViewCell.swift; sourceTree = "<group>"; };
+		A6BB74B428B562970051C48F /* OrganizationsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrganizationsTableViewCell.xib; sourceTree = "<group>"; };
 		A6C6432228A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController+TableViewExtension.swift"; sourceTree = "<group>"; };
 		A6C6432528A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesViewController+SearchExtention.swift"; sourceTree = "<group>"; };
 		A6C6432728A6802C00271B3D /* CommitsViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommitsViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
@@ -236,8 +252,8 @@
 		A6260A3728883D6300276B91 /* GitCat */ = {
 			isa = PBXGroup;
 			children = (
-				A6781716289C28A9007F6BBC /* Constants.swift */,
 				A6AC5C5F288849A0003415FC /* AppDelegate */,
+				A6BB749828B50EB10051C48F /* Helpers */,
 				A6AC5C602888526B003415FC /* NetworkingManager */,
 				A6781712289C27E9007F6BBC /* Scenes */,
 				A6260A3E28883D6300276B91 /* Main.storyboard */,
@@ -322,6 +338,7 @@
 			children = (
 				A68A3B1728AC217200A08BF8 /* ViewController */,
 				A68A3B1A28AC26FF00A08BF8 /* ViewModel */,
+				A6BB749B28B51EBD0051C48F /* RecentVisitedUsersHeader */,
 				A6BB749128B3D2880051C48F /* TableViewCell */,
 			);
 			path = SearchHistoryScene;
@@ -444,8 +461,8 @@
 				A65DECB928B1513900FDC2B6 /* RepositoriesForUserModel.swift */,
 				A6BB748428B2EFEB0051C48F /* CommitsModel.swift */,
 				A6BB748628B301420051C48F /* SearchRepositoriesModel.swift */,
-				A6BB748928B31B610051C48F /* OrganizationModel.swift */,
 				A6BB748B28B31C6F0051C48F /* StarredReposModel.swift */,
+				A6BB748928B31B610051C48F /* OrganizationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -486,6 +503,75 @@
 			path = TableViewCell;
 			sourceTree = "<group>";
 		};
+		A6BB749828B50EB10051C48F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A6781716289C28A9007F6BBC /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A6BB749B28B51EBD0051C48F /* RecentVisitedUsersHeader */ = {
+			isa = PBXGroup;
+			children = (
+				A6BB749E28B522BE0051C48F /* View */,
+				A6BB749F28B522C80051C48F /* CollectionViewCell */,
+			);
+			path = RecentVisitedUsersHeader;
+			sourceTree = "<group>";
+		};
+		A6BB749E28B522BE0051C48F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A6BB749C28B51EFA0051C48F /* RecentVisitedUsersHeader.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A6BB749F28B522C80051C48F /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A6BB74A028B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift */,
+				A6BB74A128B522F80051C48F /* RecentVisitedUsersCollectionViewCell.xib */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		A6BB74A528B5616B0051C48F /* OrganizationsScene */ = {
+			isa = PBXGroup;
+			children = (
+				A6BB74A728B561A30051C48F /* ViewController */,
+				A6BB74A928B561C70051C48F /* ViewModel */,
+				A6BB74B228B562750051C48F /* TableViewCell */,
+			);
+			path = OrganizationsScene;
+			sourceTree = "<group>";
+		};
+		A6BB74A728B561A30051C48F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A6BB74AE28B5625A0051C48F /* OrganizationsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A6BB74A928B561C70051C48F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A6BB74B028B562670051C48F /* OrganizationsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A6BB74B228B562750051C48F /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A6BB74B328B562970051C48F /* OrganizationsTableViewCell.swift */,
+				A6BB74B428B562970051C48F /* OrganizationsTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		A6C6432428A67EE000271B3D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +600,7 @@
 			isa = PBXGroup;
 			children = (
 				A67074D428A3E47500DBBB3F /* SettingsViewController.swift */,
+				A6BB749928B51E190051C48F /* SettingsViewController+TableViewExtention.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -580,6 +667,7 @@
 		A6E92EB928A2A8BA0085F163 /* In-Home Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A6BB74A528B5616B0051C48F /* OrganizationsScene */,
 				A68A3B1428AC1E5300A08BF8 /* SearchHistoryScene */,
 				A6AC5C5C28884870003415FC /* UsersListScene */,
 				A6E92EA028A12F580085F163 /* UserDetailsScene */,
@@ -765,9 +853,11 @@
 			files = (
 				A699421F28A3146D000B2410 /* CommitsTableViewCell.xib in Resources */,
 				A6AC5C722889A8E1003415FC /* UsersListTableViewCell.xib in Resources */,
+				A6BB74B628B562970051C48F /* OrganizationsTableViewCell.xib in Resources */,
 				A6260A4828883D6500276B91 /* LaunchScreen.storyboard in Resources */,
 				A67074E228A4216200DBBB3F /* SettingsTableViewCell.xib in Resources */,
 				A6BB749728B3D2CE0051C48F /* RecentSearchTableViewCell.xib in Resources */,
+				A6BB74A328B522F80051C48F /* RecentVisitedUsersCollectionViewCell.xib in Resources */,
 				A6260A4528883D6500276B91 /* Assets.xcassets in Resources */,
 				A6E92ECD28A2BE240085F163 /* RepositoriesTableViewCell.xib in Resources */,
 				A6593563289D67A1006A95F6 /* HomeTableViewCell.xib in Resources */,
@@ -902,18 +992,22 @@
 			files = (
 				A6BB748528B2EFEB0051C48F /* CommitsModel.swift in Sources */,
 				A699422428A31E05000B2410 /* BookmarksViewController.swift in Sources */,
+				A6BB749A28B51E190051C48F /* SettingsViewController+TableViewExtention.swift in Sources */,
 				A6E92ECC28A2BE240085F163 /* RepositoriesTableViewCell.swift in Sources */,
 				A6AC5C712889A8E1003415FC /* UsersListTableViewCell.swift in Sources */,
 				A6C6432C28A6840900271B3D /* BookmarksViewController+SearchExtention.swift in Sources */,
 				A6AC5C6928885887003415FC /* UserModel.swift in Sources */,
+				A6BB74A228B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift in Sources */,
 				A6BB748C28B31C6F0051C48F /* StarredReposModel.swift in Sources */,
 				A6AC5C74288B0543003415FC /* UsersListViewController+SearchExtension.swift in Sources */,
 				A6BB748728B301420051C48F /* SearchRepositoriesModel.swift in Sources */,
+				A6BB74B128B562670051C48F /* OrganizationsViewModel.swift in Sources */,
 				A6AC5C76288B058D003415FC /* UsersListViewController+TableViewExtension.swift in Sources */,
 				A6781717289C28A9007F6BBC /* Constants.swift in Sources */,
 				A6C6432A28A683B700271B3D /* BookmarksViewController+TableViewExtention.swift in Sources */,
 				A6781719289C3F93007F6BBC /* HomeViewController.swift in Sources */,
 				A6260A3928883D6300276B91 /* AppDelegate.swift in Sources */,
+				A6BB74B528B562970051C48F /* OrganizationsTableViewCell.swift in Sources */,
 				A6C6432828A6802C00271B3D /* CommitsViewController+TableViewExtention.swift in Sources */,
 				A6E7FFAF288C3F0F0055B0FA /* NetworkReachabilityManager.swift in Sources */,
 				A65DECBC28B152E100FDC2B6 /* RepositoriesViewModel.swift in Sources */,
@@ -926,7 +1020,9 @@
 				A6E92EC428A2BC500085F163 /* RepositoriesViewController.swift in Sources */,
 				A6BB748E28B3C0E30051C48F /* SearchHistoryViewController.swift in Sources */,
 				A6C73FE9289F2017001C7E16 /* HomeViewController+SearchExtension.swift in Sources */,
+				A6BB749D28B51EFA0051C48F /* RecentVisitedUsersHeader.swift in Sources */,
 				A699421828A31373000B2410 /* CommitsViewController.swift in Sources */,
+				A6BB74AF28B5625A0051C48F /* OrganizationsViewController.swift in Sources */,
 				A6BB749028B3C0F60051C48F /* SearchHistoryViewModel.swift in Sources */,
 				A6E92EB728A299950085F163 /* UserDetailsTableViewCell.swift in Sources */,
 				A6E92EA228A12F800085F163 /* UserDetailsViewController.swift in Sources */,

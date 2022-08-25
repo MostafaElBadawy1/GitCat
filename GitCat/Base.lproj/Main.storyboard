@@ -53,6 +53,36 @@
             </objects>
             <point key="canvasLocation" x="-94" y="970"/>
         </scene>
+        <!--Organizations View Controller-->
+        <scene sceneID="gQz-bF-rRz">
+            <objects>
+                <viewController storyboardIdentifier="OrganizationsViewController" id="q9Z-f3-0js" customClass="OrganizationsViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R91-ig-Ci4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aLQ-E4-5G0">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="u1C-Cc-jXY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="u1C-Cc-jXY" firstAttribute="trailing" secondItem="aLQ-E4-5G0" secondAttribute="trailing" id="BF9-Qu-007"/>
+                            <constraint firstItem="u1C-Cc-jXY" firstAttribute="bottom" secondItem="aLQ-E4-5G0" secondAttribute="bottom" id="ce0-ct-oWt"/>
+                            <constraint firstItem="aLQ-E4-5G0" firstAttribute="top" secondItem="u1C-Cc-jXY" secondAttribute="top" id="jdX-Wl-xAV"/>
+                            <constraint firstItem="aLQ-E4-5G0" firstAttribute="leading" secondItem="u1C-Cc-jXY" secondAttribute="leading" id="vOY-bs-yFu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="orgsTableView" destination="aLQ-E4-5G0" id="nWz-1r-xl1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rIv-ij-Z4X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1575" y="1694"/>
+        </scene>
         <!--User Details View Controller-->
         <scene sceneID="WQW-tX-oQP">
             <objects>
@@ -61,17 +91,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ae-TU-Rnn">
-                                <rect key="frame" x="165" y="397" width="85" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Try Again" cornerStyle="small">
-                                    <color key="baseForegroundColor" systemColor="placeholderTextColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="tryAgainButton:" destination="RqO-Sw-Fgf" eventType="touchUpInside" id="TbO-wp-wAS"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Oqg-Ur-QKQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Oqg-Ur-QKQ">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -79,14 +99,10 @@
                         <viewLayoutGuide key="safeArea" id="6Y0-NF-2oP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="3ae-TU-Rnn" firstAttribute="leading" secondItem="6Y0-NF-2oP" secondAttribute="leading" constant="165" id="FMq-3m-OtR"/>
-                            <constraint firstItem="6Y0-NF-2oP" firstAttribute="bottom" secondItem="3ae-TU-Rnn" secondAttribute="bottom" constant="434" id="X0p-gh-e0D"/>
                             <constraint firstItem="Oqg-Ur-QKQ" firstAttribute="top" secondItem="6Y0-NF-2oP" secondAttribute="top" id="Xb0-Ow-J50"/>
-                            <constraint firstItem="3ae-TU-Rnn" firstAttribute="top" secondItem="6Y0-NF-2oP" secondAttribute="top" constant="353" id="XcB-KV-Wre"/>
                             <constraint firstItem="6Y0-NF-2oP" firstAttribute="trailing" secondItem="Oqg-Ur-QKQ" secondAttribute="trailing" id="kRZ-qf-JyE"/>
                             <constraint firstItem="Oqg-Ur-QKQ" firstAttribute="leading" secondItem="6Y0-NF-2oP" secondAttribute="leading" id="m7L-hT-agG"/>
                             <constraint firstItem="6Y0-NF-2oP" firstAttribute="bottom" secondItem="Oqg-Ur-QKQ" secondAttribute="bottom" id="p5e-Iv-Riv"/>
-                            <constraint firstItem="6Y0-NF-2oP" firstAttribute="trailing" secondItem="3ae-TU-Rnn" secondAttribute="trailing" constant="164" id="xDb-73-9fa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="atT-3u-tgS">
@@ -104,7 +120,6 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="tryAgainButton" destination="3ae-TU-Rnn" id="AQV-cc-sbh"/>
                         <outlet property="userDetailsTableView" destination="Oqg-Ur-QKQ" id="2gT-4k-1u6"/>
                     </connections>
                 </viewController>
@@ -381,6 +396,21 @@
             </objects>
             <point key="canvasLocation" x="-94" y="2411"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="3zx-KU-eRl">
+            <objects>
+                <viewController id="2jX-fT-Wr3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kks-gS-LQg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="fdl-eZ-HWP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="leQ-qI-F6q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4822" y="1136"/>
+        </scene>
         <!--Commits-->
         <scene sceneID="A1r-jJ-eXK">
             <objects>
@@ -421,9 +451,6 @@
         <image name="link" catalog="system" width="128" height="122"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
-        <systemColor name="placeholderTextColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

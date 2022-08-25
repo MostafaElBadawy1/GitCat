@@ -23,6 +23,7 @@ class UserDetailsViewController: UIViewController {
     @IBAction func safariViewButton(_ sender: UIBarButtonItem) {
         if let userURL = URL(string:"\(String(describing: self.user!.html_url))" ){
             UIApplication.shared.open(userURL)
+            print(userURL)
         }
     }
     @IBAction func shareUserButton(_ sender: UIBarButtonItem) {
@@ -67,7 +68,7 @@ class UserDetailsViewController: UIViewController {
         view.addSubview(loadingIndicator)
         if NetworkMonitor.shared.isConnected {
             loadingIndicator.stopAnimating()
-            tryAgainButton.isHidden = true
+            //tryAgainButton.isHidden = true
         } else {
             userDetailsTableView.isHidden = true
             let alert : UIAlertController = UIAlertController(title:"You Are Disconnected" , message: "Please Check Your Connection!", preferredStyle: .alert)

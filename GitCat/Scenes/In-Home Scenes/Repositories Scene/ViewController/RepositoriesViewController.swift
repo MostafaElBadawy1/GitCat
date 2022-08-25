@@ -14,8 +14,11 @@ class RepositoriesViewController: UIViewController {
     var moreReposArray = [RepositoriesForUserModel]()
     var searchedReposArray = [RepoItems]()
     var moreSearchedReposArray = [RepoItems]()
+    var starredReposArray = [StarredReposModel]()
+    var moreStarredReposArray = [StarredReposModel]()
     var passedNameFromUserDetailsVC: String?
-    var isWithSearchController = true
+    var isWithSearchController = false
+    var isStarredReposVC = false
     let loadingIndicator = UIActivityIndicatorView()
     let spinner = UIActivityIndicatorView()
     let searchController = UISearchController()
@@ -42,10 +45,16 @@ class RepositoriesViewController: UIViewController {
         if let userName = passedNameFromUserDetailsVC {
             fetchRepos(userName:"\(userName)", pageNum: 1)
         }
-        if isWithSearchController == true {
-            fetchSearchedRepos(userName: "m", pageNum: 1)
+        if isStarredReposVC == true {
+            if let userName = passedNameFromUserDetailsVC {
+            fetchStarredRepos(userName: "\(userName)", pageNum: 1)
+            }
         } else {
-            return
+            if isWithSearchController == true {
+                fetchSearchedRepos(userName: "m", pageNum: 1)
+            } else {
+                return
+            }
         }
     }
     //MARK: - View Functions
@@ -105,7 +114,7 @@ class RepositoriesViewController: UIViewController {
                     self.repositoriesTableView.reloadData()
                 }
             } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repos" , message: "", preferredStyle: .alert)
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repositories" , message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 self.loadingIndicator.startAnimating()
@@ -124,7 +133,7 @@ class RepositoriesViewController: UIViewController {
                     self.repositoriesTableView.reloadData()
                 }
             } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Users" , message: "", preferredStyle: .alert)
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Repositories" , message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
@@ -139,7 +148,7 @@ class RepositoriesViewController: UIViewController {
                     self.repositoriesTableView.reloadData()
                 }
             } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repos" , message: "", preferredStyle: .alert)
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repositories" , message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 self.loadingIndicator.startAnimating()
@@ -158,7 +167,41 @@ class RepositoriesViewController: UIViewController {
                     self.repositoriesTableView.reloadData()
                 }
             } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Users" , message: "", preferredStyle: .alert)
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Repositories" , message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    func fetchStarredRepos(userName: String, pageNum: Int) {
+        Task.init {
+            if let starredRepos = await repositoriesForUserViewModel.fetchStarredRepos(userName: userName, pageNum: pageNum) {
+                self.starredReposArray = starredRepos
+                DispatchQueue.main.async {
+                    self.loadingIndicator.stopAnimating()
+                    self.repositoriesTableView.reloadData()
+                }
+            } else {
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repositories" , message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                self.loadingIndicator.startAnimating()
+            }
+        }
+    }
+    func fetchMoreStarredRepos(userName: String, pageNum: Int) {
+        Task.init {
+            if let starredRepos = await repositoriesForUserViewModel.fetchStarredRepos(userName: userName, pageNum: pageNum) {
+                self.starredReposArray = starredRepos
+                if starredReposArray.isEmpty {
+                    spinner.stopAnimating()
+                }
+                DispatchQueue.main.async {
+                    self.starredReposArray.append(contentsOf: self.moreStarredReposArray)
+                    self.repositoriesTableView.reloadData()
+                }
+            } else {
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Repositories" , message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }

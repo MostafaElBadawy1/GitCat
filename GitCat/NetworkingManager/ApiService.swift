@@ -10,7 +10,10 @@ protocol ApiService {
     func getReposForUser(userName: String, pageNum: Int) async throws -> [RepositoriesForUserModel]
     func getCommitsForRepo(ownerName: String, repoName: String, pageNum: Int) async throws-> [CommitsModel]
     func searchRepos(userName: String, pageNum: Int) async throws-> SearchRepositoriesModel
-    //    func getUsersList<T: Codable>(model: T.Type) async throws -> T
+    func getStarredRepos(userName: String,  pageNum: Int) async throws-> [StarredReposModel]
+    func getUserOrgs(userName: String) async throws-> [OrganizationModel]
+}
+//    func getUsersList<T: Codable>(model: T.Type) async throws -> T
 //    func getUsersList (id:Int, completionHandler: @escaping (Result<[SearchUsersModel], Error>) -> Void)
 //    func getUsersList(complition: @escaping (UsersListModel?, Error?)->Void)
-}
+

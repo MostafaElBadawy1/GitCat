@@ -23,9 +23,18 @@ struct URLs {
     func searchReposURL(userName: String, pageNum: Int)->URL?{
         return URL(string: baseURL + "search/repositories?q=\(userName)&page=\(pageNum)")
 }
-}
+    func getUserStarredRepos(userName: String, pageNum: Int)->URL?{
+        return URL(string: baseURL + "users/\(userName)/starred?page=\(pageNum)")
+    }
+    func getUserOrgs(userName: String)->URL?{
+        return URL(string: baseURL + "users/\(userName)/orgs")
+    }
+    }
 //https://api.github.com/search/users?q=e&page=5
 //https://api.github.com/users/USERNAME
 //https://api.github.com/users/mo/repos?page=2
 //https://api.github.com/repos/mo/abortcontroller-polyfill/commits?page=1
 //https://api.github.com/search/repositories?q=a&page=2
+//https://api.github.com/users/mojombo/orgs
+//https://api.github.com/users/eFiniLan/starred?page=1
+//https://api.github.com/users/mojombo/orgs

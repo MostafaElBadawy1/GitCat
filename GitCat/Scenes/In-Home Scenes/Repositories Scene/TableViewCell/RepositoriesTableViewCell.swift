@@ -13,6 +13,7 @@ class RepositoriesTableViewCell: UITableViewCell {
     @IBOutlet weak var starredNumberLabel: UILabel!
     @IBOutlet weak var programmingLangLabel: UILabel!
     
+    @IBOutlet weak var languageIndicator: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

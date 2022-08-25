@@ -54,19 +54,23 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         return 5
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let passedName = user?.login
         userDetailsTableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row == 0 {
-            let passedNameToReposForUserVC = user?.login
             let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
-            reposVC.passedNameFromUserDetailsVC = passedNameToReposForUserVC
-            reposVC.isWithSearchController = false
+            reposVC.passedNameFromUserDetailsVC = passedName
             self.navigationController?.pushViewController(reposVC, animated: true)
         }
         if indexPath.section == 1 && indexPath.row == 1 {
-          
+            let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+            reposVC.passedNameFromUserDetailsVC = passedName
+            reposVC.isStarredReposVC = true
+            self.navigationController?.pushViewController(reposVC, animated: true)
         }
         if indexPath.section == 1 && indexPath.row == 2 {
-          
+            let orgsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.OrganizationsViewControllerID) as! OrganizationsViewController
+            orgsVC.passedNameFromUserDetailsVC = passedName
+            self.navigationController?.pushViewController(orgsVC, animated: true)
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

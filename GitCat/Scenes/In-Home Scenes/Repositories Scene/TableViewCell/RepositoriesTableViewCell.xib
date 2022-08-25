@@ -70,11 +70,19 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjh-Nq-NpL">
+                        <rect key="frame" x="154" y="65" width="16" height="31"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="srB-TU-HJk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="17t-Hq-xcY"/>
                     <constraint firstItem="w19-v9-unL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8W4-pd-uut"/>
                     <constraint firstAttribute="bottom" secondItem="om2-gJ-EM8" secondAttribute="bottom" constant="5" id="HNt-DW-1jF"/>
+                    <constraint firstItem="mjh-Nq-NpL" firstAttribute="top" secondItem="srB-TU-HJk" secondAttribute="bottom" constant="1" id="LCh-0q-CqD"/>
+                    <constraint firstItem="om2-gJ-EM8" firstAttribute="leading" secondItem="mjh-Nq-NpL" secondAttribute="trailing" constant="26" id="QgV-0d-0bA"/>
+                    <constraint firstItem="mjh-Nq-NpL" firstAttribute="leading" secondItem="dfD-pI-CIh" secondAttribute="trailing" constant="27" id="R8K-AQ-hDj"/>
                     <constraint firstItem="yzN-wb-ppf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="StT-OQ-tYG"/>
                     <constraint firstItem="yzN-wb-ppf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="U2M-uk-PUU"/>
                     <constraint firstItem="e6U-6F-Txa" firstAttribute="top" secondItem="srB-TU-HJk" secondAttribute="bottom" id="b4M-cU-HD9"/>
@@ -86,6 +94,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="languageIndicator" destination="mjh-Nq-NpL" id="2ao-dK-6yL"/>
                 <outlet property="programmingLangLabel" destination="om2-gJ-EM8" id="ZMj-yb-rvw"/>
                 <outlet property="repoDescriptionLabel" destination="srB-TU-HJk" id="7a5-w4-fwL"/>
                 <outlet property="repoNameLabel" destination="yzN-wb-ppf" id="FtF-6r-5L1"/>
@@ -95,6 +104,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="star" catalog="system" width="128" height="116"/>
     </resources>
 </document>

@@ -4,13 +4,9 @@
 //
 //  Created by Mostafa Elbadawy on 10/08/2022.
 //
-
 import UIKit
-
 class UserInfoHeader: UIView {
-    
     // MARK: - Properties
-    
     let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -19,7 +15,6 @@ class UserInfoHeader: UIView {
         iv.image = UIImage(named: "GitHubIcon")
         return iv
     }()
-    
     let usernameLabel: UILabel = {
         let label = UILabel()
         label.text = "UserName"
@@ -27,7 +22,6 @@ class UserInfoHeader: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let userIDLabel: UILabel = {
         let label = UILabel()
         label.text = "User ID"
@@ -36,14 +30,10 @@ class UserInfoHeader: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     // MARK: - Init
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         let profileImageDimension: CGFloat = 60
-        
         addSubview(profileImageView)
         profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
@@ -54,14 +44,12 @@ class UserInfoHeader: UIView {
         addSubview(usernameLabel)
         usernameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: -10).isActive = true
         usernameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
-        
+
         addSubview(userIDLabel)
         userIDLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 10).isActive = true
         userIDLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

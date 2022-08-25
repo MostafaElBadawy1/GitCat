@@ -40,6 +40,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(usersVC, animated: true)
         } else if indexPath.section == 0 && indexPath.row == 1 {
             let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+            reposVC.isWithSearchController = true
             self.navigationController?.pushViewController(reposVC, animated: true)
         }
     }

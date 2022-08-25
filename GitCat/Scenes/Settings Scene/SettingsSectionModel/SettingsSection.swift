@@ -4,8 +4,6 @@
 //
 //  Created by Mostafa Elbadawy on 10/08/2022.
 //
-
-
 enum SettingsSection: Int , CaseIterable, CustomStringConvertible{
     case General
     case Policy
@@ -65,7 +63,7 @@ enum AccountOptions: Int, CaseIterable, CustomStringConvertible {
     var description: String {
         switch self {
         case .logOut:
-           return "Log Out"
+            return "Log Out"
         }
     }
 }

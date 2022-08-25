@@ -13,38 +13,80 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         if searchedReposArray.isEmpty && reposArray.isEmpty{
             loadingIndicator.startAnimating()
         }
-        if isWithSearchController == true {
-            return searchedReposArray.count
+        if isStarredReposVC == true {
+            return starredReposArray.count
         } else {
-            return reposArray.count
+            if isWithSearchController == true {
+                return searchedReposArray.count
+            } else {
+                return reposArray.count
+            }
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         repositoriesTableView.deselectRow(at: indexPath, animated: true)
         let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
-        if isWithSearchController == true {
-            commitsVC.repoName = searchedReposArray[indexPath.row].name
-            commitsVC.repoOwner = searchedReposArray[indexPath.row].owner.login
+        if isStarredReposVC == true {
+            commitsVC.repoName = starredReposArray[indexPath.row].name
+            commitsVC.repoOwner = starredReposArray[indexPath.row].owner?.login
         } else {
-            commitsVC.repoName = reposArray[indexPath.row].name
-            commitsVC.repoOwner = reposArray[indexPath.row].owner.login
+            if isWithSearchController == true {
+                commitsVC.repoName = searchedReposArray[indexPath.row].name
+                commitsVC.repoOwner = searchedReposArray[indexPath.row].owner.login
+            } else {
+                commitsVC.repoName = reposArray[indexPath.row].name
+                commitsVC.repoOwner = reposArray[indexPath.row].owner.login
+            }
         }
         self.navigationController?.pushViewController(commitsVC, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = repositoriesTableView.dequeueReusableCell(withIdentifier: K.RepositoriesTableViewCellID, for: indexPath) as! RepositoriesTableViewCell
-        if isWithSearchController == true {
-            cell.repoNameLabel.text = searchedReposArray[indexPath.row].full_name!
-            cell.repoDescriptionLabel.text = searchedReposArray[indexPath.row].description
-            cell.starredNumberLabel.text = "\(searchedReposArray[indexPath.row].stargazers_count!)"
-            cell.programmingLangLabel.text = searchedReposArray[indexPath.row].language
+//        if cell.programmingLangLabel.text == "Swift" {
+//             cell.languageIndicator.tintColor = .red
+//        } else if cell.programmingLangLabel.text == "Shell" {
+//            cell.languageIndicator.tintColor = .systemMint
+//        } else if cell.programmingLangLabel.text == "Java" {
+//            cell.languageIndicator.tintColor = .systemBrown
+//        } else if cell.programmingLangLabel.text == "JavaScript" {
+//            cell.languageIndicator.tintColor = .systemYellow
+//        } else if cell.programmingLangLabel.text == "C" {
+//            cell.languageIndicator.tintColor = .systemBrown
+//        } else if cell.programmingLangLabel.text == "TypeScript"  {
+//            cell.languageIndicator.tintColor = .systemBlue
+//        } else if cell.programmingLangLabel.text == "Python"  {
+//            cell.languageIndicator.tintColor = .systemBlue
+//        } else if cell.programmingLangLabel.text == "C++"  {
+//            cell.languageIndicator.tintColor = .systemRed
+//        } else if cell.programmingLangLabel.text == "HTML"  {
+//            cell.languageIndicator.tintColor = .systemRed
+//        } else if cell.programmingLangLabel.text == "Kotlin"  {
+//            cell.languageIndicator.tintColor = .systemPurple
+//        } else if cell.programmingLangLabel.text == "PHP"  {
+//            cell.languageIndicator.tintColor = .systemBlue
+//        }
+//        if ((cell.programmingLangLabel.text?.isEmpty) != nil) {
+//            cell.languageIndicator.isHidden = true
+//        }
+        cell.languageIndicator.isHidden = true
+        if isStarredReposVC == true {
+            cell.repoNameLabel.text = starredReposArray[indexPath.row].name
+            cell.repoDescriptionLabel.text = starredReposArray[indexPath.row].description
+            cell.starredNumberLabel.text = "\(starredReposArray[indexPath.row].stargazers_count!)"
+            cell.programmingLangLabel.text = starredReposArray[indexPath.row].language
         } else {
-            cell.repoNameLabel.text = reposArray[indexPath.row].name
-            cell.repoDescriptionLabel.text = reposArray[indexPath.row].description
-            cell.starredNumberLabel.text = "\(reposArray[indexPath.row].stargazers_count)"
-            cell.programmingLangLabel.text = reposArray[indexPath.row].language
+            if isWithSearchController == true {
+                cell.repoNameLabel.text = searchedReposArray[indexPath.row].full_name!
+                cell.repoDescriptionLabel.text = searchedReposArray[indexPath.row].description
+                cell.starredNumberLabel.text = "\(searchedReposArray[indexPath.row].stargazers_count!)"
+                cell.programmingLangLabel.text = searchedReposArray[indexPath.row].language
+            } else {
+                cell.repoNameLabel.text = reposArray[indexPath.row].name
+                cell.repoDescriptionLabel.text = reposArray[indexPath.row].description
+                cell.starredNumberLabel.text = "\(reposArray[indexPath.row].stargazers_count!)"
+                cell.programmingLangLabel.text = reposArray[indexPath.row].language
+            }
         }
-        
         return cell
     }
 }
