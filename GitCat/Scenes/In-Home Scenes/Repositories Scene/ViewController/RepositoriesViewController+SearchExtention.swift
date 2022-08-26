@@ -9,7 +9,7 @@ extension RepositoriesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber  }
-        fetchSearchedRepos(userName: filteredText, pageNum: 1)
+        fetchSearchedRepos(searchKeyword: filteredText, pageNum: 1)
 
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -19,6 +19,6 @@ extension RepositoriesViewController: UISearchBarDelegate {
     @objc func reload() {
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber }
-        fetchSearchedRepos(userName: filteredText, pageNum: 1)
+        fetchSearchedRepos(searchKeyword: filteredText, pageNum: 1)
     }
 }

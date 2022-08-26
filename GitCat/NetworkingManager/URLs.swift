@@ -20,16 +20,15 @@ struct URLs {
     func getCommitsForRepoURL(ownerName: String, repoName: String, pageNum: Int)->URL?{
         return URL(string: baseURL + "repos/\(ownerName)/\(repoName)/commits?page=\(pageNum)")
     }
-    func searchReposURL(userName: String, pageNum: Int)->URL?{
-        return URL(string: baseURL + "search/repositories?q=\(userName)&page=\(pageNum)")
+    func searchReposURL(searchKeyword: String, pageNum: Int)->URL?{
+        return URL(string: baseURL + "search/repositories?q=\(searchKeyword)&page=\(pageNum)")
 }
-    func getUserStarredRepos(userName: String, pageNum: Int)->URL?{
-        return URL(string: baseURL + "users/\(userName)/starred?page=\(pageNum)")
-    }
     func getUserOrgs(userName: String)->URL?{
         return URL(string: baseURL + "users/\(userName)/orgs")
     }
     }
+
+
 //https://api.github.com/search/users?q=e&page=5
 //https://api.github.com/users/USERNAME
 //https://api.github.com/users/mo/repos?page=2

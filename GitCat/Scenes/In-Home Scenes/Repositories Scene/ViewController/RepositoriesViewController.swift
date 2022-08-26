@@ -14,8 +14,8 @@ class RepositoriesViewController: UIViewController {
     var moreReposArray = [RepositoriesForUserModel]()
     var searchedReposArray = [RepoItems]()
     var moreSearchedReposArray = [RepoItems]()
-    var starredReposArray = [StarredReposModel]()
-    var moreStarredReposArray = [StarredReposModel]()
+//    var starredReposArray = [StarredReposModel]()
+//    var moreStarredReposArray = [StarredReposModel]()
     var passedNameFromUserDetailsVC: String?
     var isWithSearchController = false
     var isStarredReposVC = false
@@ -47,11 +47,11 @@ class RepositoriesViewController: UIViewController {
         }
         if isStarredReposVC == true {
             if let userName = passedNameFromUserDetailsVC {
-            fetchStarredRepos(userName: "\(userName)", pageNum: 1)
+            fetchRepos(userName:"\(userName)", pageNum: 1)
             }
         } else {
             if isWithSearchController == true {
-                fetchSearchedRepos(userName: "m", pageNum: 1)
+                fetchSearchedRepos(searchKeyword: "m", pageNum: 1)
             } else {
                 return
             }
@@ -139,9 +139,9 @@ class RepositoriesViewController: UIViewController {
             }
         }
     }
-    func fetchSearchedRepos(userName: String, pageNum: Int) {
+    func fetchSearchedRepos(searchKeyword: String, pageNum: Int) {
         Task.init {
-            if let repos = await repositoriesForUserViewModel.searchRepos(userName: userName, pageNum: pageNum) {
+            if let repos = await repositoriesForUserViewModel.searchRepos(searchKeyword: searchKeyword, pageNum: pageNum) {
                 self.searchedReposArray = repos
                 DispatchQueue.main.async {
                     self.loadingIndicator.stopAnimating()
@@ -155,9 +155,9 @@ class RepositoriesViewController: UIViewController {
             }
         }
     }
-    func fetchMoreSearchedRepos(userName: String, pageNum: Int) {
+    func fetchMoreSearchedRepos(searchKeyword: String, pageNum: Int) {
         Task.init {
-            if let users = await repositoriesForUserViewModel.searchRepos(userName: userName, pageNum: pageNum) {
+            if let users = await repositoriesForUserViewModel.searchRepos(searchKeyword: searchKeyword, pageNum: pageNum) {
                 self.moreSearchedReposArray = users
                 if moreSearchedReposArray.isEmpty {
                     spinner.stopAnimating()
@@ -173,38 +173,38 @@ class RepositoriesViewController: UIViewController {
             }
         }
     }
-    func fetchStarredRepos(userName: String, pageNum: Int) {
-        Task.init {
-            if let starredRepos = await repositoriesForUserViewModel.fetchStarredRepos(userName: userName, pageNum: pageNum) {
-                self.starredReposArray = starredRepos
-                DispatchQueue.main.async {
-                    self.loadingIndicator.stopAnimating()
-                    self.repositoriesTableView.reloadData()
-                }
-            } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repositories" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                self.loadingIndicator.startAnimating()
-            }
-        }
-    }
-    func fetchMoreStarredRepos(userName: String, pageNum: Int) {
-        Task.init {
-            if let starredRepos = await repositoriesForUserViewModel.fetchStarredRepos(userName: userName, pageNum: pageNum) {
-                self.starredReposArray = starredRepos
-                if starredReposArray.isEmpty {
-                    spinner.stopAnimating()
-                }
-                DispatchQueue.main.async {
-                    self.starredReposArray.append(contentsOf: self.moreStarredReposArray)
-                    self.repositoriesTableView.reloadData()
-                }
-            } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Repositories" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-    }
+//    func fetchStarredRepos(userName: String, pageNum: Int) {
+//        Task.init {
+//            if let starredRepos = await repositoriesForUserViewModel.fetchStarredRepos(userName: userName, pageNum: pageNum) {
+//                self.starredReposArray = starredRepos
+//                DispatchQueue.main.async {
+//                    self.loadingIndicator.stopAnimating()
+//                    self.repositoriesTableView.reloadData()
+//                }
+//            } else {
+//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repositories" , message: "", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//                self.loadingIndicator.startAnimating()
+//            }
+//        }
+//    }
+//    func fetchMoreStarredRepos(userName: String, pageNum: Int) {
+//        Task.init {
+//            if let starredRepos = await repositoriesForUserViewModel.fetchStarredRepos(userName: userName, pageNum: pageNum) {
+//                self.starredReposArray = starredRepos
+//                if starredReposArray.isEmpty {
+//                    spinner.stopAnimating()
+//                }
+//                DispatchQueue.main.async {
+//                    self.starredReposArray.append(contentsOf: self.moreStarredReposArray)
+//                    self.repositoriesTableView.reloadData()
+//                }
+//            } else {
+//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Repositories" , message: "", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//        }
+//    }
 }

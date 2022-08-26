@@ -23,7 +23,7 @@ extension CommitsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = commitsTableView.dequeueReusableCell(withIdentifier: K.CommitsTableViewCellID, for: indexPath) as! CommitsTableViewCell
-        cell.userNameLabel.text = commitsArray[indexPath.row].commit.committer.name
+        cell.userNameLabel.text = commitsArray[indexPath.row].commit.committer?.name
         cell.commitMessageLabel.text = commitsArray[indexPath.row].commit.message
         return cell
     }

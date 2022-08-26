@@ -29,15 +29,10 @@ class NetworkingManager: ApiService {
         let (data,_) = try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode([CommitsModel].self, from: data)
     }
-    func searchRepos(userName: String, pageNum: Int) async throws-> SearchRepositoriesModel{
-        let url = URLs.shared.searchReposURL(userName: userName, pageNum: pageNum)
+    func searchRepos(searchKeyword: String, pageNum: Int) async throws-> SearchRepositoriesModel{
+        let url = URLs.shared.searchReposURL(searchKeyword: searchKeyword, pageNum: pageNum)
         let (data,_) = try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode(SearchRepositoriesModel.self, from: data)
-    }
-    func getStarredRepos(userName: String, pageNum: Int) async throws-> [StarredReposModel]{
-        let url = URLs.shared.getUserStarredRepos(userName: userName, pageNum: pageNum)
-        let (data,_) = try await URLSession.shared.data(from: url!)
-        return try JSONDecoder().decode([StarredReposModel].self, from: data)
     }
     func getUserOrgs(userName: String) async throws-> [OrganizationModel]{
         let url = URLs.shared.getUserOrgs(userName: userName)
@@ -57,7 +52,11 @@ class NetworkingManager: ApiService {
 
 
 
-
+//    func getStarredRepos(userName: String, pageNum: Int) async throws-> [StarredReposModel]{
+//        let url = URLs.shared.getUserStarredRepos(userName: userName, pageNum: pageNum)
+//        let (data,_) = try await URLSession.shared.data(from: url!)
+//        return try JSONDecoder().decode([StarredReposModel].self, from: data)
+//    }
 
 
 //class NetworkingManager: ApiService {

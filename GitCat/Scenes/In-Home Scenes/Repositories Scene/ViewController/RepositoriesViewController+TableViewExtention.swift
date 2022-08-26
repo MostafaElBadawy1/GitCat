@@ -14,7 +14,7 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
             loadingIndicator.startAnimating()
         }
         if isStarredReposVC == true {
-            return starredReposArray.count
+            return reposArray.count
         } else {
             if isWithSearchController == true {
                 return searchedReposArray.count
@@ -27,15 +27,15 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         repositoriesTableView.deselectRow(at: indexPath, animated: true)
         let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
         if isStarredReposVC == true {
-            commitsVC.repoName = starredReposArray[indexPath.row].name
-            commitsVC.repoOwner = starredReposArray[indexPath.row].owner?.login
+            commitsVC.repoName = reposArray[indexPath.row].name
+            commitsVC.repoOwner = reposArray[indexPath.row].owner?.login
         } else {
             if isWithSearchController == true {
                 commitsVC.repoName = searchedReposArray[indexPath.row].name
                 commitsVC.repoOwner = searchedReposArray[indexPath.row].owner.login
             } else {
                 commitsVC.repoName = reposArray[indexPath.row].name
-                commitsVC.repoOwner = reposArray[indexPath.row].owner.login
+                commitsVC.repoOwner = reposArray[indexPath.row].owner?.login
             }
         }
         self.navigationController?.pushViewController(commitsVC, animated: true)
@@ -70,10 +70,10 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
 //        }
         cell.languageIndicator.isHidden = true
         if isStarredReposVC == true {
-            cell.repoNameLabel.text = starredReposArray[indexPath.row].name
-            cell.repoDescriptionLabel.text = starredReposArray[indexPath.row].description
-            cell.starredNumberLabel.text = "\(starredReposArray[indexPath.row].stargazers_count!)"
-            cell.programmingLangLabel.text = starredReposArray[indexPath.row].language
+            cell.repoNameLabel.text = reposArray[indexPath.row].name
+            cell.repoDescriptionLabel.text = reposArray[indexPath.row].description
+            cell.starredNumberLabel.text = "\(reposArray[indexPath.row].stargazers_count!)"
+            cell.programmingLangLabel.text = reposArray[indexPath.row].language
         } else {
             if isWithSearchController == true {
                 cell.repoNameLabel.text = searchedReposArray[indexPath.row].full_name!
@@ -101,9 +101,9 @@ extension RepositoriesViewController: UITableViewDataSourcePrefetching{
                 let filteredText = text.filter { $0.isLetter || $0.isNumber  }
                 if isWithSearchController == true {
                     if filteredText.isEmpty {
-                        fetchMoreSearchedRepos(userName:"m", pageNum: pageNum)
+                        fetchMoreSearchedRepos(searchKeyword:"m", pageNum: pageNum)
                     } else {
-                        fetchMoreSearchedRepos(userName:filteredText, pageNum: pageNum)
+                        fetchMoreSearchedRepos(searchKeyword:filteredText, pageNum: pageNum)
                     }
                 } else {
                     fetchMoreRepos(userName: "\(passedNameFromUserDetailsVC!)", pageNum: pageNum)

@@ -61,6 +61,7 @@
 		A6BB74B128B562670051C48F /* OrganizationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74B028B562670051C48F /* OrganizationsViewModel.swift */; };
 		A6BB74B528B562970051C48F /* OrganizationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74B328B562970051C48F /* OrganizationsTableViewCell.swift */; };
 		A6BB74B628B562970051C48F /* OrganizationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6BB74B428B562970051C48F /* OrganizationsTableViewCell.xib */; };
+		A6BB74BB28B85ECB0051C48F /* OrganizationsViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74BA28B85ECB0051C48F /* OrganizationsViewController+TableViewExtention.swift */; };
 		A6C6432328A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432228A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift */; };
 		A6C6432628A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432528A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift */; };
 		A6C6432828A6802C00271B3D /* CommitsViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432728A6802C00271B3D /* CommitsViewController+TableViewExtention.swift */; };
@@ -165,6 +166,7 @@
 		A6BB74B028B562670051C48F /* OrganizationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsViewModel.swift; sourceTree = "<group>"; };
 		A6BB74B328B562970051C48F /* OrganizationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsTableViewCell.swift; sourceTree = "<group>"; };
 		A6BB74B428B562970051C48F /* OrganizationsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrganizationsTableViewCell.xib; sourceTree = "<group>"; };
+		A6BB74BA28B85ECB0051C48F /* OrganizationsViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrganizationsViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
 		A6C6432228A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController+TableViewExtension.swift"; sourceTree = "<group>"; };
 		A6C6432528A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesViewController+SearchExtention.swift"; sourceTree = "<group>"; };
 		A6C6432728A6802C00271B3D /* CommitsViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommitsViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
@@ -256,8 +258,7 @@
 				A6BB749828B50EB10051C48F /* Helpers */,
 				A6AC5C602888526B003415FC /* NetworkingManager */,
 				A6781712289C27E9007F6BBC /* Scenes */,
-				A6260A3E28883D6300276B91 /* Main.storyboard */,
-				A6260A4628883D6500276B91 /* LaunchScreen.storyboard */,
+				A6BB74B928B7C43A0051C48F /* Storyboards */,
 				A6AC5C6728885872003415FC /* Models */,
 				A6260A4428883D6500276B91 /* Assets.xcassets */,
 				A6260A4928883D6500276B91 /* Info.plist */,
@@ -551,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				A6BB74AE28B5625A0051C48F /* OrganizationsViewController.swift */,
+				A6BB74BA28B85ECB0051C48F /* OrganizationsViewController+TableViewExtention.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -570,6 +572,15 @@
 				A6BB74B428B562970051C48F /* OrganizationsTableViewCell.xib */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		A6BB74B928B7C43A0051C48F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A6260A3E28883D6300276B91 /* Main.storyboard */,
+				A6260A4628883D6500276B91 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		A6C6432428A67EE000271B3D /* ViewModel */ = {
@@ -1000,6 +1011,7 @@
 				A6BB74A228B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift in Sources */,
 				A6BB748C28B31C6F0051C48F /* StarredReposModel.swift in Sources */,
 				A6AC5C74288B0543003415FC /* UsersListViewController+SearchExtension.swift in Sources */,
+				A6BB74BB28B85ECB0051C48F /* OrganizationsViewController+TableViewExtention.swift in Sources */,
 				A6BB748728B301420051C48F /* SearchRepositoriesModel.swift in Sources */,
 				A6BB74B128B562670051C48F /* OrganizationsViewModel.swift in Sources */,
 				A6AC5C76288B058D003415FC /* UsersListViewController+TableViewExtension.swift in Sources */,

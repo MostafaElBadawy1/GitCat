@@ -10,7 +10,7 @@ struct CommitsModel: Codable {
     let html_url: String?
 }
 struct Commit: Codable{
-    let committer: Committer
+    let committer: Committer?
     let message: String?
 }
 struct Committer: Codable{
