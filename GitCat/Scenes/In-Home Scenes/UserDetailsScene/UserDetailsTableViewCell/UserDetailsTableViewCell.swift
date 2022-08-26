@@ -8,6 +8,7 @@
 import UIKit
 
 class UserDetailsTableViewCell: UITableViewCell {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userFullNameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -16,7 +17,9 @@ class UserDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var userFollowersLabel: UILabel!
     @IBOutlet weak var userFollowingLabel: UILabel!
     @IBOutlet weak var bookmarkButtonImage: UIButton!
+    
     @IBAction func bookmarkButton(_ sender: Any) {
+    User
         print("BookMark Pressed")
         //bookmarkButtonImage.imageView = UIImage("star.fill")
     }

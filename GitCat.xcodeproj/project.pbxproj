@@ -62,6 +62,7 @@
 		A6BB74B528B562970051C48F /* OrganizationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74B328B562970051C48F /* OrganizationsTableViewCell.swift */; };
 		A6BB74B628B562970051C48F /* OrganizationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6BB74B428B562970051C48F /* OrganizationsTableViewCell.xib */; };
 		A6BB74BB28B85ECB0051C48F /* OrganizationsViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74BA28B85ECB0051C48F /* OrganizationsViewController+TableViewExtention.swift */; };
+		A6BB74BE28B9226B0051C48F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74BD28B9226B0051C48F /* CoreDataManager.swift */; };
 		A6C6432328A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432228A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift */; };
 		A6C6432628A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432528A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift */; };
 		A6C6432828A6802C00271B3D /* CommitsViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6432728A6802C00271B3D /* CommitsViewController+TableViewExtention.swift */; };
@@ -167,6 +168,7 @@
 		A6BB74B328B562970051C48F /* OrganizationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsTableViewCell.swift; sourceTree = "<group>"; };
 		A6BB74B428B562970051C48F /* OrganizationsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrganizationsTableViewCell.xib; sourceTree = "<group>"; };
 		A6BB74BA28B85ECB0051C48F /* OrganizationsViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrganizationsViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
+		A6BB74BD28B9226B0051C48F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A6C6432228A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController+TableViewExtension.swift"; sourceTree = "<group>"; };
 		A6C6432528A67F7400271B3D /* RepositoriesViewController+SearchExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesViewController+SearchExtention.swift"; sourceTree = "<group>"; };
 		A6C6432728A6802C00271B3D /* CommitsViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommitsViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
@@ -260,9 +262,9 @@
 				A6781712289C27E9007F6BBC /* Scenes */,
 				A6BB74B928B7C43A0051C48F /* Storyboards */,
 				A6AC5C6728885872003415FC /* Models */,
+				A6BB74BC28B9223F0051C48F /* DataBase */,
 				A6260A4428883D6500276B91 /* Assets.xcassets */,
 				A6260A4928883D6500276B91 /* Info.plist */,
-				A6260A4128883D6300276B91 /* GitCat.xcdatamodeld */,
 			);
 			path = GitCat;
 			sourceTree = "<group>";
@@ -581,6 +583,15 @@
 				A6260A4628883D6500276B91 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A6BB74BC28B9223F0051C48F /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				A6260A4128883D6300276B91 /* GitCat.xcdatamodeld */,
+				A6BB74BD28B9226B0051C48F /* CoreDataManager.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 		A6C6432428A67EE000271B3D /* ViewModel */ = {
@@ -1004,6 +1015,7 @@
 				A6BB748528B2EFEB0051C48F /* CommitsModel.swift in Sources */,
 				A699422428A31E05000B2410 /* BookmarksViewController.swift in Sources */,
 				A6BB749A28B51E190051C48F /* SettingsViewController+TableViewExtention.swift in Sources */,
+				A6BB74BE28B9226B0051C48F /* CoreDataManager.swift in Sources */,
 				A6E92ECC28A2BE240085F163 /* RepositoriesTableViewCell.swift in Sources */,
 				A6AC5C712889A8E1003415FC /* UsersListTableViewCell.swift in Sources */,
 				A6C6432C28A6840900271B3D /* BookmarksViewController+SearchExtention.swift in Sources */,
