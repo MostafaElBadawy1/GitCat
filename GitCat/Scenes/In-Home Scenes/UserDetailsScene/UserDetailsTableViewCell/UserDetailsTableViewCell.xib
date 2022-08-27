@@ -50,7 +50,7 @@
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                         <connections>
-                            <action selector="bookmarkButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qXi-IC-lUb"/>
+                            <action selector="bookmarkButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RoW-5W-iIK"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mr9-RY-dNm">

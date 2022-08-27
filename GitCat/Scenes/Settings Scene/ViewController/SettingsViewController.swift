@@ -4,13 +4,12 @@
 //
 //  Created by Mostafa Elbadawy on 10/08/2022.
 //
-
 import UIKit
-
 class SettingsViewController: UIViewController {
     var userInfoHeader: UserInfoHeader!
+    var usersModel = [User]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var SettingsTableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewConfig()

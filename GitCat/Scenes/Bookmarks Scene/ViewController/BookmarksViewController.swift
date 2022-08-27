@@ -4,16 +4,22 @@
 //
 //  Created by Mostafa Elbadawy on 10/08/2022.
 //
-
 import UIKit
-
 class BookmarksViewController: UIViewController {
-    let searchController = UISearchController(searchResultsController: resultsTableController())
+    //MARK: - Props
+    let searchController = UISearchController()
+    var usersModel = [User]()
+    //MARK: - IBOutlets
     @IBOutlet weak var bookmarksTableView: UITableView!
+    //MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewConfig()
         searchControllerConfig()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchUsers()
     }
     func tableViewConfig() {
         bookmarksTableView.delegate = self
@@ -28,5 +34,13 @@ class BookmarksViewController: UIViewController {
         searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
+    }
+    func fetchUsers() {
+        CoreDataManger.shared.fetch(entityName: User.self) { (users) in
+            self.usersModel = users
+            DispatchQueue.main.async {
+                self.bookmarksTableView.reloadData()
+            }
+        }
     }
 }

@@ -4,9 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 12/08/2022.
 //
-
 import UIKit
-
 extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let titleView = view as! UITableViewHeaderFooterView
@@ -34,7 +32,12 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        switch section {
+        case 0:
+            return usersModel.count
+        default:
+            return 2
+    }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         bookmarksTableView.deselectRow(at: indexPath, animated: true)
@@ -42,10 +45,29 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0  {
             let userCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.UserListCellID, for: indexPath) as! UsersListTableViewCell
+            userCell.userNameLabel.text = usersModel[indexPath.row].userName
             return userCell
         } else {
             let repoCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.RepositoriesTableViewCellID, for: indexPath)
             return repoCell
+        }
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        .delete
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            let item = usersModel[indexPath.row]
+            CoreDataManger.shared.delete(entityName: User.self, delete: item)
+            CoreDataManger.shared.fetch(entityName: User.self) { (item) in
+                self.usersModel = item
+                DispatchQueue.main.async {
+                    self.bookmarksTableView.reloadData()
+                }
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
         }
     }
 }

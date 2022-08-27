@@ -4,14 +4,10 @@
 //
 //  Created by Mostafa Elbadawy on 10/08/2022.
 //
-
 import UIKit
-
 class SettingsTableViewCell: UITableViewCell {
     //let userDefaults = UserDefaults.standard
     let isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
-   
-    
     @IBOutlet weak var switchControl: UISwitch!
     @IBAction func switchDidChange(_ sender: UISwitch) {
         UserDefaults.standard.set(sender.isOn, forKey: "isDarkMode")
@@ -26,8 +22,6 @@ class SettingsTableViewCell: UITableViewCell {
             window.overrideUserInterfaceStyle = .light
         }
     }
-  
-  
     override func awakeFromNib() {
         super.awakeFromNib()
         switchControl.isOn = UserDefaults.standard.bool(forKey: "isDarkMode")

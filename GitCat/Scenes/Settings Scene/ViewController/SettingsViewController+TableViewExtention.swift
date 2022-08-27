@@ -35,6 +35,16 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         SettingsTableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 && indexPath.row == 2 {
+            print("sasasasasas")
+           // let item = usersModel[indexPath.row]
+            for item in usersModel{
+                CoreDataManger.shared.delete(entityName: User.self, delete: item)
+                //context.delete(user)
+                print("sasasasasas")
+            }
+            
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = SettingsTableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell

@@ -8,7 +8,7 @@
 import UIKit
 
 class UserDetailsTableViewCell: UITableViewCell {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var delegate: TableViewCellDelegate?
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userFullNameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -18,16 +18,47 @@ class UserDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var userFollowingLabel: UILabel!
     @IBOutlet weak var bookmarkButtonImage: UIButton!
     
-    @IBAction func bookmarkButton(_ sender: Any) {
-    User
-        print("BookMark Pressed")
-        //bookmarkButtonImage.imageView = UIImage("star.fill")
+    @IBAction func bookmarkButton(_ sender: UIButton) {
+        delegate?.addTapped(cell: self)
+//        bookmarkButtonImage.setImage(UIImage(systemName: "star.fill"), for: .normal)
+//        UserDefaults.standard.set(sender.isSelected, forKey: "bookmarked")
+//        if bookmarkButtonImage.isSelected {
+//                   print("I am selected.")
+//            bookmarkButtonImage.setImage(UIImage(systemName: "star.fill"), for: .normal)
+//                   UserDefaults.standard.set(false, forKey: "starNotSelected")
+//                   UserDefaults.standard.set(true, forKey: "starSelected")
+//           } else {
+//               bookmarkButtonImage.setImage(UIImage(systemName: "star"), for: .normal)
+//                   UserDefaults.standard.set(false, forKey: "starSelected")
+//                   UserDefaults.standard.set(true, forKey: "starNotSelected")
+//
+//                   print("I am not selected.")
+//    }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
+        //bookmarkButtonImage.isSelected = UserDefaults.standard.bool(forKey: "bookmarked")
+        //configureUI()
+//        bookmarkButtonImage.isSelected = !bookmarkButtonImage.isSelected
+//        if UserDefaults.standard.bool(forKey: "starSelected") {
+//            bookmarkButtonImage.setImage(UIImage(systemName: "star.fill"), for: .normal)
+//            print("star selected")
+//        }
+//
+//        if UserDefaults.standard.bool(forKey: "starNotSelected") {
+//            bookmarkButtonImage.setImage(UIImage(systemName: "star"), for: .normal)
+//            print("star not selected")
+
+       // }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
+}
+
+
+
+protocol TableViewCellDelegate {
+    func addTapped(cell: UserDetailsTableViewCell)
 }

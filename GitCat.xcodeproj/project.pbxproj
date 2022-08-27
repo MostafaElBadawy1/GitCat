@@ -234,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				A6260A3728883D6300276B91 /* GitCat */,
-				A6E7FFB0288C3F130055B0FA /* NetworkReachabilityManager */,
 				A6260A5128883D6500276B91 /* GitCatTests */,
 				A6260A5B28883D6500276B91 /* GitCatUITests */,
 				A6260A3628883D6300276B91 /* Products */,
@@ -258,6 +257,7 @@
 			children = (
 				A6AC5C5F288849A0003415FC /* AppDelegate */,
 				A6BB749828B50EB10051C48F /* Helpers */,
+				A6E7FFB0288C3F130055B0FA /* NetworkReachabilityManager */,
 				A6AC5C602888526B003415FC /* NetworkingManager */,
 				A6781712289C27E9007F6BBC /* Scenes */,
 				A6BB74B928B7C43A0051C48F /* Storyboards */,

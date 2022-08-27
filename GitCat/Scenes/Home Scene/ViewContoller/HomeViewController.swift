@@ -4,17 +4,9 @@
 //
 //  Created by Mostafa Elbadawy on 04/08/2022.
 //
-
 import UIKit
-class resultsTableController: UIViewController{
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .blue
-    }
-}
-
 class HomeViewController: UIViewController {
-    let searchController = UISearchController(searchResultsController: resultsTableController())
+    let searchController = UISearchController()
     let homeArray = [["Users", "Repositories", "Issues", "Github Web"], ["My Repo"],["Authenticated User Mode"]]
     let imagesArray = [UIImage(named: "UsersIcon"),UIImage(named: "repoIcon"),UIImage(named: "issuesIcon"),UIImage(named: "GitHubIcon")]
     @IBOutlet weak var homeTableView: UITableView!
@@ -44,7 +36,6 @@ class HomeViewController: UIViewController {
 
         // Monitor when the search button is tapped, and start/end editing.
         searchController.searchBar.delegate = self
-
     }
     func appAppearanceConfig() {
         let window = UIApplication.shared.windows[0]

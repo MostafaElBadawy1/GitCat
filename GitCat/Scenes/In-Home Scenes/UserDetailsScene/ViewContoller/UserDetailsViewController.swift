@@ -4,12 +4,11 @@
 //
 //  Created by Mostafa Elbadawy on 08/08/2022.
 //
-
 import UIKit
 import Kingfisher
-import SwiftUI
 class UserDetailsViewController: UIViewController {
     //MARK: - Props
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var passeedDataFromUserListVC : String?
     var user : UserModel?
     var userDetailsViewModel = UserDetailsViewModel()
@@ -21,6 +20,7 @@ class UserDetailsViewController: UIViewController {
     @IBOutlet weak var userDetailsTableView: UITableView!
     //MARK: - @IBAction
     @IBAction func safariViewButton(_ sender: UIBarButtonItem) {
+
         if let userURL = URL(string:"\(self.user!.html_url!)" ){
             UIApplication.shared.open(userURL)
             print(userURL)

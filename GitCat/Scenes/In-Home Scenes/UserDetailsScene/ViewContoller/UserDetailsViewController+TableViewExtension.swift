@@ -4,9 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 12/08/2022.
 //
-
 import UIKit
-
 extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -21,6 +19,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userDetailsTableView.dequeueReusableCell(withIdentifier: K.homeTableViewCell ) as! HomeTableViewCell
         let userDetailsCell = userDetailsTableView.dequeueReusableCell(withIdentifier: K.UserDetailsTableViewCellID) as! UserDetailsTableViewCell
+        userDetailsCell.delegate = self
         cell.homeLabel.text = userDetailsArray[indexPath.row]
         cell.homeImage.image = imagesArray[indexPath.row]
         if let userFollowing = user?.following {
@@ -38,8 +37,8 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         userDetailsCell.userLocation.text = user?.location ?? "Unavailable Location"
         //print(user?.avatar_url)
         //var avatarURl =  URL(string: user!.avatar_url)
-       // print(avatarURl)
-       // userDetailsCell.userImage.kf.setImage(with: avatarURl, placeholder: UIImage(named: "UsersIcon"))
+        // print(avatarURl)
+        // userDetailsCell.userImage.kf.setImage(with: avatarURl, placeholder: UIImage(named: "UsersIcon"))
         userDetailsCell.userImage.layer.masksToBounds = false
         userDetailsCell.userImage.layer.cornerRadius = cell.homeImage.frame.height/1.1
         userDetailsCell.userImage.clipsToBounds = true
@@ -78,6 +77,16 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
             return 200
         } else {
             return 50
+        }
+    }
+}
+extension UserDetailsViewController: TableViewCellDelegate {
+    func addTapped(cell: UserDetailsTableViewCell) {
+        User(context: self.context).userName = user?.login
+        do {
+            try self.context.save()
+        } catch {
+            print(error)
         }
     }
 }
