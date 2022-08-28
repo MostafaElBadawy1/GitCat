@@ -10,7 +10,6 @@ extension RepositoriesViewController: UISearchBarDelegate {
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber  }
         fetchSearchedRepos(searchKeyword: filteredText, pageNum: 1)
-
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(reload), object: nil)

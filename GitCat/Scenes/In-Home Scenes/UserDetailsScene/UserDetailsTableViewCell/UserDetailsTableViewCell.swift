@@ -4,9 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 09/08/2022.
 //
-
 import UIKit
-
 class UserDetailsTableViewCell: UITableViewCell {
     var delegate: TableViewCellDelegate?
     @IBOutlet weak var userImage: UIImageView!

@@ -36,7 +36,8 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return usersModel.count
         default:
-            return 2
+            print(reposModel.count)
+            return reposModel.count
     }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -46,9 +47,20 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0  {
             let userCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.UserListCellID, for: indexPath) as! UsersListTableViewCell
             userCell.userNameLabel.text = usersModel[indexPath.row].userName
+            if let userAvatarUrl = usersModel[indexPath.row].userImageURL{
+                userCell.UserImageView.kf.setImage(with: userAvatarUrl, placeholder: UIImage(named: "UsersIcon"))
+            }
+            userCell.UserImageView.layer.masksToBounds = false
+            userCell.UserImageView.layer.cornerRadius = userCell.UserImageView.frame.height/2
+            userCell.UserImageView.clipsToBounds = true
+           // if indexPath.section == 0 && indexPath.row == 0
             return userCell
-        } else {
-            let repoCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.RepositoriesTableViewCellID, for: indexPath)
+        } else  {
+            let repoCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.RepositoriesTableViewCellID, for: indexPath) as! RepositoriesTableViewCell
+            repoCell.repoNameLabel.text = reposModel[indexPath.row].repoName
+            repoCell.repoDescriptionLabel.text = reposModel[indexPath.row].repoDescription
+            repoCell.programmingLangLabel.text = reposModel[indexPath.row].programmingLanguage
+            repoCell.starredNumberLabel.text = "\(reposModel[indexPath.row].starredNum)"
             return repoCell
         }
     }

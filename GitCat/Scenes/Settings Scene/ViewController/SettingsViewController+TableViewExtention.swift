@@ -40,7 +40,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
            // let item = usersModel[indexPath.row]
             for item in usersModel{
                 CoreDataManger.shared.delete(entityName: User.self, delete: item)
-                //context.delete(user)
+                context.delete(item)
                 print("sasasasasas")
             }
             

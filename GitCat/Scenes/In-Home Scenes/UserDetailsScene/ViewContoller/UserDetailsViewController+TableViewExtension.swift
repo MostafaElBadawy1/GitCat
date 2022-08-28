@@ -40,7 +40,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         // print(avatarURl)
         // userDetailsCell.userImage.kf.setImage(with: avatarURl, placeholder: UIImage(named: "UsersIcon"))
         userDetailsCell.userImage.layer.masksToBounds = false
-        userDetailsCell.userImage.layer.cornerRadius = cell.homeImage.frame.height/1.1
+       // userDetailsCell.userImage.layer.cornerRadius = cell.homeImage.frame.height/1.1 ------->>>>>>
         userDetailsCell.userImage.clipsToBounds = true
         if indexPath.section == 0 && indexPath.row == 0 {
             userDetailsCell.selectionStyle = .none
@@ -82,7 +82,11 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
 }
 extension UserDetailsViewController: TableViewCellDelegate {
     func addTapped(cell: UserDetailsTableViewCell) {
-        User(context: self.context).userName = user?.login
+        let oneUser = User(context: self.context)
+        oneUser.userName = user?.login
+        oneUser.userImageURL = URL(string:(user?.avatar_url)!)
+//        User(context: self.context).userName = user?.login
+//        User(context: self.context).userImageURL = URL(string:(user?.avatar_url)!)
         do {
             try self.context.save()
         } catch {

@@ -42,32 +42,34 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = repositoriesTableView.dequeueReusableCell(withIdentifier: K.RepositoriesTableViewCellID, for: indexPath) as! RepositoriesTableViewCell
-//        if cell.programmingLangLabel.text == "Swift" {
-//             cell.languageIndicator.tintColor = .red
-//        } else if cell.programmingLangLabel.text == "Shell" {
-//            cell.languageIndicator.tintColor = .systemMint
-//        } else if cell.programmingLangLabel.text == "Java" {
-//            cell.languageIndicator.tintColor = .systemBrown
-//        } else if cell.programmingLangLabel.text == "JavaScript" {
-//            cell.languageIndicator.tintColor = .systemYellow
-//        } else if cell.programmingLangLabel.text == "C" {
-//            cell.languageIndicator.tintColor = .systemBrown
-//        } else if cell.programmingLangLabel.text == "TypeScript"  {
-//            cell.languageIndicator.tintColor = .systemBlue
-//        } else if cell.programmingLangLabel.text == "Python"  {
-//            cell.languageIndicator.tintColor = .systemBlue
-//        } else if cell.programmingLangLabel.text == "C++"  {
-//            cell.languageIndicator.tintColor = .systemRed
-//        } else if cell.programmingLangLabel.text == "HTML"  {
-//            cell.languageIndicator.tintColor = .systemRed
-//        } else if cell.programmingLangLabel.text == "Kotlin"  {
-//            cell.languageIndicator.tintColor = .systemPurple
-//        } else if cell.programmingLangLabel.text == "PHP"  {
-//            cell.languageIndicator.tintColor = .systemBlue
-//        }
-//        if ((cell.programmingLangLabel.text?.isEmpty) != nil) {
-//            cell.languageIndicator.isHidden = true
-//        }
+        cell.delegate = self
+        cell.index = indexPath
+        //        if cell.programmingLangLabel.text == "Swift" {
+        //             cell.languageIndicator.tintColor = .red
+        //        } else if cell.programmingLangLabel.text == "Shell" {
+        //            cell.languageIndicator.tintColor = .systemMint
+        //        } else if cell.programmingLangLabel.text == "Java" {
+        //            cell.languageIndicator.tintColor = .systemBrown
+        //        } else if cell.programmingLangLabel.text == "JavaScript" {
+        //            cell.languageIndicator.tintColor = .systemYellow
+        //        } else if cell.programmingLangLabel.text == "C" {
+        //            cell.languageIndicator.tintColor = .systemBrown
+        //        } else if cell.programmingLangLabel.text == "TypeScript"  {
+        //            cell.languageIndicator.tintColor = .systemBlue
+        //        } else if cell.programmingLangLabel.text == "Python"  {
+        //            cell.languageIndicator.tintColor = .systemBlue
+        //        } else if cell.programmingLangLabel.text == "C++"  {
+        //            cell.languageIndicator.tintColor = .systemRed
+        //        } else if cell.programmingLangLabel.text == "HTML"  {
+        //            cell.languageIndicator.tintColor = .systemRed
+        //        } else if cell.programmingLangLabel.text == "Kotlin"  {
+        //            cell.languageIndicator.tintColor = .systemPurple
+        //        } else if cell.programmingLangLabel.text == "PHP"  {
+        //            cell.languageIndicator.tintColor = .systemBlue
+        //        }
+        //        if ((cell.programmingLangLabel.text?.isEmpty) != nil) {
+        //            cell.languageIndicator.isHidden = true
+        //        }
         cell.languageIndicator.isHidden = true
         if isStarredReposVC == true {
             cell.repoNameLabel.text = reposArray[indexPath.row].name
@@ -112,3 +114,54 @@ extension RepositoriesViewController: UITableViewDataSourcePrefetching{
         }
     }
 }
+extension RepositoriesViewController: RepostableViewCellDelegate {
+    func addTappedCell(cell: RepositoriesTableViewCell, index: Int) {
+        Repo
+       // let oneRepo = Repo(context: self.context)
+      //  print(oneRepo)
+     //   print(index)
+      //  print(searchedReposArray[index].full_name)
+       // print(reposArray[index].full_name)
+       // if isWithSearchController == true {
+//            oneRepo.repoName = searchedReposArray[index].full_name!
+//            oneRepo.repoDescription = searchedReposArray[index].description
+//            oneRepo.programmingLanguage = searchedReposArray[index].language
+//            oneRepo.starredNum = Int64(searchedReposArray[index].stargazers_count!)
+//            Repo(context: se)
+//            oneRepo.repoDescription = "searchedReposArray[index].description"
+//            oneRepo.programmingLanguage = "searchedReposArray[index].language"
+//            oneRepo.starredNum = 3
+//        } else {
+//            oneRepo.repoName = reposArray[index].full_name
+//            oneRepo.repoDescription = reposArray[index].description
+//            oneRepo.programmingLanguage = reposArray[index].language
+//            oneRepo.starredNum = Int64(reposArray[index].stargazers_count!)
+//        }
+        do {
+            try self.context.save()
+            print("saved")
+        } catch {
+            print(error)
+        }
+    }
+}
+
+
+//        if isStarredReposVC == true {
+//            oneRepo.repoName = reposArray[index].full_name
+//            oneRepo.repoDescription = reposArray[index].description
+//            oneRepo.programmingLanguage = reposArray[index].language
+//            oneRepo.starredNum = Int64(reposArray[index].stargazers_count!)
+//        } else {
+//            if isWithSearchController == true {
+//                oneRepo.repoName = searchedReposArray[index].full_name
+//                oneRepo.repoDescription = searchedReposArray[index].description
+//                oneRepo.programmingLanguage = searchedReposArray[index].language
+//                oneRepo.starredNum = Int64(searchedReposArray[index].stargazers_count!)
+//            } else {
+//                oneRepo.repoName = reposArray[index].full_name
+//                oneRepo.repoDescription = reposArray[index].description
+//                oneRepo.programmingLanguage = reposArray[index].language
+//                oneRepo.starredNum = Int64(reposArray[index].stargazers_count!)
+//            }
+//        }

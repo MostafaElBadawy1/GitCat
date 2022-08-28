@@ -20,7 +20,6 @@ class UserDetailsViewController: UIViewController {
     @IBOutlet weak var userDetailsTableView: UITableView!
     //MARK: - @IBAction
     @IBAction func safariViewButton(_ sender: UIBarButtonItem) {
-
         if let userURL = URL(string:"\(self.user!.html_url!)" ){
             UIApplication.shared.open(userURL)
             print(userURL)
