@@ -70,11 +70,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjh-Nq-NpL">
-                        <rect key="frame" x="154" y="65" width="16" height="31"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system"/>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMV-Vd-N0Z">
                         <rect key="frame" x="345" y="5" width="47" height="31"/>
                         <state key="normal" title="Button"/>
@@ -82,6 +77,11 @@
                         <connections>
                             <action selector="bookmarkButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lzE-2d-Pdk"/>
                         </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjh-Nq-NpL">
+                        <rect key="frame" x="157" y="59" width="16" height="34"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system"/>
                     </button>
                 </subviews>
                 <constraints>

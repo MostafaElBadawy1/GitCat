@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6BA91FBC2545A6CCC626F4F1 /* Pods_GitCatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3D3101AB101E594ED9E93C /* Pods_GitCatTests.framework */; };
 		75C9B9304F6DC215A915785C /* Pods_GitCat_GitCatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B738712B077CF7DDD6608A /* Pods_GitCat_GitCatUITests.framework */; };
+		A604334828BC3F1300FCA105 /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A604334728BC3F1300FCA105 /* BookmarksViewModel.swift */; };
 		A6260A3928883D6300276B91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6260A3828883D6300276B91 /* AppDelegate.swift */; };
 		A6260A3B28883D6300276B91 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6260A3A28883D6300276B91 /* SceneDelegate.swift */; };
 		A6260A4028883D6300276B91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6260A3E28883D6300276B91 /* Main.storyboard */; };
@@ -111,6 +112,7 @@
 		60BB5120238F895C84C842AD /* Pods-GitCat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitCat.release.xcconfig"; path = "Target Support Files/Pods-GitCat/Pods-GitCat.release.xcconfig"; sourceTree = "<group>"; };
 		7F8FC76201521B2B001E68BB /* Pods_GitCat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitCat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B738712B077CF7DDD6608A /* Pods_GitCat_GitCatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitCat_GitCatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A604334728BC3F1300FCA105 /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 		A6260A3528883D6300276B91 /* GitCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6260A3828883D6300276B91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6260A3A28883D6300276B91 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 		A699422228A31DCC000B2410 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A604334728BC3F1300FCA105 /* BookmarksViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1060,6 +1063,7 @@
 				A67074D528A3E47500DBBB3F /* SettingsViewController.swift in Sources */,
 				A65DECB828B0398B00FDC2B6 /* UserDetailsViewModel.swift in Sources */,
 				A67074E128A4216200DBBB3F /* SettingsTableViewCell.swift in Sources */,
+				A604334828BC3F1300FCA105 /* BookmarksViewModel.swift in Sources */,
 				A6AC5C6228885292003415FC /* NetworkingManager.swift in Sources */,
 				A6BB748A28B31B610051C48F /* OrganizationModel.swift in Sources */,
 				A6BB749628B3D2CE0051C48F /* RecentSearchTableViewCell.swift in Sources */,

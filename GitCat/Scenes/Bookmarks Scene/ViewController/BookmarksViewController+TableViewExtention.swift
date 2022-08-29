@@ -35,10 +35,11 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case 0:
             return usersModel.count
-        default:
-            print(reposModel.count)
+        case 1:
             return reposModel.count
-    }
+        default:
+            return 0
+        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         bookmarksTableView.deselectRow(at: indexPath, animated: true)
@@ -53,13 +54,12 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
             userCell.UserImageView.layer.masksToBounds = false
             userCell.UserImageView.layer.cornerRadius = userCell.UserImageView.frame.height/2
             userCell.UserImageView.clipsToBounds = true
-           // if indexPath.section == 0 && indexPath.row == 0
             return userCell
         } else  {
             let repoCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.RepositoriesTableViewCellID, for: indexPath) as! RepositoriesTableViewCell
             repoCell.repoNameLabel.text = reposModel[indexPath.row].repoName
             repoCell.repoDescriptionLabel.text = reposModel[indexPath.row].repoDescription
-            repoCell.programmingLangLabel.text = reposModel[indexPath.row].programmingLanguage
+            repoCell.programmingLangLabel.text = reposModel[indexPath.row].repoLanguage
             repoCell.starredNumberLabel.text = "\(reposModel[indexPath.row].starredNum)"
             return repoCell
         }
@@ -70,12 +70,23 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            let item = usersModel[indexPath.row]
-            CoreDataManger.shared.delete(entityName: User.self, delete: item)
-            CoreDataManger.shared.fetch(entityName: User.self) { (item) in
-                self.usersModel = item
-                DispatchQueue.main.async {
-                    self.bookmarksTableView.reloadData()
+            if indexPath.section == 0 {
+                let userItem = usersModel[indexPath.row]
+                CoreDataManger.shared.delete(entityName: User.self, delete: userItem)
+                CoreDataManger.shared.fetch(entityName: User.self) { (item) in
+                    self.usersModel = item
+                    DispatchQueue.main.async {
+                        self.bookmarksTableView.reloadData()
+                    }
+                }
+            } else {
+                let item = reposModel[indexPath.row]
+                CoreDataManger.shared.delete(entityName: Repo.self, delete: item)
+                CoreDataManger.shared.fetch(entityName: Repo.self) { (item) in
+                    self.reposModel = item
+                    DispatchQueue.main.async {
+                        self.bookmarksTableView.reloadData()
+                    }
                 }
             }
             tableView.deleteRows(at: [indexPath], with: .fade)

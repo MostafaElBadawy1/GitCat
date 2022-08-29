@@ -85,10 +85,12 @@ extension UserDetailsViewController: TableViewCellDelegate {
         let oneUser = User(context: self.context)
         oneUser.userName = user?.login
         oneUser.userImageURL = URL(string:(user?.avatar_url)!)
+
 //        User(context: self.context).userName = user?.login
 //        User(context: self.context).userImageURL = URL(string:(user?.avatar_url)!)
         do {
             try self.context.save()
+            print("saved")
         } catch {
             print(error)
         }

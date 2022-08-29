@@ -10,7 +10,7 @@ class BookmarksViewController: UIViewController {
     //MARK: - Props
     let searchController = UISearchController()
     var usersModel = [User]()
-    let reposModel = [Repo]()
+    var reposModel = [Repo]()
     //MARK: - IBOutlets
     @IBOutlet weak var bookmarksTableView: UITableView!
     //MARK: - lifeCycle
@@ -18,6 +18,7 @@ class BookmarksViewController: UIViewController {
         super.viewDidLoad()
         initView()
         initViewModel()
+       // print(usersModel)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,7 +30,8 @@ class BookmarksViewController: UIViewController {
         searchControllerConfig()
     }
     func initViewModel() {
-        fetchUsers()
+        fetchBookmarkedUsers()
+        fetchBookmarkedRepos()
     }
     //MARK: - View Functions
     func tableViewConfig() {
@@ -47,9 +49,17 @@ class BookmarksViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
     }
     //MARK: - Data Function
-    func fetchUsers() {
+    func fetchBookmarkedUsers() {
         CoreDataManger.shared.fetch(entityName: User.self) { (users) in
             self.usersModel = users
+            DispatchQueue.main.async {
+                self.bookmarksTableView.reloadData()
+            }
+        }
+    }
+    func fetchBookmarkedRepos() {
+        CoreDataManger.shared.fetch(entityName: Repo.self) { (repos) in
+            self.reposModel = repos
             DispatchQueue.main.async {
                 self.bookmarksTableView.reloadData()
             }

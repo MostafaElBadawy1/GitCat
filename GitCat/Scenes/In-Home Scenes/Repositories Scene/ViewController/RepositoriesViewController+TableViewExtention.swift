@@ -116,52 +116,30 @@ extension RepositoriesViewController: UITableViewDataSourcePrefetching{
 }
 extension RepositoriesViewController: RepostableViewCellDelegate {
     func addTappedCell(cell: RepositoriesTableViewCell, index: Int) {
-        Repo
-       // let oneRepo = Repo(context: self.context)
-      //  print(oneRepo)
-     //   print(index)
-      //  print(searchedReposArray[index].full_name)
-       // print(reposArray[index].full_name)
-       // if isWithSearchController == true {
-//            oneRepo.repoName = searchedReposArray[index].full_name!
-//            oneRepo.repoDescription = searchedReposArray[index].description
-//            oneRepo.programmingLanguage = searchedReposArray[index].language
-//            oneRepo.starredNum = Int64(searchedReposArray[index].stargazers_count!)
-//            Repo(context: se)
-//            oneRepo.repoDescription = "searchedReposArray[index].description"
-//            oneRepo.programmingLanguage = "searchedReposArray[index].language"
-//            oneRepo.starredNum = 3
-//        } else {
-//            oneRepo.repoName = reposArray[index].full_name
-//            oneRepo.repoDescription = reposArray[index].description
-//            oneRepo.programmingLanguage = reposArray[index].language
-//            oneRepo.starredNum = Int64(reposArray[index].stargazers_count!)
-//        }
+        let repoModel = Repo(context: self.context)
+        if isStarredReposVC == true {
+            repoModel.repoName = reposArray[index].full_name
+            repoModel.repoDescription = reposArray[index].description
+            repoModel.repoLanguage = reposArray[index].language
+            repoModel.starredNum = Int64(reposArray[index].stargazers_count!)
+        } else {
+            if isWithSearchController == true {
+                repoModel.repoName = searchedReposArray[index].full_name
+                repoModel.repoDescription = searchedReposArray[index].description
+                repoModel.repoLanguage = searchedReposArray[index].language
+                repoModel.starredNum = Int64(searchedReposArray[index].stargazers_count!)
+            } else {
+                repoModel.repoName = reposArray[index].full_name
+                repoModel.repoDescription = reposArray[index].description
+                repoModel.repoLanguage = reposArray[index].language
+                repoModel.starredNum = Int64(reposArray[index].stargazers_count!)
+            }
+        }
         do {
             try self.context.save()
-            print("saved")
         } catch {
             print(error)
         }
     }
 }
 
-
-//        if isStarredReposVC == true {
-//            oneRepo.repoName = reposArray[index].full_name
-//            oneRepo.repoDescription = reposArray[index].description
-//            oneRepo.programmingLanguage = reposArray[index].language
-//            oneRepo.starredNum = Int64(reposArray[index].stargazers_count!)
-//        } else {
-//            if isWithSearchController == true {
-//                oneRepo.repoName = searchedReposArray[index].full_name
-//                oneRepo.repoDescription = searchedReposArray[index].description
-//                oneRepo.programmingLanguage = searchedReposArray[index].language
-//                oneRepo.starredNum = Int64(searchedReposArray[index].stargazers_count!)
-//            } else {
-//                oneRepo.repoName = reposArray[index].full_name
-//                oneRepo.repoDescription = reposArray[index].description
-//                oneRepo.programmingLanguage = reposArray[index].language
-//                oneRepo.starredNum = Int64(reposArray[index].stargazers_count!)
-//            }
-//        }

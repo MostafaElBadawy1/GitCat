@@ -8,6 +8,7 @@ import UIKit
 class SettingsViewController: UIViewController {
     var userInfoHeader: UserInfoHeader!
     var usersModel = [User]()
+    var reposModel = [Repo]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var SettingsTableView: UITableView!
     override func viewDidLoad() {

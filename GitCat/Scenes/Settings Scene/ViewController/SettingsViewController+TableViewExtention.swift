@@ -35,44 +35,61 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         SettingsTableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 && indexPath.row == 2 {
-            print("sasasasasas")
-           // let item = usersModel[indexPath.row]
-            for item in usersModel{
-                CoreDataManger.shared.delete(entityName: User.self, delete: item)
-                context.delete(item)
-                print("sasasasasas")
-            }
-            
-        }
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = SettingsTableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
-        guard let section = SettingsSection(rawValue: indexPath.section) else {return UITableViewCell()}
+        guard let section = SettingsSection(rawValue: indexPath.section) else {return}
         switch section {
         case .General:
-            let general = GeneralOptions(rawValue: indexPath.row)
-            cell.textLabel?.text = general?.description
-        case .Policy:
-            let policy = PolicyOptions(rawValue: indexPath.row)
-            cell.textLabel?.text = policy?.description
-        case .Language:
-            let language = LanguageOptions(rawValue: indexPath.row)
-            cell.textLabel?.text = language?.description
-        case .Account:
-            let account = AccountOptions(rawValue: indexPath.row)
-            cell.textLabel?.text = account?.description
+            switch indexPath.row {
+            case 2 :
+                print("sasasasasas")
+                for i in reposModel {
+                CoreDataManger.shared.delete(entityName: Repo.self, delete: i)
+                print("\(i) deleted")
+                }
+                CoreDataManger.shared.fetch(entityName: Repo.self) { (item) in
+                    self.reposModel = item
+                }
+                for i in usersModel {
+                CoreDataManger.shared.delete(entityName: User.self, delete: i)
+                print("\(i) deleted")
+                }
+                CoreDataManger.shared.fetch(entityName: User.self) { (item) in
+                    self.usersModel = item
+                }
+            default:
+                break
+            }
+        default:
+            break
         }
-        if indexPath.section == 0 && indexPath.row == 0{
-            cell.switchControl.isHidden = false
-        } else {
-            cell.switchControl.isHidden = true
-        }
-        if indexPath.section == 3 && indexPath.row == 0{
-            cell.textLabel?.textColor = .red
-        } else {
-            cell.textLabel?.textColor = .label
-        }
-        return cell
+        
     }
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = SettingsTableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
+    guard let section = SettingsSection(rawValue: indexPath.section) else {return UITableViewCell()}
+    switch section {
+    case .General:
+        let general = GeneralOptions(rawValue: indexPath.row)
+        cell.textLabel?.text = general?.description
+    case .Policy:
+        let policy = PolicyOptions(rawValue: indexPath.row)
+        cell.textLabel?.text = policy?.description
+    case .Language:
+        let language = LanguageOptions(rawValue: indexPath.row)
+        cell.textLabel?.text = language?.description
+    case .Account:
+        let account = AccountOptions(rawValue: indexPath.row)
+        cell.textLabel?.text = account?.description
+    }
+    if indexPath.section == 0 && indexPath.row == 0{
+        cell.switchControl.isHidden = false
+    } else {
+        cell.switchControl.isHidden = true
+    }
+    if indexPath.section == 3 && indexPath.row == 0{
+        cell.textLabel?.textColor = .red
+    } else {
+        cell.textLabel?.textColor = .label
+    }
+    return cell
+}
 }
