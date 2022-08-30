@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Repo" representedClassName="Repo" syncable="YES" codeGenerationType="class">
         <attribute name="repoDescription" optional="YES" attributeType="String"/>
+        <attribute name="repoImageUrl" optional="YES" attributeType="URI"/>
         <attribute name="repoLanguage" optional="YES" attributeType="String"/>
         <attribute name="repoName" optional="YES" attributeType="String"/>
         <attribute name="starredNum" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -11,7 +12,7 @@
         <attribute name="userName" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="Repo" positionX="328.7421875" positionY="-3.953125" width="128" height="104"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="Repo" positionX="328.7421875" positionY="-3.953125" width="128" height="103"/>
     </elements>
 </model>

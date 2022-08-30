@@ -250,14 +250,28 @@
         <!--Explore-->
         <scene sceneID="Z3z-ic-dky">
             <objects>
-                <viewController id="Rud-iQ-5Wi" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExploreViewController" id="Rud-iQ-5Wi" customClass="ExploreViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LxF-6o-cYb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IoC-AY-87P">
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="zHp-ht-igH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IoC-AY-87P" firstAttribute="top" secondItem="zHp-ht-igH" secondAttribute="top" id="GIa-MK-DFd"/>
+                            <constraint firstItem="zHp-ht-igH" firstAttribute="bottom" secondItem="IoC-AY-87P" secondAttribute="bottom" id="Kix-4h-8Mq"/>
+                            <constraint firstItem="zHp-ht-igH" firstAttribute="trailing" secondItem="IoC-AY-87P" secondAttribute="trailing" id="MI0-KV-8Rv"/>
+                            <constraint firstItem="IoC-AY-87P" firstAttribute="leading" secondItem="zHp-ht-igH" secondAttribute="leading" id="Y1t-9R-u2w"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Explore" id="YSC-SK-oQy"/>
+                    <connections>
+                        <outlet property="exploreTableView" destination="IoC-AY-87P" id="63g-db-5KP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqD-lg-lMP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

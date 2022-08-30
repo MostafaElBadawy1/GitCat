@@ -61,6 +61,7 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
             repoCell.repoDescriptionLabel.text = reposArray[indexPath.row].repoDescription
             repoCell.programmingLangLabel.text = reposArray[indexPath.row].repoLanguage
             repoCell.starredNumberLabel.text = "\(reposArray[indexPath.row].starredNum)"
+            repoCell.repoImageView.kf.setImage(with: URL(string: (reposArray[indexPath.row].avatar_url!)!),placeholder: UIImage(named: "repoIcon"))
             return repoCell
         }
     }

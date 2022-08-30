@@ -35,12 +35,8 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         userDetailsCell.userNameLabel.text = user?.name
         userDetailsCell.userBioLabel.text = user?.bio ?? "Unavailable Bio"
         userDetailsCell.userLocation.text = user?.location ?? "Unavailable Location"
-        //print(user?.avatar_url)
-        //var avatarURl =  URL(string: user!.avatar_url)
-        // print(avatarURl)
-        // userDetailsCell.userImage.kf.setImage(with: avatarURl, placeholder: UIImage(named: "UsersIcon"))
         userDetailsCell.userImage.layer.masksToBounds = false
-        // userDetailsCell.userImage.layer.cornerRadius = cell.homeImage.frame.height/1.1 ------->>>>>>
+        userDetailsCell.userImage.layer.cornerRadius = userDetailsCell.userImage.frame.height/2
         userDetailsCell.userImage.clipsToBounds = true
         if indexPath.section == 0 && indexPath.row == 0 {
             userDetailsCell.selectionStyle = .none

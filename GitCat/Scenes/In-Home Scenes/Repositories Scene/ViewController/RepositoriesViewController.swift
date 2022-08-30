@@ -5,6 +5,7 @@
 //  Created by Mostafa Elbadawy on 09/08/2022.
 //
 import UIKit
+import Kingfisher
 class RepositoriesViewController: UIViewController {
     //MARK: - Props
     var pageNum = 1
@@ -42,15 +43,15 @@ class RepositoriesViewController: UIViewController {
     }
     func InitViewModel(){
         if let userName = passedNameFromUserDetailsVC {
-            fetchRepos(userName:"\(userName)", pageNum: 1)
+            fetchRepos(userName:"\(userName)")
         }
         if isStarredReposVC == true {
             if let userName = passedNameFromUserDetailsVC {
-            fetchRepos(userName:"\(userName)", pageNum: 1)
+            fetchRepos(userName:"\(userName)")
             }
         } else {
             if isWithSearchController == true {
-                fetchSearchedRepos(searchKeyword: "m", pageNum: 1)
+                fetchSearchedRepos(searchKeyword: "m")
             } else {
                 return
             }
@@ -100,13 +101,13 @@ class RepositoriesViewController: UIViewController {
         self.repositoriesTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     @objc private func refreshData() {
-        fetchRepos(userName:"\(passedNameFromUserDetailsVC!)", pageNum: 1)
+        fetchRepos(userName:"\(passedNameFromUserDetailsVC!)")
         self.repositoriesTableView.reloadData()
     }
     //MARK: - Data Function
-    func fetchRepos(userName: String, pageNum: Int) {
+    func fetchRepos(userName: String) {
         Task.init {
-            if let repos = await repositoriesForUserViewModel.fetchRepos(userName: userName, pageNum: pageNum) {
+            if let repos = await repositoriesForUserViewModel.fetchRepos(userName: userName, pageNum: 1) {
                 self.reposArray = repos
                 DispatchQueue.main.async {
                     self.loadingIndicator.stopAnimating()
@@ -138,9 +139,9 @@ class RepositoriesViewController: UIViewController {
             }
         }
     }
-    func fetchSearchedRepos(searchKeyword: String, pageNum: Int) {
+    func fetchSearchedRepos(searchKeyword: String) {
         Task.init {
-            if let repos = await repositoriesForUserViewModel.searchRepos(searchKeyword: searchKeyword, pageNum: pageNum) {
+            if let repos = await repositoriesForUserViewModel.searchRepos(searchKeyword: searchKeyword, pageNum: 1) {
                 self.searchedReposArray = repos
                 DispatchQueue.main.async {
                     self.loadingIndicator.stopAnimating()
@@ -156,8 +157,8 @@ class RepositoriesViewController: UIViewController {
     }
     func fetchMoreSearchedRepos(searchKeyword: String, pageNum: Int) {
         Task.init {
-            if let users = await repositoriesForUserViewModel.searchRepos(searchKeyword: searchKeyword, pageNum: pageNum) {
-                self.moreSearchedReposArray = users
+            if let repos = await repositoriesForUserViewModel.searchRepos(searchKeyword: searchKeyword, pageNum: pageNum) {
+                self.moreSearchedReposArray = repos
                 if moreSearchedReposArray.isEmpty {
                     spinner.stopAnimating()
                 }
@@ -172,38 +173,4 @@ class RepositoriesViewController: UIViewController {
             }
         }
     }
-//    func fetchStarredRepos(userName: String, pageNum: Int) {
-//        Task.init {
-//            if let starredRepos = await repositoriesForUserViewModel.fetchStarredRepos(userName: userName, pageNum: pageNum) {
-//                self.starredReposArray = starredRepos
-//                DispatchQueue.main.async {
-//                    self.loadingIndicator.stopAnimating()
-//                    self.repositoriesTableView.reloadData()
-//                }
-//            } else {
-//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repositories" , message: "", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//                self.loadingIndicator.startAnimating()
-//            }
-//        }
-//    }
-//    func fetchMoreStarredRepos(userName: String, pageNum: Int) {
-//        Task.init {
-//            if let starredRepos = await repositoriesForUserViewModel.fetchStarredRepos(userName: userName, pageNum: pageNum) {
-//                self.starredReposArray = starredRepos
-//                if starredReposArray.isEmpty {
-//                    spinner.stopAnimating()
-//                }
-//                DispatchQueue.main.async {
-//                    self.starredReposArray.append(contentsOf: self.moreStarredReposArray)
-//                    self.repositoriesTableView.reloadData()
-//                }
-//            } else {
-//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Repositories" , message: "", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            }
-//        }
-//    }
 }

@@ -29,6 +29,9 @@ struct URLs {
     func searchIssuesURL(searchWord: String, pageNum: Int) -> URL? {
         return URL(string: baseURL + "search/issues?q=\(searchWord)&page=\(pageNum)")
     }
+    func getExploreReposURL(pageNum: Int)->URL?{
+        return URL (string:  baseURL + "search/repositories?q=+language:swift&page=\(pageNum)&sort=stars")
+    }
     }
 
 
@@ -41,3 +44,4 @@ struct URLs {
 //https://api.github.com/users/eFiniLan/starred?page=1
 //https://api.github.com/users/mojombo/orgs
 //https://api.github.com/search/issues?q=s&page=1
+//https://api.github.com/search/repositories?q=+language:swift&page=1&sort=stars

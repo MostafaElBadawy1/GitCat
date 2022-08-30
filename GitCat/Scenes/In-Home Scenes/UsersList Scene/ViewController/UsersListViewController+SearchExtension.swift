@@ -21,7 +21,7 @@ extension UsersListViewController: UISearchBarDelegate{
         searchHistoryVCConfig()
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber  }
-        fetchUsers(searchKeyword: filteredText, page: 1)
+        fetchUsers(searchKeyword: filteredText)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchHistoryVCConfig()
@@ -32,7 +32,7 @@ extension UsersListViewController: UISearchBarDelegate{
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber }
         print(filteredText)
-        fetchUsers(searchKeyword: filteredText, page: 1)
+        fetchUsers(searchKeyword: filteredText)
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchHistoryVCConfig()

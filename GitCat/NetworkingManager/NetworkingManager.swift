@@ -43,6 +43,11 @@ class NetworkingManager: ApiService {
         let (data,_) = try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode(IssuesModel.self, from: data)
     }
+    func getExploreRepos(pageNum: Int) async throws-> SearchRepositoriesModel{
+        let url = URLs.shared.getExploreReposURL(pageNum: pageNum)
+        let (data,_) = try await URLSession.shared.data(from: url!)
+        return try JSONDecoder().decode(SearchRepositoriesModel.self, from: data)
+    }
 }
 
 

@@ -6,8 +6,9 @@
 //
 import UIKit
 class RepositoriesTableViewCell: UITableViewCell {
-    var delegate: RepostableViewCellDelegate?
+    var delegate: RepostableCellDelegate?
     var index: IndexPath?
+    @IBOutlet weak var repoImageView: UIImageView!
     @IBOutlet weak var repoNameLabel: UILabel!
     @IBOutlet weak var repoDescriptionLabel: UILabel!
     @IBOutlet weak var starredNumberLabel: UILabel!
@@ -17,8 +18,6 @@ class RepositoriesTableViewCell: UITableViewCell {
     
     @IBAction func bookmarkButton(_ sender: UIButton) {
         delegate?.addTappedCell(cell: self, index: index!.row)
-        print("bookmark pressed")
-
     }
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +26,6 @@ class RepositoriesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 }
-protocol RepostableViewCellDelegate {
+protocol RepostableCellDelegate {
     func addTappedCell(cell: RepositoriesTableViewCell, index: Int)
 }

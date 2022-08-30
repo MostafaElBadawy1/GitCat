@@ -16,16 +16,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="402.5" height="95"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="programming lang" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="om2-gJ-EM8">
-                        <rect key="frame" x="196" y="64" width="125" height="24.5"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="24.5" id="dSN-LH-MJk"/>
-                            <constraint firstAttribute="width" constant="125" id="dkP-0O-xX1"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="dfD-pI-CIh">
                         <rect key="frame" x="0.0" y="64" width="127" height="24.5"/>
                         <subviews>
@@ -61,9 +51,9 @@
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzN-wb-ppf">
-                        <rect key="frame" x="5" y="11" width="330" height="21"/>
+                        <rect key="frame" x="34" y="11" width="301" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="330" id="L4N-fT-LNa"/>
+                            <constraint firstAttribute="width" constant="301" id="XlS-eA-cSU"/>
                             <constraint firstAttribute="height" constant="21" id="bFQ-Fn-tme"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -79,22 +69,40 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjh-Nq-NpL">
-                        <rect key="frame" x="157" y="59" width="16" height="34"/>
+                        <rect key="frame" x="135" y="59" width="16" height="34"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system"/>
                     </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LGu-So-eO7">
+                        <rect key="frame" x="7" y="11" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="e5C-o0-ktI"/>
+                            <constraint firstAttribute="width" constant="22" id="rBw-HK-EoF"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="programming lang" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="om2-gJ-EM8">
+                        <rect key="frame" x="166" y="64" width="125" height="24.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24.5" id="dSN-LH-MJk"/>
+                            <constraint firstAttribute="width" constant="125" id="dkP-0O-xX1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="srB-TU-HJk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="17t-Hq-xcY"/>
                     <constraint firstItem="w19-v9-unL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8W4-pd-uut"/>
+                    <constraint firstItem="yzN-wb-ppf" firstAttribute="leading" secondItem="LGu-So-eO7" secondAttribute="trailing" constant="5" id="A61-8s-OtG"/>
+                    <constraint firstItem="LGu-So-eO7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="FgP-7m-UgG"/>
                     <constraint firstItem="KMV-Vd-N0Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="GIn-Cw-9Uz"/>
                     <constraint firstAttribute="bottom" secondItem="om2-gJ-EM8" secondAttribute="bottom" constant="5" id="HNt-DW-1jF"/>
                     <constraint firstItem="mjh-Nq-NpL" firstAttribute="top" secondItem="srB-TU-HJk" secondAttribute="bottom" constant="1" id="LCh-0q-CqD"/>
                     <constraint firstItem="KMV-Vd-N0Z" firstAttribute="leading" secondItem="yzN-wb-ppf" secondAttribute="trailing" constant="10" id="PnT-ar-oQF"/>
-                    <constraint firstItem="om2-gJ-EM8" firstAttribute="leading" secondItem="mjh-Nq-NpL" secondAttribute="trailing" constant="26" id="QgV-0d-0bA"/>
-                    <constraint firstItem="mjh-Nq-NpL" firstAttribute="leading" secondItem="dfD-pI-CIh" secondAttribute="trailing" constant="27" id="R8K-AQ-hDj"/>
+                    <constraint firstItem="om2-gJ-EM8" firstAttribute="leading" secondItem="mjh-Nq-NpL" secondAttribute="trailing" constant="15" id="QgV-0d-0bA"/>
                     <constraint firstItem="yzN-wb-ppf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="StT-OQ-tYG"/>
-                    <constraint firstItem="yzN-wb-ppf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="U2M-uk-PUU"/>
+                    <constraint firstItem="LGu-So-eO7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="YZB-rF-QJe"/>
                     <constraint firstItem="e6U-6F-Txa" firstAttribute="top" secondItem="srB-TU-HJk" secondAttribute="bottom" id="b4M-cU-HD9"/>
                     <constraint firstItem="om2-gJ-EM8" firstAttribute="leading" secondItem="e6U-6F-Txa" secondAttribute="trailing" constant="69" id="scD-xt-3OS"/>
                     <constraint firstItem="srB-TU-HJk" firstAttribute="top" secondItem="yzN-wb-ppf" secondAttribute="bottom" id="uO8-Rj-tqN"/>
@@ -108,6 +116,7 @@
                 <outlet property="languageIndicator" destination="mjh-Nq-NpL" id="2ao-dK-6yL"/>
                 <outlet property="programmingLangLabel" destination="om2-gJ-EM8" id="ZMj-yb-rvw"/>
                 <outlet property="repoDescriptionLabel" destination="srB-TU-HJk" id="7a5-w4-fwL"/>
+                <outlet property="repoImageView" destination="LGu-So-eO7" id="o7V-P0-Y2s"/>
                 <outlet property="repoNameLabel" destination="yzN-wb-ppf" id="FtF-6r-5L1"/>
                 <outlet property="starredNumberLabel" destination="e6U-6F-Txa" id="MYM-8g-Pu1"/>
             </connections>

@@ -8,7 +8,6 @@ import UIKit
 import Kingfisher
 class UsersListViewController: UIViewController {
     //MARK: - Props
-    //var usersListViewController = UsersListViewController()
     var pageNum = 1
     var preFetchIndex = 15
     var usersViewModel = UsersListViewModel()
@@ -44,7 +43,7 @@ class UsersListViewController: UIViewController {
         //setup()
     }
     func InitViewModel(){
-        fetchUsers(searchKeyword: "mo", page: 1)
+        fetchUsers(searchKeyword: "mo")
     }
     //MARK: - View Functions
      func setup(){
@@ -95,7 +94,7 @@ class UsersListViewController: UIViewController {
         self.usersListTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     @objc private func refreshData() {
-        fetchUsers(searchKeyword: "mo", page: 1)
+        fetchUsers(searchKeyword: "mo")
         self.usersListTableView.reloadData()
     }
     func searchHistoryVCConfig() {
@@ -104,9 +103,9 @@ class UsersListViewController: UIViewController {
         //loadingIndicator.isHidden = false
     }
     //MARK: - Data Functions
-    func fetchUsers(searchKeyword: String, page: Int) {
+    func fetchUsers(searchKeyword: String) {
         Task.init {
-            if let users = await usersViewModel.fetchAllUsers(searchKeyword: searchKeyword, page: page) {
+            if let users = await usersViewModel.fetchAllUsers(searchKeyword: searchKeyword, page: 1) {
                 self.usersArray = users
                 DispatchQueue.main.async {
                     self.loadingIndicator.stopAnimating()
