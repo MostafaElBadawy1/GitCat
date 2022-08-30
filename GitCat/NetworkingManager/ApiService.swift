@@ -11,6 +11,7 @@ protocol ApiService {
     func getCommitsForRepo(ownerName: String, repoName: String, pageNum: Int) async throws-> [CommitsModel]
     func searchRepos(searchKeyword: String, pageNum: Int) async throws-> SearchRepositoriesModel
     func getUserOrgs(userName: String) async throws-> [OrganizationModel]
+    func searchIssues(searchWord: String, pageNum: Int) async throws-> IssuesModel
 }
 //    func getUsersList<T: Codable>(model: T.Type) async throws -> T
 //    func getUsersList (id:Int, completionHandler: @escaping (Result<[SearchUsersModel], Error>) -> Void)

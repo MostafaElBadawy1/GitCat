@@ -24,4 +24,6 @@ struct K {
     static let RecentVisitedUsersCollectionViewCellID = "RecentVisitedUsersCollectionViewCell"
     static let OrganizationsViewControllerID = "OrganizationsViewController"
     static let OrganizationsTableViewCellID = "OrganizationsTableViewCell"
+    static let IssuesViewControllerID = "IssuesViewController"
+    static let WebViewViewControllerID = "WebViewViewController"
 }

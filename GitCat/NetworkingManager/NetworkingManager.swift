@@ -5,7 +5,6 @@
 //  Created by Mostafa Elbadawy on 20/07/2022.
 //
 import UIKit
-import Alamofire
 class NetworkingManager: ApiService {
     static let shared = NetworkingManager()
     private init() {}
@@ -39,6 +38,11 @@ class NetworkingManager: ApiService {
         let (data,_) = try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode([OrganizationModel].self, from: data)
 }
+    func searchIssues(searchWord: String, pageNum: Int) async throws-> IssuesModel{
+        let url = URLs.shared.searchIssuesURL(searchWord: searchWord, pageNum: pageNum)
+        let (data,_) = try await URLSession.shared.data(from: url!)
+        return try JSONDecoder().decode(IssuesModel.self, from: data)
+    }
 }
 
 

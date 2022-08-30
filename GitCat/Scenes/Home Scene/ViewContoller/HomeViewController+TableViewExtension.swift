@@ -42,7 +42,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
             reposVC.isWithSearchController = true
             self.navigationController?.pushViewController(reposVC, animated: true)
-        }
+        } else if indexPath.section == 0 && indexPath.row == 2 {
+            let issuesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.IssuesViewControllerID) as! IssuesViewController
+            self.navigationController?.pushViewController(issuesVC, animated: true)
+        } else if indexPath.section == 0 && indexPath.row == 3 {
+            let webViewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.WebViewViewControllerID) as! WebViewViewController
+            self.navigationController?.pushViewController(webViewVC, animated: true)
+    }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = homeTableView.dequeueReusableCell(withIdentifier: K.homeTableViewCell , for: indexPath) as! HomeTableViewCell

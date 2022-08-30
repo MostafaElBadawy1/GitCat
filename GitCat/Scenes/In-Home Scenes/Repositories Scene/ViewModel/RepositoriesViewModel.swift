@@ -28,14 +28,5 @@ class RepositoriesViewModel {
             return nil
         }
     }
-//    func fetchStarredRepos(userName: String, pageNum: Int) async -> [StarredReposModel]? {
-//        do {
-//            let starredReposList = try await apiService.getStarredRepos(userName: userName, pageNum: pageNum)
-//            return starredReposList
-//        } catch {
-//            print(error)
-//            return nil
-//        }
-//    }
 }
 

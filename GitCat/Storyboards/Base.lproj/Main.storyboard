@@ -81,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIv-ij-Z4X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1864" y="1223"/>
+            <point key="canvasLocation" x="-94" y="2384"/>
         </scene>
         <!--User Details View Controller-->
         <scene sceneID="WQW-tX-oQP">
@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Oqg-Ur-QKQ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Y0-NF-2oP"/>
@@ -393,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vhk-PZ-G5c" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-94" y="2411"/>
+            <point key="canvasLocation" x="-94" y="3135"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3zx-KU-eRl">
@@ -409,6 +409,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leQ-qI-F6q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4822" y="1136"/>
+        </scene>
+        <!--Web View View Controller-->
+        <scene sceneID="m09-qt-TFg">
+            <objects>
+                <viewController storyboardIdentifier="WebViewViewController" id="Tdg-f3-pTo" customClass="WebViewViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QUb-T9-yby">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="m9o-jZ-HtR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tr3-0L-2YF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-94" y="5290"/>
         </scene>
         <!--Commits-->
         <scene sceneID="A1r-jJ-eXK">
@@ -439,25 +454,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAu-VD-6Dq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-94" y="3113"/>
+            <point key="canvasLocation" x="-94" y="3848"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="MMa-2i-2Pi">
+        <!--Issues View Controller-->
+        <scene sceneID="gyO-1b-FYM">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gxG-mM-H9u" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9bW-pt-7gh">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController storyboardIdentifier="IssuesViewController" id="DAh-CA-ljv" customClass="IssuesViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Ug-vr-2J3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YTL-KJ-QPr">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QDO-u6-923"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QDO-u6-923" firstAttribute="bottom" secondItem="YTL-KJ-QPr" secondAttribute="bottom" id="f6c-Ho-Owh"/>
+                            <constraint firstItem="YTL-KJ-QPr" firstAttribute="top" secondItem="QDO-u6-923" secondAttribute="top" id="gWt-Lg-YZU"/>
+                            <constraint firstItem="QDO-u6-923" firstAttribute="trailing" secondItem="YTL-KJ-QPr" secondAttribute="trailing" id="u8J-ls-GGE"/>
+                            <constraint firstItem="YTL-KJ-QPr" firstAttribute="leading" secondItem="QDO-u6-923" secondAttribute="leading" id="y4S-YS-M0O"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <segue destination="RqO-Sw-Fgf" kind="relationship" relationship="rootViewController" id="yNt-mL-59Q"/>
+                        <outlet property="issuesTableView" destination="YTL-KJ-QPr" id="OKM-Zh-MU3"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OKz-ic-KtI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nmi-S8-tov" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1029" y="1673"/>
+            <point key="canvasLocation" x="-94" y="4568"/>
         </scene>
     </scenes>
     <resources>

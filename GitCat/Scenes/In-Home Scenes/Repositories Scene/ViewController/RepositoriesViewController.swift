@@ -15,8 +15,6 @@ class RepositoriesViewController: UIViewController {
     var searchedReposArray = [RepoItems]()
     var moreSearchedReposArray = [RepoItems]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//    var starredReposArray = [StarredReposModel]()
-//    var moreStarredReposArray = [StarredReposModel]()
     var passedNameFromUserDetailsVC: String?
     var isWithSearchController = false
     var isStarredReposVC = false

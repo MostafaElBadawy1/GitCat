@@ -4,10 +4,8 @@
 //
 //  Created by Mostafa Elbadawy on 21/07/2022.
 //
-
 import UIKit
 class UsersListViewModel {
-
     let apiService : ApiService
     init(apiService: ApiService = NetworkingManager.shared) {
         self.apiService = apiService

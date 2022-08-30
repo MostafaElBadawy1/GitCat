@@ -26,6 +26,9 @@ struct URLs {
     func getUserOrgs(userName: String)->URL?{
         return URL(string: baseURL + "users/\(userName)/orgs")
     }
+    func searchIssuesURL(searchWord: String, pageNum: Int) -> URL? {
+        return URL(string: baseURL + "search/issues?q=\(searchWord)&page=\(pageNum)")
+    }
     }
 
 
@@ -37,3 +40,4 @@ struct URLs {
 //https://api.github.com/users/mojombo/orgs
 //https://api.github.com/users/eFiniLan/starred?page=1
 //https://api.github.com/users/mojombo/orgs
+//https://api.github.com/search/issues?q=s&page=1

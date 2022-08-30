@@ -18,6 +18,7 @@ class CoreDataManger {
         } catch {
             print("Error In Saving")
         }
+        
     }
     func delete<T: NSManagedObject>(entityName: T.Type, delete: T) {
         context.delete(delete.self)

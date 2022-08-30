@@ -4,9 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 10/08/2022.
 //
-
 import UIKit
-
 class CommitsViewController: UIViewController {
     //MARK: - Props
     var pageNum = 1
@@ -36,8 +34,6 @@ class CommitsViewController: UIViewController {
     }
     func InitViewModel(ownerName: String, repoName: String){
         fetchCommits(ownerName: ownerName, repoName: repoName, pageNum: 1)
-//        print(repoName)
-//        print(repoOwner)
     }
     func tableViewConfig() {
         commitsTableView.delegate = self
@@ -84,7 +80,7 @@ class CommitsViewController: UIViewController {
                     self.commitsTableView.reloadData()
                 }
             } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repos" , message: "", preferredStyle: .alert)
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Commits" , message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 self.loadingIndicator.startAnimating()
@@ -104,7 +100,7 @@ class CommitsViewController: UIViewController {
                     self.commitsTableView.reloadData()
                 }
             } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Users" , message: "", preferredStyle: .alert)
+                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Commits" , message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }

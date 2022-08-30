@@ -40,7 +40,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         // print(avatarURl)
         // userDetailsCell.userImage.kf.setImage(with: avatarURl, placeholder: UIImage(named: "UsersIcon"))
         userDetailsCell.userImage.layer.masksToBounds = false
-       // userDetailsCell.userImage.layer.cornerRadius = cell.homeImage.frame.height/1.1 ------->>>>>>
+        // userDetailsCell.userImage.layer.cornerRadius = cell.homeImage.frame.height/1.1 ------->>>>>>
         userDetailsCell.userImage.clipsToBounds = true
         if indexPath.section == 0 && indexPath.row == 0 {
             userDetailsCell.selectionStyle = .none
@@ -85,23 +85,26 @@ extension UserDetailsViewController: TableViewCellDelegate {
         let oneUser = User(context: self.context)
         oneUser.userName = user?.login
         oneUser.userImageURL = URL(string:(user?.avatar_url)!)
-
-//        User(context: self.context).userName = user?.login
-//        User(context: self.context).userImageURL = URL(string:(user?.avatar_url)!)
-        do {
-            try self.context.save()
-            print("saved")
-        } catch {
-            print(error)
+            do {
+                try self.context.save()
+            } catch {
+                let alert : UIAlertController = UIAlertController(title:"Error While Bookmarking User" , message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        for i in usersModel {
+            if i.userName == oneUser.userName {
+            print("\(i) is saved again")
+        }
         }
     }
 }
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let view = self.userDetailsTableView.dequeueReusableHeaderFooterView(withIdentifier: K.UserDetailsHeaderID)
-////        let label = UILabel(frame: CGRect(x: 120, y: 120, width: 150, height: 150))
-////           label.text = "TEST TEXT"
-////        label.textColor = .black
-////        self.view.addSubview(label)
-//       // self.view.addSubview(view!)
-//        return view
-//    }
+    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    //        let view = self.userDetailsTableView.dequeueReusableHeaderFooterView(withIdentifier: K.UserDetailsHeaderID)
+    ////        let label = UILabel(frame: CGRect(x: 120, y: 120, width: 150, height: 150))
+    ////           label.text = "TEST TEXT"
+    ////        label.textColor = .black
+    ////        self.view.addSubview(label)
+    //       // self.view.addSubview(view!)
+    //        return view
+    //    }

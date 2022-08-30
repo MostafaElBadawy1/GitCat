@@ -9,8 +9,10 @@ import Kingfisher
 class BookmarksViewController: UIViewController {
     //MARK: - Props
     let searchController = UISearchController()
-    var usersModel = [User]()
-    var reposModel = [Repo]()
+    var usersArray = [User]()
+    var filterdUserArray = [User]()
+    var reposArray = [Repo]()
+    var filterdReposArray = [Repo]()
     //MARK: - IBOutlets
     @IBOutlet weak var bookmarksTableView: UITableView!
     //MARK: - lifeCycle
@@ -18,7 +20,6 @@ class BookmarksViewController: UIViewController {
         super.viewDidLoad()
         initView()
         initViewModel()
-       // print(usersModel)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,14 +45,16 @@ class BookmarksViewController: UIViewController {
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = self
+        //searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
     }
     //MARK: - Data Function
     func fetchBookmarkedUsers() {
         CoreDataManger.shared.fetch(entityName: User.self) { (users) in
-            self.usersModel = users
+            self.usersArray = users
+            self.filterdUserArray = self.usersArray
             DispatchQueue.main.async {
                 self.bookmarksTableView.reloadData()
             }
@@ -59,7 +62,8 @@ class BookmarksViewController: UIViewController {
     }
     func fetchBookmarkedRepos() {
         CoreDataManger.shared.fetch(entityName: Repo.self) { (repos) in
-            self.reposModel = repos
+            self.reposArray = repos
+            self.filterdReposArray = self.reposArray
             DispatchQueue.main.async {
                 self.bookmarksTableView.reloadData()
             }

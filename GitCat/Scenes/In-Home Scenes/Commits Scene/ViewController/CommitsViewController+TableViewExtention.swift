@@ -30,14 +30,12 @@ extension CommitsViewController: UITableViewDelegate, UITableViewDataSource {
 }
 extension CommitsViewController: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-            for indexPath in indexPaths {
-                if indexPath.row == preFetchIndex {
-                    preFetchIndex = preFetchIndex + 30
-                    pageNum = pageNum + 1
-                    self.commitsTableView.tableFooterView = createSpinnerFooter()
-                    fetchMoreCommits(ownerName: repoOwner!, repoName: repoName!, pageNum: pageNum)
-                }
+        for indexPath in indexPaths {
+            if indexPath.row == preFetchIndex {
+                preFetchIndex = preFetchIndex + 30
+                pageNum = pageNum + 1
+                self.commitsTableView.tableFooterView = createSpinnerFooter()
+                fetchMoreCommits(ownerName: repoOwner!, repoName: repoName!, pageNum: pageNum)
             }
         }
     }

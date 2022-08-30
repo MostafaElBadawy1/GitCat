@@ -16,6 +16,10 @@ class UserDetailsViewController: UIViewController {
     let userDetailsArray = ["Repositories","Starred","Organization"]
     let imagesArray = [UIImage(named: "repoIcon"),UIImage(named: "Star"),UIImage(named: "Organization")]
     let tryAgainButton = UIButton()
+    var usersModel = [User]()
+    //var workoutSet = Set<usersModel>()
+    //var userSet : Set = Set<usersModel>: usersModel
+
     //MARK: - IBOutlets
     @IBOutlet weak var userDetailsTableView: UITableView!
     //MARK: - @IBAction

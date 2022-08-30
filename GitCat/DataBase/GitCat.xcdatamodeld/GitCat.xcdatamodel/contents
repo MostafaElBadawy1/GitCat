@@ -11,7 +11,7 @@
         <attribute name="userName" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="73"/>
         <element name="Repo" positionX="328.7421875" positionY="-3.953125" width="128" height="103"/>
     </elements>
 </model>
