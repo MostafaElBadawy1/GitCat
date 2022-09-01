@@ -48,6 +48,11 @@ class NetworkingManager: ApiService {
         let (data,_) = try await URLSession.shared.data(from: url!)
         return try JSONDecoder().decode(SearchRepositoriesModel.self, from: data)
     }
+    func getMyRepo() async throws-> MyRepo{
+        let url = URLs.shared.getMyRepo()
+        let (data,_) = try await URLSession.shared.data(from: url!)
+        return try JSONDecoder().decode(MyRepo.self, from: data)
+    }
 }
 
 

@@ -13,6 +13,7 @@ protocol ApiService {
     func getUserOrgs(userName: String) async throws-> [OrganizationModel]
     func searchIssues(searchWord: String, pageNum: Int) async throws-> IssuesModel
     func getExploreRepos(pageNum: Int) async throws-> SearchRepositoriesModel
+    func getMyRepo() async throws-> MyRepo
 }
 //    func getUsersList<T: Codable>(model: T.Type) async throws -> T
 //    func getUsersList (id:Int, completionHandler: @escaping (Result<[SearchUsersModel], Error>) -> Void)

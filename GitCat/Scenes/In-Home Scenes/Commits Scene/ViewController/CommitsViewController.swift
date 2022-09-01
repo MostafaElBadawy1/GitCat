@@ -33,7 +33,7 @@ class CommitsViewController: UIViewController {
         networkReachability()
     }
     func InitViewModel(ownerName: String, repoName: String){
-        fetchCommits(ownerName: ownerName, repoName: repoName, pageNum: 1)
+        fetchCommits(ownerName: ownerName, repoName: repoName)
     }
     func tableViewConfig() {
         commitsTableView.delegate = self
@@ -67,13 +67,13 @@ class CommitsViewController: UIViewController {
         self.commitsTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     @objc private func refreshData() {
-        fetchCommits(ownerName: repoOwner!, repoName: repoName!, pageNum: 1)
+        fetchCommits(ownerName: repoOwner!, repoName: repoName!)
         self.commitsTableView.reloadData()
     }
     //MARK: - Data Function
-    func fetchCommits(ownerName: String, repoName: String, pageNum: Int) {
+    func fetchCommits(ownerName: String, repoName: String) {
         Task.init {
-            if let commits = await commitsViewModel.fetchCommits(ownerName: ownerName, repoName: repoName, pageNum: pageNum){
+            if let commits = await commitsViewModel.fetchCommits(ownerName: ownerName, repoName: repoName, pageNum: 1){
                 self.commitsArray = commits
                 DispatchQueue.main.async {
                     self.loadingIndicator.stopAnimating()

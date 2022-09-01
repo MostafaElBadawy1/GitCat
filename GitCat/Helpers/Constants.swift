@@ -28,4 +28,5 @@ struct K {
     static let WebViewViewControllerID = "WebViewViewController"
     static let ExploreViewControllerID = "ExploreViewController"
     static let ExploreTableViewCellID = "ExploreTableViewCell"
+    static let CollectionViewTableViewCellID = "CollectionViewTableViewCell"
 }

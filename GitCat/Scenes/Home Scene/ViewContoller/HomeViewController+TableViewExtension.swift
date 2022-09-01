@@ -48,15 +48,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 0 && indexPath.row == 3 {
             let webViewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.WebViewViewControllerID) as! WebViewViewController
             self.navigationController?.pushViewController(webViewVC, animated: true)
+    } else if indexPath.section == 1 && indexPath.row == 0 {
+        let webViewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.WebViewViewControllerID) as! WebViewViewController
+        webViewVC.isMyRepo = true
+        self.navigationController?.pushViewController(webViewVC, animated: true)
     }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = homeTableView.dequeueReusableCell(withIdentifier: K.homeTableViewCell , for: indexPath) as! HomeTableViewCell
+        if indexPath.section == 0  {
+            cell.homeImage.isHidden = false
         cell.homeLabel.text = homeArray[indexPath.section][indexPath.row]
         cell.homeImage.image = imagesArray[indexPath.row]
-        if indexPath.section == 2 && indexPath.row == 0 {
+        } else if indexPath.section == 1  {
+            cell.homeLabel.text = myRepoModel?.name!
+            if let userAvatarUrl = myRepoModel?.owner?.avatar_url! {
+                cell.homeImage.kf.setImage(with: URL(string: "\(userAvatarUrl)"),placeholder: UIImage(named: "UsersIcon"))
+            }
+            cell.homeImage.layer.masksToBounds = false
+            cell.homeImage.layer.cornerRadius = cell.homeImage.frame.height/2
+            cell.homeImage.clipsToBounds = true
+        } else if indexPath.section == 2 && indexPath.row == 0 {
+            cell.homeLabel.text = "Authenticated User Mode"
             cell.homeImage.isHidden = true
         }
         return cell
     }
 }
+

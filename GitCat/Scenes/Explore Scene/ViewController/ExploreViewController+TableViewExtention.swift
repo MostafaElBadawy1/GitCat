@@ -12,6 +12,13 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return exploreReposArray.count
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        exploreTableView.deselectRow(at: indexPath, animated: true)
+        let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
+            commitsVC.repoName = exploreReposArray[indexPath.row].name
+            commitsVC.repoOwner = exploreReposArray[indexPath.row].owner?.login
+        self.navigationController?.pushViewController(commitsVC, animated: true)
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = exploreTableView.dequeueReusableCell(withIdentifier: K.ExploreTableViewCellID, for: indexPath) as! ExploreTableViewCell
         cell.delegate = self

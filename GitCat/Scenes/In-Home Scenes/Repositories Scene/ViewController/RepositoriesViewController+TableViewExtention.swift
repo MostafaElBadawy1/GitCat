@@ -13,30 +13,22 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         if searchedReposArray.isEmpty && reposArray.isEmpty{
             loadingIndicator.startAnimating()
         }
-        if isStarredReposVC == true {
+        if isStarredReposVC == true || isWithSearchController == false {
             return reposArray.count
-        } else {
-            if isWithSearchController == true {
-                return searchedReposArray.count
-            } else {
-                return reposArray.count
-            }
+        } else if isWithSearchController == true {
+            return searchedReposArray.count
         }
+        return 0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         repositoriesTableView.deselectRow(at: indexPath, animated: true)
         let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
-        if isStarredReposVC == true {
+        if isStarredReposVC == true || isWithSearchController == false  {
             commitsVC.repoName = reposArray[indexPath.row].name
             commitsVC.repoOwner = reposArray[indexPath.row].owner?.login
-        } else {
-            if isWithSearchController == true {
-                commitsVC.repoName = searchedReposArray[indexPath.row].name
-                commitsVC.repoOwner = searchedReposArray[indexPath.row].owner?.login
-            } else {
-                commitsVC.repoName = reposArray[indexPath.row].name
-                commitsVC.repoOwner = reposArray[indexPath.row].owner?.login
-            }
+        } else if isWithSearchController == true {
+            commitsVC.repoName = searchedReposArray[indexPath.row].name
+            commitsVC.repoOwner = searchedReposArray[indexPath.row].owner?.login
         }
         self.navigationController?.pushViewController(commitsVC, animated: true)
     }
@@ -71,26 +63,18 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         //            cell.languageIndicator.isHidden = true
         //        }
         cell.languageIndicator.isHidden = true
-        if isStarredReposVC == true {
+        if isStarredReposVC == true || isWithSearchController == false {
             cell.repoNameLabel.text = reposArray[indexPath.row].name
             cell.repoDescriptionLabel.text = reposArray[indexPath.row].description
             cell.starredNumberLabel.text = "\(reposArray[indexPath.row].stargazers_count!)"
             cell.programmingLangLabel.text = reposArray[indexPath.row].language
             cell.repoImageView.kf.setImage(with: URL(string: (reposArray[indexPath.row].owner?.avatar_url!)!),placeholder: UIImage(named: "repoIcon"))
-        } else {
-            if isWithSearchController == true {
-                cell.repoNameLabel.text = searchedReposArray[indexPath.row].full_name!
-                cell.repoDescriptionLabel.text = searchedReposArray[indexPath.row].description
-                cell.starredNumberLabel.text = "\(searchedReposArray[indexPath.row].stargazers_count!)"
-                cell.programmingLangLabel.text = searchedReposArray[indexPath.row].language
-                cell.repoImageView.kf.setImage(with: URL(string: (searchedReposArray[indexPath.row].owner?.avatar_url!)!),placeholder: UIImage(named: "repoIcon"))
-            } else {
-                cell.repoNameLabel.text = reposArray[indexPath.row].name
-                cell.repoDescriptionLabel.text = reposArray[indexPath.row].description
-                cell.starredNumberLabel.text = "\(reposArray[indexPath.row].stargazers_count!)"
-                cell.programmingLangLabel.text = reposArray[indexPath.row].language
-                cell.repoImageView.kf.setImage(with: URL(string: (reposArray[indexPath.row].owner?.avatar_url!)!),placeholder: UIImage(named: "repoIcon"))
-            }
+        } else if isWithSearchController == true {
+            cell.repoNameLabel.text = searchedReposArray[indexPath.row].full_name!
+            cell.repoDescriptionLabel.text = searchedReposArray[indexPath.row].description
+            cell.starredNumberLabel.text = "\(searchedReposArray[indexPath.row].stargazers_count!)"
+            cell.programmingLangLabel.text = searchedReposArray[indexPath.row].language
+            cell.repoImageView.kf.setImage(with: URL(string: (searchedReposArray[indexPath.row].owner?.avatar_url!)!),placeholder: UIImage(named: "repoIcon"))
         }
         cell.repoImageView.layer.masksToBounds = false
         cell.repoImageView.layer.cornerRadius = cell.repoImageView.frame.height/2
@@ -123,31 +107,29 @@ extension RepositoriesViewController: UITableViewDataSourcePrefetching{
 extension RepositoriesViewController: RepostableCellDelegate {
     func addTappedCell(cell: RepositoriesTableViewCell, index: Int) {
         let repoModel = Repo(context: self.context)
-        if isStarredReposVC == true {
-            repoModel.repoName = reposArray[index].full_name
+        if isStarredReposVC == true || isWithSearchController == false {
+            repoModel.repoName = reposArray[index].name
+            repoModel.repoFullName = reposArray[index].full_name
             repoModel.repoDescription = reposArray[index].description
             repoModel.repoLanguage = reposArray[index].language
             repoModel.starredNum = Int64(reposArray[index].stargazers_count!)
             repoModel.repoImageUrl = URL(string: ((reposArray[index].owner?.avatar_url)!)!)
-        } else {
-            if isWithSearchController == true {
-                repoModel.repoName = searchedReposArray[index].full_name
-                repoModel.repoDescription = searchedReposArray[index].description
-                repoModel.repoLanguage = searchedReposArray[index].language
-                repoModel.starredNum = Int64(searchedReposArray[index].stargazers_count!)
-                repoModel.repoImageUrl = URL(string: ((searchedReposArray[index].owner?.avatar_url)!))
-            } else {
-                repoModel.repoName = reposArray[index].full_name
-                repoModel.repoDescription = reposArray[index].description
-                repoModel.repoLanguage = reposArray[index].language
-                repoModel.starredNum = Int64(reposArray[index].stargazers_count!)
-                repoModel.repoImageUrl = URL(string: ((reposArray[index].owner?.avatar_url)!)!)
-            }
+            repoModel.ownerName = reposArray[index].owner?.login
+        } else if isWithSearchController == true {
+            repoModel.repoName = searchedReposArray[index].name
+            repoModel.repoFullName = searchedReposArray[index].full_name
+            repoModel.repoDescription = searchedReposArray[index].description
+            repoModel.repoLanguage = searchedReposArray[index].language
+            repoModel.starredNum = Int64(searchedReposArray[index].stargazers_count!)
+            repoModel.repoImageUrl = URL(string: ((searchedReposArray[index].owner?.avatar_url)!))
+            repoModel.ownerName = searchedReposArray[index].owner?.login
         }
         do {
             try self.context.save()
         } catch {
-            print(error)
+            let alert : UIAlertController = UIAlertController(title:"Error While Bookmarking User" , message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }

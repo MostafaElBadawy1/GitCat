@@ -19,14 +19,12 @@ class UserDetailsViewController: UIViewController {
     var usersModel = [User]()
     //var workoutSet = Set<usersModel>()
     //var userSet : Set = Set<usersModel>: usersModel
-
     //MARK: - IBOutlets
     @IBOutlet weak var userDetailsTableView: UITableView!
     //MARK: - @IBAction
     @IBAction func safariViewButton(_ sender: UIBarButtonItem) {
         if let userURL = URL(string:"\(self.user!.html_url!)" ){
             UIApplication.shared.open(userURL)
-            print(userURL)
         }
     }
     @IBAction func shareUserButton(_ sender: UIBarButtonItem) {
@@ -64,7 +62,7 @@ class UserDetailsViewController: UIViewController {
         userDetailsTableView.frame = view.frame
         navigationItem.largeTitleDisplayMode = .never
         //userDetailsTableView.tintColor = .systemGray6
-        //userDetailsTableView.isHidden = true
+        userDetailsTableView.isHidden = true
         loadingIndicator.startAnimating()
     }
     func tryAgainButtonConfig() {
@@ -78,7 +76,6 @@ class UserDetailsViewController: UIViewController {
         tryAgainButton.layer.borderColor = UIColor.white.cgColor
         tryAgainButton.clipsToBounds = true
         tryAgainButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
         self.view.addSubview(tryAgainButton)
       }
     @objc func buttonAction(sender: UIButton!) {
