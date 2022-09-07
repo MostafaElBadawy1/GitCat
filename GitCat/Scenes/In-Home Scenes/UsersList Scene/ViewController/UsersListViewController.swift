@@ -17,6 +17,7 @@ class UsersListViewController: UIViewController {
     let loadingIndicator = UIActivityIndicatorView()
     let searchHistoryVC = SearchHistoryViewController()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var usersModel = [User]()
     //var usersSearchResultViewController = UsersSearchResultViewController()
     //var cellDelegate : CellLink?
     //var index: IndexPath?

@@ -16,4 +16,5 @@ struct RepositoriesForUserModel: Codable {
 struct Owner: Codable {
     let avatar_url: String?
     let login: String?
+    let html_url: String?
 }
