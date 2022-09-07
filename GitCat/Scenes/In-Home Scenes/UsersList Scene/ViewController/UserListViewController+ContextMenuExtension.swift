@@ -1,5 +1,5 @@
 //
-//  UserListViewController+ContextMenuConfiguration.swift
+//  UserListViewController+ContextMenu.swift
 //  GitCat
 //
 //  Created by Mostafa Elbadawy on 07/09/2022.
@@ -51,7 +51,7 @@ extension UsersListViewController{
             try self.context.save()
         } catch {
             context.reset()
-            let alert : UIAlertController = UIAlertController(title:"This User Is Bookmarked" , message: "", preferredStyle: .alert)
+            let alert : UIAlertController = UIAlertController(title:"This User Is Already Bookmarked" , message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
