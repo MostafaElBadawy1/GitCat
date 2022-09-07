@@ -18,6 +18,11 @@ class RepositoriesTableViewCell: UITableViewCell {
     
     @IBAction func bookmarkButton(_ sender: UIButton) {
         delegate?.addTappedCell(cell: self, index: index!.row)
+        if bookmarkButtonImage.currentImage == UIImage(systemName: "star") {
+            bookmarkButtonImage.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        } else {
+            bookmarkButtonImage.setImage(UIImage(systemName: "star"), for: .normal)
+        }
     }
     override func awakeFromNib() {
         super.awakeFromNib()

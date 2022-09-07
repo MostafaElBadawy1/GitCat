@@ -7,6 +7,7 @@
 import UIKit
 import Kingfisher
 class CollectionViewTableViewCell: UITableViewCell {
+    var visitedUserArray = [VisitedUser]()
     @IBOutlet weak var recentVisitedUsersCollectionView: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,15 +24,14 @@ class CollectionViewTableViewCell: UITableViewCell {
 }
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = recentVisitedUsersCollectionView.dequeueReusableCell(withReuseIdentifier: K.RecentVisitedUsersCollectionViewCellID, for: indexPath) as! RecentVisitedUsersCollectionViewCell
-        cell.RecentVisitedUsersNameLabel.text =
-        cell.RecentVisitedUsersImageView.kf.setImage(with: URL(string: ),placeholder: UIImage(named: "UsersIcon"))
+       // cell.RecentVisitedUsersNameLabel.text = visitedUserArray[indexPath.row].userName
+        cell.RecentVisitedUsersNameLabel.text = "sdsd"
+       // cell.RecentVisitedUsersImageView.kf.setImage(with: visitedUserArray[indexPath.row].userImageURL ,placeholder: UIImage(named: "UsersIcon"))
         return cell
     }
-    
-    
 }

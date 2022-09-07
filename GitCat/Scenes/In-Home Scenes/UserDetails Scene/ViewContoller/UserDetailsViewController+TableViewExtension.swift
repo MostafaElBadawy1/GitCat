@@ -84,17 +84,14 @@ extension UserDetailsViewController: TableViewCellDelegate {
             do {
                 try self.context.save()
             } catch {
-                let alert : UIAlertController = UIAlertController(title:"Error While Bookmarking User" , message: "", preferredStyle: .alert)
+                context.reset()
+                let alert : UIAlertController = UIAlertController(title:"This User Is Bookmarked" , message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-        for i in usersModel {
-            if i.userName == oneUser.userName {
-            print("\(i) is saved again")
-        }
         }
     }
-}
+
     //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     //        let view = self.userDetailsTableView.dequeueReusableHeaderFooterView(withIdentifier: K.UserDetailsHeaderID)
     ////        let label = UILabel(frame: CGRect(x: 120, y: 120, width: 150, height: 150))

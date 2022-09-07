@@ -28,7 +28,7 @@ class RecentVisitedUsersHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
        // recentVisitedUsersCollectionView(collectionViewLayout: layout)
-        recentVisitedUsersCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
+        //recentVisitedUsersCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         //        let profileImageDimension: CGFloat = 60
         //        addSubview(profileImageView)
         //        profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

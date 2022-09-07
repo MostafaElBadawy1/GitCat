@@ -22,6 +22,15 @@ extension UsersListViewController: UISearchBarDelegate{
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber  }
         fetchUsers(searchKeyword: filteredText)
+        let searchWord = SearchedWord(context: self.context)
+        searchWord.word = filteredText
+            do {
+                try self.context.save()
+            } catch {
+                let alert : UIAlertController = UIAlertController(title:"Error While Saving Search Word" , message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchHistoryVCConfig()

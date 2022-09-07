@@ -127,7 +127,8 @@ extension RepositoriesViewController: RepostableCellDelegate {
         do {
             try self.context.save()
         } catch {
-            let alert : UIAlertController = UIAlertController(title:"Error While Bookmarking User" , message: "", preferredStyle: .alert)
+            context.reset()
+            let alert : UIAlertController = UIAlertController(title:"This Repository Is Bookmarked" , message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }

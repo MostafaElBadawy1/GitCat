@@ -16,6 +16,7 @@ class UsersListViewController: UIViewController {
     var searchController = UISearchController()
     let loadingIndicator = UIActivityIndicatorView()
     let searchHistoryVC = SearchHistoryViewController()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     //var usersSearchResultViewController = UsersSearchResultViewController()
     //var cellDelegate : CellLink?
     //var index: IndexPath?
@@ -134,6 +135,8 @@ class UsersListViewController: UIViewController {
             }
         }
     }
+   
+}
     //    func fetchUsers(id: Int) {
     //        usersViewModel.fetchAllUsers(id: id)
     //        usersViewModel.bindingData = { users, error in
@@ -167,4 +170,4 @@ class UsersListViewController: UIViewController {
     //            }
     //        }
     //    }
-}
+

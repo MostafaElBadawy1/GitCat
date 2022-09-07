@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZTX-TP-bq7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-Uk-PDK">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -24,14 +24,14 @@
                         <viewLayoutGuide key="safeArea" id="4pG-h6-QVx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4pG-h6-QVx" firstAttribute="bottom" secondItem="ZTX-TP-bq7" secondAttribute="bottom" id="1q3-5E-GcL"/>
-                            <constraint firstItem="4pG-h6-QVx" firstAttribute="trailing" secondItem="ZTX-TP-bq7" secondAttribute="trailing" id="8SQ-r5-NQp"/>
-                            <constraint firstItem="ZTX-TP-bq7" firstAttribute="leading" secondItem="4pG-h6-QVx" secondAttribute="leading" id="ksg-Xq-XXa"/>
-                            <constraint firstItem="ZTX-TP-bq7" firstAttribute="top" secondItem="4pG-h6-QVx" secondAttribute="top" id="ulQ-cy-fze"/>
+                            <constraint firstItem="4pG-h6-QVx" firstAttribute="bottom" secondItem="N1L-Uk-PDK" secondAttribute="bottom" id="CGe-fs-NJN"/>
+                            <constraint firstItem="N1L-Uk-PDK" firstAttribute="top" secondItem="4pG-h6-QVx" secondAttribute="top" id="G05-vY-jFJ"/>
+                            <constraint firstItem="N1L-Uk-PDK" firstAttribute="leading" secondItem="4pG-h6-QVx" secondAttribute="leading" id="IPT-pK-2NM"/>
+                            <constraint firstItem="4pG-h6-QVx" firstAttribute="trailing" secondItem="N1L-Uk-PDK" secondAttribute="trailing" id="nG8-GO-Wqi"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="searchHistoryTableView" destination="ZTX-TP-bq7" id="Kkc-kB-gku"/>
+                        <outlet property="recentSearchTableView" destination="N1L-Uk-PDK" id="M8L-wn-cSJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NhY-fu-mux" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

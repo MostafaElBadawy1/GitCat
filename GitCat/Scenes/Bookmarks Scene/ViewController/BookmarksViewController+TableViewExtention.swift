@@ -89,7 +89,7 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             tableView.beginUpdates()
             if indexPath.section == 0 {
-                let userItem = usersArray[indexPath.row]
+                let userItem = filterdUserArray[indexPath.row]
                 CoreDataManger.shared.delete(entityName: User.self, delete: userItem)
                 CoreDataManger.shared.fetch(entityName: User.self) { (item) in
                     self.filterdUserArray = item
@@ -98,7 +98,7 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             } else {
-                let item = reposArray[indexPath.row]
+                let item = filterdReposArray[indexPath.row]
                 CoreDataManger.shared.delete(entityName: Repo.self, delete: item)
                 CoreDataManger.shared.fetch(entityName: Repo.self) { (item) in
                     self.filterdReposArray = item

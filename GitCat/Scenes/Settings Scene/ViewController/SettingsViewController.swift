@@ -40,5 +40,13 @@ class SettingsViewController: UIViewController {
         SettingsTableView.tableHeaderView = userInfoHeader
         SettingsTableView.tableHeaderView?.backgroundColor = .systemGray6
     }
+    func clearBookmarks()  {
+        do
+        {
+            try CoreDataManger.shared.clearBookmarks()
+        } catch {
+            print(error)
+        }
+    }
 }
 
