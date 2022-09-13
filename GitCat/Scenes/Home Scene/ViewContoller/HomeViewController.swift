@@ -13,6 +13,12 @@ class HomeViewController: UIViewController {
     let homeArray = [["Users", "Repositories", "Issues", "Github Web"], ["My Repo"],["Authenticated User Mode"]]
     let imagesArray = [UIImage(named: "UsersIcon"),UIImage(named: "repoIcon"),UIImage(named: "issuesIcon"),UIImage(named: "GitHubIcon")]
     var myRepoModel : MyRepo?
+    var isLoggedIn: Bool {
+      if TokenManager.shared.fetchAccessToken() != nil {
+        return true
+      }
+      return false
+    }
     //MARK: - IBOutlets
     @IBOutlet weak var homeTableView: UITableView!
     //MARK: - LifeCycle
@@ -26,7 +32,7 @@ class HomeViewController: UIViewController {
     func initView() {
         tableViewConfig()
         searchControllerConfig()
-        appAppearanceConfig()
+       // appAppearanceConfig()
     }
     func initViewModel() {
         fetchMyRepo()
@@ -53,14 +59,14 @@ class HomeViewController: UIViewController {
         // Monitor when the search button is tapped, and start/end editing.
         searchController.searchBar.delegate = self
     }
-    func appAppearanceConfig() {
-        let window = UIApplication.shared.windows[0]
-        if UserDefaults.standard.bool(forKey: "isDarkMode") == true {
-            window.overrideUserInterfaceStyle = .dark
-        } else {
-            window.overrideUserInterfaceStyle = .light
-        }
-    }
+//    func appAppearanceConfig() {
+//        let window = UIApplication.shared.windows[0]
+//        if UserDefaults.standard.bool(forKey: "isDarkMode") == true {
+//            window.overrideUserInterfaceStyle = .dark
+//        } else {
+//            window.overrideUserInterfaceStyle = .light
+//        }
+//    }
     //MARK: - Data Functions
     func fetchMyRepo() {
         Task.init {

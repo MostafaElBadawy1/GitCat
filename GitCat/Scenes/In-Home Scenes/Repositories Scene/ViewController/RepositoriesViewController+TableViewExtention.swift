@@ -10,26 +10,26 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         return 110
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchedReposArray.isEmpty && reposArray.isEmpty{
+        if  reposArray.isEmpty {
             loadingIndicator.startAnimating()
         }
-        if isStarredReposVC == true || isWithSearchController == false {
+      //  if isStarredReposVC == true || isWithSearchController == false {
             return reposArray.count
-        } else if isWithSearchController == true {
-            return searchedReposArray.count
-        }
-        return 0
+      //  } else if isWithSearchController == true {
+        //    return searchedReposArray.count
+        //}
+       // return 0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         repositoriesTableView.deselectRow(at: indexPath, animated: true)
         let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
-        if isStarredReposVC == true || isWithSearchController == false  {
+     //   if isStarredReposVC == true || isWithSearchController == false  {
             commitsVC.repoName = reposArray[indexPath.row].name
             commitsVC.repoOwner = reposArray[indexPath.row].owner?.login
-        } else if isWithSearchController == true {
-            commitsVC.repoName = searchedReposArray[indexPath.row].name
-            commitsVC.repoOwner = searchedReposArray[indexPath.row].owner?.login
-        }
+       // } else if isWithSearchController == true {
+         //   commitsVC.repoName = searchedReposArray[indexPath.row].name
+         //   commitsVC.repoOwner = searchedReposArray[indexPath.row].owner?.login
+       // }
         self.navigationController?.pushViewController(commitsVC, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,19 +63,19 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         //            cell.languageIndicator.isHidden = true
         //        }
         cell.languageIndicator.isHidden = true
-        if isStarredReposVC == true || isWithSearchController == false {
+       // if isStarredReposVC == true || isWithSearchController == false {
             cell.repoNameLabel.text = reposArray[indexPath.row].name
             cell.repoDescriptionLabel.text = reposArray[indexPath.row].description
             cell.starredNumberLabel.text = "\(reposArray[indexPath.row].stargazers_count!)"
             cell.programmingLangLabel.text = reposArray[indexPath.row].language
             cell.repoImageView.kf.setImage(with: URL(string: (reposArray[indexPath.row].owner?.avatar_url!)!),placeholder: UIImage(named: "repoIcon"))
-        } else if isWithSearchController == true {
-            cell.repoNameLabel.text = searchedReposArray[indexPath.row].full_name!
-            cell.repoDescriptionLabel.text = searchedReposArray[indexPath.row].description
-            cell.starredNumberLabel.text = "\(searchedReposArray[indexPath.row].stargazers_count!)"
-            cell.programmingLangLabel.text = searchedReposArray[indexPath.row].language
-            cell.repoImageView.kf.setImage(with: URL(string: (searchedReposArray[indexPath.row].owner?.avatar_url!)!),placeholder: UIImage(named: "repoIcon"))
-        }
+//        } else if isWithSearchController == true {
+//            cell.repoNameLabel.text = searchedReposArray[indexPath.row].full_name!
+//            cell.repoDescriptionLabel.text = searchedReposArray[indexPath.row].description
+//            cell.starredNumberLabel.text = "\(searchedReposArray[indexPath.row].stargazers_count!)"
+//            cell.programmingLangLabel.text = searchedReposArray[indexPath.row].language
+//            cell.repoImageView.kf.setImage(with: URL(string: (searchedReposArray[indexPath.row].owner?.avatar_url!)!),placeholder: UIImage(named: "repoIcon"))
+       // }
         cell.repoImageView.layer.masksToBounds = false
         cell.repoImageView.layer.cornerRadius = cell.repoImageView.frame.height/2
         cell.repoImageView.clipsToBounds = true
@@ -84,24 +84,24 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
 }
 extension RepositoriesViewController: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        for indexPath in indexPaths {
-            if indexPath.row == preFetchIndex {
-                preFetchIndex = preFetchIndex + 30
-                pageNum = pageNum + 1
-                self.repositoriesTableView.tableFooterView = createSpinnerFooter()
-                guard let text = searchController.searchBar.text else { return }
-                let filteredText = text.filter { $0.isLetter || $0.isNumber  }
-                if isWithSearchController == true {
-                    if filteredText.isEmpty {
-                        fetchMoreSearchedRepos(searchKeyword:"m", pageNum: pageNum)
-                    } else {
-                        fetchMoreSearchedRepos(searchKeyword:filteredText, pageNum: pageNum)
-                    }
-                } else {
-                    fetchMoreRepos(userName: "\(passedNameFromUserDetailsVC!)", pageNum: pageNum)
-                }
-            }
-        }
+//        for indexPath in indexPaths {
+//            if indexPath.row == preFetchIndex {
+//                preFetchIndex = preFetchIndex + 30
+//                pageNum = pageNum + 1
+//                self.repositoriesTableView.tableFooterView = createSpinnerFooter()
+//                guard let text = searchController.searchBar.text else { return }
+//                let filteredText = text.filter { $0.isLetter || $0.isNumber  }
+//                if isWithSearchController == true {
+//                    if filteredText.isEmpty {
+//                        fetchMoreSearchedRepos(searchKeyword:"m", pageNum: pageNum)
+//                    } else {
+//                        fetchMoreSearchedRepos(searchKeyword:filteredText, pageNum: pageNum)
+//                    }
+//                } else {
+//                    fetchMoreRepos(userName: "\(passedNameFromUserDetailsVC!)", pageNum: pageNum)
+//                }
+//            }
+//        }
     }
 }
 

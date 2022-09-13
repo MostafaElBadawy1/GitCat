@@ -18,13 +18,15 @@ class UserDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var bookmarkButtonImage: UIButton!
     
     @IBAction func bookmarkButton(_ sender: UIButton) {
-        delegate?.addTapped(cell: self)
+        
         //UserDefaults.standard.set( bookmarkButtonImage.isSelected , forKey: "userBookmarkImage")
         if bookmarkButtonImage.currentImage == UIImage(systemName: "star") {
+            delegate?.addTapped(cell: self)
             bookmarkButtonImage.setImage(UIImage(systemName: "star.fill"), for: .normal)
         } else {
             bookmarkButtonImage.setImage(UIImage(systemName: "star"), for: .normal)
         }
+       
         //  bookmarkButtonImage.setImage(UIImage(systemName: "star.fill"), for: .normal)
         //        UserDefaults.standard.set(sender.isSelected, forKey: "bookmarked")
         //        if bookmarkButtonImage.isSelected {

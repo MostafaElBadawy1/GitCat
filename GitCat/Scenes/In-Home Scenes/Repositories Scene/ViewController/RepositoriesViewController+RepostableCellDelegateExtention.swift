@@ -16,14 +16,14 @@ extension RepositoriesViewController: RepostableCellDelegate {
             repoModel.starredNum = Int64(reposArray[index].stargazers_count!)
             repoModel.repoImageUrl = URL(string: ((reposArray[index].owner?.avatar_url)!)!)
             repoModel.ownerName = reposArray[index].owner?.login
-        } else if isWithSearchController == true {
-            repoModel.repoName = searchedReposArray[index].name
-            repoModel.repoFullName = searchedReposArray[index].full_name
-            repoModel.repoDescription = searchedReposArray[index].description
-            repoModel.repoLanguage = searchedReposArray[index].language
-            repoModel.starredNum = Int64(searchedReposArray[index].stargazers_count!)
-            repoModel.repoImageUrl = URL(string: ((searchedReposArray[index].owner?.avatar_url)!))
-            repoModel.ownerName = searchedReposArray[index].owner?.login
+//        } else if isWithSearchController == true {
+//            repoModel.repoName = searchedReposArray[index].name
+//            repoModel.repoFullName = searchedReposArray[index].full_name
+//            repoModel.repoDescription = searchedReposArray[index].description
+//            repoModel.repoLanguage = searchedReposArray[index].language
+//            repoModel.starredNum = Int64(searchedReposArray[index].stargazers_count!)
+//            repoModel.repoImageUrl = URL(string: ((searchedReposArray[index].owner?.avatar_url)!))
+//            repoModel.ownerName = searchedReposArray[index].owner?.login
         }
         do {
             try self.context.save()

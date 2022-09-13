@@ -38,7 +38,7 @@ class BookmarksViewController: UIViewController {
     func tableViewConfig() {
         bookmarksTableView.delegate = self
         bookmarksTableView.dataSource = self
-        bookmarksTableView.register(UINib(nibName: K.UsersListTableViewCell, bundle: nil), forCellReuseIdentifier: K.UserListCellID)
+        bookmarksTableView.register(UINib(nibName: K.usersListTableViewCell, bundle: nil), forCellReuseIdentifier: K.UserListCellID)
         bookmarksTableView.register(UINib(nibName: K.RepositoriesTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RepositoriesTableViewCellID)
         searchControllerConfig()
         bookmarksTableView.frame = view.frame

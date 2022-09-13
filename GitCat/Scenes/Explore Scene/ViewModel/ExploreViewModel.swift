@@ -10,7 +10,7 @@ class ExploreViewModel {
     init(apiService: ApiService = NetworkingManager.shared) {
         self.apiService = apiService
     }
-    func getExploreRepos(pageNum: Int) async -> [RepoItems]? {
+    func getExploreRepos(pageNum: Int) async -> [RepositoriesForUserModel]? {
         do{
             let reposList = try await apiService.getExploreRepos(pageNum: pageNum)
             return reposList.items

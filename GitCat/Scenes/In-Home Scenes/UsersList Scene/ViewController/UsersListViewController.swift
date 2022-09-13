@@ -59,7 +59,7 @@ class UsersListViewController: UIViewController {
         usersListTableView.delegate = self
         usersListTableView.dataSource = self
         usersListTableView.prefetchDataSource = self
-        usersListTableView.register(UINib(nibName: K.UsersListTableViewCell, bundle: .main), forCellReuseIdentifier: K.UserListCellID)
+        usersListTableView.register(UINib(nibName: K.usersListTableViewCell, bundle: .main), forCellReuseIdentifier: K.UserListCellID)
         usersListTableView.frame = view.bounds
         //        self.usersListTableView.tableFooterView = createSpinnerFooter()
     }
@@ -136,7 +136,6 @@ class UsersListViewController: UIViewController {
             }
         }
     }
-   
 }
     //    func fetchUsers(id: Int) {
     //        usersViewModel.fetchAllUsers(id: id)

@@ -6,9 +6,9 @@
 //
 import Foundation
 struct SearchRepositoriesModel: Codable{
-    let items: [RepoItems]
+    let items: [RepositoriesForUserModel]
 }
-struct RepoItems: Codable{
+struct RepositoriesForUserModel: Codable{
     let name: String?
     let full_name: String?
     let owner: RepoOwner?

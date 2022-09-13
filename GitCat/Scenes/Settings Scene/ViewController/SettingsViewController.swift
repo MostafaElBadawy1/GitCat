@@ -48,5 +48,26 @@ class SettingsViewController: UIViewController {
             print(error)
         }
     }
+    func logOut() {
+        let alert = UIAlertController(title: "Are You Sure You Want To Sign Out? ", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            TokenManager.shared.clearAccessToken()
+            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.loginViewControllerID) as! LoginViewController
+            loginVC.modalPresentationStyle = .fullScreen
+            self.present(loginVC, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title:"No", style: .default, handler: { _ in
+        }))
+        self.present(alert, animated: true, completion: nil)
+ 
+    }
 }
 
+//let alert = UIAlertController(title: "Are You Sure You Want To Sign Out? ", message: "", preferredStyle: .alert)
+//alert.addAction(UIAlertAction(title: "Sign in with GitHub", style: .default, handler: { _ in
+//    self.getGitHubIdentity()
+//}))
+//
+//alert.addAction(UIAlertAction(title:"Cancel", style: .default, handler: { _ in
+//}))
+//self.present(alert, animated: true, completion: nil)

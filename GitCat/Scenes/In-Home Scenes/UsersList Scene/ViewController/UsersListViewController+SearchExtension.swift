@@ -7,7 +7,7 @@
 import UIKit
 extension UsersListViewController: UISearchBarDelegate{
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        setup()
+       // setup()
         searchHistoryVC.view.isHidden = false
         usersListTableView.isHidden = true
         loadingIndicator.stopAnimating()

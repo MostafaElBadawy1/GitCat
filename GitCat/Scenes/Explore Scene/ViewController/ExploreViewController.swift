@@ -9,8 +9,8 @@ class ExploreViewController: UIViewController {
     //MARK: - Props
     var pageNum = 1
     var preFetchIndex = 15
-    var exploreReposArray = [RepoItems]()
-    var moreExploreReposArray = [RepoItems]()
+    var exploreReposArray = [RepositoriesForUserModel]()
+    var moreExploreReposArray = [RepositoriesForUserModel]()
     var exploreViewModel = ExploreViewModel()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let loadingIndicator = UIActivityIndicatorView()

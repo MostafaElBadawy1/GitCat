@@ -59,6 +59,7 @@ class UsersListViewModel {
 //            }
 //        }
 //    }
+//}
     //    func fetchAllUsers(){
     //        apiService.getUsersList { result in
     //            switch result {

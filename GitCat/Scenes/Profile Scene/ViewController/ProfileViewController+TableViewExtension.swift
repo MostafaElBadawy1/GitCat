@@ -29,6 +29,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         profileTableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 1 {
+            switch indexPath.row {
+            case 0:
+                let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+                reposVC.isProfile = true
+                self.navigationController?.pushViewController(reposVC, animated: true)
+            case 1:
+                break
+            case 2:
+                break
+            default:
+                break
+            }
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = profileTableView.dequeueReusableCell(withIdentifier: K.homeTableViewCell ) as! HomeTableViewCell

@@ -44,8 +44,13 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             default:
                 break
             }
-        default:
+        case .Policy:
             break
+        case .Language:
+            break
+        case .Account:
+            logOut()
+            
         }
         
     }
