@@ -18,7 +18,6 @@ class LoginViewController: UIViewController {
             let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
             tabBarVC.modalPresentationStyle = .fullScreen
             self.present(tabBarVC, animated: true, completion: nil)
-        print("Guest Mode")
         }))
         alert.addAction(UIAlertAction(title:"Cancel", style: .cancel, handler: { _ in
         }))
@@ -30,46 +29,48 @@ class LoginViewController: UIViewController {
     }
     func getGitHubIdentity() {
         var authorizeURLComponents = URLComponents(string: K.GitHubConstants.authorizeURL)
-        print(K.GitHubConstants.scope)
-      authorizeURLComponents?.queryItems = [
-        URLQueryItem(name: "client_id", value: K.GitHubConstants.clientID),
-        URLQueryItem(name: "scope", value: K.GitHubConstants.scope)
-      ]
-      guard let authorizeURL = authorizeURLComponents?.url else {
-        return
-      }
-      webAuthenticationSession = ASWebAuthenticationSession.init(
-        url: authorizeURL,
-        callbackURLScheme: K.GitHubConstants.redirectURI) { (callBack: URL?, error: Error?) in
-        guard
-          error == nil,
-          let successURL = callBack
-        else {
-          return
+        // print(K.GitHubConstants.scope)
+        authorizeURLComponents?.queryItems = [
+            URLQueryItem(name: "client_id", value: K.GitHubConstants.clientID),
+            URLQueryItem(name: "scope", value: K.GitHubConstants.scope)
+        ]
+        guard let authorizeURL = authorizeURLComponents?.url else {
+            return
         }
-        guard let accessCode = URLComponents(string: (successURL.absoluteString))?
-          .queryItems?.first(where: { $0.name == "code" }) else {
-          return
-        }
-        guard let value = accessCode.value else {
-          return
-        }
-            APIManager.shared.fetchAccessToken(accessCode: value) { [self] isSuccess in
-              if !isSuccess {
-                print("Error fetching access token")
-              }
-                let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
-                tabBarVC.modalPresentationStyle = .fullScreen
-                self.present(tabBarVC, animated: true, completion: nil)
+        webAuthenticationSession = ASWebAuthenticationSession.init(
+            url: authorizeURL,
+            callbackURLScheme: K.GitHubConstants.redirectURI) { (callBack: URL?, error: Error?) in
+                guard
+                    error == nil,
+                    let successURL = callBack
+                else {
+                    return
+                }
+                guard let accessCode = URLComponents(string: (successURL.absoluteString))?
+                    .queryItems?.first(where: { $0.name == "code" }) else {
+                    return
+                }
+                guard let value = accessCode.value else {
+                    return
+                }
+                APIManager.shared.fetchAccessToken(accessCode: value) { [self] isSuccess in
+                    if !isSuccess {
+                        let alert : UIAlertController = UIAlertController(title:"Error While Fetching Access Token" , message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
+                    tabBarVC.modalPresentationStyle = .fullScreen
+                    self.present(tabBarVC, animated: true, completion: nil)
+                }
             }
-      }
-      webAuthenticationSession?.presentationContextProvider = self
-      webAuthenticationSession?.start()
+        webAuthenticationSession?.presentationContextProvider = self
+        webAuthenticationSession?.start()
     }
 }
 // MARK: - ASWebAuthenticationPresentationContextProviding
 extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
-  func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-    return view.window ?? ASPresentationAnchor()
-  }
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return view.window ?? ASPresentationAnchor()
+    }
 }

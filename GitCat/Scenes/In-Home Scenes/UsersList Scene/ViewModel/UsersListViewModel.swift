@@ -6,20 +6,47 @@
 //
 import UIKit
 class UsersListViewModel {
-    let apiService : ApiService
-    init(apiService: ApiService = NetworkingManager.shared) {
-        self.apiService = apiService
-    }
-    func fetchAllUsers(searchKeyword: String, page: Int) async -> [Items]? {
-        do {
-            let usersList = try await apiService.searchUsers(searchKeyword: searchKeyword, page: page)
-            return usersList.items
-        } catch {
-            print(error)
-            return nil
+    var bindingData: (([UserModel]?,Error?) -> Void) = {_, _ in }
+    var users = [UserModel]() {
+        didSet {
+            bindingData(users,nil)
         }
     }
+    var error: Error!{
+        didSet {
+            bindingData(nil, error)
+        }
+    }
+    
+    func fetchSearchedUsers(searchWord: String, PageNum: Int) {
+        APIManager.shared.searchUsers(searchKeyword: searchWord, pageNum: PageNum) { result, error in
+            switch result {
+            case .some(let model):
+                DispatchQueue.main.async {
+                    self.users = model
+                }
+            case .none:
+                print(error!)
+            }
+        }
+        
+    }
 }
+//class UsersListViewModel {
+//    let apiService : ApiService
+//    init(apiService: ApiService = NetworkingManager.shared) {
+//        self.apiService = apiService
+//    }
+//    func fetchAllUsers(searchKeyword: String, page: Int) async -> [UserModel]? {
+//        do {
+//            let usersList = try await apiService.searchUsers(searchKeyword: searchKeyword, page: page)
+//            return usersList.items
+//        } catch {
+//            print(error)
+//            return nil
+//        }
+//    }
+//}
 
 
 
@@ -60,23 +87,23 @@ class UsersListViewModel {
 //        }
 //    }
 //}
-    //    func fetchAllUsers(){
-    //        apiService.getUsersList { result in
-    //            switch result {
-    //            case .success(let model):
-    ////                guard let self = self else {return}
-    //                DispatchQueue.main.async {
-    //                    self.userz = model
-    //                    print(self.userz)
-    //                }
-    //            case .failure(let error):
-    ////                guard let self = self else {return}
-    //                print("error")
-    ////                print(error.localizedDescription)
-    //
-    //        }
-    //        }
-    //    }
+//    func fetchAllUsers(){
+//        apiService.getUsersList { result in
+//            switch result {
+//            case .success(let model):
+////                guard let self = self else {return}
+//                DispatchQueue.main.async {
+//                    self.userz = model
+//                    print(self.userz)
+//                }
+//            case .failure(let error):
+////                guard let self = self else {return}
+//                print("error")
+////                print(error.localizedDescription)
+//
+//        }
+//        }
+//    }
 //}
 //        apiService.getUsersList { users, error in
 //            switch users {

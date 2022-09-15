@@ -33,9 +33,7 @@ extension UsersListViewController{
                let image = UIImage(data: data) {
                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
            }
-        let alert : UIAlertController = UIAlertController(title:"User's Photo Saved" , message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        presentAlert (title: "User's Photo Saved", message: "")
     }
     private func presentShareSheet(cellIndexPath: IndexPath) {
         let image = UIImageView()
@@ -52,14 +50,10 @@ extension UsersListViewController{
         oneUser.userImageURL = URL(string:(usersArray[cellIndexPath.row].avatar_url)!)
         do {
             try self.context.save()
-            let alert : UIAlertController = UIAlertController(title:"User Added to Bookmarks" , message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentAlert (title: "User Added to Bookmarks", message: "")
         } catch {
             context.reset()
-            let alert : UIAlertController = UIAlertController(title:"This User Is Already Bookmarked" , message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentAlert (title: "This User Is Already Bookmarked", message: "")
         }
     }
 }

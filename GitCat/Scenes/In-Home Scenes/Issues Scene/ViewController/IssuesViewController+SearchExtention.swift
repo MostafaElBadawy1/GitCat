@@ -9,7 +9,11 @@ extension IssuesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber  }
-        fetchIssues(searchWord: filteredText, pageNum: 1)
+        fetchIssues(searchWord: filteredText)
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        noIssueslabel.isHidden = true
+        fetchIssues(searchWord: "p")
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(reload), object: nil)
@@ -18,6 +22,6 @@ extension IssuesViewController: UISearchBarDelegate {
     @objc func reload() {
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber }
-        fetchIssues(searchWord: filteredText, pageNum: 1)
+        fetchIssues(searchWord: filteredText)
     }
 }

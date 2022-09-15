@@ -33,33 +33,41 @@ import UIKit
 
 class RepositoriesViewModel {
     var bindingData: (([RepositoriesForUserModel]?,Error?) -> Void) = {_, _ in }
-        var repos = [RepositoriesForUserModel]() {
-            didSet {
-                bindingData(repos,nil)
-            }
+    var repos = [RepositoriesForUserModel]() {
+        didSet {
+            bindingData(repos,nil)
         }
-        var error: Error!{
-            didSet {
-                bindingData(nil, error)
-            }
+    }
+    var error: Error!{
+        didSet {
+            bindingData(nil, error)
         }
-        
-        func fetchData(searchWord: String) {
-            APIManager.shared.searchRepositories(for: searchWord) { result,error  in
-                switch result {
-                case .some(let model):
-                    print(model)
-                    print(self.repos)
-                                   //guard let self = self else {return}
-                    DispatchQueue.main.async {
-                        self.repos = model
-                    }
-                case .none:
-                                   // guard let self = self else {return}
-                    print(error!)
+    }
+    
+    func fetchData(searchWord: String) {
+        APIManager.shared.searchRepositories(for: searchWord) { result,error  in
+            switch result {
+            case .some(let model):
+                DispatchQueue.main.async {
+                    self.repos = model
                 }
+            case .none:
+                print(error!)
             }
         }
+    }
+    func fetchUserRepositories() {
+        APIManager.shared.fetchUserRepositories { result, error in
+            switch result {
+            case .some(let model):
+                DispatchQueue.main.async {
+                    self.repos = model
+                }
+            case .none:
+                print(error!)
+            }
+        }
+    }
 }
 //class RepositoriesViewModel {
 ////    func fetchData(searchWord: String, completion: @escaping ([RepositoriesForUserModel]) -> Void) {

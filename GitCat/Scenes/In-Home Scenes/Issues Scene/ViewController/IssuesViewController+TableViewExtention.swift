@@ -30,16 +30,16 @@ extension IssuesViewController: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if indexPath.row == preFetchIndex {
-                preFetchIndex = preFetchIndex + 30
-                pageNum = pageNum + 1
                 self.issuesTableView.tableFooterView = createSpinnerFooter()
                 guard let text = searchController.searchBar.text else { return }
                 let filteredText = text.filter { $0.isLetter || $0.isNumber  }
                 if filteredText.isEmpty {
                     fetchMoreIssues(searchWord: "p", pageNum: pageNum)
                 } else {
-                    fetchMoreIssues(searchWord: text, pageNum: pageNum)
+                    fetchMoreIssues(searchWord: filteredText, pageNum: pageNum)
                 }
+                preFetchIndex = preFetchIndex + 30
+                pageNum = pageNum + 1
             }
         }
     }

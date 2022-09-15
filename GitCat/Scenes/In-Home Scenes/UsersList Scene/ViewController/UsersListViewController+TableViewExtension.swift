@@ -7,9 +7,6 @@
 import UIKit
 extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if usersArray.count == 0 {
-            loadingIndicator.startAnimating()
-        }
         return usersArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,23 +29,22 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(userDetailsVC, animated: true)
     }
 }
-extension UsersListViewController: UITableViewDataSourcePrefetching{
+extension UsersListViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        //        let indices = indexPaths.map { "\($0.row)"}.joined(separator: ".")
-        //        print("prefetching \(indices)")
+        //                let indices = indexPaths.map { "\($0.row)"}.joined(separator: ".")
+        //                print("prefetching \(indices)")
         for indexPath in indexPaths {
             if indexPath.row == preFetchIndex {
-                preFetchIndex = preFetchIndex + 30
-                pageNum = pageNum + 1
                 self.usersListTableView.tableFooterView = createSpinnerFooter()
-                //fetchMoreUsers(searchKeyword: "m", page: pageNum)
                 guard let text = searchController.searchBar.text else { return }
                 let filteredText = text.filter { $0.isLetter || $0.isNumber  }
                 if filteredText.isEmpty {
-                    fetchMoreUsers(searchKeyword: "m", page: pageNum)
+                    fetchMoreUsers(for : "mo", pageNum: pageNumber)
                 } else {
-                    fetchMoreUsers(searchKeyword: filteredText, page: pageNum)
+                    fetchMoreUsers(for: filteredText, pageNum: pageNumber)
                 }
+                preFetchIndex = preFetchIndex + 30
+                pageNumber = pageNumber + 1
             }
         }
     }

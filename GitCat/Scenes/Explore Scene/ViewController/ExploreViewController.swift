@@ -7,7 +7,7 @@
 import UIKit
 class ExploreViewController: UIViewController {
     //MARK: - Props
-    var pageNum = 1
+    var pageNumber = 2
     var preFetchIndex = 15
     var exploreReposArray = [RepositoriesForUserModel]()
     var moreExploreReposArray = [RepositoriesForUserModel]()
@@ -16,6 +16,7 @@ class ExploreViewController: UIViewController {
     let loadingIndicator = UIActivityIndicatorView()
     let spinner = UIActivityIndicatorView()
     let searchController = UISearchController()
+    let noReposLabel = UILabel()
     //MARK: - IBOutlets
     @IBOutlet weak var exploreTableView: UITableView!
     //MARK: - Life Cycle
@@ -32,7 +33,7 @@ class ExploreViewController: UIViewController {
         //setup()
     }
     func InitViewModel(){
-        fetchSearchedRepos()
+        fetchSearchedExploreRepos(searchWord: "a")
     }
     //MARK: - View Functions
     func tableViewConfig() {
@@ -51,7 +52,7 @@ class ExploreViewController: UIViewController {
         //searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
-        //searchController.searchBar.delegate = self
+        searchController.searchBar.delegate = self
     }
     func createSpinnerFooter()-> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
@@ -73,48 +74,95 @@ class ExploreViewController: UIViewController {
             loadingIndicator.startAnimating()
         }
     }
-    func refreshPage(){
+    func refreshPage() {
         self.exploreTableView.refreshControl = UIRefreshControl()
         self.exploreTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     @objc private func refreshData() {
-        fetchSearchedRepos()
+        fetchSearchedExploreRepos(searchWord: "")
         self.exploreTableView.reloadData()
+        noReposLabel.isHidden = true
+    }
+    func presentAlert (title: String, message: String) {
+        let alert : UIAlertController = UIAlertController(title:title , message: title, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func LabelConfig() {
+        noReposLabel.text = "There aren't any users."
+        noReposLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        //label.translatesAutoresizingMaskIntoConstraints = false
+        noReposLabel.frame =  CGRect(x: 110, y: 400, width: 300, height: 50)
+        self.view.addSubview(noReposLabel)
     }
     //MARK: - Data Functions
-    func fetchSearchedRepos() {
-        Task.init {
-            if let repos = await exploreViewModel.getExploreRepos(pageNum: 1) {
+    func fetchSearchedExploreRepos(searchWord: String) {
+        self.loadingIndicator.startAnimating()
+        exploreViewModel.fetchData(searchWord: searchWord, pageNum: 1)
+        exploreViewModel.bindingData = { [self] repos, error in
+            if let repos = repos {
                 self.exploreReposArray = repos
                 DispatchQueue.main.async {
+                    self.exploreTableView.reloadData()
                     self.loadingIndicator.stopAnimating()
-                    self.exploreTableView.reloadData()
                 }
-            } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repositories" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                self.loadingIndicator.startAnimating()
+            }
+            if let error = error {
+                presentAlert (title: "Error While Fetching Repositories" , message: "")
+                print(error)
             }
         }
     }
-    func fetchMoreSearchedRepos(pageNum: Int) {
-        Task.init {
-            if let repos = await exploreViewModel.getExploreRepos(pageNum: pageNum)  {
+    func fetchMoreSearchedExploreRepos(searchWord: String, pageNum: Int) {
+        exploreViewModel.fetchData(searchWord: searchWord, pageNum: pageNum)
+        exploreViewModel.bindingData = { [self] reposData, error in
+            if let repos = reposData {
                 self.moreExploreReposArray = repos
-                if moreExploreReposArray.isEmpty {
-                    spinner.stopAnimating()
-                }
                 DispatchQueue.main.async {
-                    self.exploreReposArray.append(contentsOf: self.moreExploreReposArray)
+                        self.exploreTableView.tableFooterView = nil
+                        self.exploreReposArray.append(contentsOf: self.moreExploreReposArray)
                     self.exploreTableView.reloadData()
+                    self.loadingIndicator.stopAnimating()
                 }
-            } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Repositories" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+            }
+            if let error = error {
+                presentAlert (title: "Error While Fetching More Repositories" , message: "")
+                print(error)
             }
         }
     }
-
+//    func fetchSearchedRepos() {
+//        Task.init {
+//            if let repos = await exploreViewModel.getExploreRepos(pageNum: 1) {
+//                self.exploreReposArray = repos
+//                DispatchQueue.main.async {
+//                    self.loadingIndicator.stopAnimating()
+//                    self.exploreTableView.reloadData()
+//                }
+//            } else {
+//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repositories" , message: "", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//                self.loadingIndicator.startAnimating()
+//            }
+//        }
+//    }
+//    func fetchMoreSearchedRepos(pageNum: Int) {
+//        Task.init {
+//            if let repos = await exploreViewModel.getExploreRepos(pageNum: pageNum)  {
+//                self.moreExploreReposArray = repos
+//                if moreExploreReposArray.isEmpty {
+//                    spinner.stopAnimating()
+//                }
+//                DispatchQueue.main.async {
+//                    self.exploreReposArray.append(contentsOf: self.moreExploreReposArray)
+//                    self.exploreTableView.reloadData()
+//                }
+//            } else {
+//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Repositories" , message: "", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//        }
+//    }
 }

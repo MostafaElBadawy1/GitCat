@@ -61,7 +61,7 @@ class RepositoriesViewController: UIViewController {
         if isProfile == true {
             fetchAndDisplayUserRepositories()
         } else {
-            fetch(searchWord: "sasa")
+            fetch(searchWord: "h")
         }
       //  }
 //        if let userName = passedNameFromUserDetailsVC {
@@ -105,13 +105,30 @@ class RepositoriesViewController: UIViewController {
         }
     func fetchAndDisplayUserRepositories() {
         loadingIndicator.startAnimating()
-        //2
-        APIManager.shared.fetchUserRepositories { [self] repositories in
-          //3
-          self.reposArray = repositories
-          loadingIndicator.stopAnimating()
-            repositoriesTableView.reloadData()
+        repositoriesForUserViewModel.fetchUserRepositories()
+        repositoriesForUserViewModel.bindingData = { repos, error in
+            if let repos = repos {
+                self.reposArray = repos
+                print(repos)
+                //self.filteredArray = self.usersArray
+                DispatchQueue.main.async {
+//                        self.usersListTableView.tableFooterView = nil
+//                        self.usersArray.append(contentsOf: self.moreUsersArray)
+                    self.repositoriesTableView.reloadData()
+                    self.loadingIndicator.stopAnimating()
+                }
+            }
+            if let error = error {
+                print(error)
+            }
         }
+//        //2
+//        APIManager.shared.fetchUserRepositories { [self] repositories in
+//          //3
+//          self.reposArray = repositories
+//          loadingIndicator.stopAnimating()
+//            repositoriesTableView.reloadData()
+//        }
     }
     //MARK: - View Functions
     func tableViewConfig() {

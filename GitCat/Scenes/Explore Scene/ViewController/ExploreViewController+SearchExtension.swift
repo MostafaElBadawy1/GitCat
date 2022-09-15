@@ -1,11 +1,11 @@
 //
-//  UsersListViewController+SearchExtension.swift
+//  ExploreViewController+SearchExtension.swift
 //  GitCat
 //
-//  Created by Mostafa Elbadawy on 22/07/2022.
+//  Created by Mostafa Elbadawy on 15/09/2022.
 //
 import UIKit
-extension UsersListViewController: UISearchBarDelegate{
+extension ExploreViewController: UISearchBarDelegate{
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
        // setup()
         //searchHistoryVC.view.isHidden = false
@@ -18,33 +18,22 @@ extension UsersListViewController: UISearchBarDelegate{
         return true
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-       // searchHistoryVCConfig()
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber  }
-        fetchUsers(for: filteredText)
-//        let searchWord = SearchedWord(context: self.context)
-//        searchWord.word = filteredText
-//            do {
-//                try self.context.save()
-//            } catch {
-//                presentAlert(title: "Error While Saving Search Word", message: "")
-//            }
+        fetchSearchedExploreRepos(searchWord: filteredText)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-       // searchHistoryVCConfig()
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(reload), object: nil)
         self.perform(#selector(reload), with: nil, afterDelay: 1)
     }
     @objc func reload() {
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber }
-        //print(filteredText)
-        fetchUsers(for: filteredText)
+        fetchSearchedExploreRepos(searchWord: filteredText)
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        fetchUsers(for: "mo")
-        noUserslabel.isHidden = true
-       // searchHistoryVCConfig()
+        fetchSearchedExploreRepos(searchWord: "a")
+        noReposLabel.isHidden = true
     }
 }
 

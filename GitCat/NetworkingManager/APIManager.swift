@@ -20,55 +20,117 @@ class APIManager {
                 userInfo: userInfo,
                 storagePolicy: .allowed)
         })
-        
         let networkLogger = GitNetworkLogger()
         let interceptor = GitRequestInterceptor()
-        
         return Session(
             configuration: configuration,
             interceptor: interceptor,
             cachedResponseHandler: responseCacher,
             eventMonitors: [networkLogger])
     }()
-    func fetchUserRepositories(completion: @escaping ([RepositoriesForUserModel]) -> Void) {
-      sessionManager.request(GitRouter.fetchUserRepositories)
-        .responseDecodable(of: [RepositoriesForUserModel].self) { response in
-          guard let items = response.value else {
-            return completion([])
-          }
-          completion(items)
-        }
-    }
-    
-    func searchRepositories(for query: String, completion: @escaping ([RepositoriesForUserModel]?, Error?) -> Void) {
-        let url = "https://api.github.com/search/repositories"
-        var queryParameters: [String: Any] = [ "sort": "stars", "order": "desc", "page": 1 ]
-        queryParameters["q"] = query
-        sessionManager.request(url, parameters: queryParameters).responseDecodable( of: SearchRepositoriesModel.self) { response in
-            print(response)
+    func searchUsers(searchKeyword: String, pageNum: Int, completion: @escaping ([UserModel]?, Error?) -> Void) {
+        sessionManager.request(GitRouter.searchUsers(searchKeyword, pageNum)).responseDecodable( of: SearchUsersModel.self) { response in
             switch response.result {
             case .success(_):
                 guard let items = response.value else {
                     return
                 }
-                print(items)
                 completion(items.items, nil)
             case .failure(let error):
-               // print(error)
+                completion(nil, error)
+            }
+        }
+    }
+    func fetchSearchedUserProfile(userName: String, completion: @escaping (UserModel?, Error?) -> Void) {
+        sessionManager.request(GitRouter.fetchSearchedUserProfile(userName)).responseDecodable(of: UserModel.self) { response in
+            switch response.result {
+            case .success(_):
+                guard let items = response.value else {
+                    return
+                }
+                completion(items,nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    func fetchUserProfile(completion: @escaping (UserModel?, Error?) -> Void) {
+        sessionManager.request(GitRouter.fetchUserProfile).responseDecodable(of: UserModel.self) { response in
+            switch response.result {
+            case .success(_):
+                guard let items = response.value else {
+                    return
+                }
+                completion(items,nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    func fetchUserRepositories(completion: @escaping ([RepositoriesForUserModel]?, Error?) -> Void) {
+        sessionManager.request(GitRouter.fetchUserRepositories)
+            .responseDecodable(of: [RepositoriesForUserModel].self) { response in
+                switch response.result {
+                case .success(_):
+                    guard let items = response.value else {
+                        completion([], nil)
+                        return
+                    }
+                    completion(items,nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
+    func searchRepositories(for query: String, completion: @escaping ([RepositoriesForUserModel]?, Error?) -> Void) {
+        sessionManager.request(GitRouter.searchRepositories(query)).responseDecodable( of: SearchRepositoriesModel.self) { response in
+            switch response.result {
+            case .success(_):
+                guard let items = response.value else {
+                    return
+                }
+                completion(items.items, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    func searchIssues(searchWord: String, pageNum: Int, completion: @escaping ([IssuesItems]?, Error?) -> Void) {
+        sessionManager.request(GitRouter.searchIssues(searchWord, pageNum)).responseDecodable( of: IssuesModel.self) { response in
+            switch response.result {
+            case .success(_):
+                guard let items = response.value else {
+                    return
+                }
+                completion(items.items, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    func searchExploreRepos(searchWord: String, pageName: Int, completion: @escaping ([RepositoriesForUserModel]?, Error?) -> Void) {
+        sessionManager.request(GitRouter.exploreRepos(searchWord, pageName)).responseDecodable( of: SearchRepositoriesModel.self) { response in
+            switch response.result {
+            case .success(_):
+                guard let items = response.value else {
+                    return
+                }
+                completion(items.items, nil)
+            case .failure(let error):
                 completion(nil, error)
             }
         }
     }
     func fetchAccessToken(accessCode: String, completion: @escaping (Bool) -> Void) {
-      sessionManager.request(GitRouter.fetchAccessToken(accessCode))
-        .responseDecodable(of: GitHubAccessToken.self) { response in
-          guard let token = response.value else {
-            return completion(false)
-          }
-          TokenManager.shared.saveAccessToken(gitToken: token)
-          completion(true)
-        }
+        sessionManager.request(GitRouter.fetchAccessToken(accessCode))
+            .responseDecodable(of: GitHubAccessToken.self) { response in
+                guard let token = response.value else {
+                    return completion(false)
+                }
+                TokenManager.shared.saveAccessToken(gitToken: token)
+                completion(true)
+            }
     }
-
-
+    
+    
 }

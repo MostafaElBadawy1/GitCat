@@ -16,7 +16,7 @@ class UserDetailsViewController: UIViewController {
     let userDetailsArray = ["Repositories","Starred","Organization"]
     let imagesArray = [UIImage(named: "repoIcon"),UIImage(named: "Star"),UIImage(named: "Organization")]
     let tryAgainButton = UIButton()
-    var usersModel = [User]()
+    // var usersModel = [User]()
     //var workoutSet = Set<usersModel>()
     //var userSet : Set = Set<usersModel>: usersModel
     //MARK: - IBOutlets
@@ -30,11 +30,6 @@ class UserDetailsViewController: UIViewController {
     @IBAction func shareUserButton(_ sender: UIBarButtonItem) {
         presentShareSheet()
     }
-//    @IBAction func tryAgainButton(_ sender: UIButton) {
-//        fetchUser()
-//        self.userDetailsTableView.reloadData()
-//        print("tryAgzin")
-//    }
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,14 +65,14 @@ class UserDetailsViewController: UIViewController {
         tryAgainButton.backgroundColor = .systemFill
         tryAgainButton.setTitle("Try Again", for: .normal)
         //button.tintColor = .darkText
-       // button.titleLabel?.font = .boldSystemFont(ofSize: 13)
+        // button.titleLabel?.font = .boldSystemFont(ofSize: 13)
         tryAgainButton.layer.cornerRadius = 5
         tryAgainButton.layer.borderWidth = 0.25
         tryAgainButton.layer.borderColor = UIColor.white.cgColor
         tryAgainButton.clipsToBounds = true
         tryAgainButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         self.view.addSubview(tryAgainButton)
-      }
+    }
     @objc func buttonAction(sender: UIButton!) {
         fetchUser()
         userDetailsTableView.reloadData()
@@ -91,9 +86,7 @@ class UserDetailsViewController: UIViewController {
             userDetailsTableView.isHidden = false
         } else {
             userDetailsTableView.isHidden = true
-            let alert : UIAlertController = UIAlertController(title:"You Are Disconnected" , message: "Please Check Your Connection!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentAlert(title: "You Are Disconnected", message: "Please Check Your Connection!")
             loadingIndicator.startAnimating()
             userDetailsTableView.isHidden = true
             tryAgainButtonConfig()
@@ -115,30 +108,57 @@ class UserDetailsViewController: UIViewController {
         let shareSheetVC = UIActivityViewController(activityItems: [ url], applicationActivities: nil)
         present(shareSheetVC, animated: true)
     }
+    func presentAlert(title: String, message: String) {
+        let alert : UIAlertController = UIAlertController(title: title, message: message , preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     //MARK: - Data Function
     func fetchUser() {
-        Task.init {
-            if let user = await userDetailsViewModel.fetchAllUsers(userName: passeedDataFromUserListVC!) {
+        self.loadingIndicator.startAnimating()
+        self.userDetailsTableView.isHidden = true
+        
+        if let passedUsername = passeedDataFromUserListVC {
+            userDetailsViewModel.fetchUserDetails(userName: passedUsername)
+        }
+        userDetailsViewModel.bindingData = { [self] userData, error in
+            if let user = userData {
                 self.user = user
                 DispatchQueue.main.async {
-                    self.loadingIndicator.stopAnimating()
                     self.userDetailsTableView.reloadData()
+                    self.loadingIndicator.stopAnimating()
                     self.userDetailsTableView.isHidden = false
-                    self.tryAgainButton.isHidden = true
                 }
-//                if user.login == nil{
-//                    userDetailsTableView.isHidden = true
-//                    tryAgainButtonConfig()
-//                }
-            } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching User" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+            }
+            if let error = error {
+                presentAlert(title: "Error While Fetching User's Details", message: "")
+                print(error)
             }
         }
     }
-   
 }
+//    func fetchUser() {
+//        Task.init {
+//            if let user = await userDetailsViewModel.fetchAllUsers(userName: passeedDataFromUserListVC!) {
+//                self.user = user
+//                DispatchQueue.main.async {
+//                    self.loadingIndicator.stopAnimating()
+//                    self.userDetailsTableView.reloadData()
+//                    self.userDetailsTableView.isHidden = false
+//                    self.tryAgainButton.isHidden = true
+//                }
+////                if user.login == nil{
+////                    userDetailsTableView.isHidden = true
+////                    tryAgainButtonConfig()
+////                }
+//            } else {
+//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching User" , message: "", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//        }
+//    }
+
 //        userDetailsTableView.frame = view.frame
 // let header = UIView(frame: CGRect(x: 120, y: 100, width: view.frame.size.width, height: 150))
 // userDetailsTableView.tableHeaderView = header

@@ -15,8 +15,8 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         exploreTableView.deselectRow(at: indexPath, animated: true)
         let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
-            commitsVC.repoName = exploreReposArray[indexPath.row].name
-            commitsVC.repoOwner = exploreReposArray[indexPath.row].owner?.login
+        commitsVC.repoName = exploreReposArray[indexPath.row].name
+        commitsVC.repoOwner = exploreReposArray[indexPath.row].owner?.login
         self.navigationController?.pushViewController(commitsVC, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,10 +38,16 @@ extension ExploreViewController: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if indexPath.row == preFetchIndex {
-                preFetchIndex = preFetchIndex + 30
-                pageNum = pageNum + 1
                 self.exploreTableView.tableFooterView = createSpinnerFooter()
-                fetchMoreSearchedRepos(pageNum: pageNum)
+                guard let text = searchController.searchBar.text else { return }
+                let filteredText = text.filter { $0.isLetter || $0.isNumber  }
+                if filteredText.isEmpty {
+                    fetchMoreSearchedExploreRepos(searchWord: "a", pageNum: pageNumber)
+                } else {
+                    fetchMoreSearchedExploreRepos(searchWord: filteredText, pageNum: pageNumber)
+                }
+                pageNumber = pageNumber + 1
+                preFetchIndex = preFetchIndex + 30
             }
         }
     }

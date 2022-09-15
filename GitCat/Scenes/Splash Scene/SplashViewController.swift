@@ -4,9 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 13/09/2022.
 //
-
 import UIKit
-
 class SplashViewController: UIViewController {
      var isLoggedIn: Bool {
        if TokenManager.shared.fetchAccessToken() != nil {
@@ -20,11 +18,11 @@ class SplashViewController: UIViewController {
         if isLoggedIn == true {
             let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
             tabBarVC.modalPresentationStyle = .fullScreen
-            self.present(tabBarVC, animated: true, completion: nil)
+            self.present(tabBarVC, animated: false, completion: nil)
         } else {
             let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.loginViewControllerID) as! LoginViewController
             loginVC.modalPresentationStyle = .fullScreen
-            self.present(loginVC, animated: true, completion: nil)
+            self.present(loginVC, animated: false, completion: nil)
         }
     }
     func appAppearanceConfig() {
@@ -35,6 +33,4 @@ class SplashViewController: UIViewController {
             window.overrideUserInterfaceStyle = .light
         }
     }
-
-
 }

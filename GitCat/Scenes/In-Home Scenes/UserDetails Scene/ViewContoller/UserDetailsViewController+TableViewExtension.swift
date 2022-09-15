@@ -85,9 +85,7 @@ extension UserDetailsViewController: TableViewCellDelegate {
                 try self.context.save()
             } catch {
                 context.reset()
-                let alert : UIAlertController = UIAlertController(title:"This User Is Bookmarked" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                presentAlert(title: "This User Is Bookmarked Correctly", message: "")
             }
         }
     }
