@@ -25,7 +25,12 @@ class ExploreViewModel {
                     self.repos = model
                 }
             case .none:
-                print(error!)
+                switch error {
+                case .some(let error):
+                    self.error = error
+                case .none :
+                    return
+                }
             }
         }
     }

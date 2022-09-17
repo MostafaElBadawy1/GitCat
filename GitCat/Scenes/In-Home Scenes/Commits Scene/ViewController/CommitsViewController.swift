@@ -16,15 +16,14 @@ class CommitsViewController: UIViewController {
     var commitsViewModel = CommitsViewModel()
     let loadingIndicator = UIActivityIndicatorView()
     let spinner = UIActivityIndicatorView()
+    let nocommitsLabel = UILabel()
     //MARK: - IBOutlets
     @IBOutlet weak var commitsTableView: UITableView!
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-        if let safeRepoOwner = repoOwner, let safeRepoName = repoName  {
-            InitViewModel(ownerName: safeRepoOwner, repoName: safeRepoName)
-        }
+        InitViewModel()
     }
     //MARK: - Main Functions
     func initView(){
@@ -32,8 +31,10 @@ class CommitsViewController: UIViewController {
         refreshPage()
         networkReachability()
     }
-    func InitViewModel(ownerName: String, repoName: String){
-        fetchCommits(ownerName: ownerName, repoName: repoName)
+    func InitViewModel(){
+        if let owner = repoOwner, let repo = repoName {
+            fetchCommits(ownerName: owner, repoName: repo)
+        }
     }
     func tableViewConfig() {
         commitsTableView.delegate = self
@@ -56,9 +57,7 @@ class CommitsViewController: UIViewController {
         if NetworkMonitor.shared.isConnected {
             loadingIndicator.stopAnimating()
         } else {
-            let alert : UIAlertController = UIAlertController(title:"You Are Disconnected" , message: "Please Check Your Connection!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentAlert(title: "You Are Disconnected", message: "Please Check Your Connection!")
             loadingIndicator.startAnimating()
         }
     }
@@ -67,42 +66,56 @@ class CommitsViewController: UIViewController {
         self.commitsTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     @objc private func refreshData() {
-        fetchCommits(ownerName: repoOwner!, repoName: repoName!)
+       InitViewModel()
         self.commitsTableView.reloadData()
+    }
+    func presentAlert(title: String, message: String){
+        let alert : UIAlertController = UIAlertController(title: title , message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func LabelConfig(){
+        nocommitsLabel.text = "There aren't any commits."
+        nocommitsLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        nocommitsLabel.frame =  CGRect(x: 110, y: 400, width:300, height: 50)
+        self.view.addSubview(nocommitsLabel)
+    }
+    func showLabel() {
+        if self.commitsArray.count == 0 {
+            self.LabelConfig()
+        }
     }
     //MARK: - Data Function
     func fetchCommits(ownerName: String, repoName: String) {
-        Task.init {
-            if let commits = await commitsViewModel.fetchCommits(ownerName: ownerName, repoName: repoName, pageNum: 1){
-                self.commitsArray = commits
+        self.loadingIndicator.startAnimating()
+        commitsViewModel.fetchCommits(ownerName: ownerName, repoName: repoName, pageNum: 1)
+        commitsViewModel.bindingData = { [self] commits, error in
+            if let commitsData = commits {
+                self.commitsArray = commitsData
                 DispatchQueue.main.async {
-                    self.loadingIndicator.stopAnimating()
                     self.commitsTableView.reloadData()
+                    self.loadingIndicator.stopAnimating()
+                    self.showLabel()
                 }
             } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Commits" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                presentAlert(title: "Error While Fetching Commits", message: "")
                 self.loadingIndicator.startAnimating()
             }
         }
     }
-    func fetchMoreCommits(ownerName: String, repoName: String, pageNum: Int) {
-        Task.init {
-            if let commits = await commitsViewModel.fetchCommits(ownerName: ownerName, repoName: repoName, pageNum: pageNum) {
-                //                try await Task.sleep(nanoseconds: 1_000_000_000)
-                self.moreCommitsArray = commits
-                if moreCommitsArray.isEmpty {
-                    spinner.stopAnimating()
-                }
+    func fetchMoreCommits( ownerName: String, repoName: String, pageNum: Int) {
+        commitsViewModel.fetchCommits(ownerName: ownerName, repoName: repoName, pageNum: pageNum)
+        commitsViewModel.bindingData = { commits, error in
+            if let commitsData = commits {
+                self.moreCommitsArray = commitsData
                 DispatchQueue.main.async {
+                    self.commitsTableView.tableFooterView = nil
                     self.commitsArray.append(contentsOf: self.moreCommitsArray)
                     self.commitsTableView.reloadData()
+                    self.loadingIndicator.stopAnimating()
                 }
             } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Commits" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.presentAlert(title: "Error While Fetching More Commits", message: "")
             }
         }
     }

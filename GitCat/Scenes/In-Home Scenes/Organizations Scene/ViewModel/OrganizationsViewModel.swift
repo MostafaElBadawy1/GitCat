@@ -6,17 +6,32 @@
 //
 import UIKit
 class OrganizationsViewModel {
-    let apiService: ApiService
-    init(apiService: ApiService = NetworkingManager.shared) {
-        self.apiService = apiService
+    var bindingData: (([OrganizationModel]?,Error?) -> Void) = {_, _ in }
+    var orgs = [OrganizationModel]() {
+        didSet {
+            bindingData(orgs,nil)
+        }
     }
-    func fetchUserOrg(userName: String) async -> [OrganizationModel]? {
-        do {
-            let orgsList = try await apiService.getUserOrgs(userName: userName)
-            return orgsList
-        } catch {
-            print(error)
-            return nil
+    var error: Error!{
+        didSet {
+            bindingData(nil, error)
+        }
+    }
+    func fetchOrgs(userName: String) {
+        APIManager.shared.fetchUsersOrgs(userName: userName) { result,error  in
+            switch result {
+            case .some(let model):
+                DispatchQueue.main.async {
+                    self.orgs = model
+                }
+            case .none:
+                switch error {
+                case .some(let error):
+                    self.error = error
+                case .none :
+                    return
+                }
+            }
         }
     }
 }

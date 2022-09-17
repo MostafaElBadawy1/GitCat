@@ -44,30 +44,75 @@ class RepositoriesViewModel {
         }
     }
     
-    func fetchData(searchWord: String) {
-        APIManager.shared.searchRepositories(for: searchWord) { result,error  in
+    func searchRepos(searchWord: String, pageNum: Int) {
+        APIManager.shared.searchRepositories(for: searchWord, pageNum: pageNum) { result,error  in
             switch result {
             case .some(let model):
                 DispatchQueue.main.async {
                     self.repos = model
                 }
             case .none:
-                print(error!)
+                switch error {
+                case .some(let error):
+                    self.error = error
+                case .none :
+                    return
+                }
             }
         }
     }
-    func fetchUserRepositories() {
-        APIManager.shared.fetchUserRepositories { result, error in
+    func fetchUserRepositories(repoOwner: String, pageNum: Int) {
+        APIManager.shared.fetchUserRepositories(repoOwner: repoOwner, pageNum: pageNum) { result, error in
             switch result {
             case .some(let model):
                 DispatchQueue.main.async {
                     self.repos = model
                 }
             case .none:
-                print(error!)
+                switch error {
+                case .some(let error):
+                    self.error = error
+                case .none :
+                    return
+                }
             }
         }
     }
+    func fetchMyRepositories() {
+        APIManager.shared.fetchMyRepositories { result, error in
+            switch result {
+            case .some(let model):
+                DispatchQueue.main.async {
+                    self.repos = model
+                }
+            case .none:
+                switch error {
+                case .some(let error):
+                    self.error = error
+                case .none :
+                    return
+                }
+            }
+        }
+    }
+    func fetchUserStarredRepositories(userName: String) {
+        APIManager.shared.fetchStarredRepositories(userName: userName) { result, error in
+            switch result {
+            case .some(let model):
+                DispatchQueue.main.async {
+                    self.repos = model
+                }
+            case .none:
+                switch error {
+                case .some(let error):
+                    self.error = error
+                case .none :
+                    return
+                }
+            }
+        }
+    }
+
 }
 //class RepositoriesViewModel {
 ////    func fetchData(searchWord: String, completion: @escaping ([RepositoriesForUserModel]) -> Void) {

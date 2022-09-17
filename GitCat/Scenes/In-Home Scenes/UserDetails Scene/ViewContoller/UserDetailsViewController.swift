@@ -119,19 +119,23 @@ class UserDetailsViewController: UIViewController {
         self.userDetailsTableView.isHidden = true
         
         if let passedUsername = passeedDataFromUserListVC {
-            userDetailsViewModel.fetchUserDetails(userName: passedUsername)
+            userDetailsViewModel.fetchUserDetails(userName: "")
         }
-        userDetailsViewModel.bindingData = { [self] userData, error in
+        userDetailsViewModel.bindingData = { userData, error in
             if let user = userData {
                 self.user = user
                 DispatchQueue.main.async {
                     self.userDetailsTableView.reloadData()
                     self.loadingIndicator.stopAnimating()
                     self.userDetailsTableView.isHidden = false
+//                    if self.userDetailsArray.isEmpty {
+//                        self.userDetailsTableView.isHidden = true
+//                        self.tryAgainButtonConfig()
+//                    }
                 }
             }
             if let error = error {
-                presentAlert(title: "Error While Fetching User's Details", message: "")
+                self.presentAlert(title: "Error While Fetching User's Details", message: "")
                 print(error)
             }
         }

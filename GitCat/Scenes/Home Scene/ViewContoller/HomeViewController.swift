@@ -12,12 +12,12 @@ class HomeViewController: UIViewController {
     var homeViewModel = HomeViewModel()
     let homeArray = [["Users", "Repositories", "Issues", "Github Web"], ["My Repo"],["Authenticated User Mode"]]
     let imagesArray = [UIImage(named: "UsersIcon"),UIImage(named: "repoIcon"),UIImage(named: "issuesIcon"),UIImage(named: "GitHubIcon")]
-    var myRepoModel : MyRepo?
+    var myRepoModel : RepositoriesForUserModel?
     var isLoggedIn: Bool {
-      if TokenManager.shared.fetchAccessToken() != nil {
-        return true
-      }
-      return false
+        if TokenManager.shared.fetchAccessToken() != nil {
+            return true
+        }
+        return false
     }
     //MARK: - IBOutlets
     @IBOutlet weak var homeTableView: UITableView!
@@ -26,13 +26,12 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         initView()
         initViewModel()
-//        UINavigationController(rootViewController: HomeViewController())
+        //        UINavigationController(rootViewController: HomeViewController())
     }
     //MARK: - Main Functions
     func initView() {
         tableViewConfig()
         searchControllerConfig()
-       // appAppearanceConfig()
     }
     func initViewModel() {
         fetchMyRepo()
@@ -43,8 +42,8 @@ class HomeViewController: UIViewController {
         homeTableView.dataSource = self
         homeTableView.register(UINib(nibName: K.homeTableViewCell, bundle: .main), forCellReuseIdentifier: K.homeTableViewCell)
         self.homeTableView.isHidden = true
-//        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 110))
-//        homeTableView.tableHeaderView = header
+        //        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 110))
+        //        homeTableView.tableHeaderView = header
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController
@@ -55,35 +54,28 @@ class HomeViewController: UIViewController {
         
         // Monitor when the search controller is presented and dismissed.
         searchController.delegate = self
-
+        
         // Monitor when the search button is tapped, and start/end editing.
         searchController.searchBar.delegate = self
     }
-//    func appAppearanceConfig() {
-//        let window = UIApplication.shared.windows[0]
-//        if UserDefaults.standard.bool(forKey: "isDarkMode") == true {
-//            window.overrideUserInterfaceStyle = .dark
-//        } else {
-//            window.overrideUserInterfaceStyle = .light
-//        }
-//    }
     //MARK: - Data Functions
     func fetchMyRepo() {
-        Task.init {
-            if let user = await homeViewModel.fetchMyRepo() {
-                self.myRepoModel = user
+        homeViewModel.fetchMyRepo()
+        homeViewModel.bindingData = { repo, error in
+            if let myRepo = repo {
+                self.myRepoModel = myRepo
                 DispatchQueue.main.async {
                     self.homeTableView.reloadData()
                     self.homeTableView.isHidden = false
                 }
-            } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Your Repo Name And Image" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                } else {
+                    print(error)
+                    // if error != nil {
+                    let alert : UIAlertController = UIAlertController(title:"Error While Fetching Your Repo Name And Image" , message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    print(error!)
+                }
             }
         }
     }
-
-}
-
-

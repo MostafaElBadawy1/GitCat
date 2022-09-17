@@ -4,10 +4,8 @@
 //
 //  Created by Mostafa Elbadawy on 23/07/2022.
 //
-
 import Foundation
 import Network
-
 final class NetworkMonitor {
     static let shared = NetworkMonitor()
     private let queue = DispatchQueue.global()

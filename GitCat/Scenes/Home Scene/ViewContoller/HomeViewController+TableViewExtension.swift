@@ -61,8 +61,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.homeLabel.text = homeArray[indexPath.section][indexPath.row]
             cell.homeImage.image = imagesArray[indexPath.row]
         case 1:
-            cell.homeLabel.text = myRepoModel?.name!
-            if let userAvatarUrl = myRepoModel?.owner?.avatar_url! {
+            if let repoName = myRepoModel?.name {
+                cell.homeLabel.text = repoName
+            }
+            if let userAvatarUrl = myRepoModel?.owner?.avatar_url {
                 cell.homeImage.kf.setImage(with: URL(string: "\(userAvatarUrl)"),placeholder: UIImage(named: "UsersIcon"))
             }
             cell.homeImage.layer.masksToBounds = false

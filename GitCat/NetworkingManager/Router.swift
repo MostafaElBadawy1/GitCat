@@ -7,18 +7,22 @@
 import Foundation
 import Alamofire
 enum GitRouter {
-    case fetchUserRepositories
-    case searchRepositories(String)
-    case fetchCommits(String)
+    case fetchUserRepositories(String, Int)
+    case fetchUserStarredRepositories(String)
+    case fetchMyRepositories
+    case searchRepositories(String, Int)
+    case fetchCommits(String, String, Int)
     case fetchAccessToken(String)
     case fetchUserProfile
     case searchUsers(String,Int)
     case fetchSearchedUserProfile(String)
     case searchIssues(String, Int)
     case exploreRepos(String, Int)
+    case fetchUserOrgs(String)
+    case fetchMyRepo
     var baseURL: String {
         switch self {
-        case .fetchUserRepositories, .searchRepositories, .fetchCommits, .fetchUserProfile, .searchUsers, .fetchSearchedUserProfile, .searchIssues, .exploreRepos:
+        case .fetchUserRepositories, .fetchUserStarredRepositories, .fetchMyRepositories, .searchRepositories, .fetchCommits, .fetchUserProfile, .searchUsers, .fetchSearchedUserProfile, .searchIssues, .exploreRepos, .fetchUserOrgs, .fetchMyRepo:
             return "https://api.github.com"
         case .fetchAccessToken:
             return "https://github.com"
@@ -26,30 +30,38 @@ enum GitRouter {
     }
     var path: String {
         switch self {
-        case .fetchUserProfile:
+        case .fetchUserProfile: //x
             return "user"
-        case .fetchSearchedUserProfile(let userName):
+        case .fetchMyRepositories:
+            return "user/repos"
+        case .fetchSearchedUserProfile(let userName): //x
             return "users/\(userName)"
         case .searchUsers:
             return "search/users"
-        case .fetchUserRepositories:
-            return "/user/repos"
+        case .fetchUserRepositories (let repoOwner, _):
+            return "users/\(repoOwner)/repos"
+        case .fetchUserStarredRepositories (let userName):
+            return "users/\(userName)/starred"
         case .searchRepositories:
             return "/search/repositories"
-        case .fetchCommits(let repository):
-            return "/repos/\(repository)/commits"
+        case .fetchCommits(let ownerName,let repository, _):
+            return "/repos/\(ownerName)/\(repository)/commits"
         case .exploreRepos:
             return "/search/repositories"
-        case .searchIssues:
+        case .searchIssues: //x //D
             return "search/issues"
+        case .fetchUserOrgs(let userName):
+            return "users/\(userName)/orgs"
+        case .fetchMyRepo:                  //x
+            return "repozzs/MostafaElBadawy1/GitCat"
         case .fetchAccessToken:
             return "/login/oauth/access_token"
         }
     }
     var method: HTTPMethod {
         switch self {
-        case .fetchUserRepositories, .fetchUserProfile, .searchUsers, .fetchSearchedUserProfile,
-                .searchIssues, .exploreRepos, .searchRepositories, .fetchCommits:
+        case .fetchUserRepositories, .fetchUserStarredRepositories, .fetchMyRepositories, .fetchUserProfile, .searchUsers, .fetchSearchedUserProfile,
+                .searchIssues, .exploreRepos, .searchRepositories, .fetchCommits, .fetchUserOrgs, .fetchMyRepo:
             return .get
         case .fetchAccessToken:
             return .post
@@ -59,15 +71,21 @@ enum GitRouter {
         switch self {
         case .searchUsers(let searchWord, let pageNum):
             return ["q": searchWord, "page": "\(pageNum)","per_page": "30" ]
-        case .fetchUserRepositories:
-            return ["per_page": "30"]
-        case .searchRepositories(let query):
-            return ["sort": "stars", "order": "desc", "page": "1", "q": query]
+        case .fetchUserRepositories(_, let pageNum):
+            return ["page": "\(pageNum)"]
+        case .fetchUserStarredRepositories:
+            return ["per_page": "100"]
+        case .searchRepositories(let repoName, let pageNum):
+            return ["sort": "stars", "order": "desc", "page": "\(pageNum)", "q": repoName]
         case .searchIssues(let issue, let pageNum):
             return ["q": issue, "page": "\(pageNum)","per_page": "30" ]
         case .exploreRepos(let searchWord, let pageName):
             return ["q": "\(searchWord).language:swift", "page": "\(pageName)", "sort": "stars", ]
-        case .fetchCommits, .fetchUserProfile, .fetchSearchedUserProfile:
+        case .fetchMyRepositories:
+            return ["per_page": "50"]
+        case .fetchCommits(_,_,let pageNum):
+            return ["page":"\(pageNum)"]
+        case .fetchUserProfile, .fetchSearchedUserProfile, .fetchUserOrgs, .fetchMyRepo:
             return nil
         case .fetchAccessToken(let accessCode):
             return [

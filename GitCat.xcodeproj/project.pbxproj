@@ -40,7 +40,6 @@
 		A6593562289D67A1006A95F6 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6593560289D67A1006A95F6 /* HomeTableViewCell.swift */; };
 		A6593563289D67A1006A95F6 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6593561289D67A1006A95F6 /* HomeTableViewCell.xib */; };
 		A65DECB828B0398B00FDC2B6 /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DECB728B0398A00FDC2B6 /* UserDetailsViewModel.swift */; };
-		A65DECBA28B1513900FDC2B6 /* RepositoriesForUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DECB928B1513900FDC2B6 /* RepositoriesForUserModel.swift */; };
 		A65DECBC28B152E100FDC2B6 /* RepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DECBB28B152E100FDC2B6 /* RepositoriesViewModel.swift */; };
 		A67074D528A3E47500DBBB3F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67074D428A3E47500DBBB3F /* SettingsViewController.swift */; };
 		A67074D728A3E85400DBBB3F /* UserInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67074D628A3E85400DBBB3F /* UserInfoHeader.swift */; };
@@ -56,7 +55,6 @@
 		A6AC5C6228885292003415FC /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C6128885292003415FC /* NetworkingManager.swift */; };
 		A6AC5C64288852BA003415FC /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C63288852BA003415FC /* ApiService.swift */; };
 		A6AC5C66288852C5003415FC /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C65288852C5003415FC /* URLs.swift */; };
-		A6AC5C6928885887003415FC /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C6828885887003415FC /* UserModel.swift */; };
 		A6AC5C6E2889991C003415FC /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C6D2889991C003415FC /* UsersListViewModel.swift */; };
 		A6AC5C712889A8E1003415FC /* UsersListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C6F2889A8E1003415FC /* UsersListTableViewCell.swift */; };
 		A6AC5C722889A8E1003415FC /* UsersListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6AC5C702889A8E1003415FC /* UsersListTableViewCell.xib */; };
@@ -178,7 +176,6 @@
 		A6593560289D67A1006A95F6 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		A6593561289D67A1006A95F6 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 		A65DECB728B0398A00FDC2B6 /* UserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewModel.swift; sourceTree = "<group>"; };
-		A65DECB928B1513900FDC2B6 /* RepositoriesForUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesForUserModel.swift; sourceTree = "<group>"; };
 		A65DECBB28B152E100FDC2B6 /* RepositoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewModel.swift; sourceTree = "<group>"; };
 		A67074D428A3E47500DBBB3F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A67074D628A3E85400DBBB3F /* UserInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeader.swift; sourceTree = "<group>"; };
@@ -194,7 +191,6 @@
 		A6AC5C6128885292003415FC /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		A6AC5C63288852BA003415FC /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		A6AC5C65288852C5003415FC /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
-		A6AC5C6828885887003415FC /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		A6AC5C6D2889991C003415FC /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
 		A6AC5C6F2889A8E1003415FC /* UsersListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListTableViewCell.swift; sourceTree = "<group>"; };
 		A6AC5C702889A8E1003415FC /* UsersListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersListTableViewCell.xib; sourceTree = "<group>"; };
@@ -628,9 +624,7 @@
 		A6AC5C6728885872003415FC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A6AC5C6828885887003415FC /* UserModel.swift */,
 				A6C6433328A6E8E800271B3D /* SearchUsersModel.swift */,
-				A65DECB928B1513900FDC2B6 /* RepositoriesForUserModel.swift */,
 				A6BB748428B2EFEB0051C48F /* CommitsModel.swift */,
 				A6BB748628B301420051C48F /* SearchRepositoriesModel.swift */,
 				A6BB748928B31B610051C48F /* OrganizationModel.swift */,
@@ -1248,7 +1242,6 @@
 				A6C6432C28A6840900271B3D /* BookmarksViewController+SearchExtention.swift in Sources */,
 				A63B411528BE618500E624DB /* WebViewViewController.swift in Sources */,
 				A63055F328D12AC9001A0C9C /* NetworkReachability.swift in Sources */,
-				A6AC5C6928885887003415FC /* UserModel.swift in Sources */,
 				A6BB74A228B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift in Sources */,
 				A6EFEDD628C947EF00EC84C4 /* RepositoriesViewController+ContextMenuExtention.swift in Sources */,
 				A6F80C2628C0261C00A44E99 /* CollectionViewTableViewCell.swift in Sources */,
@@ -1298,7 +1291,6 @@
 				A67074DB28A3F38500DBBB3F /* SettingsSection.swift in Sources */,
 				A6E92EC628A2BD1F0085F163 /* RepositoriesViewController+TableViewExtention.swift in Sources */,
 				A6260A3B28883D6300276B91 /* SceneDelegate.swift in Sources */,
-				A65DECBA28B1513900FDC2B6 /* RepositoriesForUserModel.swift in Sources */,
 				A67074D528A3E47500DBBB3F /* SettingsViewController.swift in Sources */,
 				A6F80C2028BEDCD100A44E99 /* HomeViewModel.swift in Sources */,
 				A63B412228BEB49C00E624DB /* ExploreTableViewCell.swift in Sources */,
@@ -1511,6 +1503,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1541,6 +1534,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

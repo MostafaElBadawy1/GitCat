@@ -43,6 +43,7 @@ class ExploreViewController: UIViewController {
         exploreTableView.register(UINib(nibName: K.ExploreTableViewCellID, bundle: .main), forCellReuseIdentifier: K.ExploreTableViewCellID)
         exploreTableView.frame = view.frame
         self.loadingIndicator.startAnimating()
+
         //navigationItem.largeTitleDisplayMode = .never
        // navigationItem.title = "Repositories"
         //exploreTableView.rowHeight = UITableView.automaticDimension
@@ -51,7 +52,7 @@ class ExploreViewController: UIViewController {
         navigationItem.searchController = searchController
         //searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.delegate = self
     }
     func createSpinnerFooter()-> UIView {
@@ -68,9 +69,7 @@ class ExploreViewController: UIViewController {
         if NetworkMonitor.shared.isConnected {
             loadingIndicator.stopAnimating()
         } else {
-            let alert : UIAlertController = UIAlertController(title:"You Are Disconnected" , message: "Please Check Your Connection!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentAlert (title: "You Are Disconnected", message: "Please Check Your Connection!")
             loadingIndicator.startAnimating()
         }
     }
@@ -84,7 +83,7 @@ class ExploreViewController: UIViewController {
         noReposLabel.isHidden = true
     }
     func presentAlert (title: String, message: String) {
-        let alert : UIAlertController = UIAlertController(title:title , message: title, preferredStyle: .alert)
+        let alert : UIAlertController = UIAlertController(title:title , message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -115,7 +114,7 @@ class ExploreViewController: UIViewController {
     }
     func fetchMoreSearchedExploreRepos(searchWord: String, pageNum: Int) {
         exploreViewModel.fetchData(searchWord: searchWord, pageNum: pageNum)
-        exploreViewModel.bindingData = { [self] reposData, error in
+        exploreViewModel.bindingData = { reposData, error in
             if let repos = reposData {
                 self.moreExploreReposArray = repos
                 DispatchQueue.main.async {
@@ -126,7 +125,7 @@ class ExploreViewController: UIViewController {
                 }
             }
             if let error = error {
-                presentAlert (title: "Error While Fetching More Repositories" , message: "")
+                self.presentAlert (title: "Error While Fetching More Repositories" , message: "")
                 print(error)
             }
         }

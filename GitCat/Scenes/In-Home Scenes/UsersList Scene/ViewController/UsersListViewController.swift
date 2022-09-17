@@ -8,8 +8,7 @@ import UIKit
 import Kingfisher
 class UsersListViewController: UIViewController {
     //MARK: - Props
-    var pageNumber = 1
-    var page = 0
+    var pageNumber = 2
     var preFetchIndex = 15
     var usersViewModel = UsersListViewModel()
     var usersArray = [UserModel]()
@@ -107,7 +106,7 @@ class UsersListViewController: UIViewController {
         //loadingIndicator.isHidden = false
     }
     func presentAlert (title: String, message: String) {
-        let alert : UIAlertController = UIAlertController(title:title , message: title, preferredStyle: .alert)
+        let alert : UIAlertController = UIAlertController(title:title , message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -122,7 +121,7 @@ class UsersListViewController: UIViewController {
     func fetchUsers(for searchKeyword: String) {
         self.loadingIndicator.startAnimating()
         usersViewModel.fetchSearchedUsers(searchWord: searchKeyword, PageNum: 1)
-        usersViewModel.bindingData = { [self] users, error in
+        usersViewModel.bindingData = { users, error in
             if let usersList = users {
                 self.usersArray = usersList
                 DispatchQueue.main.async {
@@ -134,14 +133,14 @@ class UsersListViewController: UIViewController {
                 }
             }
             if let error = error {
-                presentAlert (title: "Error While Fetching Users", message: "")
+                self.presentAlert (title: "Error While Fetching Users", message: "")
                 print(error)
             }
         }
     }
     func fetchMoreUsers(for searchKeyword: String, pageNum: Int) {
         usersViewModel.fetchSearchedUsers(searchWord: searchKeyword, PageNum: pageNum)
-        usersViewModel.bindingData = { [self] users, error in
+        usersViewModel.bindingData = { users, error in
             if let usersList = users {
                 self.moreUsersArray = usersList
                 DispatchQueue.main.async {
@@ -152,7 +151,7 @@ class UsersListViewController: UIViewController {
                 }
             }
             if let error = error {
-                presentAlert (title: "Error While Fetching More Users", message: "")
+                self.presentAlert (title: "Error While Fetching More Users", message: "")
                 print(error)
             }
         }

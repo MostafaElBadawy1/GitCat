@@ -29,6 +29,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         profileTableView.deselectRow(at: indexPath, animated: true)
+        let passedName = user?.login
         if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
@@ -36,9 +37,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 reposVC.isProfile = true
                 self.navigationController?.pushViewController(reposVC, animated: true)
             case 1:
-                break
+                let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+                reposVC.passedNameFromUserDetailsVC = passedName
+                reposVC.isStarredReposVC = true
+                self.navigationController?.pushViewController(reposVC, animated: true)
             case 2:
-                break
+                let orgsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.OrganizationsViewControllerID) as! OrganizationsViewController
+                orgsVC.passedNameFromUserDetailsVC = passedName
+                self.navigationController?.pushViewController(orgsVC, animated: true)
             default:
                 break
             }

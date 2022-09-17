@@ -3,7 +3,7 @@
 //  GitCat
 //
 //  Created by Mostafa Elbadawy on 09/09/2022.
-//
+//For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
 import UIKit
 import AuthenticationServices
 class LoginViewController: UIViewController {
@@ -15,9 +15,7 @@ class LoginViewController: UIViewController {
             self.getGitHubIdentity()
         }))
         alert.addAction(UIAlertAction(title:"Guest Mode", style: .default, handler: { _ in
-            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
-            tabBarVC.modalPresentationStyle = .fullScreen
-            self.present(tabBarVC, animated: true, completion: nil)
+            self.guestModeAlert()
         }))
         alert.addAction(UIAlertAction(title:"Cancel", style: .cancel, handler: { _ in
         }))
@@ -29,7 +27,6 @@ class LoginViewController: UIViewController {
     }
     func getGitHubIdentity() {
         var authorizeURLComponents = URLComponents(string: K.GitHubConstants.authorizeURL)
-        // print(K.GitHubConstants.scope)
         authorizeURLComponents?.queryItems = [
             URLQueryItem(name: "client_id", value: K.GitHubConstants.clientID),
             URLQueryItem(name: "scope", value: K.GitHubConstants.scope)
@@ -67,7 +64,16 @@ class LoginViewController: UIViewController {
         webAuthenticationSession?.presentationContextProvider = self
         webAuthenticationSession?.start()
     }
-}
+    func guestModeAlert () {
+        let alert = UIAlertController(title: "", message: "With continuing with Guest mode you will face API usage limit due to GitHup's unauthenticated requests Rate limit", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title:"Ok", style: .default, handler: { _ in
+            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
+            tabBarVC.modalPresentationStyle = .fullScreen
+            self.present(tabBarVC, animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    }
 // MARK: - ASWebAuthenticationPresentationContextProviding
 extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {

@@ -43,12 +43,8 @@ class OrganizationsViewController: UIViewController {
         let label = UILabel()
         label.text = "No Organizations Available."
         label.font = UIFont.systemFont(ofSize: 18)
-        //label.translatesAutoresizingMaskIntoConstraints = false
         label.frame =  CGRect(x: 100, y: 400, width:300, height: 50)
-        
-        //if orgsArray.isEmpty {
         self.view.addSubview(label)
-        //}
     }
     func networkReachability(){
         loadingIndicator.style = .medium
@@ -57,9 +53,7 @@ class OrganizationsViewController: UIViewController {
         if NetworkMonitor.shared.isConnected {
             loadingIndicator.stopAnimating()
         } else {
-            let alert : UIAlertController = UIAlertController(title:"You Are Disconnected" , message: "Please Check Your Connection !", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentAlert(title: "You Are Disconnected" , message: "Please Check Your Connection !")
             loadingIndicator.startAnimating()
         }
     }
@@ -68,28 +62,35 @@ class OrganizationsViewController: UIViewController {
         self.orgsTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     @objc private func refreshData() {
-        fetchOrgs(userName: passedNameFromUserDetailsVC!)
+        if let userName = passedNameFromUserDetailsVC {
+            fetchOrgs(userName: userName)
+        }
         self.orgsTableView.reloadData()
+    }
+    func presentAlert(title: String , message: String) {
+        let alert : UIAlertController = UIAlertController(title: title , message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     //MARK: - Data Functions
     func fetchOrgs(userName: String) {
-        Task.init {
-            if let orgs = await organizationsViewModel.fetchUserOrg(userName: userName) {
-                self.orgsArray = orgs
-                DispatchQueue.main.async {
-                    self.loadingIndicator.stopAnimating()
-                    self.orgsTableView.reloadData()
+        organizationsViewModel.fetchOrgs(userName: userName)
+        organizationsViewModel.bindingData = { orgs, error in
+                if let orgsData = orgs {
+                    self.orgsArray = orgsData
+                    DispatchQueue.main.async {
+                        self.orgsTableView.reloadData()
+                        self.loadingIndicator.stopAnimating()
+                        if self.orgsArray.isEmpty {
+                            self.orgsLabelConfig()
+                        }
+                    }
                 }
-                if orgsArray.isEmpty {
-                    orgsTableView.isHidden = true
-                    orgsLabelConfig()
+                if let error = error {
+                    self.presentAlert(title: "Error While Fetching Organizations", message: "")
+                    print(error)
                 }
-            } else {
-                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Organizations" , message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
             }
-        }
     }
 }
 

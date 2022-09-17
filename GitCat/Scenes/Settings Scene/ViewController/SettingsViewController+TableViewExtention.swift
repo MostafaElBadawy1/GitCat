@@ -52,7 +52,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             logOut()
             
         }
-        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = SettingsTableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
