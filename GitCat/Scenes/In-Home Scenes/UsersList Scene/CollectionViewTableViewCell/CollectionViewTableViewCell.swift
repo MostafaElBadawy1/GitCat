@@ -9,6 +9,8 @@ import Kingfisher
 class CollectionViewTableViewCell: UITableViewCell {
     var visitedUserArray = [VisitedUser]()
     var usersListViewController = UsersListViewController()
+    var delegate: CollectionViewTableViewCellDelegate?
+    var index: IndexPath?
     @IBOutlet weak var recentVisitedUsersCollectionView: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,18 +38,15 @@ class CollectionViewTableViewCell: UITableViewCell {
 
 }
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
-        <#code#>
-    }
+//    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
+//        <#code#>
+//    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(visitedUserArray.count)
         return visitedUserArray.count
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
-       // recentVisitedUsersCollectionView.deselectItem(at: indexPath, animated: true)
-        let userDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UserDetailsViewControllerID) as! UserDetailsViewController
-        userDetailsVC.passeedDataFromUserListVC = visitedUserArray[indexPath.item].userName
-        usersListViewController.navigationController?.pushViewController(userDetailsVC, animated: true)
+        delegate?.tappedCell(cell: self, index: indexPath.item)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = recentVisitedUsersCollectionView.dequeueReusableCell(withReuseIdentifier: K.RecentVisitedUsersCollectionViewCellID, for: indexPath) as! RecentVisitedUsersCollectionViewCell
@@ -61,8 +60,10 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
 }
 extension CollectionViewTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionWidth = collectionView.bounds.width
         return CGSize(width: 100 , height: 120 )
     }
 }
 
+protocol CollectionViewTableViewCellDelegate  {
+    func tappedCell(cell: CollectionViewTableViewCell, index: Int)
+}

@@ -9,36 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search History View Controller-->
-        <scene sceneID="gba-yD-MxD">
-            <objects>
-                <viewController id="Rw6-jV-iia" customClass="SearchHistoryViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3YX-is-Fqx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-Uk-PDK">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="4pG-h6-QVx"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="4pG-h6-QVx" firstAttribute="bottom" secondItem="N1L-Uk-PDK" secondAttribute="bottom" id="CGe-fs-NJN"/>
-                            <constraint firstItem="N1L-Uk-PDK" firstAttribute="top" secondItem="4pG-h6-QVx" secondAttribute="top" id="G05-vY-jFJ"/>
-                            <constraint firstItem="N1L-Uk-PDK" firstAttribute="leading" secondItem="4pG-h6-QVx" secondAttribute="leading" id="IPT-pK-2NM"/>
-                            <constraint firstItem="4pG-h6-QVx" firstAttribute="trailing" secondItem="N1L-Uk-PDK" secondAttribute="trailing" id="nG8-GO-Wqi"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="recentSearchTableView" destination="N1L-Uk-PDK" id="M8L-wn-cSJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NhY-fu-mux" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3171" y="-495"/>
-        </scene>
         <!--Users-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -583,36 +553,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmi-S8-tov" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-94" y="4568"/>
-        </scene>
-        <!--Recent Search View Controller-->
-        <scene sceneID="3X9-ZU-Sfs">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B4F-z8-yqb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="M2s-2B-bXc" customClass="RecentSearchViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3EY-DW-jb7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Vg3-Hk-iN8">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="ji7-zc-GVS"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="ji7-zc-GVS" firstAttribute="trailing" secondItem="Vg3-Hk-iN8" secondAttribute="trailing" id="Ldb-nw-bHo"/>
-                            <constraint firstItem="ji7-zc-GVS" firstAttribute="bottom" secondItem="Vg3-Hk-iN8" secondAttribute="bottom" id="Tc2-UQ-jQw"/>
-                            <constraint firstItem="Vg3-Hk-iN8" firstAttribute="leading" secondItem="ji7-zc-GVS" secondAttribute="leading" id="dNx-yN-3k8"/>
-                            <constraint firstItem="Vg3-Hk-iN8" firstAttribute="top" secondItem="ji7-zc-GVS" secondAttribute="top" id="tif-8a-Trd"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="searchHistoryTableView" destination="Vg3-Hk-iN8" id="BUT-K0-4nj"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="742" y="-3474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="84e-vh-1TA">

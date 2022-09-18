@@ -63,6 +63,8 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
             let searchWordCell = searchHistoryTableView.dequeueReusableCell(withIdentifier: K.RecentSearchTableViewCellID) as! RecentSearchTableViewCell
             switch indexPath.section {
             case 0:
+                recentVisitedUsersCell.delegate = self
+                recentVisitedUsersCell.index = indexPath
                 return recentVisitedUsersCell
             default:
                 searchWordCell.recentSearchLabel.text = searchedWordsArray[indexPath.row].word
@@ -101,9 +103,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         case searchHistoryTableView:
             switch indexPath.section {
             case 0:
-                let userDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UserDetailsViewControllerID) as! UserDetailsViewController
-                userDetailsVC.passeedDataFromUserListVC = visitedUserArray[indexPath.item].userName
-                self.navigationController?.pushViewController(userDetailsVC, animated: true)
+                break
             case 1:
                 fetchUsers(for: searchedWordsArray[indexPath.row].word!)
                 searchController.searchBar.text = searchedWordsArray[indexPath.row].word!
@@ -165,26 +165,3 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
-extension UsersListViewController: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        //                let indices = indexPaths.map { "\($0.row)"}.joined(separator: ".")
-        //                print("prefetching \(indices)")
-        for indexPath in indexPaths {
-            if indexPath.row == preFetchIndex {
-                self.usersListTableView.tableFooterView = createSpinnerFooter()
-                guard let text = searchController.searchBar.text else { return }
-                let filteredText = text.filter { $0.isLetter || $0.isNumber  }
-                if filteredText.isEmpty {
-                    fetchMoreUsers(for : "mo", pageNum: pageNumber)
-                } else {
-                    fetchMoreUsers(for: filteredText, pageNum: pageNumber)
-                }
-                preFetchIndex = preFetchIndex + 30
-                pageNumber = pageNumber + 1
-            }
-        }
-    }
-}
-
-

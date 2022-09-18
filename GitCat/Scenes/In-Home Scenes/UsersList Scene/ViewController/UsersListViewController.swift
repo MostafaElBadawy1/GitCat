@@ -55,6 +55,7 @@ class UsersListViewController: UIViewController {
     func InitViewModel(){
         fetchUsers(for: "mo")
         fetchSearchedWords()
+        fetchVisitedUsers()
     }
     //MARK: - View Functions
     func setup() {
@@ -80,8 +81,6 @@ class UsersListViewController: UIViewController {
         searchHistoryTableView.register(UINib(nibName: K.RecentSearchTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RecentSearchTableViewCellID)
         searchHistoryTableView.frame = view.bounds
         searchHistoryTableView.isHidden = true
-        searchHistoryTableView.sectionHeaderHeight = 100
-        //        self.usersListTableView.tableFooterView = createSpinnerFooter()
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController
@@ -193,6 +192,16 @@ class UsersListViewController: UIViewController {
         CoreDataManger.shared.fetch(entityName: SearchedWord.self) { (words, error) in
             if let words = words {
                 self.searchedWordsArray = words
+                DispatchQueue.main.async {
+                    self.searchHistoryTableView.reloadData()
+                }
+            }
+        }
+    }
+    func fetchVisitedUsers() {
+        CoreDataManger.shared.fetch(entityName: VisitedUser.self) { (users, error) in
+            if let users = users {
+                self.visitedUserArray = users
                 DispatchQueue.main.async {
                     self.searchHistoryTableView.reloadData()
                 }

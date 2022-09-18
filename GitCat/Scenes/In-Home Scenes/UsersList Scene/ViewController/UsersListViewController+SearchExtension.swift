@@ -7,17 +7,18 @@
 import UIKit
 extension UsersListViewController: UISearchBarDelegate{
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        //setup()
         //searchHistoryVC.view.isHidden = false
         usersListTableView.isHidden = true
         searchHistoryTableView.isHidden = false
+        if visitedUserArray.isEmpty && searchedWordsArray.isEmpty {
+            emptySearchVClabelsConfig()
+        }
         loadingIndicator.stopAnimating()
         return true
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         usersListTableView.isHidden = false
-        searchHistoryTableView.isHidden = true
-       // searchHistoryVCConfig()
+        searchHistoryTableView.isHidden = false
         return true
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -28,11 +29,16 @@ extension UsersListViewController: UISearchBarDelegate{
         fetchUsers(for: filteredText)
         let searchWord = SearchedWord(context: self.context)
         searchWord.word = filteredText
+        if filteredText.isEmpty {
+            return
+        } else {
+            
             do {
                 try self.context.save()
             } catch {
                 presentAlert(title: "Error While Saving Search Word", message: "")
             }
+        }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         usersListTableView.isHidden = false
@@ -64,13 +70,5 @@ extension UsersListViewController: UISearchBarDelegate{
             } catch {
                 presentAlert(title: "Error While Saving Search Word", message: "")
             }
-       // searchHistoryVCConfig()
     }
 }
-//extension UsersListViewController: UISearchResultsUpdating {
-//    func updateSearchResults(for searchController: UISearchController) {
-//        <#code#>
-//    }
-//    search
-//    
-//}

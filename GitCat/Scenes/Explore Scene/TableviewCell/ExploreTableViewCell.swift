@@ -16,7 +16,6 @@ class ExploreTableViewCell: UITableViewCell {
     @IBOutlet weak var languageLabel: UILabel!
     @IBAction func bookmarkButton(_ sender: UIButton) {
         delegate?.addStarredCell(cell: self, index: index!.row)
-        print("bookmark pressed")
     }
     override func awakeFromNib() {
         super.awakeFromNib()
