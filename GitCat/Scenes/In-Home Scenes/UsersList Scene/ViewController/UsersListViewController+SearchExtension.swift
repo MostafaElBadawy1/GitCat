@@ -7,44 +7,70 @@
 import UIKit
 extension UsersListViewController: UISearchBarDelegate{
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-       // setup()
+        //setup()
         //searchHistoryVC.view.isHidden = false
-       // usersListTableView.isHidden = true
-        //loadingIndicator.stopAnimating()
+        usersListTableView.isHidden = true
+        searchHistoryTableView.isHidden = false
+        loadingIndicator.stopAnimating()
         return true
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        usersListTableView.isHidden = false
+        searchHistoryTableView.isHidden = true
        // searchHistoryVCConfig()
         return true
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-       // searchHistoryVCConfig()
+        usersListTableView.isHidden = false
+        searchHistoryTableView.isHidden = true
         guard let text = searchController.searchBar.text else { return }
         let filteredText = text.filter { $0.isLetter || $0.isNumber  }
         fetchUsers(for: filteredText)
-//        let searchWord = SearchedWord(context: self.context)
-//        searchWord.word = filteredText
-//            do {
-//                try self.context.save()
-//            } catch {
-//                presentAlert(title: "Error While Saving Search Word", message: "")
-//            }
+        let searchWord = SearchedWord(context: self.context)
+        searchWord.word = filteredText
+            do {
+                try self.context.save()
+            } catch {
+                presentAlert(title: "Error While Saving Search Word", message: "")
+            }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-       // searchHistoryVCConfig()
+        usersListTableView.isHidden = false
+        searchHistoryTableView.isHidden = true
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(reload), object: nil)
         self.perform(#selector(reload), with: nil, afterDelay: 1)
     }
     @objc func reload() {
         guard let text = searchController.searchBar.text else { return }
-        let filteredText = text.filter { $0.isLetter || $0.isNumber }
-        //print(filteredText)
-        fetchUsers(for: filteredText)
+        let filteredText = text.filter { $0.isLetter || $0.isNumber || $0.isPunctuation }
+        if filteredText.isEmpty {
+            usersListTableView.isHidden = true
+            searchHistoryTableView.isHidden = false
+        } else {
+            fetchUsers(for: filteredText)
+        }
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         fetchUsers(for: "mo")
         noUserslabel.isHidden = true
+        usersListTableView.isHidden = false
+        searchHistoryTableView.isHidden = true
+        guard let text = searchController.searchBar.text else { return }
+        let filteredText = text.filter { $0.isLetter || $0.isNumber  }
+        let searchWord = SearchedWord(context: self.context)
+        searchWord.word = filteredText
+            do {
+                try self.context.save()
+            } catch {
+                presentAlert(title: "Error While Saving Search Word", message: "")
+            }
        // searchHistoryVCConfig()
     }
 }
-
+//extension UsersListViewController: UISearchResultsUpdating {
+//    func updateSearchResults(for searchController: UISearchController) {
+//        <#code#>
+//    }
+//    search
+//    
+//}

@@ -5,6 +5,7 @@
 //  Created by Mostafa Elbadawy on 10/08/2022.
 //
 import UIKit
+import CoreData
 class SettingsViewController: UIViewController {
     var userInfoHeader : UserInfoHeader?
     var usersModel = [User]()
@@ -48,6 +49,25 @@ class SettingsViewController: UIViewController {
         SettingsTableView.tableHeaderView?.backgroundColor = .systemGray6
     }
     func clearBookmarks()  {
+//        let fetchRequest = NSFetchRequest(entityName: User)
+//        
+//        // Configure Fetch Request
+//        fetchRequest.includesPropertyValues = false
+//
+//        do {
+//            let items = try managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+//
+//            for item in items {
+//                managedObjectContext.deleteObject(item)
+//            }
+//
+//            // Save Changes
+//            try managedObjectContext.save()
+//
+//        } catch {
+//            // Error Handling
+//            // ...
+//        }
         do
         {
             try CoreDataManger.shared.clearBookmarks()

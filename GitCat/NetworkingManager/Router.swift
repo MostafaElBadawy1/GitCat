@@ -23,7 +23,7 @@ enum GitRouter {
     var baseURL: String {
         switch self {
         case .fetchUserRepositories, .fetchUserStarredRepositories, .fetchMyRepositories, .searchRepositories, .fetchCommits, .fetchUserProfile, .searchUsers, .fetchSearchedUserProfile, .searchIssues, .exploreRepos, .fetchUserOrgs, .fetchMyRepo:
-            return "https://api.github.com"
+            return "https://api.github.com/"
         case .fetchAccessToken:
             return "https://github.com"
         }
@@ -53,7 +53,7 @@ enum GitRouter {
         case .fetchUserOrgs(let userName):
             return "users/\(userName)/orgs"
         case .fetchMyRepo:                  //x
-            return "repozzs/MostafaElBadawy1/GitCat"
+            return "repos/MostafaElBadawy1/GitCat"
         case .fetchAccessToken:
             return "/login/oauth/access_token"
         }

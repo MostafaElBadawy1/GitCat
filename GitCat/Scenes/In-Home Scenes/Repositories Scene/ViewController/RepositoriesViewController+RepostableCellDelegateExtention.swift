@@ -8,7 +8,6 @@ import UIKit
 extension RepositoriesViewController: RepostableCellDelegate {
     func addTappedCell(cell: RepositoriesTableViewCell, index: Int) {
         let repoModel = Repo(context: self.context)
-        if isStarredReposVC == true || isWithSearchController == false {
             repoModel.repoName = reposArray[index].name
             repoModel.repoFullName = reposArray[index].full_name
             repoModel.repoDescription = reposArray[index].description
@@ -24,14 +23,13 @@ extension RepositoriesViewController: RepostableCellDelegate {
 //            repoModel.starredNum = Int64(searchedReposArray[index].stargazers_count!)
 //            repoModel.repoImageUrl = URL(string: ((searchedReposArray[index].owner?.avatar_url)!))
 //            repoModel.ownerName = searchedReposArray[index].owner?.login
-        }
+        //}
         do {
             try self.context.save()
+            presentAlert(title: "Repository Added to Bookmarks" , message: "")
         } catch {
             context.reset()
-            let alert : UIAlertController = UIAlertController(title:"This Repository Is Already Bookmarked" , message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentAlert(title: "This Repository Is Already Bookmarked" , message: "")
         }
     }
 }

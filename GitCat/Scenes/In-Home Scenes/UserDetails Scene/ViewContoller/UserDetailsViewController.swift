@@ -16,9 +16,7 @@ class UserDetailsViewController: UIViewController {
     let userDetailsArray = ["Repositories","Starred","Organization"]
     let imagesArray = [UIImage(named: "repoIcon"),UIImage(named: "Star"),UIImage(named: "Organization")]
     let tryAgainButton = UIButton()
-    // var usersModel = [User]()
-    //var workoutSet = Set<usersModel>()
-    //var userSet : Set = Set<usersModel>: usersModel
+    var isSaved = false
     //MARK: - IBOutlets
     @IBOutlet weak var userDetailsTableView: UITableView!
     //MARK: - @IBAction
@@ -119,7 +117,7 @@ class UserDetailsViewController: UIViewController {
         self.userDetailsTableView.isHidden = true
         
         if let passedUsername = passeedDataFromUserListVC {
-            userDetailsViewModel.fetchUserDetails(userName: "")
+            userDetailsViewModel.fetchUserDetails(userName: passedUsername)
         }
         userDetailsViewModel.bindingData = { userData, error in
             if let user = userData {

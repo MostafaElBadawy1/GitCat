@@ -9,6 +9,7 @@ import Kingfisher
 class HomeViewController: UIViewController {
     //MARK: - Props
     let searchController = UISearchController()
+    var searchHistoryVC = SearchHistoryViewController()
     var homeViewModel = HomeViewModel()
     let homeArray = [["Users", "Repositories", "Issues", "Github Web"], ["My Repo"],["Authenticated User Mode"]]
     let imagesArray = [UIImage(named: "UsersIcon"),UIImage(named: "repoIcon"),UIImage(named: "issuesIcon"),UIImage(named: "GitHubIcon")]
@@ -44,6 +45,13 @@ class HomeViewController: UIViewController {
         self.homeTableView.isHidden = true
         //        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 110))
         //        homeTableView.tableHeaderView = header
+    }
+    func setup() {
+        addChild(searchHistoryVC)
+        self.view.addSubview(searchHistoryVC.view)
+        searchHistoryVC.didMove(toParent: self)
+        searchHistoryVC.view.frame = self.view.bounds
+        //searchHistoryVC.view.isHidden = true
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController

@@ -15,15 +15,20 @@ class UsersListViewController: UIViewController {
     var moreUsersArray = [UserModel]()
     var searchController = UISearchController()
     let loadingIndicator = UIActivityIndicatorView()
-    let searchHistoryVC = SearchHistoryViewController()
+    var searchHistoryVC = SearchHistoryViewController()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var usersModel = [User]()
+    var visitedUserArray = [VisitedUser]()
+    var searchedWordsArray = [SearchedWord]()
     let noUserslabel = UILabel()
+    let firstlabel = UILabel()
+    let secondlabel = UILabel()
     //var usersSearchResultViewController = UsersSearchResultViewController()
     //var cellDelegate : CellLink?
     //var index: IndexPath?
     //MARK: - IBOutlets
     @IBOutlet weak var usersListTableView: UITableView!
+    @IBOutlet weak var searchHistoryTableView: UITableView!
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,32 +42,45 @@ class UsersListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         networkReachability()
+        searchHistoryTableView.reloadData()
     }
     //MARK: - Main Functions
     func initView(){
-        tableViewConfig()
+        usersTableViewConfig()
+        searchHistoryTableViewConfig()
         searchControllerConfig()
         refreshPage()
         //setup()
     }
     func InitViewModel(){
         fetchUsers(for: "mo")
+        fetchSearchedWords()
     }
     //MARK: - View Functions
-    func setup(){
+    func setup() {
         addChild(searchHistoryVC)
         self.view.addSubview(searchHistoryVC.view)
         searchHistoryVC.didMove(toParent: self)
         searchHistoryVC.view.frame = self.view.bounds
         //searchHistoryVC.view.isHidden = true
     }
-    func tableViewConfig() {
+    func usersTableViewConfig() {
         usersListTableView.delegate = self
         usersListTableView.dataSource = self
         usersListTableView.prefetchDataSource = self
         usersListTableView.register(UINib(nibName: K.usersListTableViewCell, bundle: .main), forCellReuseIdentifier: K.UserListCellID)
         usersListTableView.frame = view.bounds
         loadingIndicator.backgroundColor = .black
+        //        self.usersListTableView.tableFooterView = createSpinnerFooter()
+    }
+    func searchHistoryTableViewConfig() {
+        searchHistoryTableView.delegate = self
+        searchHistoryTableView.dataSource = self
+        searchHistoryTableView.register(UINib(nibName: K.CollectionViewTableViewCellID, bundle: .main), forCellReuseIdentifier:  K.CollectionViewTableViewCellID)
+        searchHistoryTableView.register(UINib(nibName: K.RecentSearchTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RecentSearchTableViewCellID)
+        searchHistoryTableView.frame = view.bounds
+        searchHistoryTableView.isHidden = true
+        searchHistoryTableView.sectionHeaderHeight = 100
         //        self.usersListTableView.tableFooterView = createSpinnerFooter()
     }
     func searchControllerConfig() {
@@ -117,6 +135,21 @@ class UsersListViewController: UIViewController {
         noUserslabel.frame =  CGRect(x: 110, y: 400, width:300, height: 50)
         self.view.addSubview(noUserslabel)
     }
+    func emptySearchVClabelsConfig(){
+        firstlabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
+        firstlabel.center = CGPoint(x: 200, y: 420)
+        firstlabel.textAlignment = .center
+        firstlabel.text = "Find Your stuff."
+        firstlabel.font = .boldSystemFont(ofSize: 19)
+        self.view.addSubview(firstlabel)
+        secondlabel.frame =  CGRect(x: 0, y: 0, width: 400, height: 60)
+        secondlabel.center = CGPoint(x: 205, y: 475)
+        secondlabel.textAlignment = .center
+        secondlabel.text = "Search all of GitHub for People, Repositories, Organizations, Issues, and Pull Requests"
+        secondlabel.numberOfLines = 0
+        secondlabel.textColor = .gray
+        self.view.addSubview(secondlabel)
+    }
     //MARK: - Data Functions
     func fetchUsers(for searchKeyword: String) {
         self.loadingIndicator.startAnimating()
@@ -153,6 +186,16 @@ class UsersListViewController: UIViewController {
             if let error = error {
                 self.presentAlert (title: "Error While Fetching More Users", message: "")
                 print(error)
+            }
+        }
+    }
+    func fetchSearchedWords() {
+        CoreDataManger.shared.fetch(entityName: SearchedWord.self) { (words, error) in
+            if let words = words {
+                self.searchedWordsArray = words
+                DispatchQueue.main.async {
+                    self.searchHistoryTableView.reloadData()
+                }
             }
         }
     }

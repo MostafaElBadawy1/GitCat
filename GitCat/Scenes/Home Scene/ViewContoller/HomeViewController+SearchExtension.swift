@@ -18,5 +18,8 @@ extension HomeViewController: UISearchControllerDelegate {
     
 }
 extension HomeViewController : UISearchBarDelegate {
-    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+       // setup()
+        return true
+    }
 }

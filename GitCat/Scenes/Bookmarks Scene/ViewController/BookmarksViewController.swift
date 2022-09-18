@@ -13,6 +13,7 @@ class BookmarksViewController: UIViewController {
     var filterdUserArray = [User]()
     var reposArray = [Repo]()
     var filterdReposArray = [Repo]()
+    var bookmarksViewModel = BookmarksViewModel()
     //MARK: - IBOutlets
     @IBOutlet weak var bookmarksTableView: UITableView!
     //MARK: - lifeCycle
@@ -40,7 +41,6 @@ class BookmarksViewController: UIViewController {
         bookmarksTableView.dataSource = self
         bookmarksTableView.register(UINib(nibName: K.usersListTableViewCell, bundle: nil), forCellReuseIdentifier: K.UserListCellID)
         bookmarksTableView.register(UINib(nibName: K.RepositoriesTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RepositoriesTableViewCellID)
-        searchControllerConfig()
         bookmarksTableView.frame = view.frame
     }
     func searchControllerConfig() {
@@ -50,23 +50,49 @@ class BookmarksViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
     }
+    func presentAlert (title: String, message: String) {
+        let alert : UIAlertController = UIAlertController(title:title , message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     //MARK: - Data Function
     func fetchBookmarkedUsers() {
-        CoreDataManger.shared.fetch(entityName: User.self) { (users) in
-            self.usersArray = users
-            self.filterdUserArray = self.usersArray
-            DispatchQueue.main.async {
-                self.bookmarksTableView.reloadData()
+        bookmarksViewModel.fetchBookmarkedUsers()
+        bookmarksViewModel.bindingData = { users , error in
+            if let usersData = users {
+                self.usersArray = usersData
+                self.filterdUserArray = self.usersArray
+                DispatchQueue.main.async {
+                    self.bookmarksTableView.reloadData()
+                }
+            }
+            if let error = error {
+                self.presentAlert (title: "Error While Fetching saved Users " , message: "")
+                print(error)
             }
         }
     }
     func fetchBookmarkedRepos() {
-        CoreDataManger.shared.fetch(entityName: Repo.self) { (repos) in
-            self.reposArray = repos
-            self.filterdReposArray = self.reposArray
-            DispatchQueue.main.async {
-                self.bookmarksTableView.reloadData()
+        bookmarksViewModel.fetchBookmarkedReposs()
+        bookmarksViewModel.bindingReposData = { repos, error in
+            if let reposData = repos {
+                self.reposArray = reposData
+                self.filterdReposArray = self.reposArray
+                DispatchQueue.main.async {
+                    self.bookmarksTableView.reloadData()
+                }
+            }
+            if let error = error {
+                self.presentAlert (title: "Error While Fetching saved Reopsitories " , message: "")
+                print(error)
             }
         }
+//        CoreDataManger.shared.fetch(entityName: Repo.self) { (repos) in
+//            self.reposArray = repos
+//            self.filterdReposArray = self.reposArray
+//            DispatchQueue.main.async {
+//                self.bookmarksTableView.reloadData()
+//            }
+//        }
     }
 }

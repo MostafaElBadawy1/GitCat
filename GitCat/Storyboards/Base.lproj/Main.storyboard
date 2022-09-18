@@ -47,6 +47,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="2Qp-NZ-8PM">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gfT-aO-cSr">
                                 <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                             </tableView>
@@ -62,12 +67,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Users" id="AZR-Qh-udD"/>
                     <connections>
+                        <outlet property="searchHistoryTableView" destination="2Qp-NZ-8PM" id="IuT-fM-EZU"/>
                         <outlet property="usersListTableView" destination="gfT-aO-cSr" id="ag4-3z-B9R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-94" y="970"/>
+            <point key="canvasLocation" x="-94.20289855072464" y="969.64285714285711"/>
         </scene>
         <!--Organizations View Controller-->
         <scene sceneID="gQz-bF-rRz">
@@ -577,6 +583,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmi-S8-tov" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-94" y="4568"/>
+        </scene>
+        <!--Recent Search View Controller-->
+        <scene sceneID="3X9-ZU-Sfs">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B4F-z8-yqb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="M2s-2B-bXc" customClass="RecentSearchViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3EY-DW-jb7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Vg3-Hk-iN8">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ji7-zc-GVS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ji7-zc-GVS" firstAttribute="trailing" secondItem="Vg3-Hk-iN8" secondAttribute="trailing" id="Ldb-nw-bHo"/>
+                            <constraint firstItem="ji7-zc-GVS" firstAttribute="bottom" secondItem="Vg3-Hk-iN8" secondAttribute="bottom" id="Tc2-UQ-jQw"/>
+                            <constraint firstItem="Vg3-Hk-iN8" firstAttribute="leading" secondItem="ji7-zc-GVS" secondAttribute="leading" id="dNx-yN-3k8"/>
+                            <constraint firstItem="Vg3-Hk-iN8" firstAttribute="top" secondItem="ji7-zc-GVS" secondAttribute="top" id="tif-8a-Trd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchHistoryTableView" destination="Vg3-Hk-iN8" id="BUT-K0-4nj"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="742" y="-3474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="84e-vh-1TA">

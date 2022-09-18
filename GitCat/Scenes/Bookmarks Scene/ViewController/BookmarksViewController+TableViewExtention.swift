@@ -47,6 +47,7 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let userDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UserDetailsViewControllerID) as! UserDetailsViewController
             userDetailsVC.passeedDataFromUserListVC = filterdUserArray[indexPath.row].userName
+            userDetailsVC.isSaved = true
             self.navigationController?.pushViewController(userDetailsVC, animated: true)
         case 1:
             let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
@@ -55,7 +56,7 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(commitsVC, animated: true)
         default:
             break
-
+            
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,6 +80,7 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
             repoCell.repoImageView.layer.masksToBounds = false
             repoCell.repoImageView.layer.cornerRadius = repoCell.repoImageView.frame.height/2
             repoCell.repoImageView.clipsToBounds = true
+            repoCell.languageIndicator.isHidden = true
             return repoCell
         }
     }
@@ -91,19 +93,43 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.section == 0 {
                 let userItem = filterdUserArray[indexPath.row]
                 CoreDataManger.shared.delete(entityName: User.self, delete: userItem)
-                CoreDataManger.shared.fetch(entityName: User.self) { (item) in
-                    self.filterdUserArray = item
-                    DispatchQueue.main.async {
-                        self.bookmarksTableView.reloadData()
+                //                bookmarksViewModel.deleteItem(entityName: User.self, delete: userItem)
+                //                bookmarksViewModel.fetchBookmarkedUsers()
+                //                bookmarksViewModel.bindingData = { users , error in
+                //                    if let usersData = users {
+                //                        self.usersArray = usersData
+                //                        DispatchQueue.main.async {
+                //                            self.bookmarksTableView.reloadData()
+                //                        }
+                //                    }
+                //                }
+                CoreDataManger.shared.fetch(entityName: User.self) { (item, error) in
+                    if let item = item {
+                        self.filterdUserArray = item
+                        DispatchQueue.main.async {
+                            self.bookmarksTableView.reloadData()
+                        }
+                    }
+                    if let error = error {
+                        self.presentAlert (title: "Error While Deleting User " , message: "")
+                        print(error)
                     }
                 }
             } else {
                 let item = filterdReposArray[indexPath.row]
                 CoreDataManger.shared.delete(entityName: Repo.self, delete: item)
-                CoreDataManger.shared.fetch(entityName: Repo.self) { (item) in
-                    self.filterdReposArray = item
-                    DispatchQueue.main.async {
-                        self.bookmarksTableView.reloadData()
+                // fetchBookmarkedRepos()
+                CoreDataManger.shared.fetch(entityName: Repo.self) { (item, error) in
+                    if let item = item {
+                        self.filterdReposArray = item
+                        DispatchQueue.main.async {
+                            self.bookmarksTableView.reloadData()
+                        }
+                    }
+                    
+                    if let error = error {
+                        self.presentAlert (title: "Error While Deleting Repo " , message: "")
+                        print(error)
                     }
                 }
             }

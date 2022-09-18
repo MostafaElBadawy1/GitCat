@@ -38,6 +38,9 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         userDetailsCell.userImage.layer.masksToBounds = false
         userDetailsCell.userImage.layer.cornerRadius = userDetailsCell.userImage.frame.height/2
         userDetailsCell.userImage.clipsToBounds = true
+        if isSaved == true {
+            userDetailsCell.bookmarkButtonImage.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }
         if indexPath.section == 0 && indexPath.row == 0 {
             userDetailsCell.selectionStyle = .none
             return userDetailsCell
