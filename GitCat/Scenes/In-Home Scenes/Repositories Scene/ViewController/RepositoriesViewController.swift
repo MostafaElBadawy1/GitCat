@@ -22,6 +22,7 @@ class RepositoriesViewController: UIViewController {
     let loadingIndicator = UIActivityIndicatorView()
     let spinner = UIActivityIndicatorView()
     let searchController = UISearchController()
+    var passedTextFromSearch: String?
     var isLoggedIn: Bool {
         if TokenManager.shared.fetchAccessToken() != nil {
             return true
@@ -63,17 +64,10 @@ class RepositoriesViewController: UIViewController {
                  fetchUserRepositories(repoOwner: repoOwner)
             }
         }
-//        else {
-//            if isProfile == true {
-//                fetchMyRepositories()
-//            } else {
-//                if isStarredReposVC == true {
-//                    fetchStarredRepositories(userName: repoOwner)
-//                } else {
-//                    fetchUserRepositories(repoOwner: repoOwner)
-//                }
-//            }
-//        }
+        if let passedText = passedTextFromSearch {
+            searchRepos(for: passedText)
+            searchController.searchBar.text = passedText
+        }
     }
     //MARK: - View Functions
     func tableViewConfig() {
@@ -109,6 +103,7 @@ class RepositoriesViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search For Repositories."
     }
     func createSpinnerFooter()-> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))

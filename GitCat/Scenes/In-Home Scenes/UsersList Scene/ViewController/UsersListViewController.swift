@@ -23,6 +23,7 @@ class UsersListViewController: UIViewController {
     let noUserslabel = UILabel()
     let firstlabel = UILabel()
     let secondlabel = UILabel()
+    var passedTextFromSearch: String?
     //var usersSearchResultViewController = UsersSearchResultViewController()
     //var cellDelegate : CellLink?
     //var index: IndexPath?
@@ -50,21 +51,17 @@ class UsersListViewController: UIViewController {
         searchHistoryTableViewConfig()
         searchControllerConfig()
         refreshPage()
-        //setup()
     }
     func InitViewModel(){
         fetchUsers(for: "mo")
         fetchSearchedWords()
         fetchVisitedUsers()
+        if let passedText = passedTextFromSearch {
+            fetchUsers(for: passedText)
+            searchController.searchBar.text = passedText
+        }
     }
     //MARK: - View Functions
-    func setup() {
-        addChild(searchHistoryVC)
-        self.view.addSubview(searchHistoryVC.view)
-        searchHistoryVC.didMove(toParent: self)
-        searchHistoryVC.view.frame = self.view.bounds
-        //searchHistoryVC.view.isHidden = true
-    }
     func usersTableViewConfig() {
         usersListTableView.delegate = self
         usersListTableView.dataSource = self
@@ -72,7 +69,6 @@ class UsersListViewController: UIViewController {
         usersListTableView.register(UINib(nibName: K.usersListTableViewCell, bundle: .main), forCellReuseIdentifier: K.UserListCellID)
         usersListTableView.frame = view.bounds
         loadingIndicator.backgroundColor = .black
-        //        self.usersListTableView.tableFooterView = createSpinnerFooter()
     }
     func searchHistoryTableViewConfig() {
         searchHistoryTableView.delegate = self
@@ -88,6 +84,7 @@ class UsersListViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search For Users."
     }
     func createSpinnerFooter()-> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
@@ -127,7 +124,7 @@ class UsersListViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    func LabelConfig(){
+    func LabelConfig() {
         noUserslabel.text = "There aren't any users."
         noUserslabel.font = UIFont.boldSystemFont(ofSize: 20)
         //label.translatesAutoresizingMaskIntoConstraints = false
@@ -195,7 +192,11 @@ class UsersListViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.searchHistoryTableView.reloadData()
                 }
+            } else {
+                print(error)
+                self.presentAlert (title: "Error While Fetching Search History Words", message: "")
             }
+            
         }
     }
     func fetchVisitedUsers() {
@@ -205,6 +206,9 @@ class UsersListViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.searchHistoryTableView.reloadData()
                 }
+            }  else {
+                print(error)
+                self.presentAlert (title: "Error While Fetching Search History Users", message: "")
             }
         }
     }

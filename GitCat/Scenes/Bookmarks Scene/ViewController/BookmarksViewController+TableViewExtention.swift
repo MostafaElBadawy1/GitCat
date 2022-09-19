@@ -126,7 +126,6 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
                             self.bookmarksTableView.reloadData()
                         }
                     }
-                    
                     if let error = error {
                         self.presentAlert (title: "Error While Deleting Repo " , message: "")
                         print(error)

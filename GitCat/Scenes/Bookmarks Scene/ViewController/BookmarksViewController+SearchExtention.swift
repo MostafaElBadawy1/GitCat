@@ -33,11 +33,11 @@ extension BookmarksViewController: UISearchBarDelegate {
             filterdReposArray = reposArray
             self.bookmarksTableView.reloadData()
         } else {
-            filterdUserArray = usersArray.filter({ mod in
-                return mod.userName!.contains(searchText.lowercased())
+            filterdUserArray = usersArray.filter({ model in
+                return model.userName!.contains(searchText.lowercased())
             })
-            filterdReposArray = reposArray.filter({ mod in
-                return mod.repoFullName!.contains(searchText.lowercased()) || mod.repoName!.contains(searchText.lowercased())
+            filterdReposArray = reposArray.filter({ model in
+                return model.repoFullName!.contains(searchText.lowercased()) || model.repoName!.contains(searchText.lowercased())
             })
             self.bookmarksTableView.reloadData()
         }

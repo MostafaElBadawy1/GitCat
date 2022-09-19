@@ -54,6 +54,7 @@ class ExploreViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search In Most Starred Repositories."
     }
     func createSpinnerFooter()-> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))

@@ -45,10 +45,10 @@ class BookmarksViewController: UIViewController {
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController
-        //searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search For Bookmarked Users or Repositories."
     }
     func presentAlert (title: String, message: String) {
         let alert : UIAlertController = UIAlertController(title:title , message: message, preferredStyle: .alert)

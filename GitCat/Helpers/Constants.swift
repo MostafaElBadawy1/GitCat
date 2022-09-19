@@ -30,6 +30,7 @@ struct K {
     static let ExploreTableViewCellID = "ExploreTableViewCell"
     static let CollectionViewTableViewCellID = "CollectionViewTableViewCell"
     static let loginViewControllerID = "LoginViewController"
+    static let navigatingSearchTableViewCell = "NavigatingSearchTableViewCell"
     enum GitHubConstants {
         static let clientID = "a4256f5599e7f5ce4e5f"
         static let clientSecret = "2031d19a5bd10952d74f4db66ae7aa1f68b42a97"

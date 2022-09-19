@@ -16,6 +16,7 @@ class IssuesViewController: UIViewController {
     let spinner = UIActivityIndicatorView()
     let searchController = UISearchController()
     let noIssueslabel = UILabel()
+    var passedTextFromSearch: String?
     //MARK: - IBOutlets
     @IBOutlet weak var issuesTableView: UITableView!
     //MARK: - LifeCycle
@@ -33,6 +34,11 @@ class IssuesViewController: UIViewController {
     }
     func InitViewModel(){
         fetchIssues(searchWord: "p")
+        if let passedText = passedTextFromSearch {
+            fetchIssues(searchWord: passedText)
+            searchController.searchBar.text = passedText
+        }
+
     }
     //MARK: - View Functions
     func tableViewConfig() {
@@ -48,6 +54,7 @@ class IssuesViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search For Issues."
     }
     
     func createSpinnerFooter()-> UIView {

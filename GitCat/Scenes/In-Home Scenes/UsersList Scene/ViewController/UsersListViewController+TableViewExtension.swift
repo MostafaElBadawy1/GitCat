@@ -79,10 +79,8 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
             userCell.UserImageView.clipsToBounds = true
             return userCell
         }
-       
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //searchHistoryTableView.deselectRow(at: indexPath, animated: true)
         switch tableView {
         case usersListTableView:
             usersListTableView.deselectRow(at: indexPath, animated: true)
@@ -101,6 +99,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         case searchHistoryTableView:
+            searchHistoryTableView.deselectRow(at: indexPath, animated: true)
             switch indexPath.section {
             case 0:
                 break

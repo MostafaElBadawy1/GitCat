@@ -241,8 +241,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ekf-Qd-PGu" userLabel="navigating Search Table View">
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="b39-g7-GPx" userLabel="search History Table View">
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="W86-jt-oT4">
-                                <rect key="frame" x="0.0" y="92" width="414" height="721"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4FK-br-0E3"/>
@@ -257,11 +267,13 @@
                     <navigationItem key="navigationItem" title="Home" id="FXL-wT-key"/>
                     <connections>
                         <outlet property="homeTableView" destination="W86-jt-oT4" id="Veo-ir-25S"/>
+                        <outlet property="navigatingSearchTableView" destination="ekf-Qd-PGu" id="fHN-J1-GKP"/>
+                        <outlet property="searchHistoryTableView" destination="b39-g7-GPx" id="U8U-je-ixD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SL3-JU-ze9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-94" y="271"/>
+            <point key="canvasLocation" x="-94.20289855072464" y="270.53571428571428"/>
         </scene>
         <!--Explore-->
         <scene sceneID="Rd8-51-t2c">

@@ -11,6 +11,7 @@ class OrganizationsViewController: UIViewController {
     var orgsArray = [OrganizationModel]()
     var organizationsViewModel = OrganizationsViewModel()
     let loadingIndicator = UIActivityIndicatorView()
+    var searchController = UISearchController()
     //MARK: - IBOutlets
     @IBOutlet weak var orgsTableView: UITableView!
     //MARK: - Life Cycle
@@ -27,7 +28,9 @@ class OrganizationsViewController: UIViewController {
     }
     func initViewModel() {
         if let userName = passedNameFromUserDetailsVC {
+            searchControllerConfig()
             fetchOrgs(userName: userName)
+            searchController.searchBar.text = userName
         }
     }
     //MARK: - View Functions
@@ -38,6 +41,14 @@ class OrganizationsViewController: UIViewController {
         orgsTableView.frame = view.bounds
         orgsTableView.rowHeight = 80
         navigationItem.title = "Organizations"
+    }
+    func searchControllerConfig() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        //searchController.delegate = self
+       // searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search Organizations"
     }
     func orgsLabelConfig(){
         let label = UILabel()

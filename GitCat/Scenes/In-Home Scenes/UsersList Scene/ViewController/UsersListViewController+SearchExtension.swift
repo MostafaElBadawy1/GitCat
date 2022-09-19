@@ -32,7 +32,6 @@ extension UsersListViewController: UISearchBarDelegate{
         if filteredText.isEmpty {
             return
         } else {
-            
             do {
                 try self.context.save()
             } catch {
