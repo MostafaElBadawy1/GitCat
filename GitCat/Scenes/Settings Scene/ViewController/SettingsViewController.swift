@@ -41,33 +41,33 @@ class SettingsViewController: UIViewController {
         SettingsTableView.tableHeaderView = userInfoHeader
         SettingsTableView.tableHeaderView?.backgroundColor = .systemGray6
     }
-    func clearBookmarks()  {
-//        let fetchRequest = NSFetchRequest(entityName: User)
-//        
-//        // Configure Fetch Request
-//        fetchRequest.includesPropertyValues = false
-//
-//        do {
-//            let items = try managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
-//
-//            for item in items {
-//                managedObjectContext.deleteObject(item)
-//            }
-//
-//            // Save Changes
-//            try managedObjectContext.save()
-//
+//    func clearBookmarks()  {
+////        let fetchRequest = NSFetchRequest(entityName: User)
+////
+////        // Configure Fetch Request
+////        fetchRequest.includesPropertyValues = false
+////
+////        do {
+////            let items = try managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+////
+////            for item in items {
+////                managedObjectContext.deleteObject(item)
+////            }
+////
+////            // Save Changes
+////            try managedObjectContext.save()
+////
+////        } catch {
+////            // Error Handling
+////            // ...
+////        }
+//        do
+//        {
+//            try CoreDataManger.shared.clearBookmarks()
 //        } catch {
-//            // Error Handling
-//            // ...
+//            print(error)
 //        }
-        do
-        {
-            try CoreDataManger.shared.clearBookmarks()
-        } catch {
-            print(error)
-        }
-    }
+//    }
     func logOut() {
         let alert = UIAlertController(title: "Are You Sure You Want To Signout? ", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title:"No", style: .destructive, handler: { _ in

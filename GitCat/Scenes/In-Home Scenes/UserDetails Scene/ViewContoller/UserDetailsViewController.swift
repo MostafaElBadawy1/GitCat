@@ -139,29 +139,3 @@ class UserDetailsViewController: UIViewController {
         }
     }
 }
-//    func fetchUser() {
-//        Task.init {
-//            if let user = await userDetailsViewModel.fetchAllUsers(userName: passeedDataFromUserListVC!) {
-//                self.user = user
-//                DispatchQueue.main.async {
-//                    self.loadingIndicator.stopAnimating()
-//                    self.userDetailsTableView.reloadData()
-//                    self.userDetailsTableView.isHidden = false
-//                    self.tryAgainButton.isHidden = true
-//                }
-////                if user.login == nil{
-////                    userDetailsTableView.isHidden = true
-////                    tryAgainButtonConfig()
-////                }
-//            } else {
-//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching User" , message: "", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            }
-//        }
-//    }
-
-//        userDetailsTableView.frame = view.frame
-// let header = UIView(frame: CGRect(x: 120, y: 100, width: view.frame.size.width, height: 150))
-// userDetailsTableView.tableHeaderView = header
-// header.backgroundColor = .green

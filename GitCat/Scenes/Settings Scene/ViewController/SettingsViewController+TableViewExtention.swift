@@ -40,7 +40,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case .General:
             switch indexPath.row {
             case 2 :
-                clearBookmarks()
+                break
+               // clearBookmarks()
             default:
                 break
             }

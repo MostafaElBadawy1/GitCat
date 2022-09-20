@@ -56,9 +56,6 @@
 		A699421F28A3146D000B2410 /* CommitsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A699421D28A3146D000B2410 /* CommitsTableViewCell.xib */; };
 		A699422428A31E05000B2410 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A699422328A31E05000B2410 /* BookmarksViewController.swift */; };
 		A6A9059028D911DB00BD2853 /* ExploreViewController+ExploreCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A9058F28D911DB00BD2853 /* ExploreViewController+ExploreCellDelegate.swift */; };
-		A6AC5C6228885292003415FC /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C6128885292003415FC /* NetworkingManager.swift */; };
-		A6AC5C64288852BA003415FC /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C63288852BA003415FC /* ApiService.swift */; };
-		A6AC5C66288852C5003415FC /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C65288852C5003415FC /* URLs.swift */; };
 		A6AC5C6E2889991C003415FC /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C6D2889991C003415FC /* UsersListViewModel.swift */; };
 		A6AC5C712889A8E1003415FC /* UsersListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AC5C6F2889A8E1003415FC /* UsersListTableViewCell.swift */; };
 		A6AC5C722889A8E1003415FC /* UsersListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6AC5C702889A8E1003415FC /* UsersListTableViewCell.xib */; };
@@ -195,9 +192,6 @@
 		A699421D28A3146D000B2410 /* CommitsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitsTableViewCell.xib; sourceTree = "<group>"; };
 		A699422328A31E05000B2410 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		A6A9058F28D911DB00BD2853 /* ExploreViewController+ExploreCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExploreViewController+ExploreCellDelegate.swift"; sourceTree = "<group>"; };
-		A6AC5C6128885292003415FC /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
-		A6AC5C63288852BA003415FC /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		A6AC5C65288852C5003415FC /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		A6AC5C6D2889991C003415FC /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
 		A6AC5C6F2889A8E1003415FC /* UsersListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListTableViewCell.swift; sourceTree = "<group>"; };
 		A6AC5C702889A8E1003415FC /* UsersListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersListTableViewCell.xib; sourceTree = "<group>"; };
@@ -632,7 +626,6 @@
 				A6B518C828CF676F00D699D6 /* RequestInterceptor.swift */,
 				A6E560DE28CFEF8700570357 /* Router.swift */,
 				A6B518CA28CF6C8D00D699D6 /* Oauth */,
-				A6B518CF28CF725000D699D6 /* Old */,
 			);
 			path = NetworkingManager;
 			sourceTree = "<group>";
@@ -686,16 +679,6 @@
 				A6B518CD28CF719700D699D6 /* TokenManager.swift */,
 			);
 			path = Oauth;
-			sourceTree = "<group>";
-		};
-		A6B518CF28CF725000D699D6 /* Old */ = {
-			isa = PBXGroup;
-			children = (
-				A6AC5C65288852C5003415FC /* URLs.swift */,
-				A6AC5C6128885292003415FC /* NetworkingManager.swift */,
-				A6AC5C63288852BA003415FC /* ApiService.swift */,
-			);
-			path = Old;
 			sourceTree = "<group>";
 		};
 		A6B518D028CF788500D699D6 /* SecureStore */ = {
@@ -1284,7 +1267,6 @@
 				A6C6432328A67CAF00271B3D /* UserDetailsViewController+TableViewExtension.swift in Sources */,
 				A6BB748328B2EF780051C48F /* CommitsViewModel.swift in Sources */,
 				A6260A6C28883E8600276B91 /* UsersListViewController.swift in Sources */,
-				A6AC5C64288852BA003415FC /* ApiService.swift in Sources */,
 				A6C73FDE289D713A001C7E16 /* HomeViewController+TableViewExtension.swift in Sources */,
 				A6A9059028D911DB00BD2853 /* ExploreViewController+ExploreCellDelegate.swift in Sources */,
 				A6AC5C6E2889991C003415FC /* UsersListViewModel.swift in Sources */,
@@ -1305,7 +1287,6 @@
 				A67074D728A3E85400DBBB3F /* UserInfoHeader.swift in Sources */,
 				A699421E28A3146D000B2410 /* CommitsTableViewCell.swift in Sources */,
 				A6B518C928CF676F00D699D6 /* RequestInterceptor.swift in Sources */,
-				A6AC5C66288852C5003415FC /* URLs.swift in Sources */,
 				A67074DB28A3F38500DBBB3F /* SettingsSection.swift in Sources */,
 				A6E92EC628A2BD1F0085F163 /* RepositoriesViewController+TableViewExtention.swift in Sources */,
 				A6260A3B28883D6300276B91 /* SceneDelegate.swift in Sources */,
@@ -1321,7 +1302,6 @@
 				A604334828BC3F1300FCA105 /* BookmarksViewModel.swift in Sources */,
 				A662E6D828D6C72300F3850E /* UsersListViewController+PreFetchingExtention.swift in Sources */,
 				A64C600228CB6B0D0070C77B /* LoginViewController.swift in Sources */,
-				A6AC5C6228885292003415FC /* NetworkingManager.swift in Sources */,
 				A6B518CC28CF6CAF00D699D6 /* GitHubAccessToken.swift in Sources */,
 				A6BB748A28B31B610051C48F /* OrganizationModel.swift in Sources */,
 				A63055F728D39D27001A0C9C /* ExploreViewController+SearchExtension.swift in Sources */,

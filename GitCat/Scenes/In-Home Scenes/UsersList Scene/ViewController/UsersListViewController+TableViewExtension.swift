@@ -87,9 +87,8 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
                 do {
                     try self.context.save()
                 } catch {
-                    return
                     self.context.reset()
-                   // presentAlert(title: "Error While Saving Search Visited User", message: "")
+                    print(error)
                 }
             }
         case searchHistoryTableView:
@@ -135,24 +134,6 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             }
-//            } else {
-//                let item = filterdReposArray[indexPath.row]
-//                CoreDataManger.shared.delete(entityName: Repo.self, delete: item)
-//                // fetchBookmarkedRepos()
-//                CoreDataManger.shared.fetch(entityName: Repo.self) { (item, error) in
-//                    if let item = item {
-//                        self.filterdReposArray = item
-//                        DispatchQueue.main.async {
-//                            self.bookmarksTableView.reloadData()
-//                        }
-//                    }
-//
-//                    if let error = error {
-//                        self.presentAlert (title: "Error While Deleting Repo " , message: "")
-//                        print(error)
-//                    }
-//                }
-//            }
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
         }

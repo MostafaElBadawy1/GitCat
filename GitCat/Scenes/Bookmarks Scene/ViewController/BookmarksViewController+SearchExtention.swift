@@ -41,18 +41,6 @@ extension BookmarksViewController: UISearchBarDelegate {
             })
             self.bookmarksTableView.reloadData()
         }
-//        if searchText == "" {
-//           // filterdUserArray = usersArray
-//            filterdReposArray = reposArray
-//            self.bookmarksTableView.reloadData()
-//        } else {
-////            filterdUserArray = usersArray.filter({ mod in
-////                return mod.userName!.contains(searchText.lowercased())
-////            })
-//            filterdReposArray = reposArray.filter({ mod in
-//                return mod.repoFullName!.contains(searchText.lowercased()) || mod.repoName!.contains(searchText.lowercased())
-//            })
-//            self.bookmarksTableView.reloadData()
-//        }
+
     }
 }
