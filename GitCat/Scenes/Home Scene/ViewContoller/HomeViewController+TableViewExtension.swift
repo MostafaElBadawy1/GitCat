@@ -91,6 +91,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     searchController.searchBar.text = searchedWordsArray[indexPath.row].word
             case navigatingSearchTableView:
                 navigatingSearchTableView.deselectRow(at: indexPath, animated: true)
+                if searchController.isActive {
+                    guard let text = searchController.searchBar.text else { return }
+                    let searchWord = SearchedWord(context: self.context)
+                    searchWord.word = text
+                    if text.isEmpty  {
+                        return
+                    } else {
+                        do {
+                            try self.context.save()
+                        } catch {
+                            self.context.reset()
+                            print(error)
+                        }
+                    }
+                }
                 switch indexPath.row {
                 case 0:
                     let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
@@ -194,6 +209,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                     if let error = error {
+                        self.context.reset()
                         self.presentAlert (title: "Error While Deleting Search Word " , message: "")
                         print(error)
                     }

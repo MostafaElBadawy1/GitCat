@@ -89,13 +89,8 @@ class RepositoriesViewController: UIViewController {
         noReposLabel.text = "There aren't any repositories."
         noReposLabel.font = UIFont.boldSystemFont(ofSize: 20)
         //label.translatesAutoresizingMaskIntoConstraints = false
-        noReposLabel.frame =  CGRect(x: 110, y: 400, width:300, height: 50)
+        noReposLabel.frame =  CGRect(x: 90, y: 400, width:300, height: 50)
         self.view.addSubview(noReposLabel)
-    }
-    func showLabel() {
-        if self.reposArray.count == 0 {
-            self.LabelConfig()
-        }
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController
@@ -141,7 +136,9 @@ class RepositoriesViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.repositoriesTableView.reloadData()
                     self.loadingIndicator.stopAnimating()
-                    self.showLabel()
+                    if self.reposArray.count == 0 {
+                        self.LabelConfig()
+                    }
                 }
             }
             if let error = error {
@@ -174,11 +171,12 @@ class RepositoriesViewController: UIViewController {
         repositoriesForUserViewModel.bindingData = { [self] repos, error in
             if let repos = repos {
                 self.reposArray = repos
-                print(repos)
                 DispatchQueue.main.async {
                     self.repositoriesTableView.reloadData()
                     self.loadingIndicator.stopAnimating()
-                    self.showLabel()
+                    if self.reposArray.count == 0 {
+                        self.LabelConfig()
+                    }
                 }
             }
             if let error = error {
@@ -211,11 +209,12 @@ class RepositoriesViewController: UIViewController {
         repositoriesForUserViewModel.bindingData = { [self] repos, error in
             if let repos = repos {
                 self.reposArray = repos
-                print(repos)
                 DispatchQueue.main.async {
                     self.repositoriesTableView.reloadData()
                     self.self.loadingIndicator.stopAnimating()
-                    self.showLabel()
+                    if self.reposArray.count == 0 {
+                        self.LabelConfig()
+                    }
                 }
             }
             if let error = error {
@@ -234,7 +233,9 @@ class RepositoriesViewController: UIViewController {
                 DispatchQueue.main.async { 
                     self.repositoriesTableView.reloadData()
                     self.loadingIndicator.stopAnimating()
-                    self.showLabel()
+                    if self.reposArray.count == 0 {
+                        self.LabelConfig()
+                    }
                 }
             }
             if let error = error {

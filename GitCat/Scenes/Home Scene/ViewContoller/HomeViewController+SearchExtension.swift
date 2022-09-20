@@ -43,20 +43,20 @@ extension HomeViewController : UISearchBarDelegate {
         homeTableView.isHidden = true
         searchHistoryTableView.isHidden = true
         navigatingSearchTableView.isHidden = false
-        guard let text = searchController.searchBar.text else { return }
-        let searchWord = SearchedWord(context: self.context)
-        searchWord.word = text
-        if text.isEmpty {
-            return
-        } else {
-            searchBar.isSearchResultsButtonSelected = false
-            do {
-                try self.context.save()
-            } catch {
-                context.reset()
-                //presentAlert(title: "Error While Saving Search Word", message: "")
-            }
-        }
+//        guard let text = searchController.searchBar.text else { return }
+//        let searchWord = SearchedWord(context: self.context)
+//        searchWord.word = text
+//        if text.isEmpty {
+//            return
+//        } else {
+//            searchBar.isSearchResultsButtonSelected = false
+//            do {
+//                try self.context.save()
+//            } catch {
+//                context.reset()
+//                //presentAlert(title: "Error While Saving Search Word", message: "")
+//            }
+//        }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchController.searchBar.text else { return }
@@ -77,17 +77,17 @@ extension HomeViewController : UISearchBarDelegate {
         firstlabel.isHidden = true
         secondlabel.isHidden = true
         fetchSearchedWords()
-        guard let text = searchController.searchBar.text else { return }
-        let searchWord = SearchedWord(context: self.context)
-        searchWord.word = text
-        if text == "" {
-            return
-        } else {
-            do {
-                try self.context.save()
-            } catch {
-                context.reset()
-            }
-        }
+//        guard let text = searchController.searchBar.text else { return }
+//        let searchWord = SearchedWord(context: self.context)
+//        searchWord.word = text
+//        if text.isEmpty  {
+//            return
+//        } else {
+//            do {
+//                try self.context.save()
+//            } catch {
+//                context.reset()
+//            }
+//        }
     }
 }
