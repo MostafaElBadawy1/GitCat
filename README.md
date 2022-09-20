@@ -2,7 +2,7 @@
 GitCat is Native iOS application that is a Clone for the GitHub iOS Application, with searching and offline bookmarking capabilities.
 GitCat is written in Swift 5.6 using the MVVM pattern.
 
-ScreenShots
+# ScreenShots
 
 
 ![IMG_2907](https://user-images.githubusercontent.com/81087849/191144944-977df645-a846-4670-a7b0-47ca2f06f1d9.PNG)![IMG_2908](https://user-images.githubusercontent.com/81087849/191144946-704c08aa-c4a6-45ed-a232-192dae8959bb.PNG)
