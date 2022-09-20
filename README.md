@@ -4,7 +4,6 @@ GitCat is written in Swift 5.6 using the MVVM pattern.
 
 # ScreenShots
 
-
 ![IMG_2907](https://user-images.githubusercontent.com/81087849/191144944-977df645-a846-4670-a7b0-47ca2f06f1d9.PNG)
 ![IMG_2908](https://user-images.githubusercontent.com/81087849/191144946-704c08aa-c4a6-45ed-a232-192dae8959bb.PNG)
 ![IMG_2909](https://user-images.githubusercontent.com/81087849/191144951-a9a89ecd-9744-445d-a1c0-8ca128a11b96.PNG)
@@ -18,8 +17,34 @@ GitCat is written in Swift 5.6 using the MVVM pattern.
 ![IMG_2922](https://user-images.githubusercontent.com/81087849/191144994-2d688a21-2021-4b36-996a-e9f7ff9f2796.PNG)
 ![IMG_2924](https://user-images.githubusercontent.com/81087849/191144997-c8bd3a45-1c92-4cbe-a7ba-6ac1adc30767.PNG)
 ![IMG_2925](https://user-images.githubusercontent.com/81087849/191145001-936ad428-0747-41ce-858f-36c1806dfe1c.PNG)
-https://imgur.com/iC4UiYp
-qqqq
-<a href="https://imgur.com/iC4UiYp"><img src="https://i.imgur.com/iC4UiYp.png" title="source: imgur.com" /></a>
-<a href="https://imgur.com/qB86n1N"><img src="https://i.imgur.com/qB86n1N.png" title="source: imgur.com" /></a>
-https://imgur.com/qB86n1N
+
+# Features
+
+- Live search capabilities for GitHub User, Repositries, Issues and Organizations using UISearchControllers while Exploring them.
+- View commits on your favourite Repositories.
+- Offline bookmarking options for Users And Repositories using CoreData and the capability of search for them Offline.
+- Ability of saving Searched Words and Recently Visited Profiles
+- Infinte Scrolling in lists using Pagination while Searching.
+- Authenticated mode using OAuth 2.0 .
+- Long Press Context Menu using UIContextMenuConfiguration for more options.
+- Dark Mode Option.
+- Exploring most starred Repositories written with Swift and searching in them.
+- Profile tab that presents the signed in user with their information, private Repositories, starred Repositories and Organizations.
+
+# Next Step
+
+- Ability of deleting All Bookmarked Users, Repositories and Search Records.
+- Supporting Arabic Language.
+
+## Installation
+- Open your github account and [register a new OAuth application](https://github.com/settings/applications/new)
+- Clone the repository to your local device
+- Set your callback URL as `gitcat://`
+- If you choose a different callback URL you'll have to change your iOS app's URL scheme. Otherwise, the app won't reopen after authorization.
+- Set up an GitHubConstants enum in K struct in your project in Constants file filling it with with your client ID and client Secret
+```
+enum GitHubConstants {
+    static let clientID = "ENTER_YOUR_CLIENT_ID"
+    static let clientSecret = "ENTER_YOUR_CLIENT_SECRET"
+}
+```
