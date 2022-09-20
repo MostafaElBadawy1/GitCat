@@ -30,11 +30,11 @@ enum GitRouter {
     }
     var path: String {
         switch self {
-        case .fetchUserProfile: //x
+        case .fetchUserProfile: 
             return "user"
         case .fetchMyRepositories:
             return "user/repos"
-        case .fetchSearchedUserProfile(let userName): //x
+        case .fetchSearchedUserProfile(let userName):
             return "users/\(userName)"
         case .searchUsers:
             return "search/users"
@@ -48,11 +48,11 @@ enum GitRouter {
             return "/repos/\(ownerName)/\(repository)/commits"
         case .exploreRepos:
             return "/search/repositories"
-        case .searchIssues: //x //D
+        case .searchIssues:
             return "search/issues"
         case .fetchUserOrgs(let userName):
             return "users/\(userName)/orgs"
-        case .fetchMyRepo:                  //x
+        case .fetchMyRepo:
             return "repos/MostafaElBadawy1/GitCat"
         case .fetchAccessToken:
             return "/login/oauth/access_token"
