@@ -6,14 +6,6 @@
 //
 import UIKit
 extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//      switch tableView {
-//        case searchHistoryTableView:
-//            return 10
-//        default:
-            return 0
-       // }
-    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tableView {
         case usersListTableView:
@@ -96,6 +88,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
                     try self.context.save()
                 } catch {
                     return
+                    self.context.reset()
                    // presentAlert(title: "Error While Saving Search Visited User", message: "")
                 }
             }

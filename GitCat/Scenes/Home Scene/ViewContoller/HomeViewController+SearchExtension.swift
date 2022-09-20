@@ -68,19 +68,7 @@ extension HomeViewController : UISearchBarDelegate {
             searchHistoryTableView.isHidden = false
             navigatingSearchTableView.isHidden = true
         }
-//        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(reload), object: nil)
-//        self.perform(#selector(reload), with: nil, afterDelay: 1)
     }
-//    @objc func reload() {
-//        guard let text = searchController.searchBar.text else { return }
-//        let filteredText = text.filter { $0.isLetter || $0.isNumber || $0.isPunctuation }
-//        if filteredText.isEmpty {
-//            homeTableView.isHidden = true
-//            searchHistoryTableView.isHidden = false
-//        } else {
-//            fetchUsers(for: filteredText)
-//        }
-//    }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         homeTableView.isHidden = false
         searchHistoryTableView.isHidden = true
@@ -99,7 +87,6 @@ extension HomeViewController : UISearchBarDelegate {
                 try self.context.save()
             } catch {
                 context.reset()
-                //presentAlert(title: "Error While Saving Search Word", message: "")
             }
         }
     }

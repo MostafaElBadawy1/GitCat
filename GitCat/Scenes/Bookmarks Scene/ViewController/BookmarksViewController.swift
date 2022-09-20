@@ -87,12 +87,5 @@ class BookmarksViewController: UIViewController {
                 print(error)
             }
         }
-//        CoreDataManger.shared.fetch(entityName: Repo.self) { (repos) in
-//            self.reposArray = repos
-//            self.filterdReposArray = self.reposArray
-//            DispatchQueue.main.async {
-//                self.bookmarksTableView.reloadData()
-//            }
-//        }
     }
 }

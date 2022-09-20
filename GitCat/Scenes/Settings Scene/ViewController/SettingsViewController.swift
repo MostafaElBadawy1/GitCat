@@ -24,17 +24,10 @@ class SettingsViewController: UIViewController {
         SettingsTableView.rowHeight = 45
         SettingsTableView.register(UINib(nibName: K.SettingsTableViewCellID, bundle: .main), forCellReuseIdentifier: K.SettingsTableViewCellID)
         SettingsTableView.frame = view.frame
-        //SettingsTableView.tableHeaderView.
-       // SettingsTableView.tableFooterView = UIView()
-        //SettingsTableView.tableHeaderView?.isHidden = true
     }
     func configureUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Settings"
-        //headerConfig()
-        // navigationController?.navigationBar.isTranslucent = false
-         //navigationController?.navigationBar.barStyle = .black
-        // navigationController?.navigationBar.barTintColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
     }
     func headerConfig(){
        // print(passedDataFromProfileVC?.name)
@@ -89,11 +82,3 @@ class SettingsViewController: UIViewController {
     }
 }
 
-//let alert = UIAlertController(title: "Are You Sure You Want To Sign Out? ", message: "", preferredStyle: .alert)
-//alert.addAction(UIAlertAction(title: "Sign in with GitHub", style: .default, handler: { _ in
-//    self.getGitHubIdentity()
-//}))
-//
-//alert.addAction(UIAlertAction(title:"Cancel", style: .default, handler: { _ in
-//}))
-//self.present(alert, animated: true, completion: nil)

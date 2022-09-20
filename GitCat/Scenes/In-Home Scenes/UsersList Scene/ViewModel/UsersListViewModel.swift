@@ -17,7 +17,6 @@ class UsersListViewModel {
             bindingData(nil, error)
         }
     }
-    
     func fetchSearchedUsers(searchWord: String, PageNum: Int) {
         APIManager.shared.searchUsers(searchKeyword: searchWord, pageNum: PageNum) { result, error in
             switch result {

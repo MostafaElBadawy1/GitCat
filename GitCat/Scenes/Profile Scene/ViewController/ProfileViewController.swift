@@ -107,7 +107,7 @@ class ProfileViewController: UIViewController {
             }
             if error != nil {
                 self.presentAlert(title: "Error while fetching your data", message: "")
-                print(error)
+                print(error!)
             }
         }
     }
