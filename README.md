@@ -5,7 +5,8 @@ GitCat is written in Swift 5.6 using the MVVM pattern.
 # ScreenShots
 
 
-![IMG_2907](https://user-images.githubusercontent.com/81087849/191144944-977df645-a846-4670-a7b0-47ca2f06f1d9.PNG)![IMG_2908](https://user-images.githubusercontent.com/81087849/191144946-704c08aa-c4a6-45ed-a232-192dae8959bb.PNG)
+a<![IMG_2907](https://user-images.githubusercontent.com/81087849/191144944-977df645-a846-4670-a7b0-47ca2f06f1d9.PNG)>a
+a<![IMG_2908](https://user-images.githubusercontent.com/81087849/191144946-704c08aa-c4a6-45ed-a232-192dae8959bb.PNG)>a
 ![IMG_2909](https://user-images.githubusercontent.com/81087849/191144951-a9a89ecd-9744-445d-a1c0-8ca128a11b96.PNG)
 ![IMG_2910](https://user-images.githubusercontent.com/81087849/191144956-e0725dcf-be57-4b7e-9f2b-c143363c1f60.PNG)
 ![IMG_2914](https://user-images.githubusercontent.com/81087849/191144961-43e8c973-b4db-4f8d-92c3-d8ffdb5489ad.PNG)
