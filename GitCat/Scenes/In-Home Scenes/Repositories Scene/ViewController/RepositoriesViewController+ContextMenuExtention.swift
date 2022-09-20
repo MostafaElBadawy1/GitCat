@@ -16,7 +16,7 @@ extension RepositoriesViewController {
             let bookmarkAction = UIAction(title: "Bookmark", image: UIImage(systemName: "bookmark")) { _ in
                 self.bookmarkRepo(cellIndexPath: indexPath)
             }
-            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up"), attributes: .destructive) { _ in
+            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
                 self.presentShareSheet(cellIndexPath: indexPath)
             }
             let menu = UIMenu(title: "", image: nil, identifier: nil, options: [], children: [openWithSafariAction, bookmarkAction, shareAction])

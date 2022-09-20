@@ -7,12 +7,12 @@
 import UIKit
 extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-      switch tableView {
-        case searchHistoryTableView:
-            return 10
-        default:
+//      switch tableView {
+//        case searchHistoryTableView:
+//            return 10
+//        default:
             return 0
-        }
+       // }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tableView {
@@ -21,7 +21,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         case searchHistoryTableView:
             switch indexPath.section {
             case 0:
-                return 130
+                return 120
             default:
                 return 50
             }
@@ -95,7 +95,8 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
                 do {
                     try self.context.save()
                 } catch {
-                    presentAlert(title: "Error While Saving Search Visited User", message: "")
+                    return
+                   // presentAlert(title: "Error While Saving Search Visited User", message: "")
                 }
             }
         case searchHistoryTableView:

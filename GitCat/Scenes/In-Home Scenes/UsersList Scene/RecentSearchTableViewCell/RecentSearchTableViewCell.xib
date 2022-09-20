@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QA-D6-BZS">
-                        <rect key="frame" x="357" y="7" width="35" height="31"/>
+                        <rect key="frame" x="337" y="7" width="37" height="31"/>
                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain">
@@ -40,7 +41,7 @@
                     <constraint firstAttribute="bottom" secondItem="dqw-ZT-Lws" secondAttribute="bottom" id="Dho-hY-zJi"/>
                     <constraint firstItem="1QA-D6-BZS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="Oik-Cg-S2m"/>
                     <constraint firstAttribute="bottom" secondItem="1QA-D6-BZS" secondAttribute="bottom" constant="6" id="Oq6-vZ-xfP"/>
-                    <constraint firstItem="1QA-D6-BZS" firstAttribute="leading" secondItem="dqw-ZT-Lws" secondAttribute="trailing" constant="90" id="hZ1-vV-byw"/>
+                    <constraint firstItem="1QA-D6-BZS" firstAttribute="leading" secondItem="dqw-ZT-Lws" secondAttribute="trailing" constant="70" id="hZ1-vV-byw"/>
                     <constraint firstItem="dqw-ZT-Lws" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ymB-WU-peW"/>
                     <constraint firstItem="dqw-ZT-Lws" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="zGi-ik-wsG"/>
                 </constraints>

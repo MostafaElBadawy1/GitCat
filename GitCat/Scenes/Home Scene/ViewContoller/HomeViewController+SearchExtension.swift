@@ -21,8 +21,12 @@ extension HomeViewController : UISearchBarDelegate {
         homeTableView.isHidden = true
         searchHistoryTableView.isHidden = false
         navigatingSearchTableView.isHidden = true
-        if visitedUserArray.isEmpty && searchedWordsArray.isEmpty {
+        if  searchedWordsArray.isEmpty {
             emptySearchVClabelsConfig()
+            searchHistoryTableView.isHidden = true
+        } else {
+            firstlabel.isHidden = true
+            secondlabel.isHidden = true
         }
         //loadingIndicator.stopAnimating()
         return true
@@ -31,6 +35,8 @@ extension HomeViewController : UISearchBarDelegate {
         homeTableView.isHidden = false
         searchHistoryTableView.isHidden = true
         navigatingSearchTableView.isHidden = true
+        firstlabel.isHidden = true
+        secondlabel.isHidden = true
         return true
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -38,17 +44,17 @@ extension HomeViewController : UISearchBarDelegate {
         searchHistoryTableView.isHidden = true
         navigatingSearchTableView.isHidden = false
         guard let text = searchController.searchBar.text else { return }
-        let filteredText = text.filter { $0.isLetter || $0.isNumber  }
         let searchWord = SearchedWord(context: self.context)
-        searchWord.word = filteredText
-        if filteredText.isEmpty {
+        searchWord.word = text
+        if text.isEmpty {
             return
         } else {
             searchBar.isSearchResultsButtonSelected = false
             do {
                 try self.context.save()
             } catch {
-                presentAlert(title: "Error While Saving Search Word", message: "")
+                context.reset()
+                //presentAlert(title: "Error While Saving Search Word", message: "")
             }
         }
     }
@@ -78,18 +84,22 @@ extension HomeViewController : UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         homeTableView.isHidden = false
         searchHistoryTableView.isHidden = true
+        searchHistoryTableView.reloadData()
         navigatingSearchTableView.isHidden = true
+        firstlabel.isHidden = true
+        secondlabel.isHidden = true
+        fetchSearchedWords()
         guard let text = searchController.searchBar.text else { return }
-        //        let filteredText = text.filter { $0.isLetter || $0.isNumber  }
         let searchWord = SearchedWord(context: self.context)
         searchWord.word = text
-        if text.isEmpty {
+        if text == "" {
             return
         } else {
             do {
                 try self.context.save()
             } catch {
-                presentAlert(title: "Error While Saving Search Word", message: "")
+                context.reset()
+                //presentAlert(title: "Error While Saving Search Word", message: "")
             }
         }
     }

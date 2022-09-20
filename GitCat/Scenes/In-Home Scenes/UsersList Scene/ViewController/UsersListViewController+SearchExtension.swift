@@ -12,6 +12,10 @@ extension UsersListViewController: UISearchBarDelegate{
         searchHistoryTableView.isHidden = false
         if visitedUserArray.isEmpty && searchedWordsArray.isEmpty {
             emptySearchVClabelsConfig()
+            searchHistoryTableView.isHidden = true
+        } else {
+            firstlabel.isHidden = true
+            secondlabel.isHidden = true
         }
         loadingIndicator.stopAnimating()
         return true
@@ -25,19 +29,7 @@ extension UsersListViewController: UISearchBarDelegate{
         usersListTableView.isHidden = false
         searchHistoryTableView.isHidden = true
         guard let text = searchController.searchBar.text else { return }
-        let filteredText = text.filter { $0.isLetter || $0.isNumber  }
-        fetchUsers(for: filteredText)
-        let searchWord = SearchedWord(context: self.context)
-        searchWord.word = filteredText
-        if filteredText.isEmpty {
-            return
-        } else {
-            do {
-                try self.context.save()
-            } catch {
-                presentAlert(title: "Error While Saving Search Word", message: "")
-            }
-        }
+        fetchUsers(for: text)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         usersListTableView.isHidden = false
@@ -59,15 +51,21 @@ extension UsersListViewController: UISearchBarDelegate{
         fetchUsers(for: "mo")
         noUserslabel.isHidden = true
         usersListTableView.isHidden = false
+        searchHistoryTableView.reloadData()
         searchHistoryTableView.isHidden = true
+        firstlabel.isHidden = true
+        secondlabel.isHidden = true
         guard let text = searchController.searchBar.text else { return }
-        let filteredText = text.filter { $0.isLetter || $0.isNumber  }
         let searchWord = SearchedWord(context: self.context)
-        searchWord.word = filteredText
+        searchWord.word = text
+        if text.isEmpty {
+            return
+        } else {
             do {
                 try self.context.save()
             } catch {
-                presentAlert(title: "Error While Saving Search Word", message: "")
+                context.reset()
             }
+        }
     }
 }

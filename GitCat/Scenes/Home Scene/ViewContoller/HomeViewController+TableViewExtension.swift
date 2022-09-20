@@ -7,34 +7,20 @@
 import UIKit
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch tableView {
-        case homeTableView:
-            return 50
-        case searchHistoryTableView:
-            switch indexPath.section {
-            case 0:
-                return 130
-            default:
-                return 50
-            }
-        default:
-            return 50
-        }
+        return 50
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch tableView {
-        case homeTableView:
-            return 50
-        case searchHistoryTableView:
-            return 10
-        default:
+        if tableView == navigatingSearchTableView {
             return 0
+        } else if tableView == searchHistoryTableView {
+                return 30
+        } else {
+            return 50
         }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if tableView == homeTableView {
-            switch section
-            {
+            switch section {
             case 0:
                 return "Features"
             case 1:
@@ -42,6 +28,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             default:
                 return "State"
             }
+        } else if tableView == searchHistoryTableView {
+            return "Recent Search"
         } else {
             return nil
         }
@@ -55,8 +43,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch tableView {
         case homeTableView:
             return homeArray.count
-        case searchHistoryTableView:
-            return 2
         default:
             return 1
         }
@@ -66,11 +52,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         case homeTableView:
             return homeArray[section].count
         case searchHistoryTableView:
-            if section == 1 {
-                return searchedWordsArray.count
-            } else {
-                return 1
-            }
+            return searchedWordsArray.count
         case navigatingSearchTableView:
             return 4
         default:
@@ -102,14 +84,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             case searchHistoryTableView:
                 searchHistoryTableView.deselectRow(at: indexPath, animated: true)
-                if indexPath.section == 1 {
                     navigatingSearchTableViewConfig()
                     homeTableView.isHidden = true
                     searchHistoryTableView.isHidden = true
                     navigatingSearchTableView.isHidden = false
-                   // query = searchedWordsArray[indexPath.row].word
                     searchController.searchBar.text = searchedWordsArray[indexPath.row].word
-                }
             case navigatingSearchTableView:
                 navigatingSearchTableView.deselectRow(at: indexPath, animated: true)
                 switch indexPath.row {
@@ -171,25 +150,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             if tableView == searchHistoryTableView {
-                let recentVisitedUsersCell = searchHistoryTableView.dequeueReusableCell(withIdentifier: K.CollectionViewTableViewCellID) as! CollectionViewTableViewCell
                 let searchWordCell = searchHistoryTableView.dequeueReusableCell(withIdentifier: K.RecentSearchTableViewCellID) as! RecentSearchTableViewCell
-                switch indexPath.section {
-                case 0:
-                    recentVisitedUsersCell.delegate = self
-                    recentVisitedUsersCell.index = indexPath
-                    return recentVisitedUsersCell
-                case 1:
                     searchWordCell.recentSearchLabel.text = searchedWordsArray[indexPath.row].word
                     return searchWordCell
-                default:
-                    break
-                }
             } else {
                 let navigatingSearchCell = navigatingSearchTableView.dequeueReusableCell(withIdentifier: K.navigatingSearchTableViewCell) as! NavigatingSearchTableViewCell
                 if let typedWord = query {
                     switch indexPath.row {
                     case 0 :
                         navigatingSearchCell.navigatingLabel.text = "Repositories with \"\(typedWord)\""
+                        //navigatingSearchCell.navigatingImage.image = UIImage(named: "whiteRepo")
                     case 1 :
                         navigatingSearchCell.navigatingLabel.text = "Issues with \"\(typedWord)\""
                     case 2 :
@@ -203,11 +173,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 return navigatingSearchCell
             }
         }
-        let cell = homeTableView.dequeueReusableCell(withIdentifier: K.homeTableViewCell , for: indexPath) as! HomeTableViewCell
-        return cell
     }
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if tableView == searchHistoryTableView && indexPath.section == 1 {
+        if tableView == searchHistoryTableView && indexPath.section == 0 {
            return .delete
         }  else {
             return .none
@@ -216,7 +184,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            if indexPath.section == 1 {
                 let searchedWords = searchedWordsArray[indexPath.row]
                 CoreDataManger.shared.delete(entityName: SearchedWord.self, delete: searchedWords)
                 CoreDataManger.shared.fetch(entityName: SearchedWord.self) { (word, error) in
@@ -227,20 +194,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                     if let error = error {
-                        self.presentAlert (title: "Error While Deleting User " , message: "")
+                        self.presentAlert (title: "Error While Deleting Search Word " , message: "")
                         print(error)
                     }
                 }
-            }
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
         }
     }
 }
-    extension HomeViewController: CollectionViewTableViewCellDelegate {
-        func tappedCell(cell: CollectionViewTableViewCell, index: Int) {
-            let userDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UserDetailsViewControllerID) as! UserDetailsViewController
-            userDetailsVC.passeedDataFromUserListVC = visitedUserArray[index].userName
-            self.navigationController?.pushViewController(userDetailsVC, animated: true)
-        }
-    }
+   

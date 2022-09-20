@@ -18,7 +18,7 @@ extension UsersListViewController{
                 let saveImageeAction = UIAction(title: "Save Image", image: UIImage(systemName: "photo")) { _ in
                     self.downloadImage(cellIndexPath: indexPath)
                 }
-                let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up"), attributes: .destructive) { _ in
+                let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
                     self.presentShareSheet(cellIndexPath: indexPath)
                 }
                 let menu = UIMenu(title: "", image: nil, identifier: nil, options: [], children: [openWithSafariAction, bookmarkAction,saveImageeAction, shareAction])

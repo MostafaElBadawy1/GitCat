@@ -14,8 +14,7 @@ class HomeViewController: UIViewController {
     let homeArray = [["Users", "Repositories", "Issues", "Github Web"], ["My Repo"],["Authenticated User Mode"]]
     let imagesArray = [UIImage(named: "UsersIcon"),UIImage(named: "repoIcon"),UIImage(named: "issuesIcon"),UIImage(named: "GitHubIcon")]
     var myRepoModel : RepositoriesForUserModel?
-    var visitedUserArray = [VisitedUser]()
-    var searchedWordsArray = [SearchedWord]()
+    var searchedWordsArray = [SearchedWord]() 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let firstlabel = UILabel()
     let secondlabel = UILabel()
@@ -39,23 +38,15 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         initView()
         initViewModel()
-//        homeTableView.isHidden = true
-//        searchHistoryTableView.isHidden = true
-//        navigatingSearchTableView.isHidden = false
     }
     //MARK: - Main Functions
     func initView() {
         tableViewConfig()
-        //searchHistoryTableViewConfig()
-        //navigatingSearchTableViewConfig()
         searchControllerConfig()
-//        navigatingSearchTableView.isHidden = true
-//        searchHistoryTableView.isHidden = true
     }
     func initViewModel() {
         fetchMyRepo()
         fetchSearchedWords()
-        fetchVisitedUsers()
     }
     //MARK: - View Functions
     func tableViewConfig() {
@@ -69,7 +60,6 @@ class HomeViewController: UIViewController {
         searchHistoryTableView.dataSource = self
         searchHistoryTableView.register(UINib(nibName: K.CollectionViewTableViewCellID, bundle: .main), forCellReuseIdentifier:  K.CollectionViewTableViewCellID)
         searchHistoryTableView.register(UINib(nibName: K.RecentSearchTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RecentSearchTableViewCellID)
-        searchHistoryTableView.frame = view.bounds
        // searchHistoryTableView.isHidden = true
     }
     func navigatingSearchTableViewConfig() {
@@ -84,8 +74,6 @@ class HomeViewController: UIViewController {
         searchController.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
-        //searchController.delegate = self
-        // Monitor when the search button is tapped, and start/end editing.
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search GitHub"
     }
@@ -130,26 +118,13 @@ class HomeViewController: UIViewController {
             if let words = words {
                 self.searchedWordsArray = words
                 DispatchQueue.main.async {
-                    //self.searchHistoryTableView.reloadData()
+                    self.searchHistoryTableView.reloadData()
                 }
             } else {
                 print(error!)
                 self.presentAlert (title: "Error While Fetching Search History Words", message: "")
             }
             
-        }
-    }
-    func fetchVisitedUsers() {
-        CoreDataManger.shared.fetch(entityName: VisitedUser.self) { (users, error) in
-            if let users = users {
-                self.visitedUserArray = users
-                DispatchQueue.main.async {
-                 //   self.searchHistoryTableView.reloadData()
-                }
-            }  else {
-                print(error!)
-                self.presentAlert (title: "Error While Fetching Search History Users", message: "")
-            }
         }
     }
 }

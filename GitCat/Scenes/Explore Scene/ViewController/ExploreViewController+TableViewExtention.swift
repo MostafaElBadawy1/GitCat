@@ -52,18 +52,4 @@ extension ExploreViewController: UITableViewDataSourcePrefetching{
         }
     }
 }
-extension ExploreViewController: ExploreCellDelegate {
-    func addStarredCell(cell: ExploreTableViewCell, index: Int) {
-        let repoModel = Repo(context: self.context)
-        repoModel.repoName = exploreReposArray[index].full_name
-        repoModel.repoDescription = exploreReposArray[index].description
-        repoModel.repoLanguage = exploreReposArray[index].language
-        repoModel.starredNum = Int64(exploreReposArray[index].stargazers_count!)
-        repoModel.repoImageUrl = URL(string: (exploreReposArray[index].owner?.avatar_url)!)
-        do {
-            try self.context.save()
-        } catch {
-            print(error)
-        }
-    }
-}
+

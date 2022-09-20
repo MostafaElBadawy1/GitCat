@@ -7,7 +7,6 @@
 import UIKit
 class NavigatingSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var  navigatingLabel: UILabel!
-    @IBOutlet weak var navigatingImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

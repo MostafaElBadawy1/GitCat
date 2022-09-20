@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Repo" representedClassName=".Repo" syncable="YES" codeGenerationType="class">
         <attribute name="ownerName" optional="YES" attributeType="String"/>
         <attribute name="repoDescription" optional="YES" attributeType="String"/>
@@ -10,12 +10,17 @@
         <attribute name="starredNum" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="repoName"/>
+                <constraint value="repoFullName"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="SearchedWord" representedClassName="SearchedWord" syncable="YES" codeGenerationType="class">
+    <entity name="SearchedWord" representedClassName=".SearchedWord" syncable="YES" codeGenerationType="class">
         <attribute name="word" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="word"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="class">
         <attribute name="userImageURL" optional="YES" attributeType="URI"/>
@@ -26,14 +31,13 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="VisitedUser" representedClassName="VisitedUser" syncable="YES" codeGenerationType="class">
+    <entity name="VisitedUser" representedClassName=".VisitedUser" syncable="YES" codeGenerationType="class">
         <attribute name="userImageURL" optional="YES" attributeType="URI"/>
         <attribute name="userName" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="userName"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
-    <elements>
-        <element name="Repo" positionX="328.7421875" positionY="-3.953125" width="128" height="134"/>
-        <element name="SearchedWord" positionX="144" positionY="54" width="128" height="44"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="59"/>
-        <element name="VisitedUser" positionX="135" positionY="45" width="128" height="59"/>
-    </elements>
 </model>
