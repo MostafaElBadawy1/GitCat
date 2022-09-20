@@ -19,7 +19,7 @@ GitCat is written in Swift 5.6 using the MVVM pattern.
 
 - Alamofire
 - Kingfisher
-- IQKeyboardManagerSwift
+- IQKeyboardManager
 
 # Screenshots
 
