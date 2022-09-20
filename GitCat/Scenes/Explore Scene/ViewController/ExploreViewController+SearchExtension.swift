@@ -7,14 +7,9 @@
 import UIKit
 extension ExploreViewController: UISearchBarDelegate{
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-       // setup()
-        //searchHistoryVC.view.isHidden = false
-       // usersListTableView.isHidden = true
-        //loadingIndicator.stopAnimating()
         return true
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-       // searchHistoryVCConfig()
         return true
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

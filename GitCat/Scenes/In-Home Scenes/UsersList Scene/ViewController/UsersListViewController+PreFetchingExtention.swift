@@ -7,8 +7,6 @@
 import UIKit
 extension UsersListViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        //                let indices = indexPaths.map { "\($0.row)"}.joined(separator: ".")
-        //                print("prefetching \(indices)")
         for indexPath in indexPaths {
             if indexPath.row == preFetchIndex {
                 self.usersListTableView.tableFooterView = createSpinnerFooter()

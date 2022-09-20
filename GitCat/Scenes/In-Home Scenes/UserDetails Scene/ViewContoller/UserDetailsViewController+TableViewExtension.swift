@@ -92,13 +92,3 @@ extension UserDetailsViewController: TableViewCellDelegate {
             }
         }
     }
-
-    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    //        let view = self.userDetailsTableView.dequeueReusableHeaderFooterView(withIdentifier: K.UserDetailsHeaderID)
-    ////        let label = UILabel(frame: CGRect(x: 120, y: 120, width: 150, height: 150))
-    ////           label.text = "TEST TEXT"
-    ////        label.textColor = .black
-    ////        self.view.addSubview(label)
-    //       // self.view.addSubview(view!)
-    //        return view
-    //    }

@@ -24,9 +24,6 @@ class UsersListViewController: UIViewController {
     let firstlabel = UILabel()
     let secondlabel = UILabel()
     var passedTextFromSearch: String?
-    //var usersSearchResultViewController = UsersSearchResultViewController()
-    //var cellDelegate : CellLink?
-    //var index: IndexPath?
     //MARK: - IBOutlets
     @IBOutlet weak var usersListTableView: UITableView!
     @IBOutlet weak var searchHistoryTableView: UITableView!
@@ -35,10 +32,6 @@ class UsersListViewController: UIViewController {
         super.viewDidLoad()
         initView()
         InitViewModel()
-        // usersSearchResultViewController =
-        //(self.storyboard?.instantiateViewController(withIdentifier: "UsersSearchResultViewController") as? UsersSearchResultViewController)!
-        //usersSearchResultViewController.usersResultTableView.delegate = self
-        //searchController = UISearchController(searchResultsController: resultsTableController)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -193,7 +186,7 @@ class UsersListViewController: UIViewController {
                     self.searchHistoryTableView.reloadData()
                 }
             } else {
-                print(error)
+                print(error!)
                 self.presentAlert (title: "Error While Fetching Search History Words", message: "")
             }
             
@@ -207,7 +200,7 @@ class UsersListViewController: UIViewController {
                     self.searchHistoryTableView.reloadData()
                 }
             }  else {
-                print(error)
+                print(error!)
                 self.presentAlert (title: "Error While Fetching Search History Users", message: "")
             }
         }

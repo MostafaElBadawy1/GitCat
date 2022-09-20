@@ -23,32 +23,6 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         let cell = repositoriesTableView.dequeueReusableCell(withIdentifier: K.RepositoriesTableViewCellID, for: indexPath) as! RepositoriesTableViewCell
         cell.delegate = self
         cell.index = indexPath
-        //        if cell.programmingLangLabel.text == "Swift" {
-        //             cell.languageIndicator.tintColor = .red
-        //        } else if cell.programmingLangLabel.text == "Shell" {
-        //            cell.languageIndicator.tintColor = .systemMint
-        //        } else if cell.programmingLangLabel.text == "Java" {
-        //            cell.languageIndicator.tintColor = .systemBrown
-        //        } else if cell.programmingLangLabel.text == "JavaScript" {
-        //            cell.languageIndicator.tintColor = .systemYellow
-        //        } else if cell.programmingLangLabel.text == "C" {
-        //            cell.languageIndicator.tintColor = .systemBrown
-        //        } else if cell.programmingLangLabel.text == "TypeScript"  {
-        //            cell.languageIndicator.tintColor = .systemBlue
-        //        } else if cell.programmingLangLabel.text == "Python"  {
-        //            cell.languageIndicator.tintColor = .systemBlue
-        //        } else if cell.programmingLangLabel.text == "C++"  {
-        //            cell.languageIndicator.tintColor = .systemRed
-        //        } else if cell.programmingLangLabel.text == "HTML"  {
-        //            cell.languageIndicator.tintColor = .systemRed
-        //        } else if cell.programmingLangLabel.text == "Kotlin"  {
-        //            cell.languageIndicator.tintColor = .systemPurple
-        //        } else if cell.programmingLangLabel.text == "PHP"  {
-        //            cell.languageIndicator.tintColor = .systemBlue
-        //        }
-        //        if ((cell.programmingLangLabel.text?.isEmpty) != nil) {
-        //            cell.languageIndicator.isHidden = true
-        //        }
         cell.languageIndicator.isHidden = true
             cell.repoNameLabel.text = reposArray[indexPath.row].name
             cell.repoDescriptionLabel.text = reposArray[indexPath.row].description

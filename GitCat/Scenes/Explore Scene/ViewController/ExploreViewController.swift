@@ -43,10 +43,6 @@ class ExploreViewController: UIViewController {
         exploreTableView.register(UINib(nibName: K.ExploreTableViewCellID, bundle: .main), forCellReuseIdentifier: K.ExploreTableViewCellID)
         exploreTableView.frame = view.frame
         self.loadingIndicator.startAnimating()
-
-        //navigationItem.largeTitleDisplayMode = .never
-       // navigationItem.title = "Repositories"
-        //exploreTableView.rowHeight = UITableView.automaticDimension
     }
     func searchControllerConfig() {
         navigationItem.searchController = searchController
@@ -131,38 +127,4 @@ class ExploreViewController: UIViewController {
             }
         }
     }
-//    func fetchSearchedRepos() {
-//        Task.init {
-//            if let repos = await exploreViewModel.getExploreRepos(pageNum: 1) {
-//                self.exploreReposArray = repos
-//                DispatchQueue.main.async {
-//                    self.loadingIndicator.stopAnimating()
-//                    self.exploreTableView.reloadData()
-//                }
-//            } else {
-//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching Repositories" , message: "", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//                self.loadingIndicator.startAnimating()
-//            }
-//        }
-//    }
-//    func fetchMoreSearchedRepos(pageNum: Int) {
-//        Task.init {
-//            if let repos = await exploreViewModel.getExploreRepos(pageNum: pageNum)  {
-//                self.moreExploreReposArray = repos
-//                if moreExploreReposArray.isEmpty {
-//                    spinner.stopAnimating()
-//                }
-//                DispatchQueue.main.async {
-//                    self.exploreReposArray.append(contentsOf: self.moreExploreReposArray)
-//                    self.exploreTableView.reloadData()
-//                }
-//            } else {
-//                let alert : UIAlertController = UIAlertController(title:"Error While Fetching More Repositories" , message: "", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            }
-//        }
-//    }
 }

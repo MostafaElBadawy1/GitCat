@@ -139,33 +139,3 @@ class IssuesViewController: UIViewController {
             }
         }
     }
-//    func fetchIssues(searchWord: String, pageNum: Int) {
-//        Task.init {
-//            if let issues = await issuesViewModel.fetchIssues(searchWord: searchWord, pageNum: pageNum){
-//                self.issuesArray = issues
-//                DispatchQueue.main.async {
-//                    self.loadingIndicator.stopAnimating()
-//                    self.issuesTableView.reloadData()
-//                }
-//            } else {
-//                presentAlert(title: "Error While Fetching Issues", message: String)
-//                self.loadingIndicator.startAnimating()
-//            }
-//        }
-//    }
-//    func fetchMoreIssues(searchWord: String, pageNum: Int) {
-//        Task.init {
-//            if let issues = await issuesViewModel.fetchIssues(searchWord: searchWord, pageNum: pageNum){
-//                self.moreIssuesArray = issues
-//                if moreIssuesArray.isEmpty {
-//                    spinner.stopAnimating()
-//                }
-//                DispatchQueue.main.async {
-//                    self.issuesArray.append(contentsOf: self.moreIssuesArray)
-//                    self.issuesTableView.reloadData()
-//                }
-//            } else {
-//                presentAlert(title: "Error While Fetching More Issues", message: String)
-//            }
-//        }
-//    }

@@ -93,16 +93,6 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.section == 0 {
                 let userItem = filterdUserArray[indexPath.row]
                 CoreDataManger.shared.delete(entityName: User.self, delete: userItem)
-                //                bookmarksViewModel.deleteItem(entityName: User.self, delete: userItem)
-                //                bookmarksViewModel.fetchBookmarkedUsers()
-                //                bookmarksViewModel.bindingData = { users , error in
-                //                    if let usersData = users {
-                //                        self.usersArray = usersData
-                //                        DispatchQueue.main.async {
-                //                            self.bookmarksTableView.reloadData()
-                //                        }
-                //                    }
-                //                }
                 CoreDataManger.shared.fetch(entityName: User.self) { (item, error) in
                     if let item = item {
                         self.filterdUserArray = item
@@ -118,7 +108,6 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 let item = filterdReposArray[indexPath.row]
                 CoreDataManger.shared.delete(entityName: Repo.self, delete: item)
-                // fetchBookmarkedRepos()
                 CoreDataManger.shared.fetch(entityName: Repo.self) { (item, error) in
                     if let item = item {
                         self.filterdReposArray = item
