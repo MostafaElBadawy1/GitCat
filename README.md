@@ -33,6 +33,11 @@ GitCat is written in Swift 5.6 using the MVVM pattern.
 - Exploring most starred Repositories written with Swift and searching in them.
 - Profile tab that presents the signed in user with their information, private Repositories, starred Repositories and Organizations.
 
+# Used Cocoapods
+
+-Alamofire
+-Kingfisher
+
 # Next Step
 
 - Ability of deleting All Bookmarked Users, Repositories and Search Records.
