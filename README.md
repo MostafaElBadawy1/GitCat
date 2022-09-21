@@ -22,6 +22,12 @@ GitCat is written in Swift 5.6 using the MVVM pattern.
 - IQKeyboardManager
 
 # Screenshots
+![1](https://user-images.githubusercontent.com/81087849/191525704-879b5133-ff3c-4e09-b3c2-67ed6a106141.png)
+![2](https://user-images.githubusercontent.com/81087849/191525738-eb29ee8b-6cda-45ae-9acc-f89892dcabe4.png)
+![3](https://user-images.githubusercontent.com/81087849/191525761-41efc947-e0e7-4ec6-849d-6672748a82d9.png)
+![4](https://user-images.githubusercontent.com/81087849/191525778-3174db5b-2a69-4a9f-a96f-4dd36e0573b9.png)
+
+
 
 ![IMG_2907](https://user-images.githubusercontent.com/81087849/191144944-977df645-a846-4670-a7b0-47ca2f06f1d9.PNG)
 ![IMG_2909](https://user-images.githubusercontent.com/81087849/191144951-a9a89ecd-9744-445d-a1c0-8ca128a11b96.PNG)
