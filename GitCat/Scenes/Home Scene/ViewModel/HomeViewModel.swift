@@ -4,7 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 31/08/2022.
 //
-import UIKit
+import Foundation
 class HomeViewModel {
     var bindingData: ((RepositoriesForUserModel?,Error?) -> Void) = {_, _ in }
     var repo : RepositoriesForUserModel? {

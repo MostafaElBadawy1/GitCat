@@ -4,7 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 22/08/2022.
 //
-import UIKit
+import Foundation
 class CommitsViewModel {
     var bindingData: (([CommitsModel]?,Error?) -> Void) = {_, _ in }
     var commits = [CommitsModel]() {

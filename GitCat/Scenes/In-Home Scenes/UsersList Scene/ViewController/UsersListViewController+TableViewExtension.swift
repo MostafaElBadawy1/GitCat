@@ -97,8 +97,11 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
             case 0:
                 break
             case 1:
-                fetchUsers(for: searchedWordsArray[indexPath.row].word!)
-                searchController.searchBar.text = searchedWordsArray[indexPath.row].word!
+                if let searchWord = searchedWordsArray[indexPath.row].word {
+                    fetchUsers(for: searchWord)
+                    searchController.searchBar.text = searchWord
+                }
+                
                 usersListTableView.isHidden = false
                 searchHistoryTableView.isHidden = true
             default:

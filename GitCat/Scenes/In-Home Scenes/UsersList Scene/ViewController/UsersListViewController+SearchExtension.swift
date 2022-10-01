@@ -55,17 +55,17 @@ extension UsersListViewController: UISearchBarDelegate{
         searchHistoryTableView.isHidden = true
         firstlabel.isHidden = true
         secondlabel.isHidden = true
-        guard let text = searchController.searchBar.text else { return }
-        let searchWord = SearchedWord(context: self.context)
-        searchWord.word = text
-        if text.isEmpty {
-            return
-        } else {
-            do {
-                try self.context.save()
-            } catch {
-                context.reset()
-            }
-        }
+//        guard let text = searchController.searchBar.text else { return }
+//        let searchWord = SearchedWord(context: self.context)
+//        searchWord.word = text
+//        if text.isEmpty {
+//            return
+//        } else {
+//            do {
+//                try self.context.save()
+//            } catch {
+//                context.reset()
+//            }
+//        }
     }
 }
