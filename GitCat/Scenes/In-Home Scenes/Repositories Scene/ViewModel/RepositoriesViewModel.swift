@@ -4,7 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 20/08/2022.
 //
-import UIKit
+import Foundation
 class RepositoriesViewModel {
     var bindingData: (([RepositoriesForUserModel]?,Error?) -> Void) = {_, _ in }
     var repos = [RepositoriesForUserModel]() {

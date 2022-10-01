@@ -4,7 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 19/08/2022.
 //
-import UIKit
+import Foundation
 class UserDetailsViewModel {
     var bindingData: ((UserModel?,Error?) -> Void) = {_, _ in }
     var user : UserModel? {

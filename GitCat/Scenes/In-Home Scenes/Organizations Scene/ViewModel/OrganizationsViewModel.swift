@@ -4,7 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 23/08/2022.
 //
-import UIKit
+import Foundation
 class OrganizationsViewModel {
     var bindingData: (([OrganizationModel]?,Error?) -> Void) = {_, _ in }
     var orgs = [OrganizationModel]() {

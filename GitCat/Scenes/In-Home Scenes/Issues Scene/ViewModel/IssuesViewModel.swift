@@ -4,7 +4,7 @@
 //
 //  Created by Mostafa Elbadawy on 30/08/2022.
 //
-import UIKit
+import Foundation
 class IssuesViewModel {
     var bindingData: (([IssuesItems]?,Error?) -> Void) = {_, _ in }
     var issues : [IssuesItems]? {
