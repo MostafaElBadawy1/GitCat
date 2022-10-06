@@ -10,8 +10,7 @@ target 'GitCat' do
 pod 'Alamofire'
 pod 'Kingfisher', '~> 7.0'
 pod 'IQKeyboardManagerSwift'
-pod 'AeroGearHttp'
-pod 'AeroGearOAuth2'
+
 
   target 'GitCatTests' do
     inherit! :search_paths
