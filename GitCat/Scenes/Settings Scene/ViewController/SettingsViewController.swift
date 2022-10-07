@@ -12,34 +12,29 @@ class SettingsViewController: UIViewController {
     var reposModel = [Repo]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var passedDataFromProfileVC : UserModel?
-    @IBOutlet weak var SettingsTableView: UITableView!
+    @IBOutlet weak var settingsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewConfig()
         configureUI()
     }
     func tableViewConfig() {
-        SettingsTableView.delegate = self
-        SettingsTableView.dataSource = self
-        SettingsTableView.rowHeight = 45
-        SettingsTableView.register(UINib(nibName: K.SettingsTableViewCellID, bundle: .main), forCellReuseIdentifier: K.SettingsTableViewCellID)
-        SettingsTableView.frame = view.frame
+        settingsTableView.delegate = self
+        settingsTableView.dataSource = self
+        settingsTableView.rowHeight = 45
+        tableViewNibRegister(tableViewName: settingsTableView, nibName: K.settingsTableViewCellID)
+        settingsTableView.frame = view.frame
     }
     func configureUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Settings"
     }
     func headerConfig(){
-       // print(passedDataFromProfileVC?.name)
-        //if let userData = passedDataFromProfileVC {
         userInfoHeader?.usernameLabel.textColor = .red
-       // userInfoHeader.userIDLabel.text = "\(passedDataFromProfileVC?.id)"
-       // }
         let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 80)
         userInfoHeader = UserInfoHeader(frame: frame)
-        
-        SettingsTableView.tableHeaderView = userInfoHeader
-        SettingsTableView.tableHeaderView?.backgroundColor = .systemGray6
+        settingsTableView.tableHeaderView = userInfoHeader
+        settingsTableView.tableHeaderView?.backgroundColor = .systemGray6
     }
 //    func clearBookmarks()  {
 ////        let fetchRequest = NSFetchRequest(entityName: User)
@@ -74,7 +69,7 @@ class SettingsViewController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
             TokenManager.shared.clearAccessToken()
-            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.loginViewControllerID) as! LoginViewController
+            let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: K.loginViewControllerID) as! LoginViewController
             loginVC.modalPresentationStyle = .fullScreen
             self.present(loginVC, animated: true, completion: nil)
         }))

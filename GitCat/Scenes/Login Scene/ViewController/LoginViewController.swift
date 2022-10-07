@@ -23,6 +23,9 @@ class LoginViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        configUI()
+    }
+    func configUI() {
         appLogo.image = UIImage(named: "GitHubLoginLogo")
     }
     func getGitHubIdentity() {
@@ -52,9 +55,7 @@ class LoginViewController: UIViewController {
                 }
                 APIManager.shared.fetchAccessToken(accessCode: value) { [self] isSuccess in
                     if !isSuccess {
-                        let alert : UIAlertController = UIAlertController(title:"Error While Fetching Access Token" , message: "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+                        presentAlert(title: "Error While Fetching Access Token", message: "")
                     }
                     let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
                     tabBarVC.modalPresentationStyle = .fullScreen
@@ -67,16 +68,10 @@ class LoginViewController: UIViewController {
     func guestModeAlert () {
         let alert = UIAlertController(title: "", message: "With continuing with Guest mode you will face API usage limit due to GitHup's unauthenticated requests Rate limit", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title:"Ok", style: .default, handler: { _ in
-            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
+            let tabBarVC = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
             tabBarVC.modalPresentationStyle = .fullScreen
             self.present(tabBarVC, animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
     }
     }
-// MARK: - ASWebAuthenticationPresentationContextProviding
-extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
-    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return view.window ?? ASPresentationAnchor()
-    }
-}

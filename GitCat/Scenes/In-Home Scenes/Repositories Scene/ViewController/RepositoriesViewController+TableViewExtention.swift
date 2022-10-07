@@ -14,13 +14,13 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         repositoriesTableView.deselectRow(at: indexPath, animated: true)
-        let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
+        let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.commitsViewControllerID) as! CommitsViewController
             commitsVC.repoName = reposArray[indexPath.row].name
             commitsVC.repoOwner = reposArray[indexPath.row].owner?.login
         self.navigationController?.pushViewController(commitsVC, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = repositoriesTableView.dequeueReusableCell(withIdentifier: K.RepositoriesTableViewCellID, for: indexPath) as! RepositoriesTableViewCell
+        let cell = repositoriesTableView.dequeueReusableCell(withIdentifier: K.repositoriesTableViewCellID, for: indexPath) as! RepositoriesTableViewCell
         cell.delegate = self
         cell.index = indexPath
         cell.languageIndicator.isHidden = true
@@ -38,23 +38,23 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
 extension RepositoriesViewController: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if indexPath.row == preFetchIndex {
-                self.repositoriesTableView.tableFooterView = createSpinnerFooter()
+            if indexPath.row == repositoriesForUserViewModel.preFetchIndex {
+                self.repositoriesTableView.tableFooterView = createSpinnerFooter(loadingIndicator: loadingIndicator)
                 guard let text = searchController.searchBar.text else { return }
                 let filteredText = text.filter { $0.isLetter || $0.isNumber  }
                 if isWithSearchController == true {
                     if filteredText.isEmpty {
-                        searchMoreRepos(for: "r", pageNum: pageNum)
+                        searchMoreRepos(for: "r", pageNum: repositoriesForUserViewModel.pageNum)
                     } else {
-                        searchMoreRepos(for: filteredText, pageNum: pageNum)
+                        searchMoreRepos(for: filteredText, pageNum: repositoriesForUserViewModel.pageNum)
                     }
                 } else {
                     if let userName = passedNameFromUserDetailsVC  {
-                        fetchMoreUserRepositories(repoOwner: userName, pageNum: pageNum)
+                        fetchMoreUserRepositories(repoOwner: userName, pageNum: repositoriesForUserViewModel.pageNum)
                     }
                 }
-                pageNum = pageNum + 1
-                preFetchIndex = preFetchIndex + 30
+                repositoriesForUserViewModel.pageNum = repositoriesForUserViewModel.pageNum + 1
+                repositoriesForUserViewModel.preFetchIndex = repositoriesForUserViewModel.preFetchIndex + 30
             }
         }
     }

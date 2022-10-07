@@ -6,6 +6,8 @@
 //
 import Foundation
 class IssuesViewModel {
+    var pageNum = 1
+    var preFetchIndex = 15
     var bindingData: (([IssuesItems]?,Error?) -> Void) = {_, _ in }
     var issues : [IssuesItems]? {
         didSet {

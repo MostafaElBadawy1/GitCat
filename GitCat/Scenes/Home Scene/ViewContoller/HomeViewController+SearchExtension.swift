@@ -22,11 +22,11 @@ extension HomeViewController : UISearchBarDelegate {
         searchHistoryTableView.isHidden = false
         navigatingSearchTableView.isHidden = true
         if  searchedWordsArray.isEmpty {
-            emptySearchVClabelsConfig()
+            emptySearchVClabelsConfig(firstLabel: findYourStuffLabel, secondLabel: searchGithubLabel)
             searchHistoryTableView.isHidden = true
         } else {
-            firstlabel.isHidden = true
-            secondlabel.isHidden = true
+            findYourStuffLabel.isHidden = true
+            searchGithubLabel.isHidden = true
         }
         //loadingIndicator.stopAnimating()
         return true
@@ -35,8 +35,8 @@ extension HomeViewController : UISearchBarDelegate {
         homeTableView.isHidden = false
         searchHistoryTableView.isHidden = true
         navigatingSearchTableView.isHidden = true
-        firstlabel.isHidden = true
-        secondlabel.isHidden = true
+        findYourStuffLabel.isHidden = true
+        searchGithubLabel.isHidden = true
         return true
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -74,8 +74,8 @@ extension HomeViewController : UISearchBarDelegate {
         searchHistoryTableView.isHidden = true
         searchHistoryTableView.reloadData()
         navigatingSearchTableView.isHidden = true
-        firstlabel.isHidden = true
-        secondlabel.isHidden = true
+        findYourStuffLabel.isHidden = true
+        searchGithubLabel.isHidden = true
         fetchSearchedWords()
 //        guard let text = searchController.searchBar.text else { return }
 //        let searchWord = SearchedWord(context: self.context)

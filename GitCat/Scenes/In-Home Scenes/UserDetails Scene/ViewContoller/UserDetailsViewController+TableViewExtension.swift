@@ -18,7 +18,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userDetailsTableView.dequeueReusableCell(withIdentifier: K.homeTableViewCell ) as! HomeTableViewCell
-        let userDetailsCell = userDetailsTableView.dequeueReusableCell(withIdentifier: K.UserDetailsTableViewCellID) as! UserDetailsTableViewCell
+        let userDetailsCell = userDetailsTableView.dequeueReusableCell(withIdentifier: K.userDetailsTableViewCellID) as! UserDetailsTableViewCell
         userDetailsCell.delegate = self
         cell.homeLabel.text = userDetailsArray[indexPath.row]
         cell.homeImage.image = imagesArray[indexPath.row]
@@ -55,18 +55,18 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         let passedName = user?.login
         userDetailsTableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row == 0 {
-            let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+            let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.repositoriesViewControllerID) as! RepositoriesViewController
             reposVC.passedNameFromUserDetailsVC = passedName
             self.navigationController?.pushViewController(reposVC, animated: true)
         }
         if indexPath.section == 1 && indexPath.row == 1 {
-            let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+            let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.repositoriesViewControllerID) as! RepositoriesViewController
             reposVC.passedNameFromUserDetailsVC = passedName
             reposVC.isStarredReposVC = true
             self.navigationController?.pushViewController(reposVC, animated: true)
         }
         if indexPath.section == 1 && indexPath.row == 2 {
-            let orgsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.OrganizationsViewControllerID) as! OrganizationsViewController
+            let orgsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.organizationsViewControllerID) as! OrganizationsViewController
             orgsVC.passedNameFromUserDetailsVC = passedName
             self.navigationController?.pushViewController(orgsVC, animated: true)
         }

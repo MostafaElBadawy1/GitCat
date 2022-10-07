@@ -8,8 +8,6 @@ import UIKit
 import Kingfisher
 class UsersListViewController: UIViewController {
     //MARK: - Props
-    var pageNumber = 2
-    var preFetchIndex = 15
     var usersViewModel = UsersListViewModel()
     var usersArray = [UserModel]()
     var moreUsersArray = [UserModel]()
@@ -21,8 +19,8 @@ class UsersListViewController: UIViewController {
     var visitedUserArray = [VisitedUser]()
     var searchedWordsArray = [SearchedWord]()
     let noUserslabel = UILabel()
-    let firstlabel = UILabel()
-    let secondlabel = UILabel()
+    let findYourStuffLabel = UILabel()
+    let searchGithubLabel = UILabel()
     var passedTextFromSearch: String?
     //MARK: - IBOutlets
     @IBOutlet weak var usersListTableView: UITableView!
@@ -35,7 +33,7 @@ class UsersListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        networkReachability()
+        networkReachability(loadingIndicator: loadingIndicator)
         searchHistoryTableView.reloadData()
     }
     //MARK: - Main Functions
@@ -55,48 +53,27 @@ class UsersListViewController: UIViewController {
         }
     }
     //MARK: - View Functions
+    func tableViewDelegateAndDataSourceConfig(tableViewName : UITableView) {
+        tableViewName.delegate = self
+        tableViewName.dataSource = self
+    }
     func usersTableViewConfig() {
-        usersListTableView.delegate = self
-        usersListTableView.dataSource = self
+        tableViewDelegateAndDataSourceConfig(tableViewName: usersListTableView)
         usersListTableView.prefetchDataSource = self
-        usersListTableView.register(UINib(nibName: K.usersListTableViewCell, bundle: .main), forCellReuseIdentifier: K.UserListCellID)
+        usersListTableView.register(UINib(nibName: K.usersListTableViewCell, bundle: .main), forCellReuseIdentifier: K.userListCellID)
         usersListTableView.frame = view.bounds
         loadingIndicator.backgroundColor = .black
     }
     func searchHistoryTableViewConfig() {
-        searchHistoryTableView.delegate = self
-        searchHistoryTableView.dataSource = self
-        searchHistoryTableView.register(UINib(nibName: K.CollectionViewTableViewCellID, bundle: .main), forCellReuseIdentifier:  K.CollectionViewTableViewCellID)
-        searchHistoryTableView.register(UINib(nibName: K.RecentSearchTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RecentSearchTableViewCellID)
+        tableViewDelegateAndDataSourceConfig(tableViewName: searchHistoryTableView)
+        tableViewNibRegister(tableViewName: searchHistoryTableView, nibName: K.collectionViewTableViewCellID)
+        tableViewNibRegister(tableViewName: searchHistoryTableView, nibName: K.recentSearchTableViewCellID)
         searchHistoryTableView.frame = view.bounds
         searchHistoryTableView.isHidden = true
     }
     func searchControllerConfig() {
-        navigationItem.searchController = searchController
-        //searchController.searchResultsUpdater = self
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = false
+        searchControllerSetup(searchController: searchController, placeHolder: "Search For Users.")
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search For Users."
-    }
-    func createSpinnerFooter()-> UIView {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
-        let spinner = UIActivityIndicatorView()
-        footerView.addSubview(spinner)
-        spinner.center = footerView.center
-        spinner.startAnimating()
-        return footerView
-    }
-    func networkReachability(){
-        loadingIndicator.style = .medium
-        loadingIndicator.center = view.center
-        view.addSubview(loadingIndicator)
-        if NetworkMonitor.shared.isConnected {
-            loadingIndicator.stopAnimating()
-        } else {
-            presentAlert (title: "You Are Disconnected", message: "Please Check Your Connection!")
-            loadingIndicator.startAnimating()
-        }
     }
     func refreshPage(){
         self.usersListTableView.refreshControl = UIRefreshControl()
@@ -112,32 +89,12 @@ class UsersListViewController: UIViewController {
         usersListTableView.isHidden  = false
         //loadingIndicator.isHidden = false
     }
-    func presentAlert (title: String, message: String) {
-        let alert : UIAlertController = UIAlertController(title:title , message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
     func LabelConfig() {
         noUserslabel.text = "There aren't any users."
         noUserslabel.font = UIFont.boldSystemFont(ofSize: 20)
         //label.translatesAutoresizingMaskIntoConstraints = false
         noUserslabel.frame =  CGRect(x: 110, y: 400, width:300, height: 50)
         self.view.addSubview(noUserslabel)
-    }
-    func emptySearchVClabelsConfig(){
-        firstlabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
-        firstlabel.center = CGPoint(x: 200, y: 420)
-        firstlabel.textAlignment = .center
-        firstlabel.text = "Find Your stuff."
-        firstlabel.font = .boldSystemFont(ofSize: 19)
-        self.view.addSubview(firstlabel)
-        secondlabel.frame =  CGRect(x: 0, y: 0, width: 400, height: 60)
-        secondlabel.center = CGPoint(x: 205, y: 475)
-        secondlabel.textAlignment = .center
-        secondlabel.text = "Search all of GitHub for People, Repositories, Organizations, Issues, and Pull Requests"
-        secondlabel.numberOfLines = 0
-        secondlabel.textColor = .gray
-        self.view.addSubview(secondlabel)
     }
     //MARK: - Data Functions
     func fetchUsers(for searchKeyword: String) {

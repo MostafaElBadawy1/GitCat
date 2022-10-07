@@ -51,8 +51,8 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableView {
         case searchHistoryTableView:
-            let recentVisitedUsersCell = searchHistoryTableView.dequeueReusableCell(withIdentifier: K.CollectionViewTableViewCellID) as! CollectionViewTableViewCell
-            let searchWordCell = searchHistoryTableView.dequeueReusableCell(withIdentifier: K.RecentSearchTableViewCellID) as! RecentSearchTableViewCell
+            let recentVisitedUsersCell = searchHistoryTableView.dequeueReusableCell(withIdentifier: K.collectionViewTableViewCellID) as! CollectionViewTableViewCell
+            let searchWordCell = searchHistoryTableView.dequeueReusableCell(withIdentifier: K.recentSearchTableViewCellID) as! RecentSearchTableViewCell
             switch indexPath.section {
             case 0:
                 recentVisitedUsersCell.delegate = self
@@ -63,7 +63,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
                 return searchWordCell
             }
         default:
-            let userCell = usersListTableView.dequeueReusableCell(withIdentifier: K.UserListCellID, for: indexPath) as! UsersListTableViewCell
+            let userCell = usersListTableView.dequeueReusableCell(withIdentifier: K.userListCellID, for: indexPath) as! UsersListTableViewCell
             userCell.userNameLabel.text = usersArray[indexPath.row].login
             userCell.UserImageView.kf.setImage(with: URL(string: usersArray[indexPath.row].avatar_url!),placeholder: UIImage(named: "UsersIcon"))
             userCell.UserImageView.layer.masksToBounds = false
@@ -77,7 +77,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         case usersListTableView:
             usersListTableView.deselectRow(at: indexPath, animated: true)
             let passedDataToUserDetailsVC = usersArray[indexPath.row].login
-            let userDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UserDetailsViewControllerID) as! UserDetailsViewController
+            let userDetailsVC = UIStoryboard(name: "Users", bundle: nil).instantiateViewController(withIdentifier: K.userDetailsViewControllerID) as! UserDetailsViewController
             userDetailsVC.passeedDataFromUserListVC = passedDataToUserDetailsVC
             self.navigationController?.pushViewController(userDetailsVC, animated: true)
             if searchController.isActive {

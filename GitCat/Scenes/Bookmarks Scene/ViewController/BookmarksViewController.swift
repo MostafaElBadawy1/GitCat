@@ -39,21 +39,13 @@ class BookmarksViewController: UIViewController {
     func tableViewConfig() {
         bookmarksTableView.delegate = self
         bookmarksTableView.dataSource = self
-        bookmarksTableView.register(UINib(nibName: K.usersListTableViewCell, bundle: nil), forCellReuseIdentifier: K.UserListCellID)
-        bookmarksTableView.register(UINib(nibName: K.RepositoriesTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RepositoriesTableViewCellID)
+        tableViewNibRegister(tableViewName: bookmarksTableView, nibName: K.usersListTableViewCell)
+        tableViewNibRegister(tableViewName: bookmarksTableView, nibName: K.repositoriesTableViewCellID)
         bookmarksTableView.frame = view.frame
     }
     func searchControllerConfig() {
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = false
+        searchControllerSetup(searchController: searchController, placeHolder: "Search For Bookmarked Users or Repositories.")
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search For Bookmarked Users or Repositories."
-    }
-    func presentAlert (title: String, message: String) {
-        let alert : UIAlertController = UIAlertController(title:title , message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     //MARK: - Data Function
     func fetchBookmarkedUsers() {

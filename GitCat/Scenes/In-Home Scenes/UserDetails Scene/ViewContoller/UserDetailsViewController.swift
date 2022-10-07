@@ -50,11 +50,10 @@ class UserDetailsViewController: UIViewController {
     func tableViewConfig() {
         userDetailsTableView.delegate = self
         userDetailsTableView.dataSource = self
-        userDetailsTableView.register(UINib(nibName: K.homeTableViewCell, bundle: .main), forCellReuseIdentifier: K.homeTableViewCell)
-        userDetailsTableView.register((UINib(nibName: K.UserDetailsTableViewCellID, bundle: .main)), forCellReuseIdentifier: K.UserDetailsTableViewCellID)
+        tableViewNibRegister(tableViewName: userDetailsTableView, nibName: K.homeTableViewCell)
+        tableViewNibRegister(tableViewName: userDetailsTableView, nibName: K.userDetailsTableViewCellID)
         userDetailsTableView.frame = view.frame
         navigationItem.largeTitleDisplayMode = .never
-        //userDetailsTableView.tintColor = .systemGray6
         userDetailsTableView.isHidden = true
         loadingIndicator.startAnimating()
     }
@@ -62,8 +61,6 @@ class UserDetailsViewController: UIViewController {
         tryAgainButton.frame = CGRect(x: 165, y: 400, width: 100, height: 40)
         tryAgainButton.backgroundColor = .systemFill
         tryAgainButton.setTitle("Try Again", for: .normal)
-        //button.tintColor = .darkText
-        // button.titleLabel?.font = .boldSystemFont(ofSize: 13)
         tryAgainButton.layer.cornerRadius = 5
         tryAgainButton.layer.borderWidth = 0.25
         tryAgainButton.layer.borderColor = UIColor.white.cgColor
@@ -105,11 +102,6 @@ class UserDetailsViewController: UIViewController {
         }
         let shareSheetVC = UIActivityViewController(activityItems: [ url], applicationActivities: nil)
         present(shareSheetVC, animated: true)
-    }
-    func presentAlert(title: String, message: String) {
-        let alert : UIAlertController = UIAlertController(title: title, message: message , preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     //MARK: - Data Function
     func fetchUser() {

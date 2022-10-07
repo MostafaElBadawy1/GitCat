@@ -8,8 +8,6 @@ import UIKit
 import Kingfisher
 class RepositoriesViewController: UIViewController {
     //MARK: - Props
-    var pageNum = 2
-    var preFetchIndex = 10
     let noReposLabel = UILabel()
     var repositoriesForUserViewModel = RepositoriesViewModel()
     var reposArray = [RepositoriesForUserModel]()
@@ -20,15 +18,8 @@ class RepositoriesViewController: UIViewController {
     var isStarredReposVC = false
     var isProfile = false
     let loadingIndicator = UIActivityIndicatorView()
-    let spinner = UIActivityIndicatorView()
     let searchController = UISearchController()
     var passedTextFromSearch: String?
-    var isLoggedIn: Bool {
-        if TokenManager.shared.fetchAccessToken() != nil {
-            return true
-        }
-        return false
-    }
     //MARK: - IBOutlets
     @IBOutlet weak var repositoriesTableView: UITableView!
     //MARK: - Life Cycle
@@ -41,7 +32,7 @@ class RepositoriesViewController: UIViewController {
     func initView() {
         tableViewConfig()
         refreshPage()
-        networkReachability()
+        networkReachability(loadingIndicator: loadingIndicator)
         if isWithSearchController == true {
             searchControllerConfig()
         } else {
@@ -74,16 +65,11 @@ class RepositoriesViewController: UIViewController {
         repositoriesTableView.delegate = self
         repositoriesTableView.dataSource = self
         repositoriesTableView.prefetchDataSource = self
-        repositoriesTableView.register(UINib(nibName: K.RepositoriesTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RepositoriesTableViewCellID)
+        tableViewNibRegister(tableViewName: repositoriesTableView, nibName: K.repositoriesTableViewCellID)
         repositoriesTableView.frame = view.frame
         self.loadingIndicator.startAnimating()
         navigationItem.title = "Repositories"
         repositoriesTableView.rowHeight = UITableView.automaticDimension
-    }
-    func presentAlert(title: String , message: String) {
-        let alert : UIAlertController = UIAlertController(title: title , message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     func LabelConfig(){
         noReposLabel.text = "There aren't any repositories."
@@ -93,30 +79,8 @@ class RepositoriesViewController: UIViewController {
         self.view.addSubview(noReposLabel)
     }
     func searchControllerConfig() {
-        navigationItem.searchController = searchController
-        //searchController.searchResultsUpdater = self
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = false
+        searchControllerSetup(searchController: searchController, placeHolder: "Search For Repositories.")
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search For Repositories."
-    }
-    func createSpinnerFooter()-> UIView {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
-        footerView.addSubview(spinner)
-        spinner.center = footerView.center
-        spinner.startAnimating()
-        return footerView
-    }
-    func networkReachability(){
-        loadingIndicator.style = .medium
-        loadingIndicator.center = view.center
-        view.addSubview(loadingIndicator)
-        if NetworkMonitor.shared.isConnected {
-            loadingIndicator.stopAnimating()
-        } else {
-            presentAlert(title: "You Are Disconnected" , message: "Please Check Your Connection!")
-            loadingIndicator.startAnimating()
-        }
     }
     func refreshPage(){
         self.repositoriesTableView.refreshControl = UIRefreshControl()

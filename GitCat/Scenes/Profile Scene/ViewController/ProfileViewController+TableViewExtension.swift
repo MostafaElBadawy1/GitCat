@@ -33,16 +33,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
-                let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+                let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.repositoriesViewControllerID) as! RepositoriesViewController
                 reposVC.isProfile = true
                 self.navigationController?.pushViewController(reposVC, animated: true)
             case 1:
-                let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+                let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.repositoriesViewControllerID) as! RepositoriesViewController
                 reposVC.passedNameFromUserDetailsVC = passedName
                 reposVC.isStarredReposVC = true
                 self.navigationController?.pushViewController(reposVC, animated: true)
             case 2:
-                let orgsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.OrganizationsViewControllerID) as! OrganizationsViewController
+                let orgsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.organizationsViewControllerID) as! OrganizationsViewController
                 orgsVC.passedNameFromUserDetailsVC = passedName
                 self.navigationController?.pushViewController(orgsVC, animated: true)
             default:
@@ -54,7 +54,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = profileTableView.dequeueReusableCell(withIdentifier: K.homeTableViewCell ) as! HomeTableViewCell
         cell.homeLabel.text = userDetailsArray[indexPath.row]
         cell.homeImage.image = imagesArray[indexPath.row]
-        let userDetailsCell = profileTableView.dequeueReusableCell(withIdentifier: K.UserDetailsTableViewCellID) as! UserDetailsTableViewCell
+        let userDetailsCell = profileTableView.dequeueReusableCell(withIdentifier: K.userDetailsTableViewCellID) as! UserDetailsTableViewCell
         userDetailsCell.userFullNameLabel.text = user?.name
         if let userAvatarUrl = user?.avatar_url {
             userDetailsCell.userImage.kf.setImage(with: URL(string: "\(userAvatarUrl)"),placeholder: UIImage(named: "UsersIcon"))

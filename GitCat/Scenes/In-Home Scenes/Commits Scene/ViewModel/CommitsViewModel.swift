@@ -6,6 +6,8 @@
 //
 import Foundation
 class CommitsViewModel {
+    var pageNum = 1
+    var preFetchIndex = 15
     var bindingData: (([CommitsModel]?,Error?) -> Void) = {_, _ in }
     var commits = [CommitsModel]() {
         didSet {

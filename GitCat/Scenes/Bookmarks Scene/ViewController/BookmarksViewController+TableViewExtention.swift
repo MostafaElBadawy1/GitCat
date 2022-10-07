@@ -45,12 +45,12 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
         bookmarksTableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
-            let userDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UserDetailsViewControllerID) as! UserDetailsViewController
+            let userDetailsVC = UIStoryboard(name: "Users", bundle: nil).instantiateViewController(withIdentifier: K.userDetailsViewControllerID) as! UserDetailsViewController
             userDetailsVC.passeedDataFromUserListVC = filterdUserArray[indexPath.row].userName
             userDetailsVC.isSaved = true
             self.navigationController?.pushViewController(userDetailsVC, animated: true)
         case 1:
-            let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
+            let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.commitsViewControllerID) as! CommitsViewController
             commitsVC.repoName = filterdReposArray[indexPath.row].repoName!
             commitsVC.repoOwner = filterdReposArray[indexPath.row].ownerName!
             self.navigationController?.pushViewController(commitsVC, animated: true)
@@ -61,7 +61,7 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0  {
-            let userCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.UserListCellID, for: indexPath) as! UsersListTableViewCell
+            let userCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.userListCellID, for: indexPath) as! UsersListTableViewCell
             userCell.userNameLabel.text = filterdUserArray[indexPath.row].userName
             if let userAvatarUrl = filterdUserArray[indexPath.row].userImageURL{
                 userCell.UserImageView.kf.setImage(with: userAvatarUrl, placeholder: UIImage(named: "UsersIcon"))
@@ -71,7 +71,7 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
             userCell.UserImageView.clipsToBounds = true
             return userCell
         } else  {
-            let repoCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.RepositoriesTableViewCellID, for: indexPath) as! RepositoriesTableViewCell
+            let repoCell = bookmarksTableView.dequeueReusableCell(withIdentifier: K.repositoriesTableViewCellID, for: indexPath) as! RepositoriesTableViewCell
             repoCell.repoNameLabel.text = filterdReposArray[indexPath.row].repoFullName
             repoCell.repoDescriptionLabel.text = filterdReposArray[indexPath.row].repoDescription
             repoCell.programmingLangLabel.text = filterdReposArray[indexPath.row].repoLanguage

@@ -65,20 +65,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             case homeTableView:
                 homeTableView.deselectRow(at: indexPath, animated: true)
                 if indexPath.section == 0 && indexPath.row == 0 {
-                    let usersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.usersListViewControllerID) as! UsersListViewController
+                    let usersVC = UIStoryboard(name: "Users", bundle: nil).instantiateViewController(withIdentifier: K.usersListViewControllerID) as! UsersListViewController
                     self.navigationController?.pushViewController(usersVC, animated: true)
                 } else if indexPath.section == 0 && indexPath.row == 1 {
-                    let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+                    let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.repositoriesViewControllerID) as! RepositoriesViewController
                     reposVC.isWithSearchController = true
                     self.navigationController?.pushViewController(reposVC, animated: true)
                 } else if indexPath.section == 0 && indexPath.row == 2 {
-                    let issuesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.IssuesViewControllerID) as! IssuesViewController
+                    let issuesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.issuesViewControllerID) as! IssuesViewController
                     self.navigationController?.pushViewController(issuesVC, animated: true)
                 } else if indexPath.section == 0 && indexPath.row == 3 {
-                    let webViewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.WebViewViewControllerID) as! WebViewViewController
+                    let webViewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.webViewViewControllerID) as! WebViewViewController
                     self.navigationController?.pushViewController(webViewVC, animated: true)
                 } else if indexPath.section == 1 && indexPath.row == 0 {
-                    let webViewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.WebViewViewControllerID) as! WebViewViewController
+                    let webViewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.webViewViewControllerID) as! WebViewViewController
                     webViewVC.isMyRepo = true
                     self.navigationController?.pushViewController(webViewVC, animated: true)
                 }
@@ -108,20 +108,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 switch indexPath.row {
                 case 0:
-                    let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.RepositoriesViewControllerID) as! RepositoriesViewController
+                    let reposVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.repositoriesViewControllerID) as! RepositoriesViewController
                     reposVC.isWithSearchController = true
                     reposVC .passedTextFromSearch = query
                     self.navigationController?.pushViewController(reposVC, animated: true)
                 case 1:
-                    let issuesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.IssuesViewControllerID) as! IssuesViewController
+                    let issuesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.issuesViewControllerID) as! IssuesViewController
                     issuesVC.passedTextFromSearch = query
                     self.navigationController?.pushViewController(issuesVC, animated: true)
                 case 2:
-                    let usersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.usersListViewControllerID) as! UsersListViewController
+                    let usersVC = UIStoryboard(name: "Users", bundle: nil).instantiateViewController(withIdentifier: K.usersListViewControllerID) as! UsersListViewController
                     usersVC.passedTextFromSearch = query
                     self.navigationController?.pushViewController(usersVC, animated: true)
                 case 3:
-                    let orgsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.OrganizationsViewControllerID) as! OrganizationsViewController
+                    let orgsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.organizationsViewControllerID) as! OrganizationsViewController
                     orgsVC.passedNameFromUserDetailsVC = query
                     self.navigationController?.pushViewController(orgsVC, animated: true)
                 default:
@@ -152,7 +152,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.homeImage.clipsToBounds = true
             case 2:
                 cell.selectionStyle = .none
-                if isLoggedIn == false {
+                if homeViewModel.isLoggedIn == false {
                     cell.homeLabel.text = "Guest Mode"
                 } else {
                     cell.homeLabel.text = "Authenticated User Mode"
@@ -165,7 +165,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             if tableView == searchHistoryTableView {
-                let searchWordCell = searchHistoryTableView.dequeueReusableCell(withIdentifier: K.RecentSearchTableViewCellID) as! RecentSearchTableViewCell
+                let searchWordCell = searchHistoryTableView.dequeueReusableCell(withIdentifier: K.recentSearchTableViewCellID) as! RecentSearchTableViewCell
                     searchWordCell.recentSearchLabel.text = searchedWordsArray[indexPath.row].word
                     return searchWordCell
             } else {
@@ -174,7 +174,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     switch indexPath.row {
                     case 0 :
                         navigatingSearchCell.navigatingLabel.text = "Repositories with \"\(typedWord)\""
-                        //navigatingSearchCell.navigatingImage.image = UIImage(named: "whiteRepo")
                     case 1 :
                         navigatingSearchCell.navigatingLabel.text = "Issues with \"\(typedWord)\""
                     case 2 :

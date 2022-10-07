@@ -6,6 +6,12 @@
 //
 import Foundation
 class HomeViewModel {
+    var isLoggedIn: Bool {
+        if TokenManager.shared.fetchAccessToken() != nil {
+            return true
+        }
+        return false
+    }
     var bindingData: ((RepositoriesForUserModel?,Error?) -> Void) = {_, _ in }
     var repo : RepositoriesForUserModel? {
         didSet {

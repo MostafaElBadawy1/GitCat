@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Users-->
+        <scene sceneID="wbX-13-whh">
+            <objects>
+                <viewController storyboardIdentifier="UsersListViewController" id="BXn-Uq-bng" customClass="UsersListViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6ar-W2-mHb">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="SC5-VK-3Jk">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xd4-01-D3v">
+                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vac-bU-Gwo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xd4-01-D3v" firstAttribute="trailing" secondItem="vac-bU-Gwo" secondAttribute="trailing" id="4FC-VZ-W4o"/>
+                            <constraint firstItem="xd4-01-D3v" firstAttribute="bottom" secondItem="vac-bU-Gwo" secondAttribute="bottom" id="EIY-G2-c1d"/>
+                            <constraint firstItem="xd4-01-D3v" firstAttribute="leading" secondItem="vac-bU-Gwo" secondAttribute="leading" id="NYO-uK-cSk"/>
+                            <constraint firstItem="xd4-01-D3v" firstAttribute="top" secondItem="vac-bU-Gwo" secondAttribute="top" id="diu-Gt-isE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Users" id="uET-e3-lUh"/>
+                    <connections>
+                        <outlet property="searchHistoryTableView" destination="SC5-VK-3Jk" id="ban-ay-Qjc"/>
+                        <outlet property="usersListTableView" destination="xd4-01-D3v" id="nja-Nh-kuf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PTu-4M-nei" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-94.20289855072464" y="969.64285714285711"/>
+        </scene>
+        <!--User Details View Controller-->
+        <scene sceneID="aio-eV-ww3">
+            <objects>
+                <viewController storyboardIdentifier="UserDetailsViewController" id="VlJ-sN-NDN" customClass="UserDetailsViewController" customModule="GitCat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ytu-fH-lUg">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5vO-1I-jwY">
+                                <rect key="frame" x="0.0" y="47" width="390" height="797"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aHS-cJ-sKA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5vO-1I-jwY" firstAttribute="leading" secondItem="aHS-cJ-sKA" secondAttribute="leading" id="Bbm-7F-Okh"/>
+                            <constraint firstItem="5vO-1I-jwY" firstAttribute="trailing" secondItem="aHS-cJ-sKA" secondAttribute="trailing" id="PDR-XX-Wkb"/>
+                            <constraint firstItem="5vO-1I-jwY" firstAttribute="top" secondItem="aHS-cJ-sKA" secondAttribute="top" id="VjK-So-u4J"/>
+                            <constraint firstAttribute="bottom" secondItem="5vO-1I-jwY" secondAttribute="bottom" id="nad-j0-D2Q"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="FEI-Lr-0Qo">
+                        <rightBarButtonItems>
+                            <barButtonItem image="link" catalog="system" id="qHk-YK-7qh">
+                                <connections>
+                                    <action selector="safariViewButton:" destination="VlJ-sN-NDN" id="aLi-pL-GyC"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="square.and.arrow.up" catalog="system" id="gN9-67-J8o">
+                                <connections>
+                                    <action selector="shareUserButton:" destination="VlJ-sN-NDN" id="8d8-Ar-qxK"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="userDetailsTableView" destination="5vO-1I-jwY" id="jXS-nV-y6U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gAd-LG-jX5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="700" y="969"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="link" catalog="system" width="128" height="124"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

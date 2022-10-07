@@ -23,7 +23,7 @@ class OrganizationsViewController: UIViewController {
     //MARK: - Main Functions
     func initView() {
         tableViewConfig()
-        networkReachability()
+        networkReachability(loadingIndicator: loadingIndicator)
         refreshPage()
     }
     func initViewModel() {
@@ -37,7 +37,7 @@ class OrganizationsViewController: UIViewController {
     func tableViewConfig() {
         orgsTableView.delegate = self
         orgsTableView.dataSource = self
-        orgsTableView.register(UINib(nibName: K.OrganizationsTableViewCellID, bundle: .main), forCellReuseIdentifier: K.OrganizationsTableViewCellID)
+        orgsTableView.register(UINib(nibName: K.organizationsTableViewCellID, bundle: .main), forCellReuseIdentifier: K.organizationsTableViewCellID)
         orgsTableView.frame = view.bounds
         orgsTableView.rowHeight = 80
         navigationItem.title = "Organizations"
@@ -57,17 +57,6 @@ class OrganizationsViewController: UIViewController {
         label.frame =  CGRect(x: 100, y: 400, width:300, height: 50)
         self.view.addSubview(label)
     }
-    func networkReachability(){
-        loadingIndicator.style = .medium
-        loadingIndicator.center = view.center
-        view.addSubview(loadingIndicator)
-        if NetworkMonitor.shared.isConnected {
-            loadingIndicator.stopAnimating()
-        } else {
-            presentAlert(title: "You Are Disconnected" , message: "Please Check Your Connection !")
-            loadingIndicator.startAnimating()
-        }
-    }
     func refreshPage(){
         self.orgsTableView.refreshControl = UIRefreshControl()
         self.orgsTableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
@@ -77,11 +66,6 @@ class OrganizationsViewController: UIViewController {
             fetchOrgs(userName: userName)
         }
         self.orgsTableView.reloadData()
-    }
-    func presentAlert(title: String , message: String) {
-        let alert : UIAlertController = UIAlertController(title: title , message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     //MARK: - Data Functions
     func fetchOrgs(userName: String) {

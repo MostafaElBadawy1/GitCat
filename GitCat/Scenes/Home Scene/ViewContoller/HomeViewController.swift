@@ -4,8 +4,8 @@
 //
 //  Created by Mostafa Elbadawy on 04/08/2022.
 //
-import UIKit
-import Kingfisher
+ import UIKit
+ import Kingfisher
 class HomeViewController: UIViewController {
     //MARK: - Props
     let searchController = UISearchController()
@@ -16,14 +16,8 @@ class HomeViewController: UIViewController {
     var myRepoModel : RepositoriesForUserModel?
     var searchedWordsArray = [SearchedWord]() 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let firstlabel = UILabel()
-    let secondlabel = UILabel()
-    var isLoggedIn: Bool {
-        if TokenManager.shared.fetchAccessToken() != nil {
-            return true
-        }
-        return false
-    }
+    let findYourStuffLabel = UILabel()
+    let searchGithubLabel = UILabel()
     var query: String? {
            didSet {
                navigatingSearchTableView.reloadData()
@@ -41,7 +35,7 @@ class HomeViewController: UIViewController {
     }
     //MARK: - Main Functions
     func initView() {
-        tableViewConfig()
+        homeTableViewConfig()
         searchControllerConfig()
     }
     func initViewModel() {
@@ -49,53 +43,29 @@ class HomeViewController: UIViewController {
         fetchSearchedWords()
     }
     //MARK: - View Functions
-    func tableViewConfig() {
-        homeTableView.delegate = self
-        homeTableView.dataSource = self
-        homeTableView.register(UINib(nibName: K.homeTableViewCell, bundle: .main), forCellReuseIdentifier: K.homeTableViewCell)
-       // self.homeTableView.isHidden = true
+    func tableViewDelegateAndDataSourceConfig (tableViewName : UITableView) {
+        tableViewName.delegate = self
+        tableViewName.dataSource = self
+    }
+    func homeTableViewConfig() {
+        tableViewDelegateAndDataSourceConfig(tableViewName: homeTableView)
+        tableViewNibRegister(tableViewName: homeTableView, nibName: K.homeTableViewCell)
     }
     func searchHistoryTableViewConfig() {
-        searchHistoryTableView.delegate = self
-        searchHistoryTableView.dataSource = self
-        searchHistoryTableView.register(UINib(nibName: K.CollectionViewTableViewCellID, bundle: .main), forCellReuseIdentifier:  K.CollectionViewTableViewCellID)
-        searchHistoryTableView.register(UINib(nibName: K.RecentSearchTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RecentSearchTableViewCellID)
-       // searchHistoryTableView.isHidden = true
+        tableViewDelegateAndDataSourceConfig(tableViewName: searchHistoryTableView)
+        tableViewNibRegister(tableViewName: searchHistoryTableView, nibName: K.collectionViewTableViewCellID)
+        tableViewNibRegister(tableViewName: searchHistoryTableView, nibName: K.recentSearchTableViewCellID)
+
     }
     func navigatingSearchTableViewConfig() {
-        navigatingSearchTableView.delegate = self
-        navigatingSearchTableView.dataSource = self
-        navigatingSearchTableView.register(UINib(nibName: K.navigatingSearchTableViewCell, bundle: .main), forCellReuseIdentifier:  K.navigatingSearchTableViewCell)
+        tableViewDelegateAndDataSourceConfig(tableViewName: navigatingSearchTableView)
+        tableViewNibRegister(tableViewName: navigatingSearchTableView, nibName: K.navigatingSearchTableViewCell)
         navigatingSearchTableView.frame = view.bounds
-       // navigatingSearchTableView.isHidden = false
     }
     func searchControllerConfig() {
-        navigationItem.searchController = searchController
+        searchControllerSetup(searchController: searchController, placeHolder: "Search GitHub")
         searchController.searchResultsUpdater = self
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search GitHub"
-    }
-    func presentAlert (title: String, message: String) {
-        let alert : UIAlertController = UIAlertController(title:title , message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    func emptySearchVClabelsConfig(){
-        firstlabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
-        firstlabel.center = CGPoint(x: 200, y: 420)
-        firstlabel.textAlignment = .center
-        firstlabel.text = "Find Your stuff."
-        firstlabel.font = .boldSystemFont(ofSize: 19)
-        self.view.addSubview(firstlabel)
-        secondlabel.frame =  CGRect(x: 0, y: 0, width: 400, height: 60)
-        secondlabel.center = CGPoint(x: 205, y: 475)
-        secondlabel.textAlignment = .center
-        secondlabel.text = "Search all of GitHub for People, Repositories, Organizations, Issues, and Pull Requests"
-        secondlabel.numberOfLines = 0
-        secondlabel.textColor = .gray
-        self.view.addSubview(secondlabel)
     }
     //MARK: - Data Functions
     func fetchMyRepo() {

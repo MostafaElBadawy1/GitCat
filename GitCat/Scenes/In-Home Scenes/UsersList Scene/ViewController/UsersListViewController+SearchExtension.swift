@@ -11,11 +11,11 @@ extension UsersListViewController: UISearchBarDelegate{
         usersListTableView.isHidden = true
         searchHistoryTableView.isHidden = false
         if visitedUserArray.isEmpty && searchedWordsArray.isEmpty {
-            emptySearchVClabelsConfig()
+            emptySearchVClabelsConfig(firstLabel: findYourStuffLabel, secondLabel: searchGithubLabel)
             searchHistoryTableView.isHidden = true
         } else {
-            firstlabel.isHidden = true
-            secondlabel.isHidden = true
+            findYourStuffLabel.isHidden = true
+            searchGithubLabel.isHidden = true
         }
         loadingIndicator.stopAnimating()
         return true
@@ -53,8 +53,8 @@ extension UsersListViewController: UISearchBarDelegate{
         usersListTableView.isHidden = false
         searchHistoryTableView.reloadData()
         searchHistoryTableView.isHidden = true
-        firstlabel.isHidden = true
-        secondlabel.isHidden = true
+        findYourStuffLabel.isHidden = true
+        searchGithubLabel.isHidden = true
 //        guard let text = searchController.searchBar.text else { return }
 //        let searchWord = SearchedWord(context: self.context)
 //        searchWord.word = text

@@ -7,14 +7,11 @@
 import UIKit
 class ExploreViewController: UIViewController {
     //MARK: - Props
-    var pageNumber = 2
-    var preFetchIndex = 15
     var exploreReposArray = [RepositoriesForUserModel]()
     var moreExploreReposArray = [RepositoriesForUserModel]()
     var exploreViewModel = ExploreViewModel()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let loadingIndicator = UIActivityIndicatorView()
-    let spinner = UIActivityIndicatorView()
     let searchController = UISearchController()
     let noReposLabel = UILabel()
     //MARK: - IBOutlets
@@ -30,7 +27,7 @@ class ExploreViewController: UIViewController {
         tableViewConfig()
        searchControllerConfig()
         refreshPage()
-        //setup()
+        networkReachability(loadingIndicator: loadingIndicator)
     }
     func InitViewModel(){
         fetchSearchedExploreRepos(searchWord: "a")
@@ -40,35 +37,13 @@ class ExploreViewController: UIViewController {
         exploreTableView.delegate = self
         exploreTableView.dataSource = self
         exploreTableView.prefetchDataSource = self
-        exploreTableView.register(UINib(nibName: K.ExploreTableViewCellID, bundle: .main), forCellReuseIdentifier: K.ExploreTableViewCellID)
+        tableViewNibRegister(tableViewName: exploreTableView, nibName: K.exploreTableViewCellID)
         exploreTableView.frame = view.frame
         self.loadingIndicator.startAnimating()
     }
     func searchControllerConfig() {
-        navigationItem.searchController = searchController
-        //searchController.searchResultsUpdater = self
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = true
+        searchControllerSetup(searchController: searchController, placeHolder: "Search In Most Starred Repositories.")
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search In Most Starred Repositories."
-    }
-    func createSpinnerFooter()-> UIView {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
-        footerView.addSubview(spinner)
-        spinner.center = footerView.center
-        spinner.startAnimating()
-        return footerView
-    }
-    func networkReachability(){
-        loadingIndicator.style = .medium
-        loadingIndicator.center = view.center
-        view.addSubview(loadingIndicator)
-        if NetworkMonitor.shared.isConnected {
-            loadingIndicator.stopAnimating()
-        } else {
-            presentAlert (title: "You Are Disconnected", message: "Please Check Your Connection!")
-            loadingIndicator.startAnimating()
-        }
     }
     func refreshPage() {
         self.exploreTableView.refreshControl = UIRefreshControl()
@@ -79,11 +54,7 @@ class ExploreViewController: UIViewController {
         self.exploreTableView.reloadData()
         noReposLabel.isHidden = true
     }
-    func presentAlert (title: String, message: String) {
-        let alert : UIAlertController = UIAlertController(title:title , message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+
     func LabelConfig() {
         noReposLabel.text = "There aren't any users."
         noReposLabel.font = UIFont.boldSystemFont(ofSize: 20)

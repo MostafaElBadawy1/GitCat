@@ -14,13 +14,13 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         exploreTableView.deselectRow(at: indexPath, animated: true)
-        let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.CommitsViewControllerID) as! CommitsViewController
+        let commitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.commitsViewControllerID) as! CommitsViewController
         commitsVC.repoName = exploreReposArray[indexPath.row].name
         commitsVC.repoOwner = exploreReposArray[indexPath.row].owner?.login
         self.navigationController?.pushViewController(commitsVC, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = exploreTableView.dequeueReusableCell(withIdentifier: K.ExploreTableViewCellID, for: indexPath) as! ExploreTableViewCell
+        let cell = exploreTableView.dequeueReusableCell(withIdentifier: K.exploreTableViewCellID, for: indexPath) as! ExploreTableViewCell
         cell.delegate = self
         cell.index = indexPath
         cell.repoNameLabel.text = exploreReposArray[indexPath.row].full_name!
@@ -37,17 +37,17 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource{
 extension ExploreViewController: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if indexPath.row == preFetchIndex {
-                self.exploreTableView.tableFooterView = createSpinnerFooter()
+            if indexPath.row == exploreViewModel.preFetchIndex {
+                self.exploreTableView.tableFooterView = createSpinnerFooter(loadingIndicator: loadingIndicator)
                 guard let text = searchController.searchBar.text else { return }
                 let filteredText = text.filter { $0.isLetter || $0.isNumber  }
                 if filteredText.isEmpty {
-                    fetchMoreSearchedExploreRepos(searchWord: "a", pageNum: pageNumber)
+                    fetchMoreSearchedExploreRepos(searchWord: "a", pageNum: exploreViewModel.pageNumber)
                 } else {
-                    fetchMoreSearchedExploreRepos(searchWord: filteredText, pageNum: pageNumber)
+                    fetchMoreSearchedExploreRepos(searchWord: filteredText, pageNum: exploreViewModel.pageNumber)
                 }
-                pageNumber = pageNumber + 1
-                preFetchIndex = preFetchIndex + 30
+                exploreViewModel.pageNumber = exploreViewModel.pageNumber + 1
+                exploreViewModel.preFetchIndex = exploreViewModel.preFetchIndex + 30
             }
         }
     }

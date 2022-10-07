@@ -39,8 +39,8 @@ class SearchHistoryViewController: UIViewController {
         //        let displayWidth: CGFloat = self.view.frame.width
         //        let displayHeight: CGFloat = self.view.frame.height
         // searchHistoryTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
-        recentSearchTableView.register(UINib(nibName: K.CollectionViewTableViewCellID, bundle: .main), forCellReuseIdentifier:  K.CollectionViewTableViewCellID)
-        recentSearchTableView.register(UINib(nibName: K.RecentSearchTableViewCellID, bundle: .main), forCellReuseIdentifier: K.RecentSearchTableViewCellID)
+        recentSearchTableView.register(UINib(nibName: K.collectionViewTableViewCellID, bundle: .main), forCellReuseIdentifier:  K.collectionViewTableViewCellID)
+        recentSearchTableView.register(UINib(nibName: K.recentSearchTableViewCellID, bundle: .main), forCellReuseIdentifier: K.recentSearchTableViewCellID)
         recentSearchTableView.dataSource = self
         recentSearchTableView.delegate = self
         recentSearchTableView.frame = view.bounds
@@ -104,8 +104,8 @@ extension SearchHistoryViewController: UITableViewDelegate, UITableViewDataSourc
         recentSearchTableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let recentVisitedUsersCell = recentSearchTableView.dequeueReusableCell(withIdentifier: K.CollectionViewTableViewCellID) as! CollectionViewTableViewCell
-        let searchWordCell = recentSearchTableView.dequeueReusableCell(withIdentifier: K.RecentSearchTableViewCellID) as! RecentSearchTableViewCell
+        let recentVisitedUsersCell = recentSearchTableView.dequeueReusableCell(withIdentifier: K.collectionViewTableViewCellID) as! CollectionViewTableViewCell
+        let searchWordCell = recentSearchTableView.dequeueReusableCell(withIdentifier: K.recentSearchTableViewCellID) as! RecentSearchTableViewCell
         switch indexPath.section {
         case 0:
             return recentVisitedUsersCell

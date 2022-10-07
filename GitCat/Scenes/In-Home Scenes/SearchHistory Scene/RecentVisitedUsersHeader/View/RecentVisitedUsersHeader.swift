@@ -43,7 +43,7 @@ class RecentVisitedUsersHeader: UIView {
         
         recentVisitedUsersCollectionView.dataSource = self
         recentVisitedUsersCollectionView.delegate = self
-        recentVisitedUsersCollectionView.register(UINib(nibName: K.RecentVisitedUsersCollectionViewCellID, bundle: .main), forCellWithReuseIdentifier: K.RecentVisitedUsersCollectionViewCellID)
+        recentVisitedUsersCollectionView.register(UINib(nibName: K.recentVisitedUsersCollectionViewCellID, bundle: .main), forCellWithReuseIdentifier: K.recentVisitedUsersCollectionViewCellID)
         recentVisitedUsersCollectionView.register(UINib(nibName:"RecentVisitedUsersCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "RecentVisitedUsersCollectionViewCell")
         recentVisitedUsersCollectionView.backgroundColor = UIColor.white
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
@@ -61,7 +61,7 @@ extension RecentVisitedUsersHeader : UICollectionViewDelegate, UICollectionViewD
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = recentVisitedUsersCollectionView.dequeueReusableCell(withReuseIdentifier: K.RecentVisitedUsersCollectionViewCellID, for: indexPath) as! RecentVisitedUsersCollectionViewCell
+        let cell = recentVisitedUsersCollectionView.dequeueReusableCell(withReuseIdentifier: K.recentVisitedUsersCollectionViewCellID, for: indexPath) as! RecentVisitedUsersCollectionViewCell
         cell.RecentVisitedUsersNameLabel.text = "sasa"
         return cell
     }

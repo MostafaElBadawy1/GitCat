@@ -23,7 +23,7 @@ class CollectionViewTableViewCell: UITableViewCell {
     func configCollectionView() {
         recentVisitedUsersCollectionView.delegate = self
         recentVisitedUsersCollectionView.dataSource = self
-        recentVisitedUsersCollectionView.register(UINib(nibName: K.RecentVisitedUsersCollectionViewCellID , bundle: .main), forCellWithReuseIdentifier: K.RecentVisitedUsersCollectionViewCellID )
+        recentVisitedUsersCollectionView.register(UINib(nibName: K.recentVisitedUsersCollectionViewCellID , bundle: .main), forCellWithReuseIdentifier: K.recentVisitedUsersCollectionViewCellID )
     }
     func fetchVisitedUsers() {
         CoreDataManger.shared.fetch(entityName: VisitedUser.self) { (users, error) in
@@ -49,7 +49,7 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         delegate?.tappedCell(cell: self, index: indexPath.item)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = recentVisitedUsersCollectionView.dequeueReusableCell(withReuseIdentifier: K.RecentVisitedUsersCollectionViewCellID, for: indexPath) as! RecentVisitedUsersCollectionViewCell
+        let cell = recentVisitedUsersCollectionView.dequeueReusableCell(withReuseIdentifier: K.recentVisitedUsersCollectionViewCellID, for: indexPath) as! RecentVisitedUsersCollectionViewCell
         cell.RecentVisitedUsersNameLabel.text = visitedUserArray[indexPath.item].userName
         cell.RecentVisitedUsersImageView.kf.setImage(with: visitedUserArray[indexPath.item].userImageURL ,placeholder: UIImage(named: "UsersIcon"))
         cell.RecentVisitedUsersImageView.layer.masksToBounds = false

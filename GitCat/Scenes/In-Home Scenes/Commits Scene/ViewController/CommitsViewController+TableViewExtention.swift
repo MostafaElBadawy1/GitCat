@@ -19,7 +19,7 @@ extension CommitsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = commitsTableView.dequeueReusableCell(withIdentifier: K.CommitsTableViewCellID, for: indexPath) as! CommitsTableViewCell
+        let cell = commitsTableView.dequeueReusableCell(withIdentifier: K.commitsTableViewCellID, for: indexPath) as! CommitsTableViewCell
         cell.userNameLabel.text = commitsArray[indexPath.row].commit.committer?.name
         cell.commitMessageLabel.text = commitsArray[indexPath.row].commit.message
         return cell
@@ -28,12 +28,12 @@ extension CommitsViewController: UITableViewDelegate, UITableViewDataSource {
 extension CommitsViewController: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if indexPath.row == preFetchIndex {
-                preFetchIndex = preFetchIndex + 30
-                pageNum = pageNum + 1
-                self.commitsTableView.tableFooterView = createSpinnerFooter()
+            if indexPath.row == commitsViewModel.preFetchIndex {
+                commitsViewModel.preFetchIndex = commitsViewModel.preFetchIndex + 30
+                commitsViewModel.pageNum = commitsViewModel.pageNum + 1
+                self.commitsTableView.tableFooterView = createSpinnerFooter(loadingIndicator: loadingIndicator)
                 if let owner = repoOwner, let repo = repoName {
-                    fetchMoreCommits(ownerName: owner, repoName: repo, pageNum: pageNum)
+                    fetchMoreCommits(ownerName: owner, repoName: repo, pageNum: commitsViewModel.pageNum)
                 }
             }
         }

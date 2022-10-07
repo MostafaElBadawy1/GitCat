@@ -13,7 +13,7 @@ extension OrganizationsViewController: UITableViewDelegate, UITableViewDataSourc
         orgsTableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = orgsTableView.dequeueReusableCell(withIdentifier: K.OrganizationsTableViewCellID) as! OrganizationsTableViewCell
+        let cell = orgsTableView.dequeueReusableCell(withIdentifier: K.organizationsTableViewCellID) as! OrganizationsTableViewCell
         cell.orgNameLabel.text = orgsArray[indexPath.row].login
         cell.orgDescriptionLabel.text = orgsArray[indexPath.row].description
         cell.orgImageView.kf.setImage(with: URL(string: orgsArray[indexPath.row].avatar_url!), placeholder: UIImage(named: "Organization"))

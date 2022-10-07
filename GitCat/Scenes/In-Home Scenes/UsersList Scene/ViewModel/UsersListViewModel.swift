@@ -6,6 +6,8 @@
 //
 import Foundation
 class UsersListViewModel {
+    var pageNumber = 2
+    var preFetchIndex = 15
     var bindingData: (([UserModel]?,Error?) -> Void) = {_, _ in }
     var users = [UserModel]() {
         didSet {

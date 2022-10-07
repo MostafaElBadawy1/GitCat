@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var shareLinkButtonIcon: UIBarButtonItem!
     @IBOutlet weak var profileTableView: UITableView!
     @IBAction func settingButton(_ sender: UIBarButtonItem) {
-        let settingsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.SettingsViewControllerID) as! SettingsViewController
+        let settingsVC = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: K.settingsViewControllerID) as! SettingsViewController
         settingsVC.passedDataFromProfileVC = user
         self.navigationController?.pushViewController(settingsVC, animated: true)
     }
@@ -42,17 +42,15 @@ class ProfileViewController: UIViewController {
         } else {
             LabelConfig()
             loginButtonConfig()
-            if #available(iOS 16.0, *) {
-                shareLinkButtonIcon.isHidden = true
-            } else {
-            }
+            shareLinkButtonIcon.isEnabled = false
+            shareLinkButtonIcon?.tintColor  = UIColor.clear
         }
     }
     func tableViewConfig() {
         profileTableView.delegate = self
         profileTableView.dataSource = self
-        profileTableView.register(UINib(nibName: K.UserDetailsTableViewCellID, bundle: .main), forCellReuseIdentifier: K.UserDetailsTableViewCellID)
-        profileTableView.register(UINib(nibName: K.homeTableViewCell, bundle: .main), forCellReuseIdentifier: K.homeTableViewCell)
+        tableViewNibRegister(tableViewName: profileTableView, nibName: K.userDetailsTableViewCellID)
+        tableViewNibRegister(tableViewName: profileTableView, nibName: K.homeTableViewCell)
         profileTableView.frame = view.frame
     }
     func LabelConfig(){
@@ -70,11 +68,6 @@ class ProfileViewController: UIViewController {
         image.kf.setImage(with: URL(string: (user?.avatar_url!)!),placeholder: UIImage(named: "UsersIcon"))
         let shareSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
         present(shareSheetVC, animated: true)
-    }
-    func presentAlert(title: String, message: String) {
-        let alert : UIAlertController = UIAlertController(title:title , message: title, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     func loginButtonConfig() {
         loginButton.frame = CGRect(x: 155, y: 450, width: 100, height: 40)

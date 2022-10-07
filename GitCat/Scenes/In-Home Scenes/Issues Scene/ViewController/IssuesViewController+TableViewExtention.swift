@@ -20,7 +20,7 @@ extension IssuesViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = issuesTableView.dequeueReusableCell(withIdentifier: K.CommitsTableViewCellID, for: indexPath) as! CommitsTableViewCell
+        let cell = issuesTableView.dequeueReusableCell(withIdentifier: K.commitsTableViewCellID, for: indexPath) as! CommitsTableViewCell
         cell.userNameLabel.text = issuesArray[indexPath.row].title
         cell.commitMessageLabel.text = issuesArray[indexPath.row].state
         return cell
@@ -29,17 +29,17 @@ extension IssuesViewController: UITableViewDelegate, UITableViewDataSource {
 extension IssuesViewController: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if indexPath.row == preFetchIndex {
-                self.issuesTableView.tableFooterView = createSpinnerFooter()
+            if indexPath.row == issuesViewModel.preFetchIndex {
+                self.issuesTableView.tableFooterView = createSpinnerFooter(loadingIndicator: loadingIndicator)
                 guard let text = searchController.searchBar.text else { return }
                 let filteredText = text.filter { $0.isLetter || $0.isNumber  }
                 if filteredText.isEmpty {
-                    fetchMoreIssues(searchWord: "p", pageNum: pageNum)
+                    fetchMoreIssues(searchWord: "p", pageNum: issuesViewModel.pageNum)
                 } else {
-                    fetchMoreIssues(searchWord: filteredText, pageNum: pageNum)
+                    fetchMoreIssues(searchWord: filteredText, pageNum: issuesViewModel.pageNum)
                 }
-                preFetchIndex = preFetchIndex + 30
-                pageNum = pageNum + 1
+                issuesViewModel.preFetchIndex = issuesViewModel.preFetchIndex + 30
+                issuesViewModel.pageNum = issuesViewModel.pageNum + 1
             }
         }
     }

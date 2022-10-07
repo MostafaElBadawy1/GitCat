@@ -34,7 +34,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        SettingsTableView.deselectRow(at: indexPath, animated: true)
+        settingsTableView.deselectRow(at: indexPath, animated: true)
         guard let section = SettingsSection(rawValue: indexPath.section) else {return}
         switch section {
         case .General:
@@ -55,7 +55,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = SettingsTableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
+        let cell = settingsTableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
         guard let section = SettingsSection(rawValue: indexPath.section) else {return UITableViewCell()}
         switch section {
         case .General:

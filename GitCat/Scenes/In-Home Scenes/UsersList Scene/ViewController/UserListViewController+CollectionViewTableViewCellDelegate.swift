@@ -7,7 +7,7 @@
 import UIKit
 extension UsersListViewController: CollectionViewTableViewCellDelegate {
     func tappedCell(cell: CollectionViewTableViewCell, index: Int) {
-        let userDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.UserDetailsViewControllerID) as! UserDetailsViewController
+        let userDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.userDetailsViewControllerID) as! UserDetailsViewController
         userDetailsVC.passeedDataFromUserListVC = visitedUserArray[index].userName
         self.navigationController?.pushViewController(userDetailsVC, animated: true)
     }

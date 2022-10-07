@@ -7,13 +7,10 @@
 import UIKit
 class IssuesViewController: UIViewController {
     //MARK: - Props
-    var pageNum = 1
-    var preFetchIndex = 15
     var issuesArray = [IssuesItems]()
     var moreIssuesArray = [IssuesItems]()
     var issuesViewModel = IssuesViewModel()
     let loadingIndicator = UIActivityIndicatorView()
-    let spinner = UIActivityIndicatorView()
     let searchController = UISearchController()
     let noIssueslabel = UILabel()
     var passedTextFromSearch: String?
@@ -29,7 +26,7 @@ class IssuesViewController: UIViewController {
     func initView(){
         tableViewConfig()
         refreshPage()
-        networkReachability()
+        networkReachability(loadingIndicator: loadingIndicator)
         searchControllerConfig()
     }
     func InitViewModel(){
@@ -45,24 +42,13 @@ class IssuesViewController: UIViewController {
         issuesTableView.delegate = self
         issuesTableView.dataSource = self
         issuesTableView.prefetchDataSource = self
-        issuesTableView.register(UINib(nibName: K.CommitsTableViewCellID, bundle: .main), forCellReuseIdentifier: K.CommitsTableViewCellID)
+        tableViewNibRegister(tableViewName: issuesTableView, nibName: K.commitsTableViewCellID)
         issuesTableView.frame = view.frame
         navigationItem.title = "Issues"
     }
     func searchControllerConfig() {
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = false
+        searchControllerSetup(searchController: searchController, placeHolder: "Search For Issues.")
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search For Issues."
-    }
-    
-    func createSpinnerFooter()-> UIView {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
-        footerView.addSubview(spinner)
-        spinner.center = footerView.center
-        spinner.startAnimating()
-        return footerView
     }
     func LabelConfig(){
         noIssueslabel.text = "There aren't any issues."
@@ -70,18 +56,6 @@ class IssuesViewController: UIViewController {
         //label.translatesAutoresizingMaskIntoConstraints = false
         noIssueslabel.frame =  CGRect(x: 110, y: 400, width:300, height: 50)
         self.view.addSubview(noIssueslabel)
-    }
-    
-    func networkReachability(){
-        loadingIndicator.style = .medium
-        loadingIndicator.center = view.center
-        view.addSubview(loadingIndicator)
-        if NetworkMonitor.shared.isConnected {
-            loadingIndicator.stopAnimating()
-        } else {
-            presentAlert(title: "You Are Disconnected", message: "Please Check Your Connection!")
-            loadingIndicator.startAnimating()
-        }
     }
     func refreshPage(){
         self.issuesTableView.refreshControl = UIRefreshControl()
@@ -92,16 +66,11 @@ class IssuesViewController: UIViewController {
         self.issuesTableView.reloadData()
         noIssueslabel.isHidden = true
     }
-    func presentAlert(title: String, message: String) {
-        let alert : UIAlertController = UIAlertController(title: title, message: message , preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
     //MARK: - Data Function
     func fetchIssues(searchWord: String) {
         self.loadingIndicator.startAnimating()
         self.issuesTableView.isHidden = true
-        issuesViewModel.searchIssues(searchWord: searchWord, pageNum: pageNum)
+        issuesViewModel.searchIssues(searchWord: searchWord, pageNum: issuesViewModel.pageNum)
         issuesViewModel.bindingData = { [self] issuesData, error in
             if let issues = issuesData {
                 self.issuesArray = issues

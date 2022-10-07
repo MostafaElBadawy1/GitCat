@@ -6,6 +6,8 @@
 //
 import Foundation
 class RepositoriesViewModel {
+    var pageNum = 2
+    var preFetchIndex = 10
     var bindingData: (([RepositoriesForUserModel]?,Error?) -> Void) = {_, _ in }
     var repos = [RepositoriesForUserModel]() {
         didSet {
