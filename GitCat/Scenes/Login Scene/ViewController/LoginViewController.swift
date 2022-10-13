@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
                     if !isSuccess {
                         presentAlert(title: "Error While Fetching Access Token", message: "")
                     }
-                    let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
+                    let tabBarVC = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: K.tabBarID) as! UITabBarController
                     tabBarVC.modalPresentationStyle = .fullScreen
                     self.present(tabBarVC, animated: true, completion: nil)
                 }

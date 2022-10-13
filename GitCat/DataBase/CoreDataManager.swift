@@ -6,10 +6,11 @@
 //
 import UIKit
 import CoreData
-class CoreDataManger {
+final class CoreDataManger {
+    private init() {}
+    static let shared = CoreDataManger()
     var usersArray = [User]()
     var reposArray = [Repo]()
-    static let shared = CoreDataManger()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     func fetch<T: NSManagedObject>(entityName: T.Type , completion: @escaping ([T]?, Error?) -> Void) {
         do {

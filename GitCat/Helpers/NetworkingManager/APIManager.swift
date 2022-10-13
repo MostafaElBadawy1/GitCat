@@ -6,7 +6,7 @@
 //
 import UIKit
 import Alamofire
-class APIManager {
+final class APIManager {
     private init() {}
     static let shared = APIManager()
     let sessionManager: Session = {
