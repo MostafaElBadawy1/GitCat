@@ -58,7 +58,6 @@ class ExploreViewController: UIViewController {
     func LabelConfig() {
         noReposLabel.text = "There aren't any users."
         noReposLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        //label.translatesAutoresizingMaskIntoConstraints = false
         noReposLabel.frame =  CGRect(x: 110, y: 400, width: 300, height: 50)
         self.view.addSubview(noReposLabel)
     }

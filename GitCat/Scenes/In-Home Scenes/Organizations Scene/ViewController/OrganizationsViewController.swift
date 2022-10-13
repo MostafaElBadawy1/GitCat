@@ -28,7 +28,7 @@ class OrganizationsViewController: UIViewController {
     }
     func initViewModel() {
         if let userName = passedNameFromUserDetailsVC {
-            searchControllerConfig()
+            searchControllerSetup(searchController: searchController, placeHolder: "Search Organizations")
             fetchOrgs(userName: userName)
             searchController.searchBar.text = userName
         }
@@ -41,14 +41,6 @@ class OrganizationsViewController: UIViewController {
         orgsTableView.frame = view.bounds
         orgsTableView.rowHeight = 80
         navigationItem.title = "Organizations"
-    }
-    func searchControllerConfig() {
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = false
-        //searchController.delegate = self
-       // searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search Organizations"
     }
     func orgsLabelConfig(){
         let label = UILabel()

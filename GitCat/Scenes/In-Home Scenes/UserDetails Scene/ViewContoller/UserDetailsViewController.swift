@@ -96,7 +96,6 @@ class UserDetailsViewController: UIViewController {
         self.userDetailsTableView.reloadData()
     }
     private func presentShareSheet() {
-        //let image =.kf.setImage(with: URL(string: passeedDataFromUserListVC.avatar_url),placeholder: UIImage(named: "UsersIcon"))
         guard  let url = URL(string: user!.html_url!) else {
             return
         }
@@ -118,10 +117,6 @@ class UserDetailsViewController: UIViewController {
                     self.userDetailsTableView.reloadData()
                     self.loadingIndicator.stopAnimating()
                     self.userDetailsTableView.isHidden = false
-//                    if self.userDetailsArray.isEmpty {
-//                        self.userDetailsTableView.isHidden = true
-//                        self.tryAgainButtonConfig()
-//                    }
                 }
             }
             if let error = error {

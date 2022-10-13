@@ -13,7 +13,6 @@ class UsersListViewController: UIViewController {
     var moreUsersArray = [UserModel]()
     var searchController = UISearchController()
     let loadingIndicator = UIActivityIndicatorView()
-    var searchHistoryVC = SearchHistoryViewController()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var usersModel = [User]()
     var visitedUserArray = [VisitedUser]()
@@ -83,11 +82,6 @@ class UsersListViewController: UIViewController {
         fetchUsers(for: "mo")
         self.usersListTableView.reloadData()
         noUserslabel.isHidden = true
-    }
-    func searchHistoryVCConfig() {
-        searchHistoryVC.view.isHidden = true
-        usersListTableView.isHidden  = false
-        //loadingIndicator.isHidden = false
     }
     func LabelConfig() {
         noUserslabel.text = "There aren't any users."

@@ -11,9 +11,6 @@ extension HomeViewController: UISearchResultsUpdating {
         query = text
     }
 }
-//extension HomeViewController: UISearchControllerDelegate {
-// 
-//}
 extension HomeViewController : UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
        // navigatingSearchTableViewConfig()
@@ -77,17 +74,5 @@ extension HomeViewController : UISearchBarDelegate {
         findYourStuffLabel.isHidden = true
         searchGithubLabel.isHidden = true
         fetchSearchedWords()
-//        guard let text = searchController.searchBar.text else { return }
-//        let searchWord = SearchedWord(context: self.context)
-//        searchWord.word = text
-//        if text.isEmpty  {
-//            return
-//        } else {
-//            do {
-//                try self.context.save()
-//            } catch {
-//                context.reset()
-//            }
-//        }
     }
 }

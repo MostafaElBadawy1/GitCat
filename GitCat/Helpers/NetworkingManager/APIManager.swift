@@ -7,6 +7,7 @@
 import UIKit
 import Alamofire
 class APIManager {
+    private init() {}
     static let shared = APIManager()
     let sessionManager: Session = {
         let configuration = URLSessionConfiguration.af.default

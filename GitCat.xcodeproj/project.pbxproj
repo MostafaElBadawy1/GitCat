@@ -79,12 +79,9 @@
 		A6BB748528B2EFEB0051C48F /* CommitsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB748428B2EFEB0051C48F /* CommitsModel.swift */; };
 		A6BB748728B301420051C48F /* SearchRepositoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB748628B301420051C48F /* SearchRepositoriesModel.swift */; };
 		A6BB748A28B31B610051C48F /* OrganizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB748928B31B610051C48F /* OrganizationModel.swift */; };
-		A6BB748E28B3C0E30051C48F /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB748D28B3C0E30051C48F /* SearchHistoryViewController.swift */; };
-		A6BB749028B3C0F60051C48F /* SearchHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB748F28B3C0F60051C48F /* SearchHistoryViewModel.swift */; };
 		A6BB749628B3D2CE0051C48F /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB749428B3D2CE0051C48F /* RecentSearchTableViewCell.swift */; };
 		A6BB749728B3D2CE0051C48F /* RecentSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6BB749528B3D2CE0051C48F /* RecentSearchTableViewCell.xib */; };
 		A6BB749A28B51E190051C48F /* SettingsViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB749928B51E190051C48F /* SettingsViewController+TableViewExtention.swift */; };
-		A6BB749D28B51EFA0051C48F /* RecentVisitedUsersHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB749C28B51EFA0051C48F /* RecentVisitedUsersHeader.swift */; };
 		A6BB74A228B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74A028B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift */; };
 		A6BB74A328B522F80051C48F /* RecentVisitedUsersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6BB74A128B522F80051C48F /* RecentVisitedUsersCollectionViewCell.xib */; };
 		A6BB74AF28B5625A0051C48F /* OrganizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BB74AE28B5625A0051C48F /* OrganizationsViewController.swift */; };
@@ -222,12 +219,9 @@
 		A6BB748428B2EFEB0051C48F /* CommitsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsModel.swift; sourceTree = "<group>"; };
 		A6BB748628B301420051C48F /* SearchRepositoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesModel.swift; sourceTree = "<group>"; };
 		A6BB748928B31B610051C48F /* OrganizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationModel.swift; sourceTree = "<group>"; };
-		A6BB748D28B3C0E30051C48F /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
-		A6BB748F28B3C0F60051C48F /* SearchHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewModel.swift; sourceTree = "<group>"; };
 		A6BB749428B3D2CE0051C48F /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
 		A6BB749528B3D2CE0051C48F /* RecentSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentSearchTableViewCell.xib; sourceTree = "<group>"; };
 		A6BB749928B51E190051C48F /* SettingsViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
-		A6BB749C28B51EFA0051C48F /* RecentVisitedUsersHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVisitedUsersHeader.swift; sourceTree = "<group>"; };
 		A6BB74A028B522F80051C48F /* RecentVisitedUsersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVisitedUsersCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6BB74A128B522F80051C48F /* RecentVisitedUsersCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentVisitedUsersCollectionViewCell.xib; sourceTree = "<group>"; };
 		A6BB74AE28B5625A0051C48F /* OrganizationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsViewController.swift; sourceTree = "<group>"; };
@@ -520,32 +514,6 @@
 			path = HomeTableViewCell;
 			sourceTree = "<group>";
 		};
-		A68A3B1428AC1E5300A08BF8 /* SearchHistory Scene */ = {
-			isa = PBXGroup;
-			children = (
-				A68A3B1728AC217200A08BF8 /* ViewController */,
-				A68A3B1A28AC26FF00A08BF8 /* ViewModel */,
-				A6BB749B28B51EBD0051C48F /* RecentVisitedUsersHeader */,
-			);
-			path = "SearchHistory Scene";
-			sourceTree = "<group>";
-		};
-		A68A3B1728AC217200A08BF8 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				A6BB748D28B3C0E30051C48F /* SearchHistoryViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		A68A3B1A28AC26FF00A08BF8 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				A6BB748F28B3C0F60051C48F /* SearchHistoryViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		A699421528A31335000B2410 /* Commits Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,22 +717,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		A6BB749B28B51EBD0051C48F /* RecentVisitedUsersHeader */ = {
-			isa = PBXGroup;
-			children = (
-				A6BB749E28B522BE0051C48F /* View */,
-			);
-			path = RecentVisitedUsersHeader;
-			sourceTree = "<group>";
-		};
-		A6BB749E28B522BE0051C48F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A6BB749C28B51EFA0051C48F /* RecentVisitedUsersHeader.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		A6BB749F28B522C80051C48F /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,7 +886,6 @@
 				A63B411328BE615200E624DB /* GithubWebView Scene */,
 				A6AC5C5C28884870003415FC /* UsersList Scene */,
 				A6E92EA028A12F580085F163 /* UserDetails Scene */,
-				A68A3B1428AC1E5300A08BF8 /* SearchHistory Scene */,
 				A6E92EC228A2BC120085F163 /* Repositories Scene */,
 				A63B410528BE4DAE00E624DB /* Issues Scene */,
 				A699421528A31335000B2410 /* Commits Scene */,
@@ -1323,16 +1274,13 @@
 				A6AC5C6E2889991C003415FC /* UsersListViewModel.swift in Sources */,
 				A69F429928F0956B00777B82 /* LoginViewController+Extention.swift in Sources */,
 				A6E92EC428A2BC500085F163 /* RepositoriesViewController.swift in Sources */,
-				A6BB748E28B3C0E30051C48F /* SearchHistoryViewController.swift in Sources */,
 				A6C73FE9289F2017001C7E16 /* HomeViewController+SearchExtension.swift in Sources */,
 				A662E6DA28D6C76F00F3850E /* UserListViewController+CollectionViewTableViewCellDelegate.swift in Sources */,
-				A6BB749D28B51EFA0051C48F /* RecentVisitedUsersHeader.swift in Sources */,
 				A63B411228BE5CBF00E624DB /* IssuesViewController+SearchExtention.swift in Sources */,
 				A6B518D628CF78CE00D699D6 /* SecureStoreQueryable.swift in Sources */,
 				A699421828A31373000B2410 /* CommitsViewController.swift in Sources */,
 				A6EFEDD428C9458100EC84C4 /* UserListViewController+ContextMenuExtension.swift in Sources */,
 				A6BB74AF28B5625A0051C48F /* OrganizationsViewController.swift in Sources */,
-				A6BB749028B3C0F60051C48F /* SearchHistoryViewModel.swift in Sources */,
 				A6E92EB728A299950085F163 /* UserDetailsTableViewCell.swift in Sources */,
 				A63B410A28BE4FF400E624DB /* IssuesViewController.swift in Sources */,
 				A6E92EA228A12F800085F163 /* UserDetailsViewController.swift in Sources */,

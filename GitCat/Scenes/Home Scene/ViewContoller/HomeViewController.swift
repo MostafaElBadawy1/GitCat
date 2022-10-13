@@ -9,7 +9,6 @@
 class HomeViewController: UIViewController {
     //MARK: - Props
     let searchController = UISearchController()
-    var searchHistoryVC = SearchHistoryViewController()
     var homeViewModel = HomeViewModel()
     let homeArray = [["Users", "Repositories", "Issues", "Github Web"], ["My Repo"],["Authenticated User Mode"]]
     let imagesArray = [UIImage(named: "UsersIcon"),UIImage(named: "repoIcon"),UIImage(named: "issuesIcon"),UIImage(named: "GitHubIcon")]
